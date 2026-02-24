@@ -44,4 +44,11 @@ Se centra en la Seguridad, Gestión de riesgos y cumplimiento, como las evaluaci
 
 Bajo cada uno de estos dominios, vamos a encontrar objetivos específicos que te proporcionan algo que debes ser capaz de hacer, como explicar, comparar y contrarestar e implementar, analizar y más...
 
+Recomendación: Guía del Estudiante, (comptia.org)
+
+
+# Objetivo del Aprendizaje: 
+
+Implementar controles de seguridad para proteger el sistema
+
 ATT: SANTIAGO REYES
