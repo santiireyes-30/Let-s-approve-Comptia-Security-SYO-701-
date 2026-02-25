@@ -1,4 +1,4 @@
-# Tips, Consejos y Datos para enfrentar ComTIA Security+
+# Tips y Datos para enfrentar ComTIA Security+
 
 - Mezcla de preguntas de los 5 ámbitos y los 28 objetivos
 
