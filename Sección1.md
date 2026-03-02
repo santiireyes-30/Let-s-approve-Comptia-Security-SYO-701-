@@ -68,7 +68,7 @@ de los sistemas de información y sus datos. Estos controles de seguridad pueden
 y físicos, pero también podemos hablar de los distintos tipos de controles de seguridad que tenemos, como controles preventivos, disuasorios, detectivos, 
 correctivos, compensatorios y directivos.
 
-# Zero Trust
+# Zero Trust (Confianza cero)
 
 a confianza cero es un modelo de seguridad más reciente que se basa en el principio de que no se debe confiar por defecto en nadie, ya sea
 dentro o fuera de la organización, y se va a exigir verificación a todo aquel que intente acceder a los recursos del sistema.
@@ -76,6 +76,18 @@ dentro o fuera de la organización, y se va a exigir verificación a todo aquel 
 Para lograr la confianza cero, tenemos que utilizar un plano de control y un plano de datos. El plano de control está formado por la identidad adaptativa,
 la reducción del alcance de las amenazas, los controles de acceso basados en políticas y las zonas seguras. Por otro lado, el plan de datos se va
 a centrar en el sujeto y el sistema, el motor de políticas, el administrador de políticas y el establecimiento de puntos de aplicación de políticas.
+
+''No confíes en nada, verifica todo.''
+
+Implica:
+
+Verificación continua
+
+Autenticación fuerte
+
+No confiar solo por estar dentro de la red
+
+Incluso si estás en la red corporativa, debes validar identidad constantemente.
 
 # Amenazas, Vulnerabilidades y Gestión del Riesgo
 
