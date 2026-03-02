@@ -81,13 +81,11 @@ a centrar en el sujeto y el sistema, el motor de políticas, el administrador de
 
 Implica:
 
-Verificación continua
+- Verificación continua
 
-Autenticación fuerte
+- Autenticación fuerte
 
-No confiar solo por estar dentro de la red
-
-Incluso si estás en la red corporativa, debes validar identidad constantemente.
+- No confiar solo por estar dentro de la red, Incluso si estás en la red corporativa, debes validar identidad constantemente.
 
 # Amenazas, Vulnerabilidades y Gestión del Riesgo
 
