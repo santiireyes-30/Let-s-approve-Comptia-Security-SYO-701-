@@ -320,10 +320,15 @@ Cada tipo cumple un rol distinto, pero juntos crean una estrategia de seguridad 
 
 # Análisis de Carencias (Gap Analysis)
 
-Un análisis de carencias es un proceso que compara:
+Proceso que compara:
 
-📍 Estado actual de la organización
-🎯 Estado deseado
+- Estado actual
+
+- Estado deseado
+
+Sirve para identificar qué falta mejorar en seguridad, procesos o infraestructura.
+
+No es un mecanismo en tiempo real, sino un proceso de evaluación.
 
 Su objetivo es identificar qué falta para cerrar esa brecha y mejorar el rendimiento o la seguridad.
 
@@ -352,12 +357,12 @@ Empresarial → Evalúa procesos, gestión, presupuesto y operaciones.
 
 Se usa mucho en:
 
-Gestión de vulnerabilidades
+- Gestión de vulnerabilidades
 
-Planes de acción (POA&M)
+- Planes de acción (POA&M)
 
-Migraciones a la nube
+- Migraciones a la nube
 
-Mejora continua de seguridad
+- Mejora continua de seguridad
 
 Un análisis de carencias permite planificar cómo pasar del estado actual al deseado de forma estructurada, priorizando riesgos y mejoras.
