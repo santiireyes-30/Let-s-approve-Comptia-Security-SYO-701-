@@ -54,6 +54,6 @@ Recomendación: Guía del Estudiante, (comptia.org)
 
 # Objetivo del Aprendizaje: 
 
-Implementar controles de seguridad para proteger el sistema y aprobar Comptia+
+Aprender/Conocer como Implementar/Aplicar y los tipos de Controles de Seguridad para proteger el sistema.
 
 ATT: SANTIAGO REYES
