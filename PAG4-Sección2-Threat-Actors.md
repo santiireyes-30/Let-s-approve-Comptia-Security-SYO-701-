@@ -69,16 +69,6 @@ Cabe aclarar que son conceptos muy básicos que debes tener en cuenta y que algu
             Microondas
 
             Ultrasonido
-
-• Tecnología de engaño y disrupción
-
-      Honeypot
-
-      Honeynet
-
-      Honeyfile
-
-      Honeytoken
       
 # Dominio 2: Amenazas, Vulnerabilidades y Mitigaciones
 
