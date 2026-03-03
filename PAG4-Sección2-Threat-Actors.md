@@ -256,13 +256,21 @@ sus enemigos.
 Los datos robados pueden venderse en la web oscura, usarse para robo de identidad o para obtener ventaja competitiva. Por eso, la filtración de datos es una de las principales motivaciones de muchos actores de amenaza.
 
 2️. Chantaje → Amenazan con divulgar información sensible (ej: sextorsión, doxxing).
+
 3. Espionaje → Robo de información estratégica o competitiva.
+   
 4. Interrupción del servicio → Ataques como DDoS para causar caos o exigir rescate.
+   
 5. Beneficio económico → Ransomware, robo bancario, fraude.
+   
 6. Creencias políticas o filosóficas → Hacktivismo para promover una causa.
+    
 7. Razones éticas → Hackers éticos que buscan mejorar la seguridad.
+    
 8. Venganza → Empleados descontentos o atacantes con resentimiento.
+    
 9. Caos o desorganización → Atacan por desafío o por causar daño.
+    
 10. Guerra cibernética → Ataques entre naciones por objetivos geopolíticos.
 
 📌 Idea clave
