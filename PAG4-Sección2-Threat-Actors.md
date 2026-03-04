@@ -277,7 +277,7 @@ Los datos robados pueden venderse en la web oscura, usarse para robo de identida
 
 Comprender las motivaciones permite anticipar ataques y diseñar mejores defensas, ya que cada tipo de actor actúa según objetivos distintos: dinero, ideología, venganza, espionaje o guerra.
     
-Atributos y Tipos de Actores de Amenaza:
+# Atributos y Tipos de Actores de Amenaza:
 
 Los atributos de los actores de amenaza son las características que los diferencian, como:
 Principales atributos
@@ -330,34 +330,86 @@ Un empleado despedido que roba datos:
 
       Motivación → Venganza
 
-Tipos principales de actores:
+# Tipos principales de actores:
 
       Atacantes inexpertos (script kiddies) → Poca habilidad técnica, usan herramientas ya hechas.
+                            + Info: utilizan programas y exploits ya desarrollados por otros. Aunque tienen bajo nivel de sofisticación y pocos recursos, 
+                            pueden causar daños importantes si atacan sistemas vulnerables o sin parches.
 
       Hacktivistas → Motivación política o social.
-
+                            + Info: Los hacktivistas son individuos o grupos que utilizan ataques informáticos para promover causas políticas o sociales, no para ganar dinero.
+                            Suelen atacar gobiernos, corporaciones u organizaciones que consideran injustas o poco éticas.
+                            
       Crimen organizado → Buscan ganancias económicas (ransomware, fraude).
+                            +  Info: Funcionan como una organización profesional, pero ilegal.
 
       Estado-nación → Altamente sofisticados, patrocinados por gobiernos.
+                            + Info: Los actores del Estado-nación son grupos o individuos patrocinados por un gobierno
+                            para realizar operaciones cibernéticas contra otros países, organizaciones o personas. Tienen altos recursos y financiación estatal, Poseen capacidades
+                            técnicas avanzadas, Realizan ataques complejos y prolongados, A veces usan ataques de falsa bandera para culpar a otros.
 
       Amenazas internas → Empleados maliciosos o descuidados.
+                            + Info: Las amenazas internas son riesgos de seguridad que provienen de personas dentro de la organización, como: Empleados actuales o antiguos, 
+                            Contratistas, Socios comerciales...
+                            Estas personas tienen acceso legítimo a sistemas y datos, además de conocer la infraestructura interna, lo que puede hacerlas más peligrosas que un atacante externo.
 
 Otros conceptos clave:
 
       Shadow IT → Uso de sistemas o aplicaciones sin aprobación oficial, generando riesgos.
+                + Info: La TI en la sombra es el uso de sistemas, dispositivos, software, aplicaciones y servicios de tecnología de la información
+                sin la aprobación explícita de la organización. Es decir, Si el departamento de tecnología de su organización no sabe que una determinada pieza de hardware,
+                software o servicio en la nube está siendo utilizada por sus empleados, entonces van a ser incapaces de protegerla.
 
-      Vectores de amenaza → Mensajes, archivos, llamadas, dispositivos removibles, redes inseguras.
+      Vectores de amenaza → Es el medio o la vía que usa un atacante para acceder sin autorización a un sistema y ejecutar una acción maliciosa (es el “cómo entra” del ataque).
+      Los Vectores de Amenazas más comunes: 
+      - Mensajes (email, SMS, mensajería) → phishing, enlaces o archivos maliciosos. 
+      - Imágenes → código malicioso oculto (ej. esteganografía)
+      - Archivos → documentos o programas infectados-Llamadas de voz (vishing) → suplantación para robar información.
+      - Dispositivos extraíbles → USB infectados. 
+      - Redes no seguras (Wi-Fi, cableadas o Bluetooth) → interceptación de datos, puntos de acceso falsos y explotación de vulnerabilidades.
 
-Tecnologías de engaño:
+      Superficies de Ataque → Es el conjunto de todos los puntos vulnerables por donde un atacante podría entrar o extraer información (el “dónde” del ataque).
+      La superficie de ataque puede reducirse limitando accesos, eliminando software innecesario y desactivando protocolos no utilizados.
 
-      Honeypots (sistemas señuelo)
+# Tecnologías de engaño:
 
-      Honeynets (redes señuelo)
+- Definición: Son mecanismos diseñados para atraer, detectar, confundir y analizar atacantes sin poner en riesgo activos reales.
 
-      Honeyfiles (archivos trampa)
+Tipos: 
 
-      Honeytokens (datos falsos para detectar accesos indebidos)
+     1. Honeypot(sistemas señuelos): Sistema o servicio señuelo configurado para parecer vulnerable y atraer atacantes.
+                - Simula un sistema real.
+                - No protege directamente.
+                - Se usan en entornos aislados, es decir no en tu propia red.
+                - Su objetivo es recopilar información sobre el atacante(Registra toda la actividad realizada en él).
+              
+                Puede utilizarse para detectar: 
+                - Amenazas externas
+                - Amenazas internas (insiders)
 
-Idea central:
+     2.  Honeynets (redes señuelo): Conjunto de múltiples honeypots interconectados que simulan una red completa.
+                - Incluye servidores, routers, switches.
+                - Permite estudiar ataques más complejos.
+                - Genera grandes volúmenes de datos sobre patrones de ataque.
+                ⚠ Riesgo: si está mal configurada, puede revelar información sobre la red real.
 
-Comprender los atributos, tipos y métodos de los actores de amenaza ayuda a diseñar mejores estrategias de defensa y detección en ciberseguridad.
+      Honeyfiles (archivos trampa): Archivo señuelo diseñado para parecer valioso o sensible.
+                - Contiene datos falsos para una mejor protección.
+                - Puede incluir marcas de agua digitales o identificadores únicos para que no se pierda el archivo/imagen.
+                - Genera alertas cuando se accede.
+                - Puede incluir código para rastrear al atacante.
+                
+                 Se usa para:
+                 - Detectar accesos no autorizados.
+                 - Identificar exfiltración de datos.
+
+      Honeytokens: Dato o recurso falso sin uso legítimo cuyo acceso indica actividad maliciosa.
+                Ejemplos:
+                - Cuenta de usuario falsa
+                - Registro de base de datos ficticio
+                - URL inexistente
+
+                Cualquier interacción con él es sospechosa.
+                Muy útil contra:
+                - Amenazas internas
+                - Movimientos laterales
