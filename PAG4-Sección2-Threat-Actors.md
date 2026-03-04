@@ -387,13 +387,13 @@ Tipos:
                 - Amenazas externas
                 - Amenazas internas (insiders)
 
-     2.  Honeynets (redes señuelo): Conjunto de múltiples honeypots interconectados que simulan una red completa.
+     2. Honeynets (redes señuelo): Conjunto de múltiples honeypots interconectados que simulan una red completa.
                 - Incluye servidores, routers, switches.
                 - Permite estudiar ataques más complejos.
                 - Genera grandes volúmenes de datos sobre patrones de ataque.
                 ⚠ Riesgo: si está mal configurada, puede revelar información sobre la red real.
 
-      Honeyfiles (archivos trampa): Archivo señuelo diseñado para parecer valioso o sensible.
+     3. Honeyfiles (archivos trampa): Archivo señuelo diseñado para parecer valioso o sensible.
                 - Contiene datos falsos para una mejor protección.
                 - Puede incluir marcas de agua digitales o identificadores únicos para que no se pierda el archivo/imagen.
                 - Genera alertas cuando se accede.
@@ -403,7 +403,7 @@ Tipos:
                  - Detectar accesos no autorizados.
                  - Identificar exfiltración de datos.
 
-      Honeytokens: Dato o recurso falso sin uso legítimo cuyo acceso indica actividad maliciosa.
+     4. Honeytokens: Dato o recurso falso sin uso legítimo cuyo acceso indica actividad maliciosa.
                 Ejemplos:
                 - Cuenta de usuario falsa
                 - Registro de base de datos ficticio
