@@ -1,7 +1,7 @@
 # En esta Sección consta de 2 Dominios: 
 # Dominio 1: Conceptos Generales de Seguridad 
 
-Cabe aclarar que son conceptos muy básicos que debes tener en cuenta y que algunos conceptos ya hemos repasado, pero estos son los totales en esta Sección!
+Cabe aclarar que son conceptos básicos que debes tener en cuenta y que algunos conceptos ya hemos repasado, pero estos son los totales en esta Sección!
 
 # 1.0 Conceptos Generales de Seguridad
 
