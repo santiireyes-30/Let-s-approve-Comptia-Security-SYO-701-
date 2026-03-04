@@ -371,7 +371,7 @@ Otros conceptos clave:
       Superficies de Ataque → Es el conjunto de todos los puntos vulnerables por donde un atacante podría entrar o extraer información (el “dónde” del ataque).
       La superficie de ataque puede reducirse limitando accesos, eliminando software innecesario y desactivando protocolos no utilizados.
 
-# Tecnologías de engaño:
+# Tecnologías de engaño (Deception Technologies):
 
 - Definición: Son mecanismos diseñados para atraer, detectar, confundir y analizar atacantes sin poner en riesgo activos reales.
 
@@ -413,3 +413,46 @@ Tipos:
                 Muy útil contra:
                 - Amenazas internas
                 - Movimientos laterales
+
+# Tecnologías de Interrupción (Disruption Techniques)
+
+Buscan ralentizar, confundir o desviar al atacante.
+
+     1. Entradas DNS falsas
+        Registros DNS manipulados o ficticios que redirigen al atacante a sistemas trampa o dominios inexistentes.
+        Objetivo:
+        - Desviar ataques.
+        - Generar alertas.
+        - Hacer perder tiempo al atacante.
+
+     2. Directorios señuelo (Decoy directories)
+        Carpetas y archivos falsos colocados dentro del sistema para atraer atacantes.
+        Si alguien intenta acceder:
+        - Se genera una alerta.
+        - Se registra la actividad.
+
+     3. Generación dinámica de páginas
+     Técnica donde el contenido web cambia constantemente.
+     Se usa para:
+     - Confundir rastreadores automáticos.
+     - Ralentizar scraping.
+     - Dificultar reconocimiento automatizado.
+
+     4. Port Triggering (Activación de puertos)
+        Mecanismo donde un puerto permanece cerrado hasta que se detecta un patrón específico de tráfico saliente.
+        - Reduce exposición de servicios.
+        - Oculta puertos abiertos.
+        - Limita superficie de ataque.
+
+     5. Falsificación de datos telemétricos (Telemetry spoofing)
+     Consiste en enviar información falsa sobre el sistema cuando se detecta un escaneo o reconocimiento.
+     Ejemplo: El sistema responde que ejecuta Windows cuando en realidad usa macOS con el Objetivo de:
+     - Confundir al atacante.
+     - Provocar que utilice exploits incorrectos.
+     - Dificultar reconocimiento.
+
+Otros Conceptos:
+ - Resiliencia cibernética: Capacidad de una organización para Resistir ataques, Detectarlos, Responder y Recuperarse
+
+ - Defensa proactiva: Estrategia basada en anticiparse al atacante en lugar de reaccionar después del incidente.
+   Incluye: Monitoreo continuo, Inteligencia de amenazas, Tecnologías de engaño
