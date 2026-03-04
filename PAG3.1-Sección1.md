@@ -1,3 +1,70 @@
+# 1.0 Conceptos Generales de Seguridad
+
+# Introducción
+1.2 Resumir conceptos fundamentales de seguridad
+
+• Confidencialidad, Integridad y Disponibilidad (CIA)
+
+• No repudio
+ 
+• Autenticación, Autorización y Contabilidad (AAA)
+
+      Autenticación de personas
+
+      Autenticación de sistemas
+
+      Modelos de autorización
+
+• Análisis de brechas (Gap analysis)
+
+• Confianza Cero (Zero Trust)
+
+      Plano de control
+
+      Identidad adaptativa
+
+      Reducción del alcance de amenazas
+
+      Control de acceso basado en políticas
+
+      Administrador de políticas
+
+      Motor de políticas
+
+      Plano de datos
+
+      Zonas de confianza implícitas
+
+      Sujeto/Sistema
+
+      Punto de aplicación de políticas
+
+• Seguridad física
+
+      Bolardos
+
+      Vestíbulo de control de acceso (mantrap)
+
+      Cercado
+
+      Videovigilancia
+
+      Guardia de seguridad
+
+      Tarjeta de acceso
+
+      Iluminación
+
+      Sensores
+
+            Infrarrojo
+
+            Presión
+
+            Microondas
+
+            Ultrasonido
+
 # Sección 1: Fundamentos de Seguridad
 
 Vamos a centrarnos en los fundamentos de la seguridad.
