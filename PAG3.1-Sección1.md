@@ -39,32 +39,6 @@
 
       Punto de aplicación de políticas
 
-• Seguridad física
-
-      Bolardos
-
-      Vestíbulo de control de acceso (mantrap)
-
-      Cercado
-
-      Videovigilancia
-
-      Guardia de seguridad
-
-      Tarjeta de acceso
-
-      Iluminación
-
-      Sensores
-
-            Infrarrojo
-
-            Presión
-
-            Microondas
-
-            Ultrasonido
-
 # Sección 1: Fundamentos de Seguridad
 
 Vamos a centrarnos en los fundamentos de la seguridad.
