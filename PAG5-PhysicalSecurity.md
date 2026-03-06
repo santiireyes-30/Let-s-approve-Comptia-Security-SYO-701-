@@ -130,6 +130,7 @@ protegen áreas críticas como salas de servidores o armarios de red. No todas l
 simples pueden ser forzados rápidamente por atacantes.
 
 - Cerraduras modernas usan tecnologías más seguras como PIN, señales inalámbricas (NFC, Bluetooth, RFID) o biometría.
+- Una de ellas es Cipher Lock(Bloqueo Cifrado): Es una cerradura mecánica o electrónica que se abre introduciendo una combinación numérica en un teclado.
 
 La biometría identifica a una persona mediante características físicas como huella dactilar, rostro, lo que corresponde al factor de autenticación “ALGO QUE ERES”.
 Para evaluar sistemas biométricos se usan tres métricas:
