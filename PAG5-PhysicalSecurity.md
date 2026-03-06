@@ -57,4 +57,88 @@ En seguridad física, los ataques de fuerza bruta incluyen principalmente:
                                                                           - Entrada forzada
                                                                           - Acceso no autorizado rompiendo o superando barreras físicas como ventanas, puertas o vallas.
                                                                   
-+ Info: Los ataques de fuerza bruta en seguridad física son directos y violentos, pero pueden ser muy efectivos si las instalaciones no tienen múltiples capas de protección.
++Info: Los ataques de fuerza bruta en seguridad física son directos y violentos, pero pueden ser muy efectivos si las instalaciones no tienen múltiples capas de protección.
+
+# Sistema de vigilancia 
+
+Los sitemas de vigilancia son un conjunto de herramientas y métodos utilizados para observar, detectar y responder a actividades sospechosas en un área,
+con el objetivo de proteger instalaciones, personas y activos.
+Un sistema de vigilancia efectivo combina cámaras, guardias, iluminación y sensores para detectar amenazas y responder rápidamente ante intrusiones. A continuación veremos
+algunos conceptos, Hay que tener en cuenta que la vigilancia se divide en cuatro componentes principales:
+
+Videovigilancia (CCTV):
+     - Uso de cámaras para monitorear áreas en tiempo real y revisar grabaciones.
+     - Puede incluir detección de movimiento, visión nocturna, reconocimiento facial y acceso remoto.
+     - Las cámaras pueden ser con cable o inalámbricas, y algunas tienen PTZ (Pan-Tilt-Zoom) para mover y ajustar el ángulo.
+
+Guardias de seguridad:
+     - Personal entrenado para detectar comportamientos sospechosos, responder a incidentes y disuadir atacantes.
+
+Iluminación:
+     - Mejora la visibilidad para cámaras y guardias, reduce escondites y actúa como disuasión.
+     - Algunas luces pueden activarse por movimiento.
+
+Sensores:
+     - Detectan cambios en el entorno y envían alertas.
+     Tipos principales:
+
+          - Infrarrojos: detecta radiación infrarroja, invisible al ojo humano, para medir distancias, detectar objetos o movimiento, o identificar cambios de calor.
+          - Presión: se activan cuando alguien pisa una superficie.
+          - Microondas: detectan movimiento en áreas amplias.
+          - Ultrasónicos: usan ondas sonoras para detectar movimientos.
+
+Otra cosa que debemos tener en cuenta que los sistemas de vigilancia no son infalibles, un intruso decidido podría intentar diversas técnicas para eludir o desactivar su sistema de vigilancia
+con el fin de evitar ser detectado. Analicemos algunos de los diferentes métodos utilizados por los atacantes para eludir los sistemas de vigilancia de su organización...
+
+1. Obstrucción visual
+Bloquear la cámara con objetos, cinta, pegatinas o pintura para impedir su visión.
+
+2. Cegamiento de cámaras o sensores
+Usar luces intensas, láseres o cambios de temperatura para inutilizar temporalmente sensores o cámaras.
+
+3. Interferencia acústica
+Utilizar ruido fuerte o dispositivos de ruido blanco para impedir que los sensores de audio detecten sonidos.
+
+4. Interferencia electromagnética (EMI)
+Interrumpir las señales inalámbricas o radiofrecuencias utilizadas por los sistemas de vigilancia.
+
+5. Ataques al entorno físico
+Manipular el entorno como cortar energía, dañar cables, cambiar temperatura para dañar sensor infrarojo o sabotear equipos.
+
+# Vestículo de Control
+
+Un vestíbulo de control de acceso es un sistema de seguridad física formado por dos puertas controladas electrónicamente, donde solo una puede abrirse a la vez.
+Su objetivo es verificar la identidad de una persona antes de permitirle entrar a una zona segura de un edificio.
+
+Cuando alguien entra por la puerta exterior, queda en un espacio intermedio. Allí se verifican sus credenciales (por ejemplo con una tarjeta de acceso).
+Si la verificación es correcta, se abre la puerta interior; si no, se le niega el acceso.
+
+Este sistema suele complementarse con tarjetas de acceso (RFID, NFC o banda magnética) y guardias de seguridad, creando una seguridad física por capas.
+
+Además, ayuda a prevenir dos ataques comunes:
+
+Piggybacking: cuando alguien autorizado deja entrar a otra persona sin permiso.
+
+Tailgating: cuando un intruso sigue a una persona autorizada sin que esta lo note.
+
+Las tarjetas de acceso también registran cada entrada, creando un registro de auditoría para investigar incidentes de seguridad.
+
+# Cerraduras de puertas
+
+Las cerraduras de puertas son controles de seguridad física internos que restringen y regulan el acceso a áreas sensibles dentro de una organización y
+protegen áreas críticas como salas de servidores o armarios de red. No todas las cerraduras ofrecen el mismo nivel de seguridad, los candados y cerraduras
+simples pueden ser forzados rápidamente por atacantes.
+
+- Cerraduras modernas usan tecnologías más seguras como PIN, señales inalámbricas (NFC, Bluetooth, RFID) o biometría.
+
+La biometría identifica a una persona mediante características físicas como huella dactilar, rostro, lo que corresponde al factor de autenticación “ALGO QUE ERES”.
+Para evaluar sistemas biométricos se usan tres métricas:
+
+- FAR (False Acceptance Rate): cuando el sistema acepta a alguien que no debería tener acceso.
+
+- FRR (False Rejection Rate): cuando el sistema rechaza a un usuario autorizado.
+
+- CER / EER (Cross / Equal Error Rate): punto donde FAR y FRR son iguales; cuanto más bajo, mejor es el sistema.
+
+Para mayor seguridad, muchas organizaciones usan autenticación multifactor, combinando elementos como tarjeta de acceso + PIN o huella + PIN.
+
