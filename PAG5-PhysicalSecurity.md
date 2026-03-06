@@ -134,11 +134,62 @@ simples pueden ser forzados rápidamente por atacantes.
 La biometría identifica a una persona mediante características físicas como huella dactilar, rostro, lo que corresponde al factor de autenticación “ALGO QUE ERES”.
 Para evaluar sistemas biométricos se usan tres métricas:
 
-- FAR (False Acceptance Rate): cuando el sistema acepta a alguien que no debería tener acceso.
+- FAR (False Acceptance Rate/Tasa de Falsa Aceptación): cuando el sistema acepta a alguien que no debería tener acceso, lo ideal es reducir a cero la tasa
+                                                        de falsas aceptaciones aumentando la sensibilidad de nuestros escáneres.
 
-- FRR (False Rejection Rate): cuando el sistema rechaza a un usuario autorizado.
+- FRR (False Rejection Rate): cuando el sistema rechaza a un usuario autorizado, Ej: aumento la tasa de sensibilidad y el dispositivo me rechaza y soy el dueño
 
-- CER / EER (Cross / Equal Error Rate): punto donde FAR y FRR son iguales; cuanto más bajo, mejor es el sistema.
+Intentamos conseguir un buen equilibrio entre estos dos factores para que la tasa de falsos aceptados y la tasa de falsos rechazados sean iguales. Este punto de igualdad
+se conoce como Tasa de Igualdad de Errores (EER, por sus siglas en inglés), pero en el sector de la ciberseguridad se suele denominar Tasa de Cruce de Errores (CER).
+Esto se debe a que su Tasa de Falsa Aceptación y su Tasa de Falso Rechazo se cruzan en ese punto específico donde son iguales, que es la Tasa de Error de Cruce.
 
-Para mayor seguridad, muchas organizaciones usan autenticación multifactor, combinando elementos como tarjeta de acceso + PIN o huella + PIN.
+Esta Tasa de Error de Cruce es realmente importante porque se utiliza como medida de la eficacia de un sistema biométrico determinado.
 
+- CER o EER (Cross / Equal Error Rate): punto donde FAR y FRR son iguales; cuanto más bajo, mejor es el sistema.
+
+Autenticación multifactor en cerraduras
+
+Las cerraduras modernas suelen usar más de un factor de autenticación. Ejemplo:
+
+- PIN + huella
+- Tarjeta + PIN
+
+Esto es MFA (Multi-Factor Authentication).
+
+Tipos de factores:
+
+Factor:                  |   Ejemplo:
+ Algo que sabes          |   PIN
+ Algo que tienes	     |   Tarjeta
+ Algo que eres	          |   Huella
+
+ # Clonación de Credenciales de Acceso
+
+La clonación de credenciales de acceso es un ataque en el que un atacante copia los datos de una tarjeta RFID o NFC y los transfiere a otra tarjeta
+o dispositivo para suplantar la identidad de un usuario autorizado y acceder a edificios, sistemas o realizar pagos. Se trata de una vulnerabilidad
+común en sistemas de control de acceso, por lo que se deben aplicar múltiples medidas de seguridad para evitarla.
+
+El proceso suele tener cuatro pasos:
+
+1. Escaneo: el atacante lee la tarjeta RFID/NFC con un lector cercano.
+
+2. Extracción de datos: obtiene el identificador o datos de autenticación.
+
+3. Clonación: copia esa información en otra tarjeta o dispositivo (por ejemplo con herramientas como Flipper Zero).
+
+4. Uso: utiliza la tarjeta clonada para obtener acceso no autorizado.
+
+Este ataque es peligroso porque es fácil, barato y difícil de detectar, y puede permitir a los atacantes entrar a instalaciones o cometer fraudes.
+Para prevenirlo, las organizaciones pueden:
+
+- Usar cifrado fuerte en las tarjetas.
+
+- Implementar autenticación multifactor (MFA) como tarjeta + PIN.
+
+- Actualizar regularmente claves y sistemas.
+
+- Capacitar a los usuarios sobre riesgos.
+
+- Usar fundas o carteras con protección RFID.
+
+- Monitorear los registros de acceso para detectar comportamientos sospechosos.
