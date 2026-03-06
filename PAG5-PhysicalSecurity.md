@@ -159,10 +159,10 @@ Esto es MFA (Multi-Factor Authentication).
 
 Tipos de factores:
 
-Factor:                  |   Ejemplo:
- Algo que sabes          |   PIN
- Algo que tienes	     |   Tarjeta
- Algo que eres	          |   Huella
+Factor + Ejemplo
+ Algo que sabes  →   PIN
+ Algo que tienes →   Tarjeta
+ Algo que eres	  →   Huella
 
  # Clonación de Credenciales de Acceso
 
