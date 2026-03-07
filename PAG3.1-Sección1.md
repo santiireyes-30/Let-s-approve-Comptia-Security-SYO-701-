@@ -168,7 +168,4 @@ Amenaza sin vulnerabilidad → no hay riesgo.
 
 Vulnerabilidad sin amenaza → no hay riesgo.
 
-El trabajo del profesional de ciberseguridad es gestionar ese riesgo constantemente.
-
-En Resúmen: 
-La ciberseguridad consiste en gestionar el riesgo reduciendo vulnerabilidades y mitigando el impacto de las amenazas.
+El trabajo del profesional de ciberseguridad es gestionar ese riesgo constantemente. Cabe aclarar que La ciberseguridad consiste en gestionar el riesgo reduciendo vulnerabilidades y mitigando el impacto de las amenazas.
