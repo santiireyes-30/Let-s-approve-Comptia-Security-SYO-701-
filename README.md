@@ -51,9 +51,4 @@ Bajo cada uno de estos dominios, vamos a encontrar objetivos específicos que te
 
 Recomendación: Guía del Estudiante, (comptia.org)
 
-
-# Objetivo del Aprendizaje: 
-
-Aprender/Conocer como Implementar/Aplicar y los tipos de Controles de Seguridad para proteger el sistema.
-
-ATT: SANTIAGO REYES
+ATT: Santiago Reyes
