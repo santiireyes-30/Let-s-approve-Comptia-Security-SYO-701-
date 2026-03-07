@@ -145,28 +145,6 @@ Un actor de amenaza es cualquier persona o entidad que realiza ataques contra si
       Vendedores
 
       Proveedores
-
-• Vectores humanos / ingeniería social
-  
-      Phishing
-
-      Vishing
-
-      Smishing
-
-      Información errónea / desinformación
-
-      Suplantación de identidad
-
-      Compromiso de correo electrónico empresarial (BEC)
-
-      Pretexting (creación de pretextos)
-
-      Watering hole (ataque de abrevadero)
-
-      Suplantación de marca
-
-      Typosquatting**
       
 # Actores de Amenazas
 
