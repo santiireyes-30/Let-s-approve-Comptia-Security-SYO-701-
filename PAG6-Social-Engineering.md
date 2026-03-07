@@ -2,16 +2,27 @@
 
 # Introducción
 
-- Phishing
-- Vishing
-- Smishing
-- Desinformación / Información errónea
-- Suplantación de identidad (Impersonation)
-- Compromiso de correo electrónico empresarial (Business Email Compromise)
-- Pretexting
-- Watering Hole
-- Suplantación de marca (Brand impersonation)
-- Typosquatting
+• Vectores humanos / ingeniería social
+  
+      Phishing
+
+      Vishing
+
+      Smishing
+
+      Información errónea / Desinformación
+
+      Suplantación de identidad (Impersonation)
+
+      Compromiso de correo electrónico empresarial (BEC)
+
+      Pretexting (Creación de pretextos)
+
+      Watering hole (Ataque de abrevadero)
+
+      Suplantación de marca (Brand impresionation)
+
+      Typosquatting**
 
 # Concepto de Ingenieria Social
 
