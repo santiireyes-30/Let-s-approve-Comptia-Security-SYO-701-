@@ -3,20 +3,32 @@
 # Introducción
 
 • Vectores humanos / ingeniería social
-  
-      Phishing
 
-      Vishing
+  Suplantación de identidad 
 
-      Smishing
+  Pretexting (uso de un pretexto para obtener información)
+
+  Ataques de phishing
+
+    - Phishing
+
+    - Vishing
+
+    - Smishing
+
+  Prevención de ataques de phishing 
+
+  Realización de una campaña anti-phishing 
+
+  Fraudes y estafas 
+
+  Campañas de influencia 
+
+  Otros ataques de ingeniería social 
 
       Información errónea / Desinformación
 
-      Suplantación de identidad (Impersonation)
-
       Compromiso de correo electrónico empresarial (BEC)
-
-      Pretexting (Creación de pretextos)
 
       Watering hole (Ataque de abrevadero)
 
