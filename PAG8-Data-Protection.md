@@ -311,6 +311,58 @@ No legibles: código binario o máquina, pueden ser mas dificiles de interpretar
 
  - Ambos requieren protección
    
-## Conclusión
+### Conclusión...
 
 En conclusión, comprender los distintos tipos de datos y sus requisitos de seguridad asociados es crucial para cualquier organización. Al clasificar los datos correctamente y aplicar las medidas de seguridad adecuadas, las organizaciones pueden proteger sus valiosos activos de datos, cumplir la normativa y mantener la reputación y la confianza con clientes y socios.
+
+### Soberanía de los Datos
+
+La soberanía de los datos significa que los datos están sujetos a las leyes del país donde se almacenan o procesan.
+Cada país tiene sus propias normativas de privacidad y protección de datos. Las empresas deben cumplir esas leyes según dónde estén sus datos
+
+### Importancia en la nube
+
+En la nube, los datos pueden estar en distintos países, esto hace más difícil cumplir con todas las regulaciones
+
+#### Consideraciones geográficas
+
+##### Regulaciones diferentes
+Ej: GDPR (Europa) → reglas estrictas de privacidad
+
+##### Restricciones de países
+Ej: China o Rusia → obligan a almacenar datos dentro del país
+
+##### Riesgos
+Multas por incumplimiento
+
+##### Control necesario
+Saber dónde están los datos
+Cómo se transfieren entre países
+
+### Desafíos
+- Empresas multinacionales deben cumplir múltiples leyes
+- Acceso desde distintas ubicaciones puede complicar la seguridad
+  
+#### Conclusión...
+Es clave saber:
+ - dónde se almacenan los datos
+ - dónde se procesan
+ - Cumplir con las leyes evita sanciones y protege la información
+
+## Protección de Datos
+
+La seguridad de los datos es esencial y requiere múltiples técnicas para proteger la información frente a amenazas.
+
+Entre los principales métodos están:
+
+- Restricciones geográficas (geofencing): limitan el acceso según la ubicación.
+- Cifrado: de texto plano convierte los datos en formato ilegible y solo accesible con una clave de cifrado o mediante algoritmo protege los datos en transito y en reposo.
+- Hashing: El hashing es una técnica que convierte datos en un tamaño fijo de caracteres numéricos o alfanuméricos, conocido como valor hash. A diferencia del cifrado, el hashing es una función unidireccional.
+  Una vez que los datos se han cifrado, no se pueden revertir ni descifrar. El hashing se utiliza a menudo para almacenar datos sensibles, como contraseñas, y también para comprobar la integridad de los archivos. Ejemplo, Texto Original: hola123. Conversión del Hash: 5d41402abc4b2a76b9719d911017c592
+- Enmascaramiento: oculta datos sensibles sustituyéndolos por un marcador de posición o caracter, como X. Ejemplo, cuando nos mandan un gmail de recuperación a dicho número (****32), Una vez que se enmascaran los datos, se trata de un proceso unidireccional que no puede revertirse, lo que lo convierte en un método de desidentificación.
+- Tokenización: reemplaza datos reales por tokens seguros. Los datos originales se almacenan de forma segura en una base de datos independiente con un token que sirve de referencia a los datos originales.
+- Ofuscación: hace los datos difíciles de entender y poco claros para los usuarios no autorizados, implica diversas técnicas como cifrado, el enmascaramiento de datos y el uso de seudonimos.
+- Segmentación: divide la red para evitar movimientos laterales de atacantes.
+- Control de permisos (RBAC): restringe el acceso a datos especificos y que puede hacer con ellos solo a usuarios autorizados.
+
+En resumen: proteger datos implica combinar varias técnicas según el contexto para reducir riesgos y evitar accesos no autorizados.
