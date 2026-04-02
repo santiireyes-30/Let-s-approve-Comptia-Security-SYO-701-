@@ -366,3 +366,16 @@ Entre los principales métodos están:
 - Control de permisos (RBAC): restringe el acceso a datos especificos y que puede hacer con ellos solo a usuarios autorizados.
 
 En resumen: proteger datos implica combinar varias técnicas según el contexto para reducir riesgos y evitar accesos no autorizados.
+
+## Prevención de Pérdida de Datos
+
+La Prevención de Pérdida de Datos (DLP) es un conjunto de herramientas que monitorea y protege la información para evitar robos o filtraciones, ya sea cuando los datos están en uso, en tránsito o en reposo.
+Con la evolución tecnológica (portátiles, USB, nube), el robo de datos se volvió más fácil y masivo, por lo que las empresas necesitan DLP para proteger su información y propiedad intelectual.
+
+Tipos principales de DLP:
+- Endpoint DLP: se instala en computadoras y controla lo que hacen los usuarios con los datos, si alguien intenta transferir un archivo nos lo detectara o nos alerta de ese movimiento de forma parecida a un IDS O IPS, pero centrado en los datos. Los DLP pueden configurarse en modo de detención o prevención.
+- Network DLP: pieza de hardware o software que monitorea el tráfico de red, especialmente los datos que entran y salen (la mayoría quieren detectar datos en tránsito que no deberían salir del edificio).
+- Storage/Almacenamiento DLP: Se trata de un software que se instala en un servidor en los centros de datos e inspecciona los datos mientras están direccionados en el servidor. Esto suele deberse a que los han cifrado o les han puesto una marca de agua, y queremos asegurarnos de que nadie accede a los datos en momentos en que no debería.
+- Cloud DLP: protege datos en servicios en la nube como Google Drive.
+
+👉 Resumen: DLP ayuda a detectar y prevenir que los datos sensibles sean robados o compartidos sin autorización, aplicando reglas de seguridad en todos los entornos.
