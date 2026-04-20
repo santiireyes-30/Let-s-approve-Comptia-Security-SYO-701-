@@ -99,12 +99,31 @@ Para seguridad completa:
 #### Algoritmos importantes
 
 Diffie-Hellman → intercambio de claves y distribuirlas de forma segura (ej: VPN), también es susceptible de ataques en la ruta o de persona en el medio. Se considera un algoritmo asimétrico
-RSA → se utiliza para el cifrado de intercambio de claves, firmas, muy usado
-ECC → más eficiente, ideal para dispositivos móviles. se basa en la estructura algebraica de las curvas elípticas sobre campos finitos para definir sus claves, su algoritmo es 6 veces más eficaz que RSA
+RSA → se utiliza para el cifrado de intercambio de claves, firmas, muy usado, simetrico
+ECC → más eficiente, ideal para dispositivos móviles. se basa en la estructura algebraica de las curvas elípticas sobre campos finitos para definir sus claves, su algoritmo es 6 veces más eficaz que RSA, asimetrico
 Variantes de ECC:
   - ECDH → intercambio de claves (versión ECC de Diffie-Hellman)
   - ECDHE → igual que ECDH pero usa claves temporales (más seguro)
   - ECDSA → firma digital (verifica identidad)
+
+#### +Caracteristicas
+
+RSA
+Criptografía asimétrica
+Usa clave pública + clave privada
+No cumple lo de “una sola clave”
+
+ECC
+También asimétrica
+Más eficiente que RSA, pero igual usa dos claves
+
+AES
+Simétrica 
+Una sola clave 
+
+Diffie-Hellman
+No cifra datos directamente
+Sirve para intercambiar claves, no para cifrar
 
 ## Hashing
 
@@ -334,3 +353,68 @@ Idea clave final, todo esto existe para garantizar:
 - Confianza
 - Identidad
 - Comunicación segura (HTTPS)
+
+## Ataques Criptográficos
+
+Los ataques criptográficos son técnicas para romper la seguridad del cifrado y acceder o manipular datos protegidos con la intención de comprometer la confidencialidad, integridad y autenticidad de sus datos.
+Estos métodos pueden ir desde explotar las debilidades de los algoritmos y protocolos criptográficos hasta aprovechar los fallos en las implementaciones de software o simplemente utilizar técnicas de fuerza bruta para adivinar la clave.
+
+Los principales tipos son:
+
+1. Ataques de degradación (downgrade)
+El atacante obliga al sistema a usar versiones antiguas y débiles de cifrado.
+Así aprovecha fallas conocidas.
+Ejemplo: forzar usar SSL viejo en vez de TLS moderno.
+Los ataques a la baja(degradación) ha llevado al desarrollo de contramedidas para ayudar a prevenirlos. Por ejemplo, muchos sistemas han eliminado gradualmente la
+compatibilidad con protocolos heredados que se sabe que son realmente inseguros
+
+Problema: los sistemas mantienen compatibilidad con lo viejo.
+
+2. Ataques de colisión
+Buscan dos datos diferentes que generen el mismo hash. Por ejemplo, al descargar un archivo de Internet, el sitio web puede proporcionar un valor hash para ese archivo. Una vez que termines de descargar el archivo,
+puedes pasarlo por un algoritmo hash y calcular un nuevo resumen hash. Luego lo comparas conel que aparece en la página web. Si coinciden, se supone que el archivo no ha sido manipulado.
+Sin embargo, si un atacante puede producir un archivo malicioso con el mismo valor hash explotando una colisión, el usuario podría ser engañado haciéndole creer que tiene un archivo legítimo cuando en
+realidad tiene un archivo que tiene el mismo valor hash, lo que significa que está sujeto a una colisión("Esto rompe la confianza en los hashes.")
+
+el "Ataque de Cumpleaños" se refiere a la probabilidad de que dos entradas o archivos distintos, cuando se procesan a través de la misma función hash, produzcan la misma salida, lo que llamamos una colisión.
+
+Ejemplo:
+Un archivo falso puede tener el mismo hash que uno real.
+Por eso MD5 ya no se usa (es inseguro).
+
+4. Computación cuántica (amenaza futura)
+Computadoras cuánticas pueden resolver problemas matemáticos muy rápido.
+Podrían romper cifrados actuales como RSA o ECC.
+
+Aún no es una amenaza práctica hoy, pero lo será.
+
+Solución: criptografía post-cuántica.
+
+### Resumen: 
+
+Un ataque de degradación criptográfica se utiliza para forzar a un sistema a utilizar un estándar o protocolo criptográfico más débil o antiguo que el que utiliza actualmente. Se va a utilizar un ataque de colisión para encontrar dos entradas diferentes que produzcan
+la misma salida hash utilizando los principios demostrados por la Paradoja del Cumpleaños. La computación cuántica, por su parte, se encuentra hoy más en la fase teórica que en la práctica, y aprovecha los principios de la mecánica cuántica para procesar grandes cantidades de 
+información simultáneamente con el fin de permitir romper potencialmente algoritmos de cifrado tradicionales como RSA y ECC en sólo unos segundos mediante la factorización rápida de grandes números primos o la resolución de problemas logarítmicos discretos.
+
+
+### INFORMACIÓN BREVE-ADICIONAL A TENER EN CUENTA!
+
+#### Steganography
+Oculta datos dentro de imágenes, audio, video, etc.
+No cambia visiblemente el archivo
+Ej: esconder texto en los píxeles de una imagen
+
+#### Tokenization
+Reemplaza datos sensibles por “tokens”
+Ej: tarjeta → XXXX-XXXX
+No oculta datos en imágenes
+
+#### Data Masking
+Oculta parcialmente datos (ej: ****1234)
+Usado en bases de datos
+No sirve para esconder mensajes en archivos
+
+#### Encryption
+Convierte datos en ilegibles
+Pero se nota que está cifrado
+No lo oculta dentro de una imagen
