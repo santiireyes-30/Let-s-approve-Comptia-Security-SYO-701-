@@ -113,3 +113,221 @@ gestionar proactivamente los riesgos antes de que se agraven, alineando así los
 
 Comprender y utilizar eficazmente estos componentes puede mejorar significativamente la capacidad de una organización para sortear las incertidumbres y alcanzar sus objetivos."
 
+## Análisis Cualitativo de Riesgos
+
+Es un método para evaluar riesgos según su probabilidad e impacto, clasificándolos como:
+
+Bajo – Medio – Alto
+
+#### Características
+Es subjetivo (basado en experiencia y juicio experto)
+Más simple que el análisis cuantitativo
+Se usa para priorizar riesgos rápidamente
+
+#### Elementos clave
+Probabilidad
+Qué tan probable es que ocurra un riesgo
+(Baja, media, alta)
+Impacto
+Qué tan grave sería si ocurre
+Puede afectar: costo, tiempo, calidad, etc.
+
+#### Objetivo
+Identificar qué riesgos son más importantes para actuar primero y definir estrategias de mitigación.
+
+#### Idea principal
+Combina probabilidad + impacto para priorizar riesgos de forma simple y efectiva.
+
+#### Resumen breve
+Análisis cualitativo = evaluar riesgos con bajo/medio/alto según probabilidad e impacto.
+
+## Análisis cuantitativo de riesgos
+
+Es un método que evalúa riesgos usando valores numéricos y dinero, permitiendo tomar decisiones más precisas (especialmente financieras). Pero támbien, suele utilizarse para tomar decisiones
+financieras, de seguridad y de programación. Este método permite comprender con mayor precisión las posibles repercusiones y la eficacia de las soluciones propuestas.
+
+#### Componentes clave:
+#### EF (Exposure Factor)
+  - Porcentaje del activo que se perdería en un incidente
+#### SLE (Single Loss Expectancy)
+  - Pérdida en dinero por un solo evento
+Fórmula:
+SLE = Valor del activo × Exposure Factor
+#### ARO (Annualized Rate of Occurrence)
+  - Frecuencia anual del riesgo.
+
+"Si queremos calcular la tasa anualizada de ocurrencia, o ARO, sabemos que es 0. 5, ya que el servidor se bloquea una vez cada dos años, o uno dividido por dos, que es 0. 5."
+
+#### ALE (Annualized Loss Expectancy)
+  - Pérdida anual esperada. Ej: supongamos que una empresa tiene un servidor valorado en 10.000 dólares. El factor de exposición a la caída del servidor se estima en un 50%, y el servidor se cae una vez cada dos años.
+    Así se calculará la esperanza de pérdida única.
+Fórmula:
+ALE = SLE × ARO
+
+#### Objetivo
+Calcular cuánto dinero se puede perder para decidir si vale la pena invertir en mitigación
+
+#### EJEMPLO SLE: 
+"Supongamos que una empresa tiene un servidor valorado en 10.000 dólares. El factor de exposición a la caída del servidor se estima en un 50%, y el servidor se cae una vez cada dos años.
+Así se calculará la esperanza de pérdida única. SLE es igual al valor del activo multiplicado por el factor de exposición, lo que equivale a 10.000 $, que es el valor del activo, multiplicado
+por el 50%, que es el factor de exposición. Por lo tanto, la esperanza de pérdida única es igual a 5.000 dólares."
+
+
+#### Idea clave
+Permite comparar:
+  - Costo del riesgo vs Costo de la solución
+Ejemplo simple:
+Si perdés $2.500 al año por un problema
+Pero solucionarlo cuesta $50.000
+"No conviene invertir"
+
+#### Resumen breve
+
+Análisis cuantitativo = medir riesgos en dinero usando SLE, ARO y ALE para tomar decisiones.
+
+## Estrategias de gestión de riesgos
+
+Una vez identificados los riesgos, se decide cómo tratarlos. Hay 4 estrategias principales:
+
+#### Tipos de estrategias
+
+1. Transferir("Pasar el riesgo a otra parte")
+suele hacerse mediante cláusulas contractuales o de seguros(método más común).
+Ej: seguros, contratos/cláusulas de idenminización contractuales
+- No elimina el riesgo, solo traslada el impacto económico.
+
+Esto quiere decir que podés mover el riesgo financiero a otro (seguro o contrato)
+Pero el riesgo no desaparece
+Todavía puede afectarte en cosas como:
+- reputación
+- operación del negocio
+
+Resumen breve:
+Transferir riesgo = otro paga si pasa algo, pero el problema sigue existiendo.
+
+2. Aceptar("Asumir el riesgo sin hacer nada")
+Se usa cuando:
+- El impacto es bajo
+- O mitigarlo es más caro
+
+Se usa cuando:
+
+Mitigarlo cuesta más que el posible daño
+O el beneficio es mayor que el riesgo
+Formas de aplicarlo
+Exención
+  - No cumplir una regla → evitás la carga, pero asumís el riesgo
+Excepción
+  - Cumplís la regla, pero en ciertos casos podés ignorarla
+
+¿Qué quiere decir?
+
+Que a veces no conviene gastar recursos en eliminar un riesgo
+y es mejor aceptarlo conscientemente.
+
+Pero:
+
+- Sabés que el riesgo sigue existiendo
+- Podés sufrir consecuencias si ocurre
+
+En si, Aceptar riesgo = “sé que puede pasar algo malo, pero decido no hacer nada porque no vale la pena evitarlo”
+
+3. Evitar("Eliminar el riesgo completamente")
+Cambiando planes o decisiones
+Ej: no lanzar un producto riesgoso.
+
+4. Mitigar("Reducir el impacto o probabilidad")
+Ej: medidas de seguridad, controles
+- Es la más común
+
+#### Idea principal
+Las organizaciones eligen la estrategia según:
+Impacto del riesgo
+Probabilidad
+Coste de mitigación
+
+#### Resumen Breve
+4 formas de tratar riesgos:
+
+- Transferir (pasarlo a otro)
+- Aceptar (vivir con él)
+- Evitar (eliminarlo)
+- Mitigar (reducirlo)
+
+## Seguimiento y presentación de informes de riesgos
+
+Es la última etapa de la gestión de riesgos, donde se monitorean los riesgos y se comunican a los interesados.
+
+#### Supervisión de riesgos
+
+Consiste en:
+
+- Monitorear riesgos existentes
+- Detectar nuevos riesgos
+- Evaluar si las medidas funcionan
+- Analizar el riesgo residual (lo que queda después de mitigarlo)
+
+También considera:
+
+Riesgo de control: cuando las medidas de seguridad pierden eficacia con el tiempo
+Riesgo residual: es la probabilidad y el impacto después de que se hayan aplicado medidas específicas de mitigación, transferencia o aceptación al riesgo inherente.
+
+#### Notificación de riesgos
+Es comunicar la información a las partes interesadas mediante informes:
+
+Estado de los riesgos
+Impacto y probabilidad
+Acciones tomadas
+
+¿Para qué sirve?
+- Mejor toma de decisiones
+- Detectar y mitigar riesgos a tiempo
+- Mantener informados a los stakeholders
+- Cumplir normativas
+
+#### Idea principal
+Es un proceso continuo que permite controlar riesgos y mantener informada a la organización.
+
+#### Resumen Breve
+
+Supervisión = monitorear riesgos
+
+#### Información Adicional Breve, a tener en cuenta:
+
+Recovery Time Objective: Es el tiempo máximo que un sistema puede estar caído sin causar un impacto grave(Cuánto tiempo puedo estar caído” → RTO)
+Recovery Point Objective: Cuánta pérdida de datos es aceptable
+Ej: perder 1 hora de datos
+  - No habla de tiempo de caída(“Cuántos datos puedo perder” → RPO)
+Mean Time to Repair: Tiempo promedio que tarda en arreglarse algo No es un objetivo, es una métrica operativa(“Cuánto tardo en reparar” → MTTR)
+Mean Time Between Failures: Tiempo promedio entre fallos Mide confiabilidad, no tiempo de recuperación(“Cada cuánto falla” → MTBF)
+Reporte = comunicarlos
+
+El apetito de riesgo es: La cantidad de riesgo que una organización está dispuesta a asumir para alcanzar sus objetivos
+
+#### EJERCICIO (ALE)
+Como resolverlo:
+
+Estás gestionando la infraestructura IT de una empresa.
+Uno de tus servidores vale $20.000 y tiene un Factor de Exposición (EF) del 60% en caso de falla.
+El servidor falla una vez cada 5 años. ¿Cuál es la Pérdida Anual Esperada (ALE)?
+
+A. 2400 B. 4000 C. 6000 D. 12000
+
+Paso a paso 
+1. Calcular SLE (Single Loss Expectancy)
+
+SLE = Valor del activo × EF
+20.000 × 0.6 = 12.000
+
+2. Calcular ARO (Annualized Rate of Occurrence)
+Ocurre 1 vez cada 5 años:
+
+ARO = 1/5 =0.2
+
+3. Calcular ALE (Annualized Loss Expectancy)
+ALE=SLE×ARO
+12.000 × 0.2 = 2400
+
+Respuesta correcta:
+
+1. 2400
