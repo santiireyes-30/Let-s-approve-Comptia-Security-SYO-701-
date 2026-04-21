@@ -5,7 +5,9 @@ mejores decisiones y reducir el impacto de amenazas.
 
 #### Etapas principales
 1. Identificación de Riesgos
-Detectar posibles riesgos que puedan afectar a la organización. Es decir, es un proceso proactivo cuyo objetivo es crear una lista exhaustiva de riesgos
+Detectar posibles riesgos que puedan afectar a la organización.
+
+Es decir, es un proceso proactivo cuyo objetivo es crear una lista exhaustiva de riesgos
 basada en aquellos sucesos que podrían impedir a la organización alcanzar sus objetivos.
 
 3. Análisis del riesgo
