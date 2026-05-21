@@ -291,22 +291,22 @@ Datos técnicos.
 Explicaciones.
 Código de explotación.
 
-El texto también explica otros tipos de atestación:
+Otros tipos de atestación:
 
 Atestación de software: verifica que el software no fue alterado.
 Atestación de hardware: valida la integridad del hardware usando tecnologías como TPM.
 Atestación de sistemas: confirma que un sistema cumple estándares de seguridad como:
-ISO 27001
-SOC 2
+- ISO 27001
+- SOC 2
 
 Además:
 
 Las auditorías internas usan atestación para validar controles internos y cumplimiento.
+
 Las auditorías externas usan atestación para confirmar información financiera, operativa o regulatoria mediante terceros independientes.
 Idea principal
 
 La atestación sirve para generar:
-
 Confianza.
 Transparencia.
 Responsabilidad.
