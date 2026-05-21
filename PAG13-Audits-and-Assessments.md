@@ -234,7 +234,7 @@ Encoders: ayudan a evitar detección.
 Nops: estabilizan cargas útiles.
 Evasion: técnicas para esquivar defensas.
 
-La demostración sigue este proceso:
+sigue este proceso:
 
 Reconocimiento y escaneo
 Se usa Nmap para encontrar una máquina vulnerable en la red.
@@ -261,3 +261,53 @@ Metasploit permite manejar múltiples sesiones al mismo tiempo.
 
 Idea principal:
 El objetivo del pentesting no es dañar sistemas, sino identificar vulnerabilidades antes que un atacante real. El video busca que entiendas qué hacen herramientas como Nmap y Metasploit y cómo piensa un pentester, no que memorices comandos para el examen.
+
+## La atestación de hallazgos 
+
+Es una validación formal que confirma que una auditoría, evaluación o prueba de penetración realmente se realizó y que los resultados obtenidos son auténticos y confiables.
+En pentesting, la atestación sirve para demostrar con evidencia que las vulnerabilidades encontradas existen de verdad. Esto suele requerirse cuando la organización debe cumplir normativas como:
+
+HIPAA
+PCI DSS
+GLBA
+Sarbanes-Oxley Act
+
+La empresa de pentesting puede entregar una carta de atestación, que incluye:
+
+Resumen de hallazgos.
+Confirmación de que la evaluación se realizó.
+Evidencias y pruebas técnicas.
+
+La diferencia principal entre un reporte y una atestación es que:
+
+El reporte muestra hallazgos y recomendaciones.
+La atestación además incluye pruebas y validación formal de que la explotación ocurrió realmente.
+
+Las pruebas pueden incluir:
+
+Logs.
+Capturas.
+Datos técnicos.
+Explicaciones.
+Código de explotación.
+
+El texto también explica otros tipos de atestación:
+
+Atestación de software: verifica que el software no fue alterado.
+Atestación de hardware: valida la integridad del hardware usando tecnologías como TPM.
+Atestación de sistemas: confirma que un sistema cumple estándares de seguridad como:
+ISO 27001
+SOC 2
+
+Además:
+
+Las auditorías internas usan atestación para validar controles internos y cumplimiento.
+Las auditorías externas usan atestación para confirmar información financiera, operativa o regulatoria mediante terceros independientes.
+Idea principal
+
+La atestación sirve para generar:
+
+Confianza.
+Transparencia.
+Responsabilidad.
+Evidencia formal de seguridad y cumplimiento.
