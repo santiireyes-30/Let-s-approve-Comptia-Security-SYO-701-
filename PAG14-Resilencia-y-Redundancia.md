@@ -96,6 +96,33 @@ RAID 5 (striping con paridad): distribuye datos y paridad entre al menos 3 disco
 RAID 6 (doble paridad): parecido al RAID 5, pero soporta la falla de hasta 2 discos gracias a una doble paridad.
 RAID 10 (1+0): combina RAID 1 y RAID 0 para obtener velocidad y redundancia al mismo tiempo.
 
+RAID es una forma de usar varios discos duros juntos para:
+
+mejorar la velocidad,
+proteger datos,
+o ambas cosas.
+
+Por ejemplo:
+
+RAID 0 → más velocidad.
+RAID 1 → copia espejo para protección.
+RAID 10 → velocidad + protección.
+
+RAID 10 → velocidad + protección.
+
+Cuando se habla de “velocidad”, se refieren a:
+
+leer archivos más rápido,
+guardar datos más rápido,
+cargar sistemas y bases de datos más rápido.
+
+Ejemplo:
+si un servidor tiene muchos discos trabajando juntos en RAID, puede:
+
+abrir archivos más rápido,
+responder más rápido,
+manejar más usuarios al mismo tiempo.
+
 También debemos tener en cuenta los siguientes conceptos como:
 
 Resistente a fallos: puede seguir funcionando usando copias espejo.
@@ -114,6 +141,61 @@ Infraestructura: planifica los espacios físicos y recursos necesarios, como ofi
 Procesos: mejora y automatiza flujos de trabajo para soportar cambios en la demanda. Por ejemplo, automatizar la creación masiva de cuentas de usuario para nuevos empleados.
 
 El objetivo de la planificación de la capacidad es garantizar que la organización pueda crecer, adaptarse a nuevas demandas y mantener operaciones eficientes tanto en el presente como en el futuro.
+
+## Alimentacion de Centro de Datos
+
+Los centros de datos necesitan energía constante para que los servidores y sistemas sigan funcionando.
+Existen 5 problemas eléctricos principales:
+
+  - Sobretensión (surge): pequeño aumento de voltaje.
+
+  - Pico (spike): aumento muy fuerte y repentino de voltaje.
+
+  - Caída (sag): pequeña disminución de voltaje.
+
+  - Subtensión (brownout): reducción grande y prolongada de voltaje.
+
+  - Pérdida total de energía (blackout): corte completo de electricidad.
+  
+Para proteger los sistemas se usan varias tecnologías:
+
+1. Acondicionador de línea (Line conditioner)
+Corrige pequeñas variaciones de voltaje.
+Mantiene energía “limpia” y estable.
+Protege el hardware de daños.
+
+2. UPS o SAI (Sistema de Alimentación Ininterrumpida)
+El UPS no viene incluido con las computadoras, ni de escritorio ni portátiles. Es un accesorio externo que se compra por separado. Su función principal es mantener el equipo encendido
+y protegerlo ante apagones o fluctuaciones de voltaje.
+
+Tiene baterías de respaldo.
+Mantiene los equipos encendidos unos minutos cuando se corta la luz.
+También actúa como acondicionador de línea.
+Normalmente dura entre 15 y 60 minutos.
+
+3. Generadores
+Producen electricidad cuando falla la red principal.
+Pueden funcionar por horas o días.
+Tipos:
+Portátiles a gasolina.
+Permanentes (diésel, propano o gas natural).
+Inversores con baterías.
+
+4. PDC (Power Distribution Center)
+Distribuye la energía dentro del centro de datos.
+Equilibra cargas y protege circuitos.
+Se conecta con UPS y generadores.
+
+Funcionamiento típico en un centro de datos:
+1. Se corta la luz.
+2. El UPS mantiene los servidores encendidos.
+3. En 30–60 segundos arrancan los generadores.
+4. El PDC distribuye la energía del generador a todos los sistemas.
+
+Objetivo:
+Evitar apagados inesperados.
+Proteger hardware y datos.
+Mantener servicios y servidores siempre operativos.
 
 ## La importancia de las copias de seguridad de datos 
 
