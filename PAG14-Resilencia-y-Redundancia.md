@@ -115,4 +115,280 @@ Procesos: mejora y automatiza flujos de trabajo para soportar cambios en la dema
 
 El objetivo de la planificación de la capacidad es garantizar que la organización pueda crecer, adaptarse a nuevas demandas y mantener operaciones eficientes tanto en el presente como en el futuro.
 
-## 
+## La importancia de las copias de seguridad de datos 
+
+Principalmente para evitar pérdidas de información por errores, fallos o desastres. Una copia de seguridad consiste en crear duplicados de los datos para poder recuperarlos si ocurre algún problema.
+
+Se explican dos tipos principales:
+
+Copias de seguridad in situ: se almacenan en el mismo lugar físico que los sistemas originales.
+Copias externas (offsite): se guardan en otra ubicación geográfica o en la nube para protegerse de incendios, inundaciones o ataques.
+
+También se destaca que la frecuencia de las copias depende de cuánto dato esté dispuesta a perder una organización. Esto se relaciona con el RPO (Recovery Point Objective), que define el máximo de información que puede perderse.
+
+El texto recalca la importancia del cifrado:
+
+Datos en reposo: cifrados mientras están almacenados.
+Datos en tránsito: cifrados mientras se transfieren por la red.
+
+Luego se explican las instantáneas (snapshots), que capturan el estado de los datos en un momento específico y sólo guardan los cambios realizados desde la instantánea anterior, siendo más rápidas y eficientes que una copia completa.
+
+También se habla de la recuperación de datos, que incluye:
+
+elegir la copia correcta,
+restaurar los datos,
+validar su integridad,
+probar el proceso,
+documentar lo ocurrido.
+
+Después se explica la replicación, que mantiene los datos sincronizados en dos lugares al mismo tiempo para garantizar continuidad sin interrupciones.
+
+Finalmente, se describe el journaling (registro en diario), que guarda un historial detallado de todos los cambios realizados en los datos, útil para auditorías, cumplimiento normativo y recuperación precisa.
+
+En resumen, una buena estrategia de backup combina:
+
+copias locales y externas,
+frecuencia adecuada,
+cifrado,
+snapshots,
+recuperación probada,
+replicación,
+journaling,
+
+todo con el objetivo de garantizar la disponibilidad, integridad y continuidad de los datos de una organización.
+
+## La continuidad de operaciones busca que una empresa pueda seguir funcionando y recuperarse ante incidentes o desastres.
+
+Hay dos conceptos principales:
+
+BCP (Business Continuity Plan / Plan de Continuidad del Negocio):
+Son los planes y procesos para responder a eventos que interrumpen el negocio, como ataques ransomware, caída de servicios, protestas, problemas con pagos online, etc.
+DRP (Disaster Recovery Plan / Plan de Recuperación ante Desastres):
+Es una parte del BCP enfocada específicamente en desastres graves, como incendios, inundaciones, huracanes o terremotos, y en cómo restaurar operaciones rápidamente.
+- Si se trata de un incidente, será un problema de continuidad de la actividad (BCP).
+- Si es un desastre, será un problema de recuperación(DRP).
+
+El objetivo es mantener la empresa operativa usando:
+
+sistemas de respaldo,
+servidores en la nube,
+personal distribuido en distintas regiones,
+proveedores secundarios o terciarios,
+y procedimientos previamente definidos.
+
+La alta dirección es responsable de crear y apoyar estos planes, junto con un comité formado por diferentes áreas de la empresa (TI, seguridad, legal, comunicaciones, etc.).
+
+La diferencia principal es:
+
+BCP → responde a incidentes o interrupciones generales.
+DRP → responde específicamente a desastres.
+
+Ahora bien, otra parte clave de un buen plan de continuidad de la actividad es definir el alcance del propio plan. De lo contrario, podría enfrentarse a una ampliación del ámbito de aplicación.
+
+Así que, recuerda, cuando se trata del plan de continuidad de las operaciones, vas a tener dos partes principales. Uno será su plan de continuidad de negocio, o plan BC, y el
+segundo será su plan de recuperación de desastres, o DRP. Cuando se trata de su plan de continuidad de negocio, recuerde que se refiere a los planes y procesos que se utilizan
+para su respuesta a un evento perturbador. Pero cuando se trata de un plan de recuperación en caso de catástrofe, se está hablando específicamente de los planes y procesos
+que se van a utilizar para responder a una catástrofe determinada. Esa es realmente la mayor diferencia entre un plan de continuidad de negocio y un plan de recuperación
+de desastres, porque en uno nos ocupamos de incidentes y problemas, y en el otro, de desastres.
+
+## Consideraciones de Sitios Redundantes
+
+La continuidad de operaciones busca que una empresa siga funcionando aunque ocurra un problema o desastre.
+Para eso se usan sitios redundantes, que son lugares de respaldo donde se pueden mover las operaciones si el sitio principal falla.
+
+Tipos de sitios redundantes
+1. Hot Site (sitio caliente)
+
+Es un sitio totalmente preparado y funcionando en todo momento.
+
+Tiene servidores, internet, escritorios, computadoras y datos actualizados.
+Permite cambiar las operaciones casi instantáneamente.
+Tiene muy poco tiempo de inactividad.
+Es el más caro porque necesitas “duplicar” casi todo.
+
+Ejemplo:
+Si tu empresa usa servidores en AWS en varias regiones, una región puede tomar el control inmediatamente si otra falla.
+
+2. Warm Site (sitio templado)
+
+Es un sitio parcialmente preparado.
+
+Tiene edificio, energía e internet.
+Pero faltan algunos equipos o configuraciones.
+Puede estar operativo en horas o pocos días.
+Más barato que un hot site.
+
+Ejemplo:
+La empresa tiene oficinas listas, pero debe instalar laptops y teléfonos cuando ocurra el desastre.
+
+3. Cold Site (sitio frío)
+
+Es básicamente un lugar vacío de respaldo.
+
+Puede tener mesas, sillas y electricidad básica.
+No tiene servidores ni red configurada.
+Recuperarse puede tardar semanas o meses.
+Es el más barato.
+
+Ejemplo:
+Un edificio alquilado que solo se usaría si la sede principal se destruye.
+
+4. Mobile Site (sitio móvil)
+
+Es un centro portátil.
+
+Puede ser un camión, tráiler o carpa.
+Lleva servidores, internet, energía y equipos.
+Se transporta al lugar necesario.
+
+Ejemplo:
+El ejército usa centros móviles para operar después de terremotos o guerras.
+
+5. Virtual Site (sitio virtual)
+
+Es el enfoque moderno usando la nube.
+
+Se basa en AWS, Azure o Google Cloud.
+Los servicios están replicados en varias regiones.
+Escala rápido y es más flexible.
+Reduce costos comparado con tener edificios físicos duplicados.
+
+Ejemplo:
+Si un servidor en una región de AWS falla, otra región toma el control automáticamente.
+
+Diversidad de plataformas
+
+Consiste en usar tecnologías diferentes para evitar un único punto de fallo.
+
+Ejemplo:
+
+Sitio principal: equipos Cisco.
+Sitio redundante: equipos Juniper.
+
+Así, si aparece una vulnerabilidad grave en Cisco, el sitio secundario podría seguir funcionando.
+
+Idea clave
+
+Los sitios redundantes permiten mantener la empresa funcionando ante:
+
+incendios,
+inundaciones,
+ataques ransomware,
+cortes eléctricos,
+fallos de internet,
+desastres naturales.
+
+Mientras más rápido quieras recuperarte:
+
+más caro será el sistema.
+
+Por eso:
+
+Hot site = recuperación rápida + caro.
+Cold site = recuperación lenta + barato.
+
+## Pruebas de Resiliencia y Recuperación
+
+Las pruebas de resiliencia y recuperación sirven para comprobar si una organización puede:
+
+resistir ataques o fallos,
+seguir funcionando,
+y recuperarse rápidamente después de un desastre.
+
+Son como “simulacros” para preparar a la empresa ante:
+
+ransomware,
+cortes eléctricos,
+incendios,
+caídas de servidores,
+desastres naturales,
+violaciones de datos.
+
+Tipos principales de pruebas
+
+1. Tabletop Exercise (ejercicio de mesa)
+
+Es una simulación teórica. Un ejercicio de simulación es un debate basado en un escenario simulado entre las principales partes interesadas para evaluar y mejorar la preparación y la respuesta de la organización ante una situación específica
+de emergencia o crisis sin necesidad de desplegar realmente sus recursos.
+
+Los responsables se reúnen y discuten qué harían ante un incidente.
+No se usan sistemas reales.
+Solo se analiza el plan y la toma de decisiones.
+
+Los tableros también se consideran una forma de creación de equipos, ya que todas las partes interesadas y sus equipos van a trabajar juntos para intentar resolver la catástrofe hipotética o las actividades maliciosas que se están inyectando en ese escenario dado.
+
+Ejemplo:
+“Un atacante comprometió el controlador de dominio. ¿Qué hacemos?”
+
+Cada equipo explica:
+
+cómo respondería,
+qué acciones tomaría,
+y se detectan errores o debilidades en el plan.
+
+Barato y útil para entrenar equipos.
+
+2. Failover Test (prueba de conmutación por error)
+
+Se prueba el cambio de un sistema principal a uno de respaldo.
+
+Ejemplo:
+
+El centro de datos de EE.UU falla.
+Se intenta mover todo al centro secundario.
+
+Objetivo:
+
+comprobar que el sitio redundante realmente funciona.
+
+Generalmente:
+
+Requiere más tiempo, más recursos, y planificación.
+
+3. Simulation (simulación)
+
+Es un entorno virtual más realista.
+
+Por ejemplo, con nuestras modernas infraestructuras basadas en la nube, podemos crear una versión virtual o simulada de nuestra red corporativa dentro de la nube y hacer que un equipo rojo ataque esa red, mientras que nuestros defensores, 
+conocidos como el equipo azul, intentan detectar los ataques del equipo rojo y utilizar sus técnicas de respuesta a incidentes para aislar a los atacantes de la red y eliminar los sistemas infectados de esa red simulada. Se recrea una red o infraestructura.
+
+Permite probar:
+
+herramientas,
+personal,
+procesos,
+respuesta real ante ataques.
+
+Muy útil para SOC y ciberseguridad.
+
+4. Parallel Processing (procesamiento paralelo)
+
+Consiste en ejecutar:
+
+el sistema principal,
+y el sistema secundario
+al mismo tiempo.
+
+Objetivo:
+
+verificar que el sistema de respaldo puede manejar las operaciones correctamente.
+
+Se usa para:
+
+alta disponibilidad,
+recuperación,
+pruebas de estabilidad.
+Idea principal
+
+No basta con:
+
+“tener un plan”.
+
+También hay que:
+
+probarlo,
+actualizarlo,
+practicarlo constantemente.
+
+Porque un plan no sirve si falla durante una emergencia real.
+
