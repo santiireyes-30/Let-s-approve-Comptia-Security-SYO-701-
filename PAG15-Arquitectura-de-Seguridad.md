@@ -406,3 +406,217 @@ Cómo protegerlas...
 Un último concepto 
 ### Active:
 El cifrado del archivo que aloja las máquinas virtuales para garantizar la seguridad y la confidencialidad. Esto protege los archivos de la máquina virtual de accesos no autorizados en el servidor.
+
+## Sin Servidor/Serveless
+
+La computación serverless es un modelo donde el proveedor cloud administra los servidores, bases de datos y parte de la infraestructura, permitiendo que los desarrolladores se enfoquen solo en escribir código.
+
+Aunque se llama “sin servidor”, los servidores sí existen, pero el usuario no los gestiona directamente.
+
+Funciona mediante Funciones como Servicio (FaaS):
+
+- Se ejecutan solo cuando ocurre un evento, y consumen recursos únicamente cuando son necesarias.
+
+Ejemplos:
+
+Amazon Web Services con AWS Lambda
+Google Cloud con Google Cloud Functions
+
+Ventajas:
+
+menor costo (se paga solo por uso),
+escalado automático,
+despliegue rápido,
+menos administración de infraestructura.
+
+Riesgos y desafíos:
+
+dependencia del proveedor cloud,
+menor flexibilidad para migrar,
+mejores prácticas aún en evolución,
+fuerte dependencia del servicio del proveedor.
+
+Serverless es útil para aplicaciones escalables y rápidas, pero no siempre es la mejor opción para todos los proyectos.
+ 
+Comparado con SOC:
+
+Evento → Regla Analítica → Alerta → Función Serverless → Respuesta Automática
+
+Así que recuerde, aunque la computación sin servidor ofrece numerosos beneficios, no es una solución única. Es esencial tener en cuenta las necesidades y requisitos de su aplicación específica.
+Aunque la tecnología sin servidor elimina muchas complejidades, también introduce nuevos retos, como la dependencia del proveedor y la dependencia crítica del proveedor de servicios.
+
+## Microservicios (Importante conocer las Palabras de las Ventajas)
+
+Los microservicios son una arquitectura de software que divide una aplicación grande en pequeños servicios independientes, donde cada uno realiza una función específica del negocio y puede ejecutarse por separado.
+
+Ejemplo: Netflix utiliza microservicios para gestionar funciones como recomendaciones, registro de usuarios y codificación de video de manera independiente.
+
+Ventajas
+Escalabilidad: cada servicio puede ampliarse según la demanda.
+Flexibilidad: pueden utilizar distintos lenguajes y tecnologías.
+Resiliencia: si un servicio falla, el resto del sistema sigue funcionando.
+Despliegue rápido: los servicios pueden actualizarse de forma independiente.
+
+Desafíos
+- Mayor complejidad de gestión:
+
+La gestión de múltiples servicios puede resultar compleja. Esto incluye la gestión de la comunicación entre servicios, la coherencia de los datos y las pruebas de sistemas distribuidos.
+
+- Coherencia de datos: más difícil entre múltiples bases de datos. 
+
+La gestión de datos. Cada microservicio puede tener su propia base de datos, lo que puede dificultar el mantenimiento de la coherencia de los datos en algunos servicios.
+
+- Latencia de red por la comunicación entre servicios. 
+
+El aumento de la comunicación entre servicios puede provocar latencia en la red y ralentizar los tiempos de respuesta. Más riesgos de seguridad debido a una mayor superficie de ataque.
+
+- Seguridad:
+
+Con muchos servicios comunicándose a través de una red, aumenta la superficie de ataque a la que tenemos que hacer frente.
+
+Comparación rápida
+Monolito: toda la aplicación está unida; un fallo puede afectar a todo el sistema.
+Microservicios: la aplicación está dividida en servicios independientes; los fallos suelen quedar aislados.
+
+Así que recuerde, aunque los microservicios ofrecen muchas ventajas, también introducen nuevas complejidades. Por lo tanto, tampoco son una solución única. Es importante tener en cuenta las necesidades
+y capacidades específicas de su organización antes de decidirse a adoptar estos estilos arquitectónicos. Sin embargo, cuando se implementan correctamente, los microservicios pueden proporcionar beneficios
+significativos en términos de escalabilidad, flexibilidad y resistencia.
+
+Definición para examen:
+
+Los microservicios son una arquitectura que divide una aplicación en servicios pequeños e independientes, permitiendo mayor escalabilidad, flexibilidad y resiliencia.
+
+## Infraestructura de Red
+
+Separación Física vs Separación Lógica
+
+La infraestructura de red es el conjunto de hardware, software y servicios que permiten el funcionamiento de una red. Para mejorar la seguridad, los sistemas pueden separarse de forma física o lógica.
+
+1. Separación Física (Air Gap)
+
+Consiste en aislar completamente un sistema de otras redes, incluyendo Internet, Wi-Fi y Bluetooth.
+
+Ejemplos:
+
+Redes militares con información clasificada.
+Sistemas ICS de centrales eléctricas o plantas de agua. Utilizado en infraestructuras críticas, como centrales eléctricas o instalaciones de tratamiento de aguas. Estos sistemas suelen estar protegidos
+por Air-Gap para evitar posibles ataques cibernéticos y físicos que podrían provocar daños en el mundo real, Sin embargo no son infalibles.
+
+Ventajas:
+
+Máximo nivel de seguridad.
+Muy difícil acceder desde el exterior.
+
+Desventajas:
+
+Más costosa y difícil de gestionar.
+No es invulnerable (ejemplo: el malware Stuxnet logró afectar sistemas aislados).
+
+2. Separación Lógica
+
+Consiste en crear divisiones dentro de la misma red utilizando:
+
+Firewalls, VLANs (Redes Locales Virtuales) que controlar el tráfico basondose en Reglas y políticas de acceso.
+
+Ejemplos:
+
+Separar el departamento de RR.HH. del de Marketing mediante VLANs. Segmenta una red lógica dentro de la misma infraestructura física.
+Crear una DMZ (subred de pantalla) para servidores expuestos a Internet (zona aislada donde se colocan servidores expuestos a Internet).
+
+
+Ventajas:
+
+Más flexible.
+Más fácil y económica de implementar.
+
+Desventajas:
+
+Menos segura que un Air Gap.
+Una mala configuración puede permitir accesos no autorizados.
+Para examen
+Air Gap (separación física): aislamiento completo de otras redes.
+Separación lógica: segmentación mediante firewalls, VLANs y políticas.
+Física = más segura.
+Lógica = más flexible y fácil de implementar.
+
+Así que recuerde que tanto la separación física como la lógica desempeñan un papel crucial en la infraestructura y la seguridad de la red. La separación física o Air Gapping proporciona un alto nivel de seguridad al aislar
+completamente un sistema de otras redes. La separación lógica, aunque no es tan segura como la física, ofrece más flexibilidad y es más fácil de aplicar.
+
+## Redes Definidas Por Software (SDN)
+
+Las SDN (Software-Defined Networks) son una forma moderna de gestionar redes donde el control se centraliza y puede configurarse mediante software.
+
+Su objetivo es hacer que la red sea:
+
+Más flexible.
+Más fácil de administrar.
+Más automatizada.
+Más eficiente.
+¿Qué cambia respecto a una red tradicional?
+
+En una red tradicional:
+
+Cada router o switch toma sus propias decisiones.
+
+En una red SDN:
+
+Existe un controlador central que decide cómo debe comportarse toda la red.
+Los 3 planos de una SDN
+
+1. Plano de Datos (Data Plane)
+
+Mueve los paquetes de datos.
+Se encarga del tráfico real.
+Utiliza routers y switches.
+
+Por ejemplo: cuando envías un correo electrónico, el plano de datos de tu red se encarga de trasladar los datos de tu correo desde tu dispositivo al del destinatario.
+
+2. Plano de Control (Control Plane)
+
+Es el "cerebro" de la red.
+Decide por dónde debe viajar el tráfico.
+Está centralizado en un controlador SDN.
+
+3. Plano de Aplicación (Application Plane)
+
+Contiene las aplicaciones que dan órdenes al controlador.
+Permite automatizar y gestionar la red.
+
+Ejemplo sencillo
+
+Imagina una empresa con 100 switches.
+
+Red tradicional:
+
+Debes configurar cada switch por separado.
+
+SDN:
+
+Configuras una sola vez el controlador central.
+El controlador envía las reglas a todos los switches automáticamente.
+
+Para examen "SDN (Software-Defined Network)":
+
+Arquitectura de red que separa el control del tráfico del movimiento de datos, permitiendo administrar toda la red desde un controlador central mediante software.
+
+Planos:
+
+Datos: mueve paquetes.
+Control: decide rutas y tráfico.
+Aplicación: envía instrucciones al controlador.
+Relación con un SOC
+
+Las SDN son útiles porque permiten:
+
+Aplicar reglas de seguridad rápidamente.
+Segmentar redes automáticamente.
+Aislar equipos comprometidos desde un único punto de administración.
+Responder más rápido ante incidentes de seguridad.
+
+Así que recuerde, las redes definidas por software son un enfoque transformador de la gestión de redes que separa la red en tres planos distintos: el plano de datos, el plano de control y el plano de aplicación.
+
+- El plano de datos se encarga de mover los paquetes de datos.
+
+- El plano de control decide dónde se envía el tráfico,
+
+- El plano de aplicación alberga las aplicaciones de red que dan  instrucciones al controlador.
