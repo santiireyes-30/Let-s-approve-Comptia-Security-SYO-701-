@@ -552,6 +552,7 @@ Más flexible.
 Más fácil de administrar.
 Más automatizada.
 Más eficiente.
+
 ¿Qué cambia respecto a una red tradicional?
 
 En una red tradicional:
@@ -561,7 +562,7 @@ Cada router o switch toma sus propias decisiones.
 En una red SDN:
 
 Existe un controlador central que decide cómo debe comportarse toda la red.
-Los 3 planos de una SDN
+Los 3 planos de una SDN (los planos son las capas funcionales que dividen las tareas de la red. El objetivo principal es separar la toma de decisiones del envío de datos.)
 
 1. Plano de Datos (Data Plane)
 
@@ -576,6 +577,49 @@ Por ejemplo: cuando envías un correo electrónico, el plano de datos de tu red 
 Es el "cerebro" de la red.
 Decide por dónde debe viajar el tráfico.
 Está centralizado en un controlador SDN.
+
+Por ejemplo:
+
+Caso 1: Priorizar aplicaciones importantes
+
+Una empresa usa videollamadas y correo electrónico.
+
+El controlador SDN puede decidir:
+
+Dar prioridad al tráfico de videollamadas para evitar cortes.
+Dar menor prioridad a descargas o actualizaciones.
+
+Así, los paquetes de video toman las rutas más rápidas o con menos congestión.
+
+Caso 2: Seguridad
+
+Una empresa quiere que todo el tráfico que sale a Internet pase primero por un firewall.
+
+El controlador SDN crea reglas como:
+
+Empleado → Firewall → Internet
+
+en lugar de:
+
+Empleado → Internet
+Caso 3: Balanceo de carga
+
+Si hay dos servidores web:
+
+Servidor A
+Servidor B
+
+El plano de control puede decidir:
+
+Enviar el 50% de las solicitudes al servidor A.
+Enviar el otro 50% al servidor B.
+Caso 4: Bloqueo de tráfico
+
+La empresa puede indicar:
+
+"Los empleados no pueden acceder a redes sociales durante el horario laboral."
+
+El controlador SDN instala reglas en los switches para bloquear ese tráfico.
 
 3. Plano de Aplicación (Application Plane)
 
@@ -592,7 +636,7 @@ Debes configurar cada switch por separado.
 
 SDN:
 
-Configuras una sola vez el controlador central.
+Configuras "UNA SOLA VEZ" el controlador central.
 El controlador envía las reglas a todos los switches automáticamente.
 
 Para examen "SDN (Software-Defined Network)":
@@ -620,3 +664,43 @@ Así que recuerde, las redes definidas por software son un enfoque transformador
 - El plano de control decide dónde se envía el tráfico,
 
 - El plano de aplicación alberga las aplicaciones de red que dan  instrucciones al controlador.
+
+#### Una forma sencilla de verlo es:
+
+Plano de datos = el conductor que maneja el vehículo.
+Plano de control = el GPS que decide la ruta.
+Plano de aplicación = la empresa que le dice al GPS cuáles son sus objetivos (más rápido, más seguro, evitar ciertas zonas, etc).
+
+## Infraestructura como Código (IaC)
+
+La Infraestructura como Código (IaC) es una metodología que permite gestionar y aprovisionar infraestructura de TI mediante código y scripts, en lugar de configuraciones manuales. Es una práctica fundamental de DevOps(Desarrollo&Operaciones), y suele utilizarse en entornos de computación en la nube.
+
+Aprovisionar: significa crear, configurar y dejar listo un recurso para que pueda utilizarse.
+
+Con IaC, los servidores, redes y recursos se definen en archivos de código (por ejemplo, YAML, JSON o HCL), que pueden almacenarse, versionarse, probarse y auditarse.
+
+Concepto clave a tener en cuenta: Idempotencia
+
+La idempotencia significa que un script produce siempre el mismo resultado, sin importar cuántas veces se ejecute. Esto garantiza que los entornos creados sean idénticos y consistentes.
+
+Objetivo principal
+
+Eliminar los llamados "sistemas copo de nieve", es decir, configuraciones únicas o diferentes que pueden generar errores, inconsistencias y riesgos.
+
+Ventajas de IaC
+
+Mayor velocidad y eficiencia en el aprovisionamiento de recursos.
+Consistencia y estandarización entre entornos.
+Escalabilidad al replicar fácilmente configuraciones.
+Ahorro de costes mediante la automatización.
+Auditoría y cumplimiento, gracias al control de versiones y seguimiento de cambios.
+
+Desafíos de IaC
+
+Curva de aprendizaje para los equipos.
+Complejidad creciente a medida que la infraestructura aumenta.
+Riesgos de seguridad, como la exposición de datos sensibles o configuraciones inseguras.
+
+La Infraestructura como Código automatiza la gestión de la infraestructura mediante código, logrando entornos consistentes, escalables y auditables, aunque requiere conocimientos especializados y buenas prácticas de seguridad.
+
+  
