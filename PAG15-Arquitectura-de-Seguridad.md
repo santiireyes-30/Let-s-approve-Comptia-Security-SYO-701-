@@ -679,6 +679,10 @@ Aprovisionar: significa crear, configurar y dejar listo un recurso para que pued
 
 Con IaC, los servidores, redes y recursos se definen en archivos de código (por ejemplo, YAML, JSON o HCL), que pueden almacenarse, versionarse, probarse y auditarse.
 
+Por ejemplo, un desarrollador puede escribir un script que configure automáticamente un servidor, instale el software necesario y despliegue una aplicación.
+
+Este script puede ejecutarse varias veces creando entornos idénticos cada vez, lo que constituye una propiedad conocida como Idempotencia.
+
 Concepto clave a tener en cuenta: Idempotencia
 
 La idempotencia significa que un script produce siempre el mismo resultado, sin importar cuántas veces se ejecute. Esto garantiza que los entornos creados sean idénticos y consistentes.
@@ -701,6 +705,228 @@ Curva de aprendizaje para los equipos.
 Complejidad creciente a medida que la infraestructura aumenta.
 Riesgos de seguridad, como la exposición de datos sensibles o configuraciones inseguras.
 
-La Infraestructura como Código automatiza la gestión de la infraestructura mediante código, logrando entornos consistentes, escalables y auditables, aunque requiere conocimientos especializados y buenas prácticas de seguridad.
+En Resumen: La Infraestructura como Código automatiza la gestión de la infraestructura mediante código, logrando entornos consistentes, escalables y auditables, aunque requiere conocimientos especializados y buenas prácticas de seguridad.
 
-  
+## Arquitectura Centralizada vs Desentralizada
+
+Arquitectura Centralizada
+
+Es un sistema donde todos los recursos, datos y aplicaciones se gestionan desde un único punto central (como un servidor o centro de datos).
+
+Ventajas:
+
+Mayor control y administración.
+Consistencia y precisión de los datos.
+Menor coste de mantenimiento al gestionar un único sistema.
+
+Desventajas:
+
+- Punto único de fallo: si el servidor central falla, todo el sistema puede verse afectado.
+- Problemas de escalabilidad al crecer la organización, es decir que a medida que la organización crece, el servidor
+central puede tener dificultades para gestionar la creciente carga, lo que provoca problemas de rendimiento.
+- Mayor atractivo para ataques, ya que toda la información está concentrada en un lugar.
+
+Ejemplo: Una empresa donde todos los empleados acceden a un único servidor central para trabajar.
+
+Arquitectura Descentralizada
+
+Distribuye los recursos y funciones entre varios nodos o ubicaciones, sin depender de un único punto de control.
+
+Ventajas:
+
+Mayor resiliencia: si un nodo falla, el resto sigue funcionando.
+Mejor escalabilidad al poder añadir nuevos nodos fácilmente.
+Mayor flexibilidad para equipos distribuidos y trabajo remoto.
+
+Desventajas:
+
+Gestión más compleja.
+Mayor dificultad para mantener la consistencia de los datos.
+Más puntos potenciales de entrada para ataques.
+
+Ejemplo: Una red donde varias sucursales tienen sus propios servidores y pueden seguir operando aunque una sede tenga problemas.
+
+Asi que recuerde Los sistemas centralizados ofrecen más control y coherencia, por lo que son más adecuados para las organizaciones que dan prioridad a la precisión
+de los datos y la gestión de recursos.
+Por otro lado, los sistemas descentralizados ofrecen más resistencia y flexibilidad, lo que los hace ideales para organizaciones, equipos distribuidos o aquellos 
+que necesitan escalar rápidamente.
+
+## Internet de las Cosas (IoT)
+
+El Internet de las Cosas (IoT) es una red de dispositivos físicos conectados a Internet que pueden recopilar, intercambiar y procesar datos para realizar tareas de forma automática.
+
+Componentes principales
+
+1. Hub o sistema de control
+
+Es el centro del ecosistema IoT. Conecta todos los dispositivos, recibe sus datos y les envía órdenes.
+
+Ejemplos:
+
+- Amazon Echo
+- Google Home
+
+2. Dispositivos inteligentes
+
+Son objetos cotidianos con capacidad de procesamiento y conexión a Internet.
+
+Ejemplos:
+
+Refrigeradores inteligentes.
+Lavadoras inteligentes.
+Robots industriales.
+Drones agrícolas.
+
+Pueden recopilar información y actuar sin intervención humana.
+
+3. Wearables
+
+Son dispositivos inteligentes que se llevan puestos en el cuerpo.
+
+Ejemplos:
+
+Relojes inteligentes.
+Pulseras de actividad física.
+Gafas inteligentes.
+
+Permiten monitorear salud, actividad física, notificaciones y otras funciones.
+
+4. Sensores
+
+Son los "ojos y oídos" del IoT.
+
+Detectan cambios en el entorno y los convierten en datos.
+
+Pueden medir:
+
+Temperatura.
+Humedad.
+Luz.
+Movimiento.
+Presión.
+
+Estos datos permiten que los dispositivos tomen decisiones automáticas.
+
+Riesgos de seguridad del IoT
+Contraseñas y configuraciones predeterminadas débiles.
+Servicios de red mal configurados.
+Puertos abiertos innecesarios.
+Comunicaciones sin cifrar.
+Mayor exposición a ciberataques.
+
+Recomendación: mantener los dispositivos IoT en una red separada y cambiar siempre las credenciales predeterminadas.
+
+Así que recuerde, Internet de las cosas es una vasta red de dispositivos interconectados que se comunican e intercambian datos. 
+El sistema de control del concentrador es el puntocentral que conecta todos los dispositivos y facilita su comunicación.
+
+Los dispositivos inteligentes dotados de capacidades informáticas y conectividad a Internet son los componentes básicos del ecosistema de la IO.
+
+Los wearables están diseñados para llevarlos en el cuerpo y ofrecen toda una gama de funcionalidades, desde la salud y la monitorización hasta las experiencias inmersivas.
+
+Los sensores pueden detectar cambios en el entorno y convertirlos en datos. Juntos, estos componentes crean un mundo conectado en el que los dispositivos 
+pueden interactuar con su entorno tomando decisiones autónomas y mejorando nuestras vidas de innumerables maneras.
+
+## ICS y SCADA
+
+Los ICS (Industrial Control Systems) y los SCADA (Supervisory Control and Data Acquisition) son sistemas utilizados para supervisar y controlar procesos industriales e infraestructuras críticas.
+
+ICS (Sistemas de Control Industrial)
+
+Controlan procesos industriales dentro de una instalación o planta.
+
+Ejemplos:
+
+Sistemas de calefacción y refrigeración.
+Líneas de producción.
+Plantas de fabricación.
+
+Tipos comunes:
+
+DCS (Distributed Control System): se utilizan para controlar sistemas de producción dentro de una misma ubicación.
+PLC (Programmable Logic Controller): controla tareas específicas, como una máquina o línea de montaje.
+SCADA (Supervisión, Control y Adquisición de Datos)
+
+Es un tipo de ICS diseñado para controlar y supervisar sistemas distribuidos geográficamente.
+
+Ejemplos:
+
+Redes eléctricas.
+Sistemas de agua potable.
+Oleoductos y gasoductos.
+
+Riesgos y vulnerabilidades
+- Acceso no autorizado a los sistemas.
+- Malware que puede interrumpir operaciones.
+- Software obsoleto con vulnerabilidades sin corregir.
+- Amenazas físicas al hardware o la infraestructura.
+
+Medidas de seguridad
+- Implementar controles de acceso estrictos.
+- Utilizar contraseñas fuertes y autenticación multifactor.
+- Mantener los sistemas actualizados y parcheados.
+- Usar firewalls y sistemas de detección de intrusos (IDS).
+- Realizar auditorías de seguridad periódicas.
+- Capacitar a los empleados en ciberseguridad.
+
+Así que recuerde, los sistemas ICS y SCADA son componentes cruciales de nuestra infraestructura crítica.
+Aunque aportan numerosas ventajas en términos de automatización y eficacia, también conllevan riesgos y vulnerabilidades.
+
+Es esencial comprender estos riesgos y aplicar medidas de seguridad sólidas para proteger estos sistemas.
+
+Las actualizaciones periódicas, los controles de acceso estrictos, el uso de cortafuegos y sistemas de detección de intrusos, las auditorías de seguridad periódicas y la formación de los empleados son componentes cruciales de una estrategia de seguridad integral.
+
+## Sistemas Embebidos (Embedded Systems)
+
+Un sistema embebido/incorporado es un sistema informático especializado integrado dentro de un dispositivo más grande para realizar una función específica.
+Para entender bien el concepto de sistema embebido, hay que comprender qué es un sistema operativo en tiempo real (osea sin retraso del buffer)
+
+Ejemplos de sistemas embebidos
+Teléfonos inteligentes.
+Cámaras digitales.
+Microondas y lavadoras.
+Sistemas de control de automóviles (ABS, airbags, motor).
+Dispositivos médicos como marcapasos y bombas de insulina.
+Robots industriales y sistemas de automatización.
+RTOS (Sistema Operativo en Tiempo Real)
+
+Un RTOS (Real-Time Operating System) es un sistema operativo diseñado para procesar datos y responder en tiempos predecibles y muy rápidos.
+
+Se utiliza en aplicaciones donde los retrasos pueden ser peligrosos, como:
+
+- Equipos médicos.
+- Sistemas de navegación aérea.
+- Sistemas industriales críticos.
+
+Riesgos y vulnerabilidades
+
+- Fallos de hardware por condiciones de trabajo exigentes.
+- Errores de software que pueden causar mal funcionamiento.
+- Vulnerabilidades de seguridad explotables por atacantes.
+- Sistemas obsoletos difíciles de actualizar y más vulnerables.
+
+Medidas de seguridad
+
+1. Segmentación de red
+
+Dividir la red en segmentos independientes para evitar que un dispositivo comprometido afecte a toda la red (subredes)
+
+2. Wrappers (envolturas de seguridad)
+
+Uso de tecnologías como IPsec para proteger los datos durante su transmisión.
+
+3. Control del firmware
+
+Garantizar que solo se ejecute firmware autorizado mediante:
+
+Prácticas seguras de programación.
+Revisiones de código.
+Arranque seguro (Secure Boot).
+Firmas criptográficas.
+
+Es crucial para mantener la integridad de un sistema integrado. Este control puede lograrse mediante prácticas de codificación seguras, revisiones del código y
+pruebas automatizadas. Además, medidas como los mecanismos de arranque seguro y las firmas criptográficas pueden garantizar que en un dispositivo sólo
+se ejecute firmware autorizado y verificado.
+
+4. Incapacidad de Parchear
+
+Actualizar dispositivos mediante actualizaciones remotas (Over-The-Air o OTA), cuando sea posible.
