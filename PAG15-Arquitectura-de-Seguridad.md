@@ -425,7 +425,7 @@ Google Cloud con Google Cloud Functions
 Ventajas:
 
 menor costo (se paga solo por uso),
-escalado automático,
+escalado automático (La plataforma aumenta o reduce automáticamente los recursos según la cantidad de solicitudes o carga de trabajo, no necesitas configurar manualmente la capacidad cuando aumenta el tráfico.)
 despliegue rápido,
 menos administración de infraestructura.
 
