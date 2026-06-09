@@ -123,16 +123,22 @@ Puerto 80 – HTTP: Navegación web sin cifrado. (TCP)
 Puerto 88 – Kerberos: Autenticación en entornos Windows/Active Directory. Kerberos es un protocolo de autenticación de red. (UDP)
 Puerto 110 – POP3: Recepción/Recuperación de correos electrónicos. (TCP)
 Puerto 119 – NNTP o el Protocolo de Transferencia de Noticias en Red, y es usado para acceder a grupos de noticias. (TCP)
-Puerto 135 – RPC o Remote Procedure Call facilities. Esto va a facilitar su comunicación entre diferentes procesos del sistema. (TCP & UDP)
-Puerto 143 – IMAP: Acceso y gestión de correos en el servidor.
-Puerto 161 – SNMP: Administración y monitoreo de dispositivos de red.
-Puerto 162 – SNMP Trap: Recepción de alertas SNMP.
-Puerto 389 – LDAP: Servicios de directorio y autenticación.
-Puerto 443 – HTTPS: Navegación web cifrada y segura.
-Puerto 445 – SMB: Compartición de archivos e impresoras en Windows.
-Puerto 514 – Syslog: Envío de registros (logs).
-Puerto 636 – LDAPS: LDAP cifrado mediante SSL/TLS.
-Puerto 1433 – Microsoft SQL Server: Comunicación con bases de datos SQL Server.
-Puerto 1812/1813 – RADIUS: Autenticación, autorización y accounting (AAA).
-Puerto 3389 – RDP: Escritorio remoto de Windows.
-Puerto 6514 – Syslog TLS: Envío seguro y cifrado de logs.
+Puerto 135 – RPC o Remote Procedure Call facilities. Esto va a facilitar su comunicación entre diferentes procesos del sistema. verás que se utiliza como parte del sistema de compartición de archivos de Windows. (TCP & UDP)
+Puerto 137, 138 y 139 – Se utilizan para NetBIOS. NetBIOS es un conjunto de protocolos de red. NetBIOS se utiliza dentro de un entorno de dominio Windows para poder compartir cosas 
+como nombres de red internos, así como para compartir archivos e impresoras en un entorno Windows local. (TCP & UDP)
+Puerto 143 – IMAP: Acceso y gestión de correos en el servidor. (TCP)
+Puerto 161 – SNMP: Administración y monitoreo de dispositivos de red. (UDP)
+Puerto 162 – SNMP Trap: Recepción de alertas SNMP. (UDP)
+Puerto 389 – LDAP: Servicios de directorio y autenticación. (TCP)
+Puerto 443 – HTTPS: Navegación web cifrada y segura. (TCP)
+Puerto 445 – SMB: Compartición de archivos e impresoras en Windows. (TCP)
+Puerto 465/567 – Se utiliza para SMTPS. También se conoce como SMTP Secure y nos proporciona comunicaciones SMTP seguras para enviar nuestros correos electrónicos a través del puerto 465 o 587 utilizando SSL o TLS. (TCP)
+Puerto 514 – Syslog: Envío de registros (logs). (UDP)
+Puerto 636 – LDAPS: LDAP cifrado mediante SSL/TLS. (TCP)
+Puerto 993 – IMAPS: Recuperación segura de correo electrónico. (TCP)
+Puerto 995 – POP3S: Oficina de Correos y Recuperación. (TCP)
+Puerto 1433 – Microsoft SQL Server: Comunicación con bases de datos SQL Server. (TCP)
+Puerto 1645/1646 – Se utilizan para RADIUS. RADIUS es un protocolo de autenticación, autorización y contabilidad remotas. (TCP)
+Puerto 1812/1813 – RADIUS: Autenticación, autorización y accounting (AAA). (UDP)
+Puerto 3389 – RDP: Escritorio remoto de Windows. (TCP)
+Puerto 6514 – Syslog TLS: Envío seguro y cifrado de logs. (TCP)
