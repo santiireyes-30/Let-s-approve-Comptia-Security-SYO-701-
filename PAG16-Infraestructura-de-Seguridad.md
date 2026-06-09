@@ -195,8 +195,9 @@ Bloquear amenazas e intentos de acceso no autorizados.
 ### Tipos de Firewalls
 
 #### Firewall de Filtrado de Paquetes (Packet Filtering)
-Inspecciona únicamente la cabecera del paquete.
-Evalúa IP, puertos y protocolos.
+
+Son más eficientes en términos de maximizar su rendimiento
+Inspecciona únicamente la cabecera del paquete(Evalúa IP de origen → quién envía el paquete, IP de destino → a dónde va, Puerto de origen, Puerto de destino y Protocolo (TCP, UDP, etc.))
 Muy rápido y eficiente.
 Funciona en la Capa 4 (Transporte).
 
@@ -205,10 +206,13 @@ Desventajas:
 No detecta spoofing IP.
 No detecta ataques complejos.
 Seguridad limitada.
+estos cortafuegos simples no pueden evitar la suplantación de IP, los ataques de fragmentación de paquetes o los ataques contra el propio handshake TCP
 
 Recuerda: Más rápido, menos seguro.
 
 #### Firewall Stateful (Con Estado)
+
+Se va a utilizar para rastrear el estado de todas las conexiones y peticiones que entran y salen de la red.
 
 Además de revisar cabeceras:
 
@@ -223,7 +227,9 @@ Ventaja: Más seguro que el filtrado simple.
 
 #### Firewall Proxy
 
-Actúa como intermediario entre cliente y servidor.
+Este firewall se colocará entre una conexión interna o externa en una red, y va a hacer conexiones en nombre de sus otros puntos finales.
+
+Actúa como intermediario entre cliente y servidor. Existen 2 tipos de Firewall Proxy
 
 Proxy de Nivel de Circuito
 - Opera en la Capa 5 (Sesión).
@@ -238,45 +244,57 @@ Ventaja: Seguridad muy alta.
 
 Desventaja: Mayor latencia y menor rendimiento.
 
+La mayoría de los proxies de nivel de aplicación van a estar mejor posicionados dentro de su red cuando estén ubicados lo más cerca posible del
+servidor de aplicación que está tratando de proteger.
+
 #### Kernel Proxy Firewall (5ª Generación)
+
+Se colocará entre dos sistemas y creará conexiones en su nombre, al igual que los otros
+
+tiene un impacto mínimo en el rendimiento de nuestra red
 Inspección profunda completa.
-Muy poco impacto en rendimiento.
 Actúa como intermediario entre sistemas.
 
 Ventaja: Alta seguridad y eficiencia.
 
-### Firewalls Modernos
+### Firewalls Modernos (3)
+
 #### NGFW (Next Generation Firewall)
+
+va a intentar superar las deficiencias de un cortafuegos con seguimiento de estado tradicional creando cortafuegos que sean conscientes de las aplicaciones.
 
 Combina:
 
 Firewall tradicional.
-Inspección profunda de paquetes.
-Detección de intrusiones (IPS).
+Inspección profunda de paquetes (estos cortafuegos pueden distinguir entre los distintos tipos de tráfico que las aplicaciones específicas que están enviando
+dentro o fuera de una red determinada).
+Detección de intrusiones (IPS), basado en firmas cuando se instalan como dispositivos en línea dentro de la configuración de la red.
 Reconocimiento de aplicaciones.
 
 Ventajas:
 
+Apenas afectan al rendimiento de su red.
 Muy seguro.
 Visibilidad completa del tráfico.
-Control granular.
+Control granular sobre el tráfico (mediante la creación de firmas personalizadas dentro de este cortafuegos).
 
 Desventajas:
 
 Más complejo.
 Puede generar dependencia del fabricante.
-UTM (Unified Threat Management)
 
-Integra múltiples funciones en un solo equipo:
+#### UTM (Unified Threat Management)
 
-Firewall.
-Antivirus.
-Antispam.
-VPN.
-IPS.
-Filtrado web.
-Balanceo de carga.
-Prevención de pérdida de datos (DLP).
+En este Firewall se piensa como todo en 1, el tema es si cae este firewall, cae todo lo que "Integra" múltiples funciones en un solo equipo:
+
+- Firewall.
+- Antivirus.
+- Antispam pasarela.
+- VPN.
+- IPS.
+- Filtrado web.
+- Balanceo de carga.
+- Prevención de pérdida de datos (DLP).
 
 Ventajas
 - Menor costo.
@@ -294,23 +312,37 @@ Si falla el UTM, puedes perder toda tu protección de seguridad.
 
 Protege aplicaciones web.
 
-Analiza:
+se centra en Analizar los tráfico:
 
 - HTTP
 - HTTPS
 
-Bloquea ataques como:
+Su Web Application Firewall utilizará conjuntos de reglas específicas para prevenir ataques comunes contra aplicaciones web,
+Incluyendo ataques como:
 
 - SQL Injection.
 - Cross-Site Scripting (XSS).
 
-Instalación
+Instalaciónes (2 Tipos), pueden instalarse como dispositivos independientes o como un tipo de complemento de software en su servidor web.
 
 En línea (Inline)
-- Puede bloquear ataques en tiempo real.
+el dispositivo se colocará entre el cortafuegos de la red y los propios servidores web. Al utilizar esta colocación en línea, estos
+dispositivos pueden prevenir ataques en vivo, pero también van a ralentizar su tráfico web y, a veces, bloquearán el tráfico legítimo por error.
+
+- Puede bloquear ataques en tiempo real 
 - Añade latencia.
 
 Fuera de banda (Out-of-Band)
 - Solo monitorea.
 - Genera alertas.
 - No bloquea tráfico.
+
+### A tener en cuenta
+
+Un cortafuegos de capa 4 va a operar en la capa de transporte y tomar decisiones de filtrado basadas en la información sobre números de puerto y datos de protocolo sin inspeccionar el contenido de sus paquetes de datos individuales.
+
+Por otro lado, un cortafuegos de capa 7, también conocido como proxy de aplicaciones o cortafuegos de aplicaciones, funciona en la capa de aplicaciones y puede inspeccionar, filtrar y controlar el tráfico en función del contenido y las características de la carga útil de los datos.
+
+Un cortafuegos de nueva generación o NGFW (Next-Generation Firewall), es un dispositivo de seguridad avanzado que combina las funciones tradicionales de un cortafuegos con otras adicionales como la detección de intrusiones, el conocimiento de las aplicaciones y la protección contra amenazas avanzadas.
+
+Por otro lado, un cortafuegos de gestión unificada de amenazas es una solución de seguridad completa que integra múltiples funciones de seguridad, como cortafuegos, antivirus, detección de intrusiones y filtrado de contenidos, en una única plataforma unificada.
