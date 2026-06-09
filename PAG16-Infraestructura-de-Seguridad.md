@@ -63,14 +63,22 @@ Selección de controles de seguridad:
 (Lo más importante para Security+)
 
 Firewalls → filtran tráfico.
+
 IDS/IPS → detectan y/o bloquean ataques.
+
 VPN, IPSec y TLS → protegen las comunicaciones.
+
 802.1X → controla quién puede conectarse a la red.
+
 SD-WAN y SASE → tecnologías modernas para redes empresariales.
+
 DMZ (subred de pantalla) → separa servicios públicos de la red interna.
+
 Fail Open vs Fail Closed:
-Fail Open: si falla el dispositivo, deja pasar el tráfico.
-Fail Closed: si falla el dispositivo, bloquea el tráfico.
+
+- Fail Open: si falla el dispositivo, deja pasar el tráfico.
+
+- Fail Closed: si falla el dispositivo, bloquea el tráfico.
 
 ## Puertos y Protocolos 
 Un puerto es un punto lógico de comunicación en un equipo o servidor.
