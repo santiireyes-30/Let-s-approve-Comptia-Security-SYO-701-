@@ -176,3 +176,141 @@ Puerto 1812/1813 – RADIUS: Autenticación, autorización y accounting (AAA). (
 Puerto 3389 – RDP: Escritorio remoto de Windows. (TCP)
 
 Puerto 6514 – Syslog TLS: Envío seguro y cifrado de logs. (TCP)
+
+## Firewalls (Cortafuegos)
+¿Qué es un firewall?
+
+Un firewall es un dispositivo o software de seguridad que controla el tráfico de red entrante y saliente según reglas predefinidas para bloquear accesos no autorizados y amenazas.
+
+Subred Apantallada (Screened Subnet)
+
+Consiste en colocar un firewall entre una red externa (no confiable) y una red interna (confiable).
+
+Objetivo:
+
+Filtrar el tráfico.
+Permitir solo conexiones autorizadas.
+Bloquear amenazas e intentos de acceso no autorizados.
+
+### Tipos de Firewalls
+
+#### Firewall de Filtrado de Paquetes (Packet Filtering)
+Inspecciona únicamente la cabecera del paquete.
+Evalúa IP, puertos y protocolos.
+Muy rápido y eficiente.
+Funciona en la Capa 4 (Transporte).
+
+Desventajas:
+
+No detecta spoofing IP.
+No detecta ataques complejos.
+Seguridad limitada.
+
+Recuerda: Más rápido, menos seguro.
+
+#### Firewall Stateful (Con Estado)
+
+Además de revisar cabeceras:
+
+Mantiene registro de conexiones activas.
+Sabe si una comunicación fue iniciada desde dentro de la red.
+Permite respuestas legítimas automáticamente.
+
+Ejemplo:
+Si visitas una web, recuerda la solicitud y permite la respuesta.
+
+Ventaja: Más seguro que el filtrado simple.
+
+#### Firewall Proxy
+
+Actúa como intermediario entre cliente y servidor.
+
+Proxy de Nivel de Circuito
+- Opera en la Capa 5 (Sesión).
+- Ejemplo: SOCKS Proxy.
+
+Proxy de Aplicación
+- Opera en la Capa 7 (Aplicación).
+- Realiza inspección profunda de paquetes (DPI).
+- Analiza tráfico HTTP, FTP, etc.
+
+Ventaja: Seguridad muy alta.
+
+Desventaja: Mayor latencia y menor rendimiento.
+
+#### Kernel Proxy Firewall (5ª Generación)
+Inspección profunda completa.
+Muy poco impacto en rendimiento.
+Actúa como intermediario entre sistemas.
+
+Ventaja: Alta seguridad y eficiencia.
+
+### Firewalls Modernos
+#### NGFW (Next Generation Firewall)
+
+Combina:
+
+Firewall tradicional.
+Inspección profunda de paquetes.
+Detección de intrusiones (IPS).
+Reconocimiento de aplicaciones.
+
+Ventajas:
+
+Muy seguro.
+Visibilidad completa del tráfico.
+Control granular.
+
+Desventajas:
+
+Más complejo.
+Puede generar dependencia del fabricante.
+UTM (Unified Threat Management)
+
+Integra múltiples funciones en un solo equipo:
+
+Firewall.
+Antivirus.
+Antispam.
+VPN.
+IPS.
+Filtrado web.
+Balanceo de carga.
+Prevención de pérdida de datos (DLP).
+
+Ventajas
+- Menor costo.
+- Menos equipos que administrar.
+- Configuración sencilla.
+
+Desventajas
+- Punto único de fallo.
+- Menor rendimiento que soluciones especializadas.
+
+Recuerda:
+Si falla el UTM, puedes perder toda tu protección de seguridad.
+
+#### WAF (Web Application Firewall)
+
+Protege aplicaciones web.
+
+Analiza:
+
+- HTTP
+- HTTPS
+
+Bloquea ataques como:
+
+- SQL Injection.
+- Cross-Site Scripting (XSS).
+
+Instalación
+
+En línea (Inline)
+- Puede bloquear ataques en tiempo real.
+- Añade latencia.
+
+Fuera de banda (Out-of-Band)
+- Solo monitorea.
+- Genera alertas.
+- No bloquea tráfico.
