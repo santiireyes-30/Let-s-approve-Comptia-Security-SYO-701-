@@ -261,6 +261,7 @@ Ventaja: Alta seguridad y eficiencia.
 
 #### NGFW (Next Generation Firewall)
 
+Es un dispositivo de seguridad avanzado que combina las funciones tradicionales de un cortafuegos con otras adicionales como la detección de intrusiones, el conocimiento de las aplicaciones y la protección contra amenazas avanzadas.
 va a intentar superar las deficiencias de un cortafuegos con seguimiento de estado tradicional creando cortafuegos que sean conscientes de las aplicaciones.
 
 Combina:
@@ -284,6 +285,8 @@ Más complejo.
 Puede generar dependencia del fabricante.
 
 #### UTM (Unified Threat Management)
+
+un cortafuegos de gestión unificada de amenazas es una solución de seguridad completa que integra múltiples funciones de seguridad, como cortafuegos, antivirus, detección de intrusiones y filtrado de contenidos, en una única plataforma unificada.
 
 En este Firewall se piensa como todo en 1, el tema es si cae este firewall, cae todo lo que "Integra" múltiples funciones en un solo equipo:
 
@@ -337,12 +340,109 @@ Fuera de banda (Out-of-Band)
 - Genera alertas.
 - No bloquea tráfico.
 
+
 ### A tener en cuenta
 
 Un cortafuegos de capa 4 va a operar en la capa de transporte y tomar decisiones de filtrado basadas en la información sobre números de puerto y datos de protocolo sin inspeccionar el contenido de sus paquetes de datos individuales.
 
 Por otro lado, un cortafuegos de capa 7, también conocido como proxy de aplicaciones o cortafuegos de aplicaciones, funciona en la capa de aplicaciones y puede inspeccionar, filtrar y controlar el tráfico en función del contenido y las características de la carga útil de los datos.
 
-Un cortafuegos de nueva generación o NGFW (Next-Generation Firewall), es un dispositivo de seguridad avanzado que combina las funciones tradicionales de un cortafuegos con otras adicionales como la detección de intrusiones, el conocimiento de las aplicaciones y la protección contra amenazas avanzadas.
+## Configuración de Firewalls y ACL
 
-Por otro lado, un cortafuegos de gestión unificada de amenazas es una solución de seguridad completa que integra múltiples funciones de seguridad, como cortafuegos, antivirus, detección de intrusiones y filtrado de contenidos, en una única plataforma unificada.
+¿Qué es una ACL (Access Control List)?
+
+Una lista de control de acceso, o ACL, es el conjunto de reglas que se colocará en el cortafuegos, enrutador u otros dispositivos de infraestructura de red que permite o rechaza el tráfico a través de una interfaz en particular. Es decir, es un conjunto de reglas que utiliza un firewall o router para permitir o bloquear tráfico entrante o saliente de nuestra red.
+
+Las reglas suelen basarse en:
+
+Tipo de tráfico (TCP, UDP, etc.)
+IP origen
+IP destino
+Puerto
+Acción (permitir o denegar)
+
+Para configurar las listas de control de acceso en nuestros cortafuegos, vamos a utilizar una interfaz basada en web o una interfaz
+de línea de comandos basada en texto.
+
+Ejemplo:
+
+Permitir TCP desde 192.168.0.0 hacia cualquier destino por el puerto 22 (SSH)
+
+Regla importante: Orden de las ACL
+
+Las reglas se evalúan de arriba hacia abajo.
+
+Regla 1
+Regla 2
+Regla 3
+
+Cuando una coincide:
+
+- Se aplica la acción.
+- Se dejan de revisar las demás.
+
+El tráfico se comparará primero con la primera regla y, si coincide con la condición, se aplicará la acción y dejará de ejecutar el resto de la ACL.
+
+Por eso:
+
+Reglas específicas arriba.
+Reglas generales abajo.
+Denegación implícita (Implicit Deny), si no coiciden los paquetes con las regla, bloquea.
+
+Muchos firewalls funcionan así:
+
+Si no está permitido → está bloqueado
+
+Por eso, es buena práctica agregar:
+
+deny all al final de la lista ACL.
+
+Registro (Logging)
+
+Cada vez que una regla:
+
+- Permite tráfico
+- Bloquea tráfico
+
+Debe quedar registrado en logs para auditoría y análisis.
+
+"Las reglas de las listas de control de acceso van a estar compuestas por algunas piezas clave de información, incluyendo el tipo de tráfico, la fuente
+del tráfico, el destino del tráfico y la acción que se debe tomar contra ese tráfico."
+
+### Firewall de Hardware vs Software
+
+#### Firewall de Hardware
+Está en el router o dispositivo dedicado.
+Protege toda la red.
+
+Ejemplo:
+
+Internet
+   ↓
+Firewall
+   ↓
+PCs de la empresa
+
+Firewall de Software
+Se instala en cada equipo.
+Ejemplo:
+Windows Defender Firewall
+Firewall de macOS
+
+Protege solo esa máquina.
+
+Conceptos clave para examen
+
+- ACL = lista de reglas de permitir/denegar.
+
+- Las reglas se leen de arriba hacia abajo.
+
+- La primera coincidencia gana.
+
+- Se recomienda terminar con deny all.
+
+- Firewall de hardware protege toda la red.
+
+- Firewall de software protege un único equipo.
+
+Así que recuerde, cuando se trata de la configuración del cortafuegos, puede utilizar un cortafuegos basado en hardware que protegerá todas las estaciones de trabajo conectadas a una subred de cortafuegos, o puede utilizar un cortafuegos individual basado en software en la propia estación de trabajo dentro de Windows, Mac OS o en Linux. En cualquier caso, las protecciones que proporcionará tu cortafuegos se basarán en la lista de control de acceso y las reglas que configures al configurar tus cortafuegos.
