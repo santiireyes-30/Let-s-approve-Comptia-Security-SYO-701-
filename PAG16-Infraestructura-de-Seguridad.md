@@ -446,3 +446,246 @@ Conceptos clave para examen
 - Firewall de software protege un único equipo.
 
 Así que recuerde, cuando se trata de la configuración del cortafuegos, puede utilizar un cortafuegos basado en hardware que protegerá todas las estaciones de trabajo conectadas a una subred de cortafuegos, o puede utilizar un cortafuegos individual basado en software en la propia estación de trabajo dentro de Windows, Mac OS o en Linux. En cualquier caso, las protecciones que proporcionará tu cortafuegos se basarán en la lista de control de acceso y las reglas que configures al configurar tus cortafuegos.
+
+## IDS Y IPS
+
+Los IDS (Intrusion Detection Systems): Detecta y alerta de actividades sospechosas
+
+IPS (Intrusion Prevention Systems): sirven para detectar actividades sospechosas o ataques, no solo alerta y detecta sino que a diferencia de IDS este acciona bloqueando la actividad sospechosa
+
+Tipos de IDS/IPS
+1. Basados en red (NIDS / NIPS)
+
+Monitorean el tráfico de toda la red.
+
+Buscan:
+
+Escaneos de puertos
+IPs sospechosas
+Tráfico malicioso
+Ataques de red
+
+Ubicación:
+
+NIDS → conectado a un puerto espejo (SPAN). debe conectarse a través de un puerto duplicado del conmutador
+de red troncal. De este modo, puede analizar todo el tráfico de forma pasiva.
+NIPS → en línea, detrás del firewall.
+
+2. Basados en host (HIDS / HIPS)
+
+Se instalan en una computadora o servidor.
+
+Monitorean:
+
+Procesos
+Archivos
+Cambios en el sistema
+Conexiones de red del equipo
+
+Ejemplo:
+Un programa intenta modificar archivos críticos de Windows.
+
+HIDS → te avisa.
+HIPS → lo bloquea.
+
+3. Inalámbricos (WIDS / WIPS)
+
+Protegen redes Wi-Fi.
+
+Detectan:
+
+- Ataques de desautenticación
+- Ataques de disociación
+- Flooding de autenticación
+- Dispositivos sospechosos
+
+Ejemplo:
+Alguien intenta expulsar usuarios del Wi-Fi.
+
+WIDS → alerta.
+WIPS → bloquea al atacante.
+
+### Métodos de detección
+
+#### Basado en firmas
+
+Compara el tráfico con una base de datos de ataques conocidos.
+
+Ventaja:
+
+- Muy preciso para amenazas conocidas.
+
+Desventaja:
+
+- No detecta ataques nuevos (Zero-Day).
+
+Piensa en un antivirus que busca virus conocidos.
+
+#### Basado en anomalías
+
+Aprende qué es "normal" y alerta cuando algo se sale de ese comportamiento.
+
+Ventaja:
+
+Puede detectar ataques nuevos.
+
+Desventaja:
+
+Más falsos positivos.
+
+existen cinco tipos de sistemas de detección basados en anomalías. Los hay estadísticos, de protocolo, de tráfico, de reglas o heurísticos y basados en aplicaciones.
+
+Cada uno de estos tipos busca identificar el tráfico que parece estar fuera de un patrón normal.
+
+Ejemplo de tráfico:
+
+Si normalmente hay 100 conexiones por minuto y de repente aparecen 10.000, genera una alerta.
+
+Ahora bien, los IDS basados en firmas se dividen a su vez en dos tipos. Tenemos pattern-matching(coincidencia de patrones) y stateful-matching(coincidencia de estados).
+
+La concordancia de patrones se va a centrar en un patrón específico de pasos que se están reconociendo durante un ataque.
+
+Stateful-matching se va a centrar en una línea de base conocida de un sistema y en informar de cualquier cambio en ese estado.
+
+"La concordancia de patrones es más común en los IDS basados en red y en los IDS inalámbricos, mientras que la concordancia
+de estados se utiliza más comúnmente en los IDS basados en host."
+
+Brevemente: 
+
+- IDS = Detecta y alerta.
+
+- IPS = Detecta, alerta y bloquea.
+
+- NIDS/NIPS = Protegen la red.
+
+- HIDS/HIPS = Protegen un equipo o servidor.
+
+- WIDS/WIPS = Protegen la red Wi-Fi.
+
+## Dispositivos de Red
+
+un dispositivo de red es un aparato de hardware dedicado con software preinstalado que está diseñado para proporcionar servicios de red específicos como seguridad, almacenamiento de datos o funciones de servidor dentro de una infraestructura de red.
+
+vamos a centrarnos en 4 tipos diferentes: balanceadores de carga, servidores proxy, sensores y servidores de salto.
+
+1. Balanceador de Carga (Load Balancer)
+
+¿Qué hace?
+Distribuye las solicitudes entre varios servidores para que ninguno se sobrecargue. Esto garantiza que podamos mantener la redundancia
+y la fiabilidad, mitigando los riesgos asociados a depender de un único servidor
+
+Ejemplo:
+Un sitio web tiene 3 servidores. El balanceador reparte los usuarios entre los 3.
+
+Beneficios:
+
+Mayor disponibilidad.
+Mejor rendimiento.
+Si un servidor falla, envía el tráfico a los demás.
+
+Palabra clave:
+- Distribuye tráfico entre múltiples servidores.
+
+Controlador de entrega de aplicaciones(ADC) es una versión más avanzada de un Balanceador de Carga, ADC nos proporcionará una serie de funcionalidades
+más allá de la simple distribución de carga, ya que incluye funciones como la terminación SSL, la compresión HTTP y el almacenamiento en caché de contenidos.
+
+- Mejora la eficacia y el rendimiento de nuestras redes de alta disponibilidad.
+
+- garantiza la resistencia y fiabilidad de nuestros sitios web de alto tráfico, sistemas de aplicaciones críticas y amplias plataformas digitales en
+diversas industrias y sectores.
+
+2. Servidor Proxy
+
+¿Qué hace?
+Actúa como intermediario entre cliente y servidor para proporcionar diversas funciones como el almacenamiento de contenidos en caché, el filtrado de peticiones
+y la gestión de inicios de sesión para mejorar la eficiencia y controlar el acceso a nuestros recursos dentro de una red determinada.
+
+Funciones:
+
+Cachea contenido.
+Filtra solicitudes.
+Controla acceso.
+Oculta los servidores reales.
+
+Ejemplo:
+Un empleado entra a una web. Primero pasa por el proxy y luego sale a Internet.
+
+Beneficios:
+
+Más seguridad.
+Menor consumo de ancho de banda.
+Aplicación de políticas de empresa.
+
+"Los servidores proxy contribuyen significativamente a la estabilidad y fiabilidad de nuestros sistemas de red al proporcionar otra capa de defensa contra amenazas externas, incluidas las de denegación de servicio distribuido o ataques DDoS, enmascarando los verdaderos puntos finales que se encuentran dentro de esa red."
+
+Estos servidores proxy pueden aplicar protocolos de autenticación de usuarios para ayudar a dirigir el tráfico de forma más segura.
+
+Algunos servidores proxy avanzados también pueden gestionar el cifrado de datos proporcionando túneles seguros para el transporte
+de cualquier información sensible.
+
+3. Sensor de red
+
+¿Qué hace?
+
+Monitorea el tráfico y detecta actividades sospechosas. Es decir, están diseñados para supervisar, detectar y analizar el tráfico y el flujo de datos a través de la red con el fin de identificar cualquier actividad inusual, posibles brechas de seguridad, problemas de rendimiento u otros tipos de ineficiencias operativas.
+
+Se usa en:
+
+IDS
+IPS
+Sistemas de monitoreo
+
+Ejemplo:
+
+Detecta que una IP está enviando miles de solicitudes por segundo y genera una alerta.
+
+Beneficios:
+
+Detecta ataques.
+Ayuda a monitorear rendimiento.
+Detecta anomalías de rendimiento, como picos de tráfico inesperados que podrían provocar una degradación del servicio
+
+
+4. Jump Server (Servidor de salto)
+
+¿Qué hace?
+
+Es un servidor seguro que los administradores utilizan para acceder a sistemas críticos. Es decir, es una pasarela dedicada que utilizan los administradores de sistemas para acceder de forma segura a dispositivos situados en diferentes zonas de seguridad dentro de su red
+
+es una parte crítica de una arquitectura de red de alta seguridad y alta disponibilidad porque actúa como una estación intermediaria para acceder a aquellos servidores y dispositivos de red dentro de su red de confianza.
+
+Estos servidores de salto ofrecen una sólida capa de protección para los sistemas que no pueden permitirse ningún tiempo de inactividad o violación de datos asociada a ellos.
+
+Ejemplo:
+
+En lugar de conectarte directamente a un servidor de producción:
+
+Tu PC → Jump Server → Servidor crítico
+
+Beneficios:
+
+Reduce superficie de ataque.
+Centraliza accesos.
+Facilita auditorías y registros.
+
+En caso de un ciberataque, tendrán un registro detallado de cualquier acción o conexión que se haya realizado, por lo que podemos acelerar significativamente
+el proceso de recuperación durante la respuesta a un incidente.
+
+Palabra clave:
+- Puerta de acceso segura para administradores.
+
+### Breve
+
+Asi que Recuerde que los dispositivos de red son equipos de hardware dedicados con software preinstalado diseñados para proporcionar servicios de red específicos.
+
+Los equilibradores de carga distribuyen el tráfico de red o de aplicaciones entre varios servidores para optimizar su rendimiento y evitar la sobrecarga de un único servidor.
+
+Los servidores proxy también actuarán como intermediarios entre sus clientes y sus servidores para gestionar el flujo de datos y ofrecer mayores niveles de seguridad y control de contenidos.
+
+Los sensores son herramientas o dispositivos que supervisan diversas condiciones físicas o de la red para proporcionar datos en tiempo real
+para la optimización y seguridad del sistema.
+
+Los servidores de salto o jump boxes son plataformas intermediarias seguras que los administradores pueden utilizar para acceder a dispositivos a través
+de diferentes zonas de seguridad dentro de una red determinada.
+
+Juntos, estos cuatro tipos de dispositivos de red nos ayudarán a garantizar la eficacia, seguridad y alto rendimiento de la infraestructura.
