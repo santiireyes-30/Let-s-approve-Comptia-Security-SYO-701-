@@ -963,3 +963,83 @@ Así que recuerde, la seguridad de puertos es una característica del conmutador
 El protocolo de autenticación extensible o EAP se considera un marco de autenticación flexible que se utiliza junto con 802. 1x para admitir varios métodos de autenticación mediante EAP-MD5, EAP-TLS, EAP-TTLS, EAP-FAST, PEAP o EAP-LEAP.
 
 Al integrar la seguridad de puertos con 802. 1x y EAP, nuestras organizaciones pueden aumentar realmente la seguridad de su red garantizando que sólo los dispositivos autenticados y autorizados puedan acceder a nuestros recursos más críticos y sensibles.
+
+## Seguridad de las comunicaciones de red (VPN, TLS e IPSec)
+
+Protección de los datos cuando viajan por Internet mediante tres tecnologías principales:
+
+1. VPN (Virtual Private Network)
+
+Una VPN crea un túnel cifrado entre un usuario o una red y otra red remota para que los datos viajen seguros por Internet.
+
+Tipos de VPN:
+
+Sitio a sitio (Site-to-Site): conecta dos sedes u oficinas completas.
+Cliente a sitio (Client-to-Site): conecta un dispositivo individual (laptop, celular) a la red corporativa.
+Sin cliente (Clientless): se accede mediante un navegador web usando HTTPS.
+
+2. VPN de túnel completo vs túnel dividido
+
+Túnel completo (Full Tunnel):
+
+Todo el tráfico pasa por la VPN.
+Más seguro.
+Menor rendimiento.
+
+Túnel dividido (Split Tunnel):
+
+Solo el tráfico corporativo pasa por la VPN.
+El resto va directo a Internet.
+Más rápido.
+Menos seguro.
+
+3. TLS (Transport Layer Security)
+
+Es el protocolo que protege las conexiones HTTPS.
+
+Funciones:
+
+Cifra la información.
+Protege usuarios, contraseñas y datos.
+Se usa diariamente al entrar en sitios web seguros.
+
+DTLS es una versión de TLS que funciona sobre UDP y suele ser más rápida para video y streaming.
+
+4. IPSec
+
+Es el protocolo más utilizado para crear VPN modernas.
+
+Proporciona:
+
+Confidencialidad: cifra los datos.
+Integridad: verifica que no fueron modificados.
+Autenticación: verifica la identidad de los participantes.
+Antirrepetición: evita que un atacante reutilice paquetes capturados.
+
+5. Modos de IPSec
+
+Modo Transporte
+
+- Cifra solo la carga útil del paquete.
+- Mantiene la cabecera IP original.
+- Se usa normalmente en VPN Cliente-Sitio.
+
+Modo Túnel
+
+- Encapsula el paquete completo dentro de otro paquete.
+- Añade una nueva cabecera IP.
+- Se usa normalmente en VPN Sitio-Sitio.
+- Es más seguro, pero aumenta el tamaño de los paquetes.
+
+6. AH y ESP
+
+AH (Authentication Header):
+
+- Proporciona integridad y autenticación.
+- No cifra los datos.
+
+ESP (Encapsulating Security Payload):
+
+- Proporciona cifrado.
+- También ofrece autenticación e integridad.
+- Es el mecanismo más utilizado en IPSec.
