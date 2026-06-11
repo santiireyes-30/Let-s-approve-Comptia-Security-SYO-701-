@@ -674,7 +674,7 @@ el proceso de recuperación durante la respuesta a un incidente.
 Palabra clave:
 - Puerta de acceso segura para administradores.
 
-### Breve
+### En Resúmen
 
 Asi que Recuerde que los dispositivos de red son equipos de hardware dedicados con software preinstalado diseñados para proporcionar servicios de red específicos.
 
@@ -689,3 +689,277 @@ Los servidores de salto o jump boxes son plataformas intermediarias seguras que 
 de diferentes zonas de seguridad dentro de una red determinada.
 
 Juntos, estos cuatro tipos de dispositivos de red nos ayudarán a garantizar la eficacia, seguridad y alto rendimiento de la infraestructura.
+
+## Seguridad de puertos (Port Security)
+
+Es una función de los switches que permite decidir qué dispositivos pueden conectarse a un puerto específico usando su dirección MAC de su tarjeta de interfaz de red.
+
+Ejemplo:
+
+Puerto 1 → solo puede conectarse la PC de recepción.
+
+Puerto 1
+↓
+MAC: AA:BB:CC:11:22:33 (recepción)
+
+El switch dice:
+- "Esa MAC está autorizada."
+
+Si conectan otra laptop, el switch la bloquea.
+
+Un atacante desconecta la PC de Juan y conecta su laptop.
+
+Puerto 1
+↓
+MAC: FF:EE:DD:44:55:66
+
+El switch dice:
+- "Esa MAC no es la que tengo autorizada." Y bloquea el acceso.
+
+Objetivo: evitar dispositivos no autorizados en la red.
+
+Todo esto estamos hablando fisicamente, aunque el atacante sin cable lo puede obtener el acceso cambiando el nombre de la MAC a la MAC que esta autorizada, en nuestro caso cambia de la MAC: FF:EE:DD:44:55:66 a la MAC: AA:BB:CC:11:22:33 (recepción). También tener en cuenta que nuestros conmutadores de red son dispositivos de red que van a operar en la capa 2 del modelo OSI (Enlace de Datos).
+
+Estos dispositivos toman las decisiones de conmutación de tráfico basándose en la dirección MAC de los dispositivos emisores y receptores a través de un proceso denominado puente transparente. A diferencia de los concentradores, que son un tipo de dispositivo de red más antiguo, los conmutadores utilizan la inteligencia para evitar colisiones en la red 
+
+Una colisión ocurre cuando dos dispositivos intentan transmitir datos al mismo tiempo por el mismo medio de comunicación, y sus datos "chocan".
+
+Ejemplo: 
+
+Antes, con un hub, todas las PCs compartían el mismo medio:
+
+PC1 ─┐
+PC2 ─┼─ HUB
+PC3 ─┘
+
+Si PC1 y PC2 enviaban datos al mismo tiempo:
+- Colisión.
+
+Con un switch:
+
+PC1 ─ Puerto 1
+PC2 ─ Puerto 2
+PC3 ─ Puerto 3
+
+Cada puerto tiene su propio canal, así que no chocan entre sí.
+
+Hub → envía a todos.
+Switch (conmutador) → envía solo al destinatario correcto usando la dirección MAC.
+
+Funcionan en modo "Full Dúplex"
+
+Significa que un dispositivo puede:
+
+Enviar datos ➡️
+Recibir datos ⬅️
+
+al mismo tiempo.
+
+Ejemplo:
+
+Mientras tu navegador descarga una página web, también está enviando solicitudes al servidor.
+
+No tiene que esperar a terminar una cosa para hacer la otra.
+
+2. Tabla CAM
+
+Es la memoria del switch donde guarda:
+
+MAC → Puerto
+
+Ejemplo:
+
+MAC	Puerto
+AA:BB:CC	Fa0/1
+DD:EE:FF	Fa0/2
+
+Gracias a esta tabla el switch sabe exactamente dónde enviar cada paquete.
+
+- Piensa en ella como la "agenda de contactos" del switch.
+
+3. MAC Flooding
+
+Ataque donde un atacante envía miles de MAC falsas.
+
+Resultado:
+
+La tabla CAM se llena.
+El switch ya no sabe dónde está cada equipo.
+Empieza a comportarse como un hub.
+
+Problema: el tráfico se envía a muchos puertos y puede ser espiado.
+
+- Es un ataque para "confundir" al switch.
+
+4. Sticky MAC (MAC Pegajosa)
+
+Facilita la configuración de Port Security.
+
+En vez de escribir manualmente la MAC permitida:
+
+Se conecta el primer dispositivo.
+El switch aprende automáticamente su MAC.
+Esa MAC queda autorizada.
+
+"Aprendizaje automático de la primera MAC".
+
+Problema de usar solo MAC
+
+Las MAC pueden falsificarse.
+
+Esto se llama:
+
+MAC Spoofing
+
+El atacante cambia la MAC de su tarjeta de red por una MAC autorizada.
+
+Entonces:
+
+El switch cree que es un equipo legítimo.
+Le permite entrar.
+
+- Por eso Port Security sola no es suficiente.
+
+802.1X (MUY IMPORTANTE)
+
+Es un estándar que obliga a que un dispositivo se autentique antes de entrar a la red.
+
+Piensa:
+
+Port Security pregunta:
+
+¿Tu MAC está permitida?
+
+802.1X pregunta:
+
+¿Quién eres? Demuéstralo.
+
+Los 3 componentes de 802.1X
+
+1. Supplicant (Solicitante)
+
+El usuario o dispositivo que quiere entrar a la red.
+
+Ejemplo:
+
+Tu notebook.
+
+2. Authenticator
+
+El dispositivo que controla el acceso. También es el dispositivo a través del cual el solicitante intenta acceder a la red, como un switch, un punto de acceso inalámbrico o un concentrador VPN.
+
+3. Authentication Server
+
+Servidor que verifica las credenciales. que va a ser nuestro dispositivo centralizado que realiza la autenticación, y esto normalmente va a ser configurado como un servidor RADIUS o TACACS+.
+
+Normalmente:
+
+RADIUS
+
+- Es un protocolo multiplataforma
+- El más usado
+
+TACACS+
+
+- Más control pero más lento en las operaciones porque se basa en TCP para su protocolo de transporte, pero esto añade seguridad adicional y lleva a cabo de forma independiente la autorización de autenticación en el proceso de contabilidad mediante el uso de TACACS+.
+- Principalmente Cisco
+
+Regla de examen:
+
+Red mixta → RADIUS
+Todo Cisco → TACACS+
+
+A la hora de diseñar la arquitectura de seguridad de la red de su empresa, debería utilizar 802. 1x como parte de sus defensas.
+
+Utilizando 802. 1x es una de las mejores protecciones que puede añadir a su red interna para evitar que dispositivos no autorizados accedan a los dispositivos y recursos de nuestra organización.
+Dado que proporciona autenticación basada en puertos, cualquier cosa que se conecte a un conmutador o a un punto de acceso inalámbrico deberá presentarse para la autenticación mediante ese 802. 1x antes de obtener acceso a toda la red.
+
+El 802. 1x también puede utilizarse para encapsular EAP o el protocolo de autenticación extensible.
+
+EAP (Extensible Authentication Protocol)
+
+No es un protocolo único en sí mismo, sino que es un marco en una serie de protocolos que nos permite las numerosas formas
+diferentes de llevar a cabo la autenticación, incluyendo cosas como el uso de contraseñas simples, el uso de certificados digitales y el uso de una infraestructura de clave pública.
+
+Existen muchas variantes de EAP, como EAP-MD5, EAP-TLS, EAP-TTLS, EAP-FAST, PEAP y EAP-LEAP.
+
+EAP MD5
+
+Ventaja:
+
+- Simple
+
+Desventaja:
+
+- Menos seguro
+
+- Solo contraseñas.
+
+EAP-TLS
+
+Usa:
+
+Certificado en cliente
+Certificado en servidor
+
+Ventaja:
+
+Muy seguro (El más seguro porque usa certificados en ambos lados).
+
+- Es el más seguro de los que viste.
+
+Piensa:
+Certificado + Certificado
+
+EAP-TTLS
+
+Usa:
+
+Certificado en servidor
+Contraseña en cliente
+
+Más seguro que MD5.
+Menos seguro que TLS porque no usa el certficado del cliente
+
+- Certificado + Contraseña
+
+EAP-FAST
+
+Ahora bien, EAP-FAST es otra variante de EAP, y FAST significa autenticación flexible mediante túnel seguro, y utiliza una credencial de acceso
+protegida en lugar de un certificado para establecer la autenticación mutua entre dos dispositivos.
+
+Usa:
+
+PAC (Protected Access Credential)
+
+No necesita certificados.
+
+- Alternativa más sencilla.
+
+PEAP
+
+Ahora, la variante PEAP protegida, va a soportar la autenticación mutua mediante el uso de un certificado de servidor y su base de datos de Microsoft Active Directory con el fin de autenticar una contraseña de su cliente dado.
+
+Usa:
+
+- Certificado en servidor
+- Contraseña del usuario
+- Muy común en empresas con Active Directory.
+
+LEAP
+
+Creado por Cisco.
+
+Solo para entornos Cisco.
+
+- Si ves "Cisco propietario", piensa en LEAP.
+
+### Resúmen
+
+Así que recuerde, la seguridad de puertos es una característica del conmutador de red que va a restringir qué dispositivos pueden conectarse a puertos específicos en función de sus direcciones MAC.
+
+802. 1x es un estándar IEEE para el control de acceso a la red que va a autenticar los dispositivos en función de sus capacidades como se utiliza principalmente en la capa de enlace de datos, que es la capa 2 del modelo OSI.
+
+El protocolo de autenticación extensible o EAP se considera un marco de autenticación flexible que se utiliza junto con 802. 1x para admitir varios métodos de autenticación mediante EAP-MD5, EAP-TLS, EAP-TTLS, EAP-FAST, PEAP o EAP-LEAP.
+
+Al integrar la seguridad de puertos con 802. 1x y EAP, nuestras organizaciones pueden aumentar realmente la seguridad de su red garantizando que sólo los dispositivos autenticados y autorizados puedan acceder a nuestros recursos más críticos y sensibles.
