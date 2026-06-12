@@ -986,6 +986,28 @@ Todo el tráfico pasa por la VPN.
 Más seguro.
 Menor rendimiento.
 
+Ejemplo:
+
+Tu PC
+  |
+ VPN
+  |
+Servidor VPN empresa
+  |
+  +----> Splunk
+  |
+  +----> Google
+  |
+  +----> YouTube
+
+Si abres:
+
+Splunk → VPN ✅
+Google → VPN ✅
+YouTube → VPN ✅
+
+Todo se envía primero a la empresa.
+
 Túnel dividido (Split Tunnel):
 
 Solo el tráfico corporativo pasa por la VPN.
@@ -993,9 +1015,35 @@ El resto va directo a Internet.
 Más rápido.
 Menos seguro.
 
+Ejemplo:
+
+Tu PC
+  |
+  +---- VPN ----> Red de la empresa
+  |
+  +------------> Google
+  |
+  +------------> YouTube
+
+Si abres:
+
+Splunk de la empresa → pasa por la VPN ✅
+Microsoft Sentinel de la empresa → pasa por la VPN ✅
+Google → sale directo a Internet ❌ VPN
+YouTube → sale directo a Internet ❌ VPN
+
+Ventajas
+Más rápido.
+Consume menos ancho de banda de la empresa.
+Desventajas
+La empresa tiene menos control sobre tu tráfico de Internet.
+
 3. TLS (Transport Layer Security)
 
 Es el protocolo que protege las conexiones HTTPS.
+
+TLS utiliza el Protocolo de Control de Transmisión, conocido como TCP, para que podamos establecer nuestras conexiones seguras entre un cliente y un servidor. Pero esto puede ralentizar tu conexión
+porque TCP tiene mucha más sobrecarga que una conexión UDP. 
 
 Funciones:
 
@@ -1007,12 +1055,14 @@ DTLS es una versión de TLS que funciona sobre UDP y suele ser más rápida para
 
 4. IPSec
 
-Es el protocolo más utilizado para crear VPN modernas.
+Es el protocolo más utilizado para crear VPN modernas. En otras palabras es un conjunto de protocolos de red seguros que proporciona autenticación y cifrado de nuestros paquetes de datos para crear una ruta de comunicación cifrada segura entre dos ordenadores
+a través de una red de protocolo de Internet.
 
 Proporciona:
 
 Confidencialidad: cifra los datos.
-Integridad: verifica que no fueron modificados.
+Integridad: verifica que no fueron modificados. os proporcionará la integridad que deseamos al garantizar que nuestros datos no han sido modificados en tránsito mediante la comprobación de su resumen hash justo antes de ser transmitidos
+y de nuevo una vez recibidos para garantizar que coinciden.
 Autenticación: verifica la identidad de los participantes.
 Antirrepetición: evita que un atacante reutilice paquetes capturados.
 
