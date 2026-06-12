@@ -1063,10 +1063,25 @@ Proporciona:
 Confidencialidad: cifra los datos.
 Integridad: verifica que no fueron modificados. os proporcionará la integridad que deseamos al garantizar que nuestros datos no han sido modificados en tránsito mediante la comprobación de su resumen hash justo antes de ser transmitidos
 y de nuevo una vez recibidos para garantizar que coinciden.
-Autenticación: verifica la identidad de los participantes.
-Antirrepetición: evita que un atacante reutilice paquetes capturados.
+Autenticación: verifica la identidad de los participantes. Es decir, La autenticación se realizará haciendo que cada parte verifique que es quien dice ser.
+Antirrepetición: evita que un atacante reutilice paquetes capturados y impide la transmisión de paquetes duplicados
 
-5. Modos de IPSec
+IPSec VPN se establece en 5 pasos en el proceso de establecer y utilizar un túnel VPN seguro cuando se utiliza IPSec:
+
+Inicio de la conexión
+   - Un dispositivo solicita crear el túnel VPN.
+IKE Fase 1
+   - Los dos extremos se autentican entre sí.
+Crean un canal seguro para negociar.
+   - IKE Fase 2
+   - Se negocian las claves y parámetros de seguridad.
+   - El túnel VPN queda completamente establecido.
+Transferencia de datos
+   - Los datos viajan cifrados por el túnel VPN.
+Finalización
+   - Se cierra el túnel y se eliminan las asociaciones de seguridad.
+
+Modo Transporte vs Modo Túnel
 
 Modo Transporte
 
@@ -1074,12 +1089,66 @@ Modo Transporte
 - Mantiene la cabecera IP original.
 - Se usa normalmente en VPN Cliente-Sitio.
 
+Ejemplo:
+Tu notebook desde tu casa se conecta a la VPN de la empresa.
+
+Mantiene la cabecera IP original.
+Solo cifra el contenido.
+Agrega menos información extra.
+Los paquetes son más pequeños.
+
+Ventaja:
+
+Menor consumo de ancho de banda.
+Menos riesgo de fragmentación.
+
+Uso típico:
+
+VPN de usuario remoto → empresa.
+
 Modo Túnel
 
 - Encapsula el paquete completo dentro de otro paquete.
 - Añade una nueva cabecera IP.
 - Se usa normalmente en VPN Sitio-Sitio.
 - Es más seguro, pero aumenta el tamaño de los paquetes.
+
+Sucursal de California ↔ Oficina principal de Washington.
+
+Se encapsula TODO el paquete original.
+Se agrega una nueva cabecera IP.
+El paquete crece de tamaño.
+
+Piensa en esto:
+
+Carta normal:
+
+Carta + sobre = paquete original.
+
+Modo túnel:
+
+Carta + sobre.
+Ese sobre se mete dentro de otro sobre.
+
+Por eso se llama túnel.
+
+¿Por qué aumenta el tamaño?
+
+Porque se agrega:
+
+Nueva cabecera IP.
+Información IPSec.
+Datos de cifrado.
+
+Entonces:
+
+Paquete original
++
+Cabecera IPSec
++
+Nueva cabecera IP
+=
+Paquete más grande
 
 6. AH y ESP
 
