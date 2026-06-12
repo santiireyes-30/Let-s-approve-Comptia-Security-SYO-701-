@@ -1150,15 +1150,63 @@ Nueva cabecera IP
 =
 Paquete más grande
 
+Si estás utilizando una VPN cliente-sitio, te recomiendo encarecidamente que utilices un modo de transporte como método IPSec, ya que no añade ningún relleno adicional al paquete y no aumenta su tamaño.
+Sin embargo, si controlas toda tu red, puedes volver a utilizar tramas jumbo y llegar a un tamaño de hasta 9.000 bytes si quieres, pero esto sólo deberías hacerlo en tus propias redes de área local porque los paquetes
+de 9.000 bytes tendrán problemas para atravesar toda Internet.
+
+¿Qué es la MTU?
+
+MTU (Maximum Transmission Unit) = tamaño máximo de paquete que una red puede transportar.
+
+Normalmente:
+
+MTU = 1500 bytes
+
+Si el paquete supera ese tamaño:
+
+Paquete → se fragmenta
+
+y eso puede generar problemas o reducir el rendimiento de la VPN.
+
 6. AH y ESP
 
-AH (Authentication Header):
+AH (Authentication Header): se va a utilizar para proporcionar integridad de datos sin conexión y autenticación de origen de datos para datagramas IP, y proporciona protección contra ataques de repetición.
 
-- Proporciona integridad y autenticación.
 - No cifra los datos.
 
-ESP (Encapsulating Security Payload):
+En su lugar, la cabecera de autenticación contiene un hash criptográfico de los datos, y esto simplemente actuará como información de identificación para proporcionar la integridad entre el remitente y el receptor 
+de cada paquete que se está transmitiendo.
+
+ESP (Encapsulating Security Payload): se va a utilizar para proporcionar autenticación, integridad, protección contra repeticiones y confidencialidad de tus datos.
 
 - Proporciona cifrado.
-- También ofrece autenticación e integridad.
 - Es el mecanismo más utilizado en IPSec.
+
+Usando ESP dentro de IPSec, puedes reescribir la carga útil del paquete dentro de un formato encriptado. Cuando usamos ESP, sólo protegemos la confidencialidad de la carga útil contenida en el paquete, no las cabeceras.
+Así que si estás utilizando el modo de transporte, como en una VPN cliente-sitio, puedes utilizar cabeceras de autenticación para proporcionar integridad a tu cabecera TCP, y luego puedes añadir ESP o Encapsulating
+Security Payload para poder cifrar la cabecera TCP y los datos dentro de la carga útil.
+
+Esto no cifra el encabezado de extremo a extremo, por lo que las personas ajenas a tu organización podrán ver de dónde proceden los datos y a dónde van, pero no podrán leer los datos que contienen.
+Ahora bien, si estás utilizando el modo túnel, como en una VPN de sitio a sitio, puedes utilizar tanto la cabecera de autenticación como la carga útil de seguridad encapsulada para proporcionar
+integridad y cifrado de esa carga útil, incluida la cabecera de extremo a extremo.
+
+Esto significa que nadie en Internet podrá ver el origen o el destino del tráfico dentro de las redes internas de su organización a ambos lados de esa conexión VPN.
+
+### Resúmen
+
+Así que recuerde, cuando se trata de proteger las comunicaciones de red, normalmente confiamos en una VPN, TLS o IPSec para garantizar que los datos permanezcan a salvo de miradas indiscretas 
+mientras atraviesan una red no fiable o insegura como Internet. Una VPN o Red Privada Virtual es una conexión segura y encriptada entre el dispositivo de un usuario y un servidor remoto que permite
+el acceso privado y anónimo a Internet. 
+
+Una VPN de cliente a sitio permitirá a usuarios individuales conectarse remotamente a una red segura, mientras que una VPN de sitio a sitio establece una conexión segura entre dos ubicaciones de red separadas.
+
+Una VPN sin cliente es una solución de acceso remoto que va a permitir a los usuarios acceder de forma segura a los recursos de red utilizando un navegador web sin necesidad de una pieza dedicada de software cliente que
+va a depender del protocolo Transport Layer Security para su cifrado.
+
+IPSec o Internet Protocol Security Suite es un conjunto de protocolos que se utiliza para proteger las comunicaciones de protocolo de Internet autenticando ¿y cifrando cada paquete IP en el flujo de datos.
+
+IPSec puede configurarse para utilizar el modo transporte o el modo túnel.
+
+El modo de transporte se utiliza normalmente para las VPN cliente-sitio, mientras que el modo túnel se utiliza normalmente para las VPN sitio-sitio.
+
+Estas diferentes herramientas y protocolos se van a utilizar para ayudar a cifrar nuestros datos y protegerlos de posibles escuchas o modificaciones en su tránsito por Internet y otras redes inseguras.
