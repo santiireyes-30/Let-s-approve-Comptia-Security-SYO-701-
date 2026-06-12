@@ -1195,13 +1195,14 @@ Esto significa que nadie en Internet podrá ver el origen o el destino del tráf
 ### Resúmen
 
 Así que recuerde, cuando se trata de proteger las comunicaciones de red, normalmente confiamos en una VPN, TLS o IPSec para garantizar que los datos permanezcan a salvo de miradas indiscretas 
-mientras atraviesan una red no fiable o insegura como Internet. Una VPN o Red Privada Virtual es una conexión segura y encriptada entre el dispositivo de un usuario y un servidor remoto que permite
+mientras atraviesan una red no fiable o insegura como Internet. 
+
+Una VPN o Red Privada Virtual es una conexión segura y encriptada entre el dispositivo de un usuario y un servidor remoto que permite
 el acceso privado y anónimo a Internet. 
 
 Una VPN de cliente a sitio permitirá a usuarios individuales conectarse remotamente a una red segura, mientras que una VPN de sitio a sitio establece una conexión segura entre dos ubicaciones de red separadas.
 
-Una VPN sin cliente es una solución de acceso remoto que va a permitir a los usuarios acceder de forma segura a los recursos de red utilizando un navegador web sin necesidad de una pieza dedicada de software cliente que
-va a depender del protocolo Transport Layer Security para su cifrado.
+Una VPN sin cliente es una solución de acceso remoto que va a permitir a los usuarios acceder de forma segura a los recursos de red utilizando un navegador web sin necesidad de una pieza dedicada de software cliente que va a depender del protocolo TLS (Transport Layer Security) para su cifrado.
 
 IPSec o Internet Protocol Security Suite es un conjunto de protocolos que se utiliza para proteger las comunicaciones de protocolo de Internet autenticando ¿y cifrando cada paquete IP en el flujo de datos.
 
