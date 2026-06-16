@@ -964,7 +964,7 @@ El protocolo de autenticación extensible o EAP se considera un marco de autenti
 
 Al integrar la seguridad de puertos con 802. 1x y EAP, nuestras organizaciones pueden aumentar realmente la seguridad de su red garantizando que sólo los dispositivos autenticados y autorizados puedan acceder a nuestros recursos más críticos y sensibles.
 
-## Seguridad de las comunicaciones de red (VPN, TLS e IPSec)
+## Protección de las comunicaciones de red (VPN, TLS e IPSec)
 
 Protección de los datos cuando viajan por Internet mediante tres tecnologías principales:
 
@@ -1210,4 +1210,34 @@ IPSec puede configurarse para utilizar el modo transporte o el modo túnel.
 
 El modo de transporte se utiliza normalmente para las VPN cliente-sitio, mientras que el modo túnel se utiliza normalmente para las VPN sitio-sitio.
 
+## SD-WAN y SASE
+
+SD-WAN (Software-Defined WAN)
+
+- Es una forma moderna de gestionar redes WAN mediante software.
+- Permite conectar sucursales, centros de datos y la nube de forma más inteligente.
+- Puede usar distintos tipos de conexión (Internet, fibra, celular, MPLS, etc.).
+- Decide automáticamente la mejor ruta para el tráfico.
+- Mejora el rendimiento, reduce cuellos de botella y simplifica la administración.
+
+Ejemplo: En lugar de que todo el tráfico de una sucursal pase por la sede central, SD-WAN puede enviarlo directamente a Microsoft 365, Google o AWS si es más rápido.
+
+SASE (Secure Access Service Edge)
+
+- Combina red y seguridad en un único servicio basado en la nube.
+Incluye funciones como:
+   - Firewall
+   - VPN
+   - Zero Trust
+   - CASB (seguridad para aplicaciones en la nube)
+- Protege a usuarios remotos, sucursales y dispositivos sin importar dónde estén.
+
+Ejemplo: Un empleado trabajando desde casa puede conectarse de forma segura a las aplicaciones de la empresa sin necesidad de estar en la oficina.
+
 Estas diferentes herramientas y protocolos se van a utilizar para ayudar a cifrar nuestros datos y protegerlos de posibles escuchas o modificaciones en su tránsito por Internet y otras redes inseguras.
+
+Diferencia entre ellas
+
+SD-WAN: Optimiza y dirige el tráfico de red. Es decir se enfoca en la conectividad. - Gestiona la WAN por software.
+
+SASE: Optimiza el tráfico y además añade seguridad. Es decir se enfoca en conectividad + seguridad. - Integra SD-WAN con firewall, VPN, Zero Trust, etc.
