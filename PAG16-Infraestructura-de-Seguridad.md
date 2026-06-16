@@ -1212,17 +1212,75 @@ El modo de transporte se utiliza normalmente para las VPN cliente-sitio, mientra
 
 ## SD-WAN y SASE
 
+Ahora que nuestras organizaciones dependen cada vez más de las aplicaciones basadas en la nube que utilizan nuestros trabajadores distribuidos geográficamente,
+ha aumentado la demanda de una infraestructura de red ágil, segura y eficiente que se cree rápidamente.
+
+Una red de área extensa definida por software, o SD-WAN, es un enfoque virtualizado para gestionar y optimizar las conexiones de red de área extensa
+para dirigir eficazmente el tráfico entre sitios remotos, centros de datos y entornos de nube.
+
+Por otro lado, el marco de borde de servicio de acceso seguro, o SASE, se utiliza para consolidar numerosas funciones de red y seguridad en un único servicio nativo de la nube, con el fin de garantizar un acceso seguro y sin fisuras para los usuarios finales, independientemente de su ubicación física real.
+
+Juntos, SD-WAN y SASE representan una gran innovación en nuestras arquitecturas de red y seguridad.
+
 SD-WAN (Software-Defined WAN)
+
+Una SD-WAN permite administrar una red WAN mediante software, sin depender tanto de configuraciones manuales en equipos físicos específicos.
+
+¿Qué quiere decir?
+
+Antes, para controlar el tráfico entre sucursales se usaban equipos y tecnologías específicas (como MPLS) que requerían mucha configuración en el hardware.
+
+Con SD-WAN, la inteligencia y las decisiones de la red se manejan desde un software centralizado. Así puedes configurar reglas, prioridades y rutas desde una consola, sin tener que modificar cada dispositivo físico.
+
+Aspectos:
 
 - Es una forma moderna de gestionar redes WAN mediante software.
 - Permite conectar sucursales, centros de datos y la nube de forma más inteligente.
 - Puede usar distintos tipos de conexión (Internet, fibra, celular, MPLS, etc.).
 - Decide automáticamente la mejor ruta para el tráfico.
-- Mejora el rendimiento, reduce cuellos de botella y simplifica la administración.
+- Mejora el rendimiento, reduce cuellos de botella y simplifica la administración. Cuello de botella significa un punto de la red que es más lento que el resto y que termina frenando todo el tráfico.
+- Con SD-WAN, el tráfico puede repartirse por distintas conexiones disponibles.
 
 Ejemplo: En lugar de que todo el tráfico de una sucursal pase por la sede central, SD-WAN puede enviarlo directamente a Microsoft 365, Google o AWS si es más rápido.
 
-SASE (Secure Access Service Edge)
+Para crear una SD-WAN, puede utilizar una función de control centralizada para redirigir de forma segura e inteligente el tráfico
+a través de la WAN. Nuestras WAN tradicionales, que nunca se desarrollaron con la idea de integrar servicios en la nube
+en nuestras redes empresariales, sencillamente no son capaces de hacerlo.
+
+Pero, en lugar de eso, podemos utilizar una SD-WAN porque están habilitadas para que las empresas que dan prioridad
+a la nube ofrezcan experiencias de calidad asombrosas a sus usuarios finales. Pensemos en una empresa que tiene varias sucursales
+y una sede central. En nuestras arquitecturas WAN tradicionales, cada una de esas sucursales estaría probablemente conectada
+a la oficina central mediante una topología en estrella. Esto permitiría a la sede central llevar a cabo una seguridad avanzada de ese tráfico
+a medida que pasara por las sucursales hasta la sede central, y luego a Internet. Esto es genial para la seguridad, seguro.
+
+Pero realmente ralentiza todo el proceso para nuestros usuarios finales en esas sucursales, y se traduce en una mala experiencia de usuario
+y pérdida de productividad.
+
+Sin embargo, a diferencia de las arquitecturas tradicionales, las SD-WAN pueden resolver este problema mediante el uso de inteligencia
+para identificar las aplicaciones de red que utilizan los usuarios finales y enrutar los datos a través de la WAN a los lugares adecuados.
+
+Por lo tanto, si trabaja en una red de una gran empresa y tiene muchas sucursales, y todas ellas están intentando moverse cada vez más hacia la nube utilizando
+cosas como IaaS, y PaaS, y SaaS, entonces puede que necesite utilizar una SD-WAN
+
+Vamos a repasar brevemente los 3 servicios mencionados anteriormente: Iaas, PaaS y SaaS
+
+IaaS (Infrastructure as a Service) → Te alquilan la infraestructura (servidores, almacenamiento, red). Tú instalas y administras el sistema operativo y las aplicaciones.
+Ejemplo: máquinas virtuales en AWS o Azure.
+
+PaaS (Platform as a Service) → Te dan una plataforma lista para desarrollar y ejecutar aplicaciones. Tú solo te preocupas por el código.
+Ejemplo: Google App Engine.
+
+SaaS (Software as a Service) → Te dan una aplicación lista para usar a través de Internet.
+Ejemplo: Gmail, Google Drive, Microsoft 365.
+
+SASE (Secure Access Service Edge/Borde de servicio de Acceso Seguro)
+
+Es un nuevo tipo de arquitectura de red que combina la seguridad de la red y las capacidades de las redes de área amplia, o WAN, en una única solución.
+El servicio de acceso seguro Edge se considera una forma de afrontar los retos de proteger y conectar a los usuarios y los datos distribuidos en múltiples ubicaciones, como sucursales, trabajadores remotos y usuarios móviles, además de la propia nube.
+
+Un aspecto clave de la tecnología SASE es que utiliza redes definidas por software, o SDN, para proporcionar servicios de seguridad y redes desde la nube en lugar de desde dispositivos tradicionales basados en hardware.
+
+Aspectos:
 
 - Combina red y seguridad en un único servicio basado en la nube.
 Incluye funciones como:
@@ -1233,6 +1291,12 @@ Incluye funciones como:
 - Protege a usuarios remotos, sucursales y dispositivos sin importar dónde estén.
 
 Ejemplo: Un empleado trabajando desde casa puede conectarse de forma segura a las aplicaciones de la empresa sin necesidad de estar en la oficina.
+
+Los principales proveedores de nube (AWS, Azure y Google Cloud) ofrecen servicios que ayudan a implementar conceptos similares a SASE (seguridad y conectividad en la nube), aunque cada uno les da nombres diferentes.
+
+- AWS usa VPC (Virtual Private Cloud) para crear redes privadas y seguras en la nube.
+- Azure ofrece Azure Virtual WAN y ExpressRoute para conectar sucursales, centros de datos y recursos en la nube de forma segura.
+- Google Cloud utiliza Cloud Interconnect y Cloud VPN para conectar redes locales con la nube mediante conexiones privadas o túneles VPN.
 
 Estas diferentes herramientas y protocolos se van a utilizar para ayudar a cifrar nuestros datos y protegerlos de posibles escuchas o modificaciones en su tránsito por Internet y otras redes inseguras.
 
