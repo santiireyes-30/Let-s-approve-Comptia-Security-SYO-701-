@@ -1300,8 +1300,21 @@ Los principales proveedores de nube (AWS, Azure y Google Cloud) ofrecen servicio
 
 Estas diferentes herramientas y protocolos se van a utilizar para ayudar a cifrar nuestros datos y protegerlos de posibles escuchas o modificaciones en su tránsito por Internet y otras redes inseguras.
 
+#### Resúmen Breve
+
+"Así que, recuerde, a medida que evolucionan las ciberamenazas y nuestros entornos de trabajo se dispersan cada vez más geográficamente, va a
+ser importante que tenga en cuenta la comprensión y la implementación de soluciones como SD-WAN y SASE.
+
+Estas tecnologías no se limitan a seguir el ritmo de la transformación digital, sino que en realidad se centran en anticipar el futuro,
+prepararse para sus retos y aprovechar sus oportunidades potenciales.
+
+Una SD-WAN, o red de área extensa definida por software, va a ser un enfoque virtualizado para gestionar y optimizar las conexiones de red de área extensa con el fin de dirigir eficazmente el tráfico entre sitios remotos, centros de datos y su entorno de nube.
+
+Por su parte, el borde de servicio de acceso seguro, o SASE, es un marco de seguridad que combina la seguridad de la red y las
+capacidades de la red de área amplia en un único servicio basado en la nube. Al aprovechar estas herramientas, somos capaces de elevar nuestra postura de seguridad organizativa y seguir avanzando en nuestras carreras de seguridad a medida que empezamos a migrar en mayor medida a entornos basados en la nube".
+
 Diferencia entre ellas
 
-SD-WAN: Optimiza y dirige el tráfico de red. Es decir se enfoca en la conectividad. - Gestiona la WAN por software.
+SD-WAN: Optimiza y dirige el tráfico de red. Es decir se enfoca en la conectividad. Gestiona la WAN por software.
 
-SASE: Optimiza el tráfico y además añade seguridad. Es decir se enfoca en conectividad + seguridad. - Integra SD-WAN con firewall, VPN, Zero Trust, etc.
+SASE: Optimiza el tráfico y además añade seguridad. Es decir se enfoca en conectividad + seguridad. Integra SD-WAN con firewall, VPN, Zero Trust, etc.
