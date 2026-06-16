@@ -1318,3 +1318,68 @@ Diferencia entre ellas
 SD-WAN: Optimiza y dirige el tráfico de red. Es decir se enfoca en la conectividad. Gestiona la WAN por software.
 
 SASE: Optimiza el tráfico y además añade seguridad. Es decir se enfoca en conectividad + seguridad. Integra SD-WAN con firewall, VPN, Zero Trust, etc.
+
+## Consideraciones de infraestructura de red
+
+Al diseñar una red, hay que tomar decisiones importantes para que sea rápida, segura y confiable. Los puntos principales son:
+
+1. Ubicación de los dispositivos
+Los routers suelen ir en el borde de la red para controlar el tráfico que entra y sale.
+Los switches (conmutadores) conectan los dispositivos internos.
+Los puntos de acceso Wi-Fi deben ubicarse donde den buena cobertura sin generar interferencias.
+Una mala ubicación puede provocar lentitud, zonas sin señal o problemas de seguridad.
+
+2. Zonas de seguridad y subredes protegidas (DMZ)
+La red se divide en zonas según el nivel de seguridad.
+Los servicios públicos (web, correo, DNS) suelen colocarse en una subred protegida o DMZ.
+Si un atacante compromete un servidor de la DMZ, no tendrá acceso directo a la red interna.
+
+3. Superficie de ataque
+Es el conjunto de todos los puntos que un atacante podría intentar explotar.
+Cuantos más dispositivos, puertos abiertos y servicios haya, mayor será la superficie de ataque.
+Se reduce eliminando servicios innecesarios, cerrando puertos y corrigiendo vulnerabilidades.
+
+4. Métodos de conectividad
+Ethernet (cable): más rápido y estable.
+Wi-Fi: más flexible, pero puede sufrir interferencias y riesgos de seguridad.
+Fibra óptica: muy rápida y para largas distancias.
+Microondas y satélite: útiles cuando no hay cableado.
+Muchas empresas usan una combinación de varias tecnologías.
+
+5. Dispositivos activos y pasivos
+
+Activo: puede intervenir en el tráfico.
+
+Ejemplo: IPS (Intrusion Prevention System).
+Puede bloquear ataques.
+
+Pasivo: solo observa y reporta.
+
+Ejemplo: IDS (Intrusion Detection System).
+No bloquea nada.
+
+Además pueden instalarse:
+
+En línea (Inline):
+
+Todo el tráfico pasa a través del dispositivo.
+Puede bloquear o filtrar.
+
+Tap/Monitor:
+
+Solo recibe una copia del tráfico.
+Analiza sin afectar la red.
+
+6. Modos de fallo (Fail Modes)
+
+Fail Open (fallo abierto):
+
+Si el dispositivo falla, deja pasar todo el tráfico.
+Mantiene la conectividad.
+Reduce la seguridad.
+
+Fail Closed (fallo cerrado):
+
+Si falla, bloquea todo el tráfico.
+Mantiene la seguridad.
+Interrumpe el servicio.
