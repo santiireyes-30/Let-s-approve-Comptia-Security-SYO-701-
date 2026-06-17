@@ -1344,23 +1344,57 @@ Por ejemplo:
 Tenemos que considerar cómo vamos a configurar las zonas de seguridad y las subredes protegidas en nuestra arquitectura de red.
 Ahora bien, una zona de seguridad es un segmento distinto dentro de una red, a menudo creado aislando lógicamente el segmento mediante un cortafuegos u otro dispositivo de seguridad. Estas zonas o segmentos de seguridad se diseñarán para contener dispositivos con requisitos de seguridad y niveles de confianza similares.
 
-La red se divide en zonas según el nivel de seguridad.
-Los servicios públicos (web, correo, DNS) suelen colocarse en una subred protegida o DMZ.
-Si un atacante compromete un servidor de la DMZ, no tendrá acceso directo a la red interna.
+Por ejemplo, una empresa puede tener diferentes zonas para sus servicios de cara al público, los recursos internos de los empleados y el almacenamiento de datos sensibles, y cada una de ellas se configurará con diferentes controles de acceso y diferentes políticas de seguridad basadas en la sensibilidad o clasificación de los datos contenidos en cada una de esas zonas de seguridad.
+
+Ahora, también se puede crear una subred apantallada para que actúe como capa protectora o zona tampón entre la red interna de una organización y una red externa no fiable como Internet.
+
+Una subred protegida se utiliza para alojar servicios públicos como servidores web, servidores de correo electrónico y servidores DNS, al tiempo que garantiza que si se produce una brecha de seguridad dentro de esa subred protegida, el atacante no tendrá acceso directo a la red interna principal que contiene sus datos o sistemas más sensibles.
+
+Esta subred apantallada se utilizará para proporcionar una capa adicional de seguridad que dificulte a un actor malicioso el acceso a las partes más internas y valiosas de la red de su organización. Si un atacante compromete un servidor de la DMZ, no tendrá acceso directo a la red interna, porque hay una separación y reglas de seguridad adicionales.
+
+Arquitectura:
+
+Internet
+    │
+[ Firewall ]
+    │
+[ Subred protegida / DMZ ]
+    ├─ Servidor web
+    └─ Servidor correo
+    │
+[ Firewall ]
+    │
+[ Red interna ]
+    ├─ PCs
+    └─ Bases de datos
+
+Aptitudes:
+
+- La red se divide en zonas según el nivel de seguridad.
+
+- Los servicios públicos (web, correo, DNS) suelen colocarse en una subred protegida o DMZ.
+
+- Si un atacante compromete un servidor de la DMZ, no tendrá acceso directo a la red interna.
 
 3. Superficie de ataque
-Es el conjunto de todos los puntos que un atacante podría intentar explotar.
-Cuantos más dispositivos, puertos abiertos y servicios haya, mayor será la superficie de ataque.
-Se reduce eliminando servicios innecesarios, cerrando puertos y corrigiendo vulnerabilidades.
 
-5. Métodos de conectividad
-Ethernet (cable): más rápido y estable.
+Es el conjunto de todos los puntos que un atacante podría intentar explotar.
+- Cuantos más dispositivos, puertos abiertos y servicios haya, mayor será la superficie de ataque.
+- Se reduce eliminando servicios innecesarios, cerrando puertos y corrigiendo vulnerabilidades.
+
+La colocación incorrecta de dispositivos, dispositivos configurados incorrectamente, software obsoleto, puertos abiertos innecesarios y controles de acceso débiles que se están utilizando. Para reducir su superficie de ataque, debe identificar las vulnerabilidades y eliminarlas o implantar los controles adecuados para mitigar el riesgo asociado a dichas vulnerabilidades.
+
+4. Diferentes Métodos de conectividad
+
+La conectividad se refiere al modo en que los distintos componentes de una red van a comunicarse entre sí y con nuestras redes externas.
+
+Ethernet (cable): más rápido y estable. La desventaja es que si queremos cambiar de sitio los cables cableados también tendrán que ser movidos, o nuevos tendrán que ser instalados para apoyar su nueva ubicación de la oficina.
 Wi-Fi: más flexible, pero puede sufrir interferencias y riesgos de seguridad.
 Fibra óptica: muy rápida y para largas distancias.
-Microondas y satélite: útiles cuando no hay cableado.
+Microondas y satélite: útiles cuando no hay cableado, ofrece velocidad, flexibilidad y escalabilidad. Siempre cuando hablemos de Escalabilidad significa la capacidad de un sistema o red para crecer o soportar más usuarios, dispositivos o tráfico sin perder rendimiento.
 Muchas empresas usan una combinación de varias tecnologías.
 
-6. Dispositivos activos y pasivos
+5. Atributos de los dispositivos que afectarán a su utilización en la arquitectura de nuestra red (Dispositivos activos y pasivos)
 
 Activo: puede intervenir en el tráfico.
 
@@ -1372,17 +1406,28 @@ Pasivo: solo observa y reporta.
 Ejemplo: IDS (Intrusion Detection System).
 No bloquea nada.
 
-Además pueden instalarse:
+Los dispositivos de seguridad de red pueden instalarse como dispositivo en línea o como configuración basada en tomas. Además pueden instalarse:
 
 En línea (Inline):
 
 Todo el tráfico pasa a través del dispositivo.
 Puede bloquear o filtrar.
 
-Tap/Monitor:
+Esto convierte a un dispositivo en línea, como un cortafuegos, un enrutador o un sistema de prevención de intrusiones, en una herramienta realmente
+crítica para tareas como filtrar el tráfico malicioso u optimizar nuestros flujos de datos.
 
-Solo recibe una copia del tráfico.
-Analiza sin afectar la red.
+Tap(Escuchas)/Monitores:
+
+Funcionan de forma mucho más discreta porque se colocan fuera de la ruta directa de la red y están configurados para limitarse a escuchar la actividad de la red capturando datos para su análisis sin afectar al tráfico real. Es decir:
+
+- Solo recibe una copia del tráfico.
+- Analiza sin afectar la red.
+
+Esto los hace ideales para supervisar la salud, el rendimiento y la seguridad de la red sin arriesgarse a que se produzca ningún tipo de interrupción en la misma. Por lo tanto, a la hora de seleccionar un dispositivo de seguridad para su red, debe tener en cuenta si va a configurarlo como dispositivo en línea o de derivación para optimizar la seguridad y el rendimiento de la red.
+
+Asegúrese siempre de alinear sus opciones con los objetivos y retos más amplios de la red.
+
+Por ejemplo, una organización que requiera mitigar las amenazas en tiempo real podría dar prioridad a la instalación de un dispositivo de seguridad en línea, mientras que otra que se centre más en la supervisión podría optar por utilizar una escucha pasiva o un monitor.
 
 6. Modos de fallo (Fail Modes)
 
@@ -1397,3 +1442,23 @@ Fail Closed (fallo cerrado):
 Si falla, bloquea todo el tráfico.
 Mantiene la seguridad.
 Interrumpe el servicio.
+
+Por ejemplo, un centro de datos que se utiliza para almacenar todos los datos financieros confidenciales de la organización podría optar por utilizar un modo cerrado ante fallos para mantener la seguridad de los datos en caso de fallo de un dispositivo.
+
+Por otro lado, si está operando una red inalámbrica de invitados, es posible que prefiera utilizar un modo abierto ante fallos para garantizar el acceso ininterrumpido de todos sus usuarios, porque en realidad no está tratando de proteger ningún dato o servidor sensible dentro de esa red inalámbrica de invitados de todos modos.
+
+#### Resúmen Breve
+
+Así que recuerde, las consideraciones de infraestructura desempeñan un papel fundamental en la eficacia y seguridad de un entorno de red.
+
+Por lo tanto, es importante tener en cuenta la ubicación de los dispositivos en la arquitectura de la red para optimizar
+el flujo de datos y la seguridad.
+
+Las zonas de seguridad y las subredes protegidas también pueden utilizarse para aislar y proteger segmentos de red dentro de su arquitectura. Como profesionales de la ciberseguridad, nuestro trabajo consiste en comprender la superficie de ataque de nuestra organización y proporcionar formas de minimizarla para que nuestra seguridad aumente.
+
+Además, debemos tener en cuenta los distintos métodos de conectividad que puede utilizar en sus redes para poder elegir el adecuado que
+le proporcione tanto el rendimiento como la flexibilidad que su organización necesita. Al instalar varios dispositivos de red y seguridad
+en su arquitectura, también debe considerar si deben colocarse en un papel activo o pasivo, y si se van a instalar en línea o como posición de escucha o monitor.
+
+Por último, debes ser consciente de que el modo de fallo de tus distintos dispositivos incluye cosas como fallo-abierto y fallo-cerrado, y necesitas saber
+qué van a hacer y qué protecciones te proporcionarán o no si el dispositivo se sobrecarga o no funciona como está diseñado.
