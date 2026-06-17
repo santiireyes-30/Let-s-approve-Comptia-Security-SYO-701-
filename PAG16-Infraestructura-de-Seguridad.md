@@ -1462,3 +1462,35 @@ en su arquitectura, también debe considerar si deben colocarse en un papel acti
 
 Por último, debes ser consciente de que el modo de fallo de tus distintos dispositivos incluye cosas como fallo-abierto y fallo-cerrado, y necesitas saber
 qué van a hacer y qué protecciones te proporcionarán o no si el dispositivo se sobrecarga o no funciona como está diseñado.
+
+## Selección de controles de infraestructura
+
+Un control es una medida de seguridad que se implementa para reducir riesgos y proteger los activos de una organización (por ejemplo: firewall, antivirus, autenticación multifactor, IDS/IPS, etc.).
+
+Principios clave para seleccionar controles
+
+Mínimo privilegio: cada usuario o sistema debe tener solo los permisos necesarios para realizar su trabajo.
+Defensa en profundidad: usar varias capas de seguridad; si una falla, las demás siguen protegiendo.
+Enfoque basado en riesgos: priorizar los controles según los riesgos más importantes, ya que no se puede proteger todo al máximo.
+Gestión del ciclo de vida: revisar, actualizar y retirar controles periódicamente.
+Diseño abierto: los controles deben ser transparentes y poder ser evaluados y auditados para comprobar su eficacia.
+
+Metodología para seleccionar controles
+
+1. Evaluar el estado actual de la seguridad.
+2. Realizar un análisis de brechas (comparar situación actual vs. deseada).
+3. Definir objetivos claros.
+4. Compararse con las mejores prácticas del sector (benchmarking).
+5. Hacer un análisis costo-beneficio.
+6. Involucrar a las partes interesadas (usuarios, directivos, técnicos).
+7. Monitorear y mejorar continuamente los controles implementados.
+
+Mejores prácticas
+- Realizar evaluaciones de riesgo de forma periódica.
+- Basarse en marcos reconocidos como:
+   - NIST
+   - ISO
+- Adaptar los controles a las necesidades específicas de la organización.
+- Capacitar continuamente a los usuarios y administradores.
+
+Los controles de seguridad no se implementan una sola vez. Deben evaluarse, actualizarse y mejorarse constantemente para seguir siendo efectivos frente a nuevas amenazas.
