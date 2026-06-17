@@ -1321,15 +1321,29 @@ SASE: Optimiza el tráfico y además añade seguridad. Es decir se enfoca en con
 
 ## Consideraciones de infraestructura de red
 
-Al diseñar una red, hay que tomar decisiones importantes para que sea rápida, segura y confiable. Los puntos principales son:
+Al diseñar una red, hay que tomar decisiones importantes para que sea rápida, segura y confiable. La colocación adecuada garantizará un flujo de datos óptimo,
+minimizará la latencia y proporcionará una sólida defensa contra posibles brechas de seguridad. Los puntos principales son:
 
 1. Ubicación de los dispositivos
-Los routers suelen ir en el borde de la red para controlar el tráfico que entra y sale.
-Los switches (conmutadores) conectan los dispositivos internos.
-Los puntos de acceso Wi-Fi deben ubicarse donde den buena cobertura sin generar interferencias.
-Una mala ubicación puede provocar lentitud, zonas sin señal o problemas de seguridad.
+
+Los routers suelen ir en el borde de la red para controlar el tráfico que entra y sale(frontera o puerta principal de la red). Es decir, ayuda a dirigir y filtrar el tráfico entrante y saliente de forma mucho más eficaz.
+
+Los switches/conmutadores (distribuidor interno que conecta los dispositivos dentro de la red), deben colocarse en una posición que permita conectar fácilmente los distintos dispositivos al segmento físico adecuado de la red. Si coloca sus dispositivos en los lugares equivocados, puede provocar cuellos de botella en la red, puntos vulnerables o incluso zonas sin conectividad.
+
+Los puntos de acceso Wi-Fi deben ubicarse donde den buena cobertura sin generar interferencias. Deben colocarse estratégicamente para proporcionar una cobertura adecuada al tiempo que se intenta mantener todas las señales inalámbricas localizadas dentro de las instalaciones y garantizar que se evitan las interferencias entre el sistema y otros. Una mala ubicación puede provocar lentitud, zonas sin señal o problemas de seguridad.
+
+La interferencia ocurre cuando dos o más puntos de acceso Wi-Fi usan canales iguales o muy cercanos y sus señales se solapan demasiado.
+
+Por ejemplo:
+
+✅ Bien: Dos puntos de acceso separados y configurados en canales diferentes para cubrir una oficina grande.
+❌ Mal: Dos puntos de acceso muy cerca uno del otro usando el mismo canal, porque sus señales compiten y la red puede volverse más lenta.
 
 2. Zonas de seguridad y subredes protegidas (DMZ)
+
+Tenemos que considerar cómo vamos a configurar las zonas de seguridad y las subredes protegidas en nuestra arquitectura de red.
+Ahora bien, una zona de seguridad es un segmento distinto dentro de una red, a menudo creado aislando lógicamente el segmento mediante un cortafuegos u otro dispositivo de seguridad. Estas zonas o segmentos de seguridad se diseñarán para contener dispositivos con requisitos de seguridad y niveles de confianza similares.
+
 La red se divide en zonas según el nivel de seguridad.
 Los servicios públicos (web, correo, DNS) suelen colocarse en una subred protegida o DMZ.
 Si un atacante compromete un servidor de la DMZ, no tendrá acceso directo a la red interna.
@@ -1339,14 +1353,14 @@ Es el conjunto de todos los puntos que un atacante podría intentar explotar.
 Cuantos más dispositivos, puertos abiertos y servicios haya, mayor será la superficie de ataque.
 Se reduce eliminando servicios innecesarios, cerrando puertos y corrigiendo vulnerabilidades.
 
-4. Métodos de conectividad
+5. Métodos de conectividad
 Ethernet (cable): más rápido y estable.
 Wi-Fi: más flexible, pero puede sufrir interferencias y riesgos de seguridad.
 Fibra óptica: muy rápida y para largas distancias.
 Microondas y satélite: útiles cuando no hay cableado.
 Muchas empresas usan una combinación de varias tecnologías.
 
-5. Dispositivos activos y pasivos
+6. Dispositivos activos y pasivos
 
 Activo: puede intervenir en el tráfico.
 
