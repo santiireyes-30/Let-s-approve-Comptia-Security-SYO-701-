@@ -1467,30 +1467,51 @@ qué van a hacer y qué protecciones te proporcionarán o no si el dispositivo s
 
 Un control es una medida de seguridad que se implementa para reducir riesgos y proteger los activos de una organización (por ejemplo: firewall, antivirus, autenticación multifactor, IDS/IPS, etc.).
 
-Principios clave para seleccionar controles
+#### Principios clave para seleccionar controles
 
-Mínimo privilegio: cada usuario o sistema debe tener solo los permisos necesarios para realizar su trabajo.
+Clave del Mínimo privilegio: cada usuario o sistema debe tener solo los permisos necesarios para realizar su trabajo. Seleccionar e implementar controles asociados con el principio del menor privilegio realmente ayuda a reducir la superficie potencial de ataque de su red.
+
 Defensa en profundidad: usar varias capas de seguridad; si una falla, las demás siguen protegiendo.
-Enfoque basado en riesgos: priorizar los controles según los riesgos más importantes, ya que no se puede proteger todo al máximo.
-Gestión del ciclo de vida: revisar, actualizar y retirar controles periódicamente.
-Diseño abierto: los controles deben ser transparentes y poder ser evaluados y auditados para comprobar su eficacia.
 
-Metodología para seleccionar controles
+Enfoque basado en riesgos: priorizar los controles según los riesgos más importantes, ya que no se puede proteger todo al máximo. Al fin y al cabo, ninguna organización dispone del tiempo ni del dinero suficientes para mitigar por completo todas y cada una de las amenazas o vulnerabilidades potenciales que existen. Así que tenemos que priorizarlos utilizando un enfoque basado en el riesgo para utilizar de forma más eficaz nuestros limitados recursos y, al mismo tiempo, ofrecernos la mejor protección para nuestras infraestructuras.
+
+Gestión del ciclo de vida: revisar, actualizar y retirar controles periódicamente.
+
+La Concentración de Principio de Diseño abierto: los controles deben ser transparentes y poder ser evaluados y auditados para comprobar su eficacia.
+
+#### Metodología para seleccionar controles
+
+La metodología básica que se recomienda consiste en evaluar el estado actual, realizar un análisis de carencias, fijar objetivos claros, llevar a cabo una evaluación comparativa, realizar un análisis de costes y beneficios, garantizar la participación de las partes interesadas y, a continuación, implantar
+circuitos de supervisión y retroalimentación en su organización.
 
 1. Evaluar el estado actual de la seguridad.
-2. Realizar un análisis de brechas (comparar situación actual vs. deseada).
+2. Realizar un análisis de brechas (comparar situación actual vs. deseada) que quiere lograr dentro de la red de su organización.
 3. Definir objetivos claros.
 4. Compararse con las mejores prácticas del sector (benchmarking).
 5. Hacer un análisis costo-beneficio.
-6. Involucrar a las partes interesadas (usuarios, directivos, técnicos).
-7. Monitorear y mejorar continuamente los controles implementados.
+6. Involucrar a las partes interesadas y analizarlo (usuarios, directivos, técnicos).
+7. Monitorear y mejorar continuamente los controles implementados (crear circuitos de seguimiento y retroalimentación para asegurarnos de que nuestros controles siguen siendo eficaces a lo largo del tiempo).
 
-Mejores prácticas
-- Realizar evaluaciones de riesgo de forma periódica.
+#### Mejores prácticas que se pueden utilizar durante la selección de diversos controles para las redes de su empresa.
+
+1. Realizar evaluaciones de riesgo de forma periódica.
 - Basarse en marcos reconocidos como:
    - NIST
    - ISO
-- Adaptar los controles a las necesidades específicas de la organización.
+   Estos marcos han publicado directrices que se han revisado y perfeccionado con el tiempo. Si se adhiere a estos marcos, puede
+   estar seguro de que su enfoque es exhaustivo y se basa en metodologías probadas.
+
+- Adaptar los controles a las necesidades específicas de la organización (Personalizar/Configurar los marcos a los objetivos de su organización).
 - Capacitar continuamente a los usuarios y administradores.
 
 Los controles de seguridad no se implementan una sola vez. Deben evaluarse, actualizarse y mejorarse constantemente para seguir siendo efectivos frente a nuevas amenazas.
+
+#### Resúmen Breve
+
+Así que recuerde, un control es una medida o salvaguarda que se aplica para mitigar los riesgos potenciales y proteger los activos de una organización.
+
+La selección de controles eficaces garantizará que podamos prevenir las infracciones y minimizar las vulnerabilidades, al tiempo que nos aseguramos de que nuestros recursos se utilizan de forma eficiente.
+
+Para seleccionar sus controles, debe utilizar una metodología estructurada como la metodología básica que he presentado, que incluye una evaluación del estado actual, un análisis de carencias, objetivos claros, evaluación comparativa, un análisis coste-beneficio, la participación de las partes interesadas y bucles de seguimiento y retroalimentación.
+
+Además, esa selección de controles no va a ser un hecho puntual, sino que es algo que debemos practicar una y otra vez, y recomiendo que lo haga anual o trimestralmente en función de su negocio para garantizar que la infraestructura de su empresa sigue siendo segura.
