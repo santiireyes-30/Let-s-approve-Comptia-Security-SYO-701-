@@ -597,6 +597,7 @@ diversas industrias y sectores.
 2. Servidor Proxy
 
 ¿Qué hace?
+
 Actúa como intermediario entre cliente y servidor para proporcionar diversas funciones como el almacenamiento de contenidos en caché, el filtrado de peticiones
 y la gestión de inicios de sesión para mejorar la eficiencia y controlar el acceso a nuestros recursos dentro de una red determinada.
 
@@ -646,7 +647,7 @@ Ayuda a monitorear rendimiento.
 Detecta anomalías de rendimiento, como picos de tráfico inesperados que podrían provocar una degradación del servicio
 
 
-4. Jump Server (Servidor de salto)
+4. Jump Server/ Jump Box (Servidor de salto/Caja de salto)
 
 ¿Qué hace?
 
