@@ -86,10 +86,13 @@ Los puertos de entrada (inbound) reciben conexiones.
 Los puertos de salida (outbound) son abiertos temporalmente por el cliente para iniciar conexiones.
 
 Los puertos van del 0 al 65535 y se dividen en:
+
 0-1023: Puertos bien conocidos (Well-Known Ports).
+
 1024-49151: Puertos registrados. 
 "Este rango se conoce como el rango de puertos registrados porque todos ellos tienen que ser utilizados por los proveedores para sus propios protocolos
 propietarios, y cada proveedor va a registrar el número que desea utilizar con IANA(Autoridad de Números Asignados de Internet) antes de poder utilizarlos."
+
 49152-65535: Puertos dinámicos o efímeros. 
 "Estos puertos pueden ser utilizados por cualquier aplicación en cualquier momento sin necesidad de registrarse previamente en la IANA.
 Ahora este rango usualmente va a ser usado por tu cliente cuando escoja su propio puerto aleatorio de números altos para su aplicación.
