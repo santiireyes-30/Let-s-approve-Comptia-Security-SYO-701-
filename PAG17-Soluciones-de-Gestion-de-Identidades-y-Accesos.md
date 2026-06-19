@@ -127,17 +127,22 @@ La autenticación multifactor (MFA) es un sistema de seguridad que exige dos o m
   - Contraseña
   - PIN
   - Preguntas de seguridad
+
 2. Algo que tienes (Posesión)
 Smartphone con código SMS
 Aplicación autenticadora (Google Authenticator, Microsoft Authenticator)
 Tarjeta inteligente
-Token o llave USB de seguridad
+Token o llave USB de seguridad (hardware)
+
 3. Algo que eres (Inherencia)
 Huella dactilar
 Reconocimiento facial
 Reconocimiento de voz
 Escáner de iris
-4. Algún lugar donde estás (Ubicación)
+
+4. Algo que haces (firmas o comportamiento)
+
+5. Algún lugar donde estás (Ubicación)
 Dirección IP
 GPS
 Red específica autorizada
