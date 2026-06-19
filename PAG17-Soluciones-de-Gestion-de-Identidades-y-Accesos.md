@@ -231,13 +231,26 @@ Aunque un atacante robe el candado (clave pública), sigue sin tener la llave (c
 
 Por eso, en SSH se considera mucho más seguro guardar claves públicas en el servidor que guardar contraseñas o secretos.
 
-#### Otros Conceptos
+#### Gestor de contraseña
 
-Gestor de contraseña:
+Los gestores de contraseñas son herramientas que almacenan y administran contraseñas de forma segura. Sus principales funciones son:
 
-- Generar diferentes contraseñas largas, seguras y complejas para cada sitio web o aplicación que utilices.
+1. Generación de contraseñas
+- Crean contraseñas fuertes, aleatorias y únicas para cada cuenta.
+- Ayudan a evitar la reutilización de contraseñas.
+- Permiten definir longitud, complejidad y uso de caracteres especiales.
 
-- Las almacenarán de forma segura en una caja fuerte centralizada y cifrada mediante una única contraseña larga y segura creada por ti.
+2. Autorrelleno (Autofill)
+- Completan automáticamente el usuario y la contraseña al iniciar sesión.
+- Ahorran tiempo y reducen errores al escribir credenciales.
+
+3. Compartición segura (Secure Sharing)
+- Permiten compartir accesos con otras personas sin revelar la contraseña real.
+- El usuario autorizado puede acceder a la cuenta, pero sin conocer la contraseña.
+
+4. Acceso multiplataforma
+- Funcionan en distintos dispositivos (PC, navegador, móvil, tablet).
+- Permiten acceder a las contraseñas desde cualquier lugar.
 
 #### Resúmen Breve
 
@@ -323,7 +336,14 @@ Sirve para evitar que un usuario cambie rápidamente la contraseña varias veces
 Ejemplo:
 
 Edad mínima = 3 días.
-El usuario debe esperar 3 días antes de cambiarla nuevamente.
+Edad máxima = 90 días.
+
+Entonces:
+
+No puedes cambiarla durante los primeros 3 días.
+Debes cambiarla cuando llegues a los 90 días.
+
+En entrevistas de SOC o ciberseguridad, si te preguntan por la edad mínima, recuerda: evita que los usuarios cambien repetidamente la contraseña para reutiliza
 
 #### Autenticación sin contraseña (Passwordless)
 
@@ -332,14 +352,33 @@ Métodos modernos que reemplazan las contraseñas tradicionales:
   - Huella digital.
   - Reconocimiento facial.
   - Escaneo de iris.
+
 - Token de hardware
   - Llaves físicas de seguridad (ej. YubiKey).
+
 - OTP (One-Time Password)
   - Código temporal enviado por SMS, email o app.
+
 - Magic Link
   - Enlace enviado al correo.
   - Al hacer clic inicia sesión automáticamente.
-Passkeys
-  - Utilizan las funciones de seguridad del dispositivo (huella, PIN o rostro).
-  - Son más seguras que las contraseñas tradicionales.
-  - Cada vez son más utilizadas por empresas como Google, Apple y Microsoft.
+
+Passkeys (Clave de acceso)
+
+Sirve como herramienta de autenticación que se integra con el navegador o el sistema operativo. Cuando se configura, se pide a los usuarios que establezcan una clave de acceso.
+Al iniciar sesión en un sitio o en aplicaciones, se pide a los usuarios que desbloqueen el dispositivo utilizando el método elegido.
+Cuando se configura, se pide a los usuarios que establezcan una clave de acceso. En lugar de recordar y teclear contraseñas, los usuarios utilizan las funciones de seguridad 
+integradas en sus dispositivos, como el sensor de huellas dactilares.
+Una vez desbloqueado, el dispositivo recupera su clave de acceso almacenada de forma segura y la presenta al sitio o aplicación, verificando la identidad del usuario y concediéndole acceso.
+
+- Utilizan las funciones de seguridad del dispositivo (huella, PIN o rostro).
+- Son más seguras que las contraseñas tradicionales.
+- Cada vez son más utilizadas por empresas como Google, Apple y Microsoft.
+
+#### Resúmen Breve
+
+Así que, recuerde, cuando se trata de contraseñas, cuanto más larga sea tu contraseña, más tiempo tardarán en descifrarla. La complejidad de las contraseñas evoluciona con el uso de una
+mezcla de letras, números y caracteres especiales. Tampoco debes reutilizar nunca las contraseñas y cada una de tus cuentas debe tener su propia contraseña única.
+
+Además, su organización debería considerar la posibilidad de utilizar un gestor de contraseñas que le ayude a gestionar sus contraseñas de forma eficaz y explorar también las opciones sin contraseña 
+si están disponibles, ya que proporcionan una mayor seguridad y una mejor experiencia general para el usuario.
