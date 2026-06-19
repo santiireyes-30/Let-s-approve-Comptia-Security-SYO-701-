@@ -140,16 +140,31 @@ Reconocimiento facial
 Reconocimiento de voz
 Escáner de iris
 
-4. Algo que haces (firmas o comportamiento)
-
-5. Algún lugar donde estás (Ubicación)
+4. Algún lugar donde estás (Ubicación)
 Dirección IP
 GPS
 Red específica autorizada
-Algo que haces (Comportamiento)
+
+5. Algo que haces (Comportamiento)
 Forma de escribir en el teclado
 Movimiento del ratón
 Forma de usar el dispositivo
+
+Algo que haces se considera una de las categorías más nuevas que se utilizan en los sistemas de autenticación multifactor, se suele utilizar como factor secundario en los sistemas de autenticación y rara vez
+se utiliza en un sistema de autenticación de factor único.
+
+#### Tokens
+
+Token de hardware
+
+  - Dispositivo físico que genera códigos temporales.
+  - Ejemplo: llavero de seguridad o llave USB.
+
+Token de software
+
+Aplicación instalada en un móvil o computadora.
+Ejemplo: Google Authenticator.
+También puede ser un código enviado por SMS o correo electrónico.
 
 #### Tipos de autenticación
 
@@ -169,18 +184,9 @@ Autenticación multifactor (MFA)
   - Utiliza dos o más factores distintos.
   - 2FA es un tipo de MFA.
 
-#### Tokens
-
-Token de hardware
-
-  - Dispositivo físico que genera códigos temporales.
-  - Ejemplo: llavero de seguridad o llave USB.
-
-Token de software
-
-Aplicación instalada en un móvil o computadora.
-Ejemplo: Google Authenticator.
-También puede ser un código enviado por SMS o correo electrónico.
+Para aumentar nuestra seguridad, podemos optar por utilizar la autenticación multifactor, pero esto introducirá pasos adicionales que el usuario debe dar al iniciar sesión en el sistema,
+y aumenta nuestro coste global para implementar una solución de autenticación. Afortunadamente, ahora existe una alternativa válida al uso de contraseñas para la autenticación,
+y esto nos lleva al mundo de las passkeys.
 
 #### Passkeys (Claves de acceso)
 
@@ -188,12 +194,152 @@ Las Passkeys son una alternativa moderna a las contraseñas.
 
 Características:
 
-No requieren recordar contraseñas.
-Utilizan biometría o PIN del dispositivo.
-Se basan en criptografía de clave pública.
-Son más resistentes al phishing y a las filtraciones de datos.
-Mejoran la comodidad y la seguridad.
+- No requieren recordar contraseñas.
+- Utilizan biometría o PIN del dispositivo.
+- También utiliza criptografía de clave pública. con la clave privada almacenada de forma segura en el dispositivo del usuario y creada utilizando la funcionalidad de bloqueo de pantalla
+y la huella dactilar, el reconocimiento facial, el PIN o el patrón de desbloqueo del usuario.
+
+Suposición:
+
+Tu PC → tiene la clave privada.
+Servidor → tiene la clave pública.
+
+Cuando intentas conectarte, el servidor verifica que realmente posees la clave privada asociada a esa clave pública.
+
+Entonces, si un atacante compromete el servidor y roba las claves públicas:
+
+- No puede iniciar sesión como tú.
+- No puede generar tu clave privada.
+- No puede descifrar tus comunicaciones.
+- Son más resistentes al phishing y a las filtraciones de datos.
+- Mejoran la comodidad y la seguridad.
 
 Ejemplo:
 
 Desbloqueas tu teléfono con tu huella o rostro y automáticamente inicias sesión en una aplicación o sitio web.
+
+Es decir, robar una clave pública no suele representar un riesgo importante, porque el verdadero secreto es la clave privada, que permanece en el equipo del usuario.
+
+Ejemplo sencillo
+
+Imagina que:
+
+La clave pública es como un candado abierto que cualquiera puede ver.
+La clave privada es la llave que abre ese candado.
+
+Aunque un atacante robe el candado (clave pública), sigue sin tener la llave (clave privada).
+
+Por eso, en SSH se considera mucho más seguro guardar claves públicas en el servidor que guardar contraseñas o secretos.
+
+#### Otros Conceptos
+
+Gestor de contraseña:
+
+- Generar diferentes contraseñas largas, seguras y complejas para cada sitio web o aplicación que utilices.
+
+- Las almacenarán de forma segura en una caja fuerte centralizada y cifrada mediante una única contraseña larga y segura creada por ti.
+
+#### Resúmen Breve
+
+Así que recuerde, los métodos de autenticación multifactor proporcionan un mayor nivel de seguridad que los métodos de autenticación de un solo factor.
+
+Los factores de autenticación son cruciales para validar la identidad de un usuario, y varios métodos nos ofrecen diferentes capas de seguridad.
+
+Algo que sabes se refiere a un dato que sólo el usuario debe conocer, como una contraseña o un PIN.
+
+Algo que tiene que ver con el dispositivo físico que posee un usuario, como un smartphone que recibe un código de verificación o un token de hardware como un llavero.
+
+Algo que abarca la biometría, que son características físicas únicas de un usuario que se utilizan para verificar la identidad, incluidas las huellas dactilares o los escáneres de retina.
+
+Algo que capta el comportamiento único de un usuario, como la dinámica de firmas o los patrones de pulsación de teclas.
+
+Por último, En algún lugar estás aprovecha la ubicación del usuario como mecanismo de autenticación para restringir el acceso a servicios específicos a menos que la ubicación geográfica del usuario,
+a menudo determinada mediante GPS o dirección IP, coincida con la zona esperada. Cada factor contribuye a un enfoque holístico de la seguridad y garantiza que sus sistemas de autenticación sean sólidos y multidimensionales.
+
+La implantación de sistemas de autenticación multifactor dificulta que usuarios no autorizados ataquen o accedan a los sistemas de información o a los datos de su organización.
+
+## Seguridad de Contraseñas
+
+La seguridad de las contraseñas mide qué tan difícil es para un atacante adivinar o descifrar una contraseña mediante ataques de fuerza bruta.
+
+5 aspectos clave de una política de contraseñas
+
+1. Longitud de la contraseña
+Es el factor más importante.
+Cuanto más larga sea la contraseña, más difícil será romperla.
+Se recomienda entre 12 y 16 caracteres o más.
+Cada carácter adicional aumenta exponencialmente la cantidad de combinaciones posibles.
+
+Ejemplo:
+
+PIN de 4 dígitos = 10.000 combinaciones.
+PIN de 8 dígitos = 100 millones de combinaciones.
+
+2. Complejidad de la contraseña
+
+Consiste en combinar:
+
+Letras mayúsculas
+Letras minúsculas
+Números
+Caracteres especiales
+
+Ejemplo:
+
+Débil: password
+Fuerte: P3nc1l5Ar3F0rWr1t1ng!
+
+Mientras más tipos de caracteres se utilicen, más difícil será un ataque de fuerza bruta.
+
+3. Reutilización de contraseñas
+
+No se debe:
+
+- Usar la misma contraseña en diferentes servicios.
+- Reutilizar contraseñas antiguas.
+
+Si una contraseña se filtra en un sitio, el atacante podría acceder a otras cuentas donde uses la misma ("En caso de una web o app de un factor").
+
+Por eso existe el historial de contraseñas, que impide volver a utilizar contraseñas anteriores.
+
+4. Caducidad de la contraseña
+
+Consiste en obligar al usuario a cambiarla cada cierto tiempo (ej. cada 90 días).
+
+Sin embargo, actualmente el NIST ya no recomienda forzar cambios periódicos porque muchos usuarios terminan creando contraseñas predecibles:
+
+Contraseña1
+Contraseña2
+Contraseña3
+
+Es mejor usar contraseñas fuertes y únicas.
+
+5. Edad mínima de la contraseña
+
+Define cuánto tiempo debe pasar antes de poder volver a cambiarla.
+
+Sirve para evitar que un usuario cambie rápidamente la contraseña varias veces para regresar a una contraseña antigua.
+
+Ejemplo:
+
+Edad mínima = 3 días.
+El usuario debe esperar 3 días antes de cambiarla nuevamente.
+
+#### Autenticación sin contraseña (Passwordless)
+
+Métodos modernos que reemplazan las contraseñas tradicionales:
+- Biometría
+  - Huella digital.
+  - Reconocimiento facial.
+  - Escaneo de iris.
+- Token de hardware
+  - Llaves físicas de seguridad (ej. YubiKey).
+- OTP (One-Time Password)
+  - Código temporal enviado por SMS, email o app.
+- Magic Link
+  - Enlace enviado al correo.
+  - Al hacer clic inicia sesión automáticamente.
+Passkeys
+  - Utilizan las funciones de seguridad del dispositivo (huella, PIN o rostro).
+  - Son más seguras que las contraseñas tradicionales.
+  - Cada vez son más utilizadas por empresas como Google, Apple y Microsoft.
