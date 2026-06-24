@@ -382,3 +382,172 @@ mezcla de letras, números y caracteres especiales. Tampoco debes reutilizar nun
 
 Además, su organización debería considerar la posibilidad de utilizar un gestor de contraseñas que le ayude a gestionar sus contraseñas de forma eficaz y explorar también las opciones sin contraseña 
 si están disponibles, ya que proporcionan una mayor seguridad y una mejor experiencia general para el usuario.
+
+## Ataques a Contraseñas
+
+Los ataques a contraseñas son técnicas utilizadas por los atacantes para descubrir o recuperar contraseñas. Los principales tipos son:
+
+1. Ataque de fuerza bruta
+
+Consiste en probar todas las combinaciones posibles hasta encontrar la contraseña correcta.
+
+Ejemplo:
+
+0000, 0001, 0002... hasta 9999.
+
+Ventaja: Siempre funciona si se tiene suficiente tiempo.
+Desventaja: Puede ser muy lento con contraseñas largas y complejas.
+
+Protección y Mitigación:
+
+Contraseñas largas y complejas(longitud).
+Limitar intentos de inicio de sesión.
+MFA (autenticación multifactor).
+CAPTCHA para impedir los intentos de descifrado de contraseñas en línea (detectan actividad automatizada y obligan al usuario a demostrar que es humano, dificultando que un programa pruebe miles de contraseñas)
+
+Concepto a tener en cuenta: 
+
+Ataque en línea: probar contraseñas directamente en una página de inicio de sesión.
+Ataque offline: descifrar contraseñas robadas localmente, sin conectarse al sistema objetivo. Es decir, ocurre cuando el atacante ya robó una base de datos de contraseñas cifradas (hashes) y las intenta descifrar en su propia computadora, sin conectarse al servidor. En ese caso, un CAPTCHA no sirve porque el atacante no está interactuando con ningún sitio web.
+
+2. Ataque de diccionario
+
+Utiliza una lista de contraseñas comunes y sus variaciones para intentar adivinar la contraseña.
+
+Ejemplos:
+
+password
+Password
+P@ssw0rd
+
+Ventaja: Más rápido que la fuerza bruta.
+Desventaja: No funciona bien contra contraseñas únicas y complejas.
+
+Protección:
+
+Contraseñas únicas y largas.
+MFA.
+Limitar intentos.
+
+3. Ataque de pulverización de contraseñas (Password Spraying)
+
+Prueba unas pocas contraseñas comunes contra muchas cuentas diferentes(prueba contraseñas a muchas cuentas de la empresas).
+
+Ejemplo:
+
+Probar "Password123" en todas las cuentas de una empresa.
+
+Ventaja: Evita bloqueos de cuenta por demasiados intentos en un solo usuario.
+
+Protección:
+
+Contraseñas fuertes y únicas.
+MFA.
+
+4. Ataque híbrido
+
+Combina diccionario + fuerza bruta.
+
+Ejemplo:
+
+Parte de una palabra común ("Fabuloso")
+Prueba números al final ("Fabuloso123456")
+
+Ventaja: Más eficiente que la fuerza bruta pura.
+
+Protección:
+
+Contraseñas largas, aleatorias y complejas.
+MFA.
+
+Así que si mi palabra del diccionario era fabuloso, y mi número asignado al azar era 617238 entonces mi nueva contraseña se establecería como fabuloso61238.
+
+Así que si sabes que la contraseña de todo el mundo sigue este formato, puedes usar un ataque basado en diccionario para encontrar la primera palabra como
+fabuloso y luego usar un ataque de fuerza bruta para probar cada combinación desde fabuloso000001 a fabuloso999999 hasta encontrar la contraseña correcta
+como fabuloso617238.
+
+John the Ripper (Decifrador de contraseñas/Herramienta de Hackers)
+
+Es una herramienta de descifrado de contraseñas utilizada para encontrar contraseñas débiles a partir de hashes. Recuerde que el uso de MD5 para hash no se recomienda para ningún propósito de seguridad real debido a sus vulnerabilidades.
+
+Una contraseña común como "password" puede descubrirse en segundos porque ya aparece en listas de contraseñas conocidas. Ahora bien, si vas a almacenar contraseñas, utiliza siempre un algoritmo de hash criptográfico fuerte como SHA-256 combinado con una sal.
+
+Ahora, el salting y los hashes implican añadir una cadena aleatoria de caracteres, también conocida como sal para proteger la contraseña antes de hacer el hash. Esto mejora la seguridad previniendo cualquier texto de diccionario o búsquedas de tabla hashing.
+
+## Resúmen Breve
+
+Así que recuerda, los ataques de fuerza bruta se utilizan para probar todas las combinaciones posibles de una contraseña con el fin de descifrarla, pero
+pueden llevar mucho tiempo y ser muy caros de realizar desde el punto de vista computacional.
+
+Un ataque de diccionario utilizará una lista de contraseñas de uso común de un archivo de texto conocido como diccionario para intentar adivinar la contraseña.
+
+Un ataque de rociado de contraseñas intenta probar las mismas contraseñas contra muchas cuentas diferentes para intentar evitar el bloqueo de cualquier cuenta de usuario individual durante el intento de descifrar la contraseña en línea.
+
+Un ataque híbrido se utiliza para combinar las ventajas de un ataque de diccionario y de fuerza bruta para encontrar contraseñas más largas, más fuertes y más complejas en menos tiempo del que podría hacerlo un ataque de fuerza bruta, etc.
+
+Para protegerse contra estos ataques, su organización debe exigir el uso de una contraseña única, larga y compleja, por ejemplo, utilizando gestores de contraseñas para ayudar a gestionar las contraseñas de sus usuarios en la red.
+
+Además, para evitar realmente que los ataques con contraseña tengan éxito, deberías activar la autenticación multifactor siempre que sea posible, ya que añade una capa adicional de seguridad al requerir que se utilice un segundo factor de autenticación además de una simple contraseña.
+
+## Inicio de Sesión Único (SSO)
+
+SSO (Single Sign-On) permite que un usuario inicie sesión una sola vez y acceda a varias aplicaciones o servicios sin volver a ingresar sus credenciales.
+Lo más habitual es que el SSO se utilice dentro de una red empresarial y se base en la relación de confianza entre el controlador del directorio activo y las
+distintas aplicaciones y sitios web que forman parte de la red de la organización.
+
+¿Cómo funciona?
+
+El usuario se autentica en un Proveedor de Identidad (IdP).
+Cuando accede a otra aplicación confiable, esta consulta al IdP si el usuario ya fue autenticado.
+Si la respuesta es afirmativa, se le concede acceso sin pedir nuevamente usuario y contraseña.
+
+Ventajas del SSO
+- Mejor experiencia de usuario: solo se recuerda una contraseña.
+- Mayor productividad: menos tiempo iniciando sesión.
+- Menos trabajo para soporte técnico: menos solicitudes de restablecimiento de contraseñas.
+- Mayor seguridad: reduce la reutilización de contraseñas y favorece el uso de contraseñas más fuertes.
+
+Ejemplo que se utiliza en el mundo corporativo donde una empresa podría establecer un SSO para sus aplicaciones internas.
+
+Un empleado inicia sesión una vez con sus credenciales de empresa y, a continuación, tiene acceso a su correo electrónico, a la herramienta de medición de proyectos y al sistema de recursos humanos sin necesidad de iniciar sesión en cada uno de ellos por separado.
+
+Para habilitar y admitir el inicio de sesión único, existen tres protocolos de uso común(Protocolos principales de SSO):
+
+1. LDAP (Lightweight Directory Access Protocol/Ligero de acceso a directorios)
+
+Protocolo para acceder y administrar directorios de usuarios y recursos en una red.
+Centraliza información de usuarios, grupos, impresoras, archivos, etc.
+Puede utilizarse para autenticación y autorización. También para buscar certificados de encriptación, impresoras conectadas y otros servicios de la red.
+Esto permite a los sistemas tomar decisiones sobre a qué recursos o servicios debe tener acceso un usuario.
+Su versión segura es LDAPS.
+
+Por ejemplo, una organización puede utilizar LDAP para formar un directorio de sus empleados que permita almacenar información sobre esos usuarios en un único lugar y acceder a ella desde distintas aplicaciones, como su lista de contactos, libretas de direcciones y clientes de correo electrónico.
+
+2. OAuth (Open Authorización)
+
+Es un estándar abierto de autenticación y autorización basado en tokens que permite a los usuarios iniciar sesión en aplicaciones o sitios web utilizando cuentas de terceros (como Google) sin compartir su contraseña. Funciona mediante un proveedor de identidad que autentica al usuario y emite un token de acceso. Este token permite que la aplicación acceda únicamente a los datos autorizados por el usuario, como nombre, correo electrónico o foto de perfil. OAuth se utiliza ampliamente en aplicaciones web y API, empleando tokens JWT(Jeson Web Token para intercambiar información de forma segura.
+
+3. SAML (Security Assertion Markup Language)
+
+Estándar que permite a una aplicación confiar en la autenticación realizada por un proveedor de identidad.
+La aplicación no autentica directamente al usuario; recibe una confirmación del IdP.
+
+Ahora bien, SAML puede ser un poco complejo, pero lo que realmente hay que recordar es que permite desacoplar los servicios de los proveedores de identidad y elimina la necesidad de que los servicios autentiquen directamente a los usuarios.
+
+Breve: 
+
+SSO: un inicio de sesión para múltiples aplicaciones.
+LDAP: directorio centralizado de usuarios y recursos.
+OAuth: autorización mediante tokens (ej.: "Iniciar sesión con Google").
+SAML: intercambio de información de autenticación entre un proveedor de identidad y una aplicación.
+
+Resúmen:
+
+Así que recuerde, el inicio de sesión único, también conocido como SSO, permite a un usuario acceder a varias aplicaciones o sitios web iniciando sesión una sola vez con un único conjunto de credenciales.
+
+LDAP es un protocolo utilizado para acceder y mantener servicios de información de directorio distribuidos a través de una red IP.
+
+OAuth es un estándar abierto para la autenticación y autorización basadas en tokens.
+
+SAML es un estándar para registrar usuarios en aplicaciones basándose en sus sesiones en otro contexto.
+El inicio de sesión único es una gran tecnología que aumenta la facilidad de uso e incrementa la seguridad de sus sistemas de autenticación al basarse en una red de socios de identidad de confianza para ayudar a garantizar que cada uso se valida y autentica correctamente.
