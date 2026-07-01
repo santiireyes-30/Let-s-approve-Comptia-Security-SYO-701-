@@ -412,9 +412,9 @@ Ataque offline: descifrar contraseñas robadas localmente, sin conectarse al sis
 
 2. Ataque de diccionario
 
-Utiliza una lista de contraseñas comunes y sus variaciones para intentar adivinar la contraseña.
+Utiliza una lista de contraseñas comunes y sus variaciones para intentar adivinar la contraseña. a diferencia de ataque de fuerza bruta este utiliza palabras como más realistas, en cambio en fuerza bruta es más probable utilizar abjh676
 
-Ejemplos:
+Ejemplos de Ataque de Diccionario:
 
 password
 Password
@@ -431,7 +431,7 @@ Limitar intentos.
 
 3. Ataque de pulverización de contraseñas (Password Spraying)
 
-Prueba unas pocas contraseñas comunes contra muchas cuentas diferentes(prueba contraseñas a muchas cuentas de la empresas).
+Prueba unas pocas contraseñas comunes contra muchas cuentas diferentes(prueba contraseñas a muchas cuentas de la empresas). Es decir, Consiste en probar un pequeño número de contraseñas muy comunes contra un gran número de cuentas de usuario.
 
 Ejemplo:
 
@@ -446,7 +446,7 @@ MFA.
 
 4. Ataque híbrido
 
-Combina diccionario + fuerza bruta.
+Combina diccionario + fuerza bruta. Es decir, Parte de palabras conocidas y les añade variaciones.
 
 Ejemplo:
 
