@@ -762,3 +762,149 @@ Además, los controles de acceso pueden limitar el acceso de los usuarios a los 
 privilegio, que es un concepto de ciberseguridad que establece que a un usuario se le conceden los niveles mínimos de acceso necesarios para completar sus funciones laborales o su rol de trabajo, y nada más.
 
 Configurando un control de acceso adecuado en su red, puede asegurarse de que la red y los sistemas de su empresa están bien protegidos contra accesos no autorizados.
+
+## Control de Acceso y Permisos
+
+El control de acceso y los permisos son mecanismos de seguridad que determinan quién puede acceder a un sistema y qué acciones puede realizar. Su objetivo es proteger la integridad y confidencialidad de la información.
+
+Una buena analogía es la de un hotel:
+
+El hotel representa el sistema informático.
+La tarjeta de acceso representa la cuenta de usuario.
+Cada tarjeta abre solo las habitaciones o áreas autorizadas, igual que cada usuario solo puede acceder a los recursos para los que tiene permisos.
+
+Tipos de cuentas
+
+1. Cuenta de Administrador
+
+Es la cuenta con mayores privilegios del sistema.
+
+Puede:
+
+Instalar programas.
+Cambiar configuraciones del sistema.
+Crear o eliminar usuarios.
+Administrar todos los recursos.
+
+Ejemplo: Es como la llave maestra que utiliza el personal del hotel.
+
+2. Cuenta de Usuario Estándar
+
+Tiene permisos limitados.
+
+Puede:
+
+Ejecutar aplicaciones.
+Crear y modificar sus propios archivos.
+Personalizar algunas opciones.
+
+No puede:
+
+Instalar software sin autorización.
+Modificar configuraciones críticas del sistema.
+
+Ejemplo: Es como la llave de un huésped, que solo abre su habitación.
+
+3. Cuenta Local
+
+Es una cuenta creada únicamente en ese equipo.
+
+No depende de Internet.
+Solo sirve para iniciar sesión en ese ordenador.
+
+Ejemplo: Una cuenta creada directamente en Windows.
+
+4. Cuenta Microsoft
+
+Es una cuenta en línea que permite acceder a distintos servicios a trávez de múltiples dispositivos y aplicaciones de Microsoft.
+
+Con una sola cuenta puedes iniciar sesión en:
+
+Windows
+Microsoft 365
+OneDrive
+Outlook
+Xbox
+Skype
+
+Además, sincroniza configuraciones entre varios dispositivos.
+
+Principio de Mínimo Privilegio (Least Privilege)
+
+Este principio establece que cada usuario debe tener únicamente los permisos necesarios para realizar su trabajo, y nada más.
+
+Beneficios
+Reduce el riesgo de ataques.
+Limita los daños si una cuenta es comprometida.
+Evita errores accidentales.
+
+Ejemplo: Un empleado que solo necesita consultar documentos no debería tener permisos para eliminarlos.
+
+Control de Cuentas de Usuario (UAC)
+
+El User Account Control (UAC) es una función de Windows que solicita confirmación cuando una acción requiere privilegios de administrador, Ayuda a apoyar el principio de mínimo privilegio.
+
+Por ejemplo:
+
+Instalar un programa.
+Modificar el registro.
+Cambiar configuraciones importantes.
+
+Antes de permitir la acción, Windows muestra un mensaje como:
+
+¿Desea permitir que esta aplicación realice cambios en el dispositivo?
+
+Esto ayuda a evitar que programas maliciosos obtengan permisos administrativos sin autorización. En pocas palabras, el control de cuentas de usuario es como un control de seguridad y aparece cuando 
+una tarea requiere privilegios de administrador, como la instalación de nuevo software o el cambio de configuraciones críticas. Ahora, el control de acceso y los permisos van más allá de los
+usuarios individuales y pueden aplicarse también a grupos de usuarios.
+
+Grupos de Usuarios
+
+Windows permite asignar permisos mediante grupos.
+
+Cuando un usuario se añade a un grupo, hereda los permisos de ese grupo.
+
+Ejemplos:
+
+Administradores
+Usuarios estándar
+Invitados
+
+Esto facilita la administración de permisos en organizaciones.
+
+Permisos de Archivos y Carpetas
+
+Los permisos determinan qué puede hacer un usuario con un archivo o carpeta.
+
+Los permisos más comunes son:
+
+Lectura (Read): ver el contenido.
+Escritura (Write): modificar el contenido.
+Ejecución (Execute): ejecutar programas o scripts.
+Control total (Full Control): administrar completamente el recurso.
+
+Los permisos pueden configurarse para:
+
+Un archivo específico.
+Una carpeta completa (y heredarse a todos sus archivos).
+
+En Windows se modifican desde:
+
+Clic derecho → Propiedades → Seguridad
+
+Buenas prácticas
+
+Utilizar cuentas estándar para el trabajo diario.
+Usar la cuenta de administrador solo cuando sea necesario.
+Aplicar siempre el principio de mínimo privilegio.
+Conceder únicamente los permisos indispensables.
+Revisar periódicamente los permisos de usuarios y grupos.
+
+#### Resúmen Breve
+
+En resumen, el control de acceso y los permisos en los sistemas informáticos son muy importantes para garantizar la integridad de los datos. Comparamos estos conceptos con los de hotel,
+donde las cuentas de usuario son como llaves que dan acceso a partes específicas del sistema.
+
+La autenticación es otro concepto importante, y significa simplemente que queremos demostrar que tenemos derecho a utilizar una cuenta. Privilegios como el de administrador local y cuenta
+de usuario estándar también nos ayudan a lograr la seguridad haciendo hincapié en el principio del menor privilegio. Y por último, da siempre menos de lo necesario. Prefieres que alguien venga
+a pedirte más privilegios que menos.
