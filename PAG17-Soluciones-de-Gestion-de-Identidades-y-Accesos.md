@@ -551,3 +551,214 @@ OAuth es un estándar abierto para la autenticación y autorización basadas en 
 
 SAML es un estándar para registrar usuarios en aplicaciones basándose en sus sesiones en otro contexto.
 El inicio de sesión único es una gran tecnología que aumenta la facilidad de uso e incrementa la seguridad de sus sistemas de autenticación al basarse en una red de socios de identidad de confianza para ayudar a garantizar que cada uso se valida y autentica correctamente.
+
+## Federación
+
+La Federación es un sistema de gestión de identidades y accesos (IAM) que permite que un usuario utilice las mismas credenciales (usuario y contraseña) para acceder a aplicaciones o servicios pertenecientes a diferentes organizaciones, 
+gracias a una relación de confianza entre ellas.
+
+No significa que todas las organizaciones compartan la misma base de datos de usuarios, sino que confían en la autenticación realizada por otra organización.
+
+La federación es un concepto que va más allá de los límites tradicionales de la red de una organización y, en su lugar, reconoce que existe la necesidad de que su red sea accesible a un grupo más amplio de usuarios,
+incluidos no sólo sus empleados, sino también sus socios, proveedores y clientes.
+
+Para configurar la federación a través de múltiples redes organizativas, normalmente confiamos en una tecnología como SAML, OAuth y OpenID Connect como protocolos de autenticación y autorización.
+
+Ejemplo real
+
+Supongamos que trabajas en una empresa que utiliza:
+
+"Microsoft Entra ID" como Identity Provider.
+ServiceNow.
+AWS.
+GitHub Enterprise.
+
+Con la federación:
+
+Inicias sesión en Microsoft Entra ID.
+Accedes a ServiceNow sin volver a escribir la contraseña.
+Accedes a AWS con la misma identidad.
+Accedes a GitHub Enterprise con las mismas credenciales.
+
+Cada servicio confía en Microsoft Entra ID para verificar quién eres.
+
+Para iniciar sesión utilizando una Federación, seguirá un proceso de seis pasos que incluye el inicio de sesión, la redirección a un proveedor de identidades, la autenticación del usuario, la generación
+de una aserción, la devolución a un proveedor de servicios, la verificación y el acceso.
+
+1. Inicio de sesión (Login):
+El usuario intenta acceder a una aplicación o servicio que utiliza autenticación federada.
+
+2. Redirección al Proveedor de Identidad (IdP):
+La aplicación redirige al usuario al Identity Provider (IdP), donde se almacenan sus credenciales.
+
+3. Autenticación del usuario:
+El usuario introduce sus credenciales y el IdP verifica que su identidad sea válida.
+
+4. Generación de la aserción (Token):
+Si la autenticación es correcta, el IdP genera un token (o aserción) con la identidad y atributos del usuario.
+
+5. Regreso al Proveedor de Servicios (SP):
+El usuario vuelve a la aplicación (Service Provider) llevando el token emitido por el IdP.
+
+6. Verificación y acceso:
+La aplicación valida el token. Si proviene de un IdP de confianza y es válido, concede acceso al usuario sin necesidad de volver a iniciar sesión.
+
+Lo más importante para recordar
+Federación = compartir la autenticación entre organizaciones mediante relaciones de confianza.
+IdP (Identity Provider) = autentica al usuario.
+SP (Service Provider) = ofrece el servicio y confía en el IdP.
+Se utilizan protocolos como SAML, OAuth y OpenID Connect.
+
+El usuario inicia sesión una sola vez con su identidad de origen y puede acceder a múltiples servicios sin crear cuentas adicionales.
+La federación mejora la experiencia del usuario, reduce la carga administrativa y aumenta la seguridad al evitar la proliferación y reutilización de contraseñas.
+
+#### Resúmen Breve:
+
+Así que recuerde, el uso de una Federación permite a los usuarios utilizar el mismo nombre de usuario, contraseña u otras credenciales para iniciar sesión en múltiples
+sistemas gestionados por diferentes organizaciones. Las federaciones funcionan mediante el uso de una relación de confianza entre diferentes sistemas que ofrece varias
+ventajas, entre las que se incluyen la mejora de la experiencia del usuario, el aumento de la productividad, la reducción de los costes de TI y la mejora de la seguridad.
+
+## Gestión de acceso privilegiado (PAM)
+
+¿Qué es la Gestión de Acceso Privilegiado (PAM)?
+
+La Gestión de Acceso Privilegiado (Privileged Access Management - PAM) es un conjunto de políticas, procedimientos y controles de seguridad que permiten controlar, proteger y supervisar las cuentas con privilegios elevados (como administradores o cuentas root) para reducir el riesgo de accesos no autorizados y ataques.
+
+Su objetivo principal es aplicar el principio de mínimo privilegio, es decir, que cada usuario tenga solo los permisos necesarios para realizar su trabajo y únicamente durante el tiempo que los necesite.
+
+Componentes principales de PAM
+
+1. Permisos Just-In-Time (JIT)
+
+Los permisos Just-In-Time (JIT) conceden acceso administrativo solo cuando es necesario y por un tiempo limitado. Una vez finalizada la tarea, los privilegios se eliminan automáticamente.
+
+Ejemplo: Un administrador necesita actualizar un servidor. PAM le otorga permisos de administrador durante la actualización y los revoca cuando termina.
+
+2. Bóveda de Contraseñas (Password Vault)
+
+La bóveda de contraseñas es un almacén seguro donde se guardan las credenciales privilegiadas. El acceso suele requerir autenticación multifactor (MFA) y queda registrado para auditoría.
+
+Ejemplo: Las contraseñas de las cuentas Administrador de Windows o root de Linux se almacenan en una bóveda segura y solo los administradores autorizados pueden consultarlas.
+
+3. Cuentas Temporales
+
+Las cuentas temporales son cuentas creadas para una tarea o proyecto específico y tienen una fecha de expiración. Al finalizar el trabajo, la cuenta se desactiva o elimina automáticamente.
+
+Ejemplo: Un contratista recibe acceso durante un proyecto de instalación de software. Al terminar el proyecto, su cuenta deja de existir.
+
+Beneficios de PAM
+Reduce el riesgo de abuso de cuentas privilegiadas.
+Aplica el principio de mínimo privilegio.
+Protege las credenciales administrativas.
+Registra y audita el uso de cuentas privilegiadas.
+
+#### Resúmen Breve
+
+Así que recuerde, la gestión de acceso privilegiado, o PAM, se refiere a las políticas, procedimientos y controles técnicos que se utilizan para prevenir el abuso malicioso de cuentas
+privilegiadas y para mitigar el riesgo de controles de configuración débiles sobre los privilegios.
+
+La gestión de accesos privilegiados consta de tres componentes: permisos just-in-time, bóveda de contraseñas y cuentas temporales.
+
+Los permisos Just-in-time conceden acceso administrativo sólo cuando es necesario y durante un periodo de tiempo determinado.
+
+El almacenamiento de contraseñas es un método seguro de almacenar y gestionar contraseñas.
+
+Las cuentas temporales son cuentas de tiempo limitado creadas para un fin específico y que se desactivan o eliminan automáticamente al cabo de cierto tiempo para
+garantizar que ya no exista acceso a recursos sensibles una vez finalizado el proyecto. Disminuye la posibilidad de filtraciones de datos y ataques internos.
+
+## Modelos de Control de Acceso
+
+Los modelos de control de acceso determinan quién puede acceder a un recurso y bajo qué condiciones. Existen cinco modelos principales: MAC, DAC, RBAC, Rule-Based y ABAC. 
+Además otra cosa a ver, es que se pueden aplicar restricciones de control de acceso, como el acceso por horario y el principio de mínimo privilegio (cada usuario debe tener solo los permisos estrictamente necesarios).
+
+1. Control de Acceso Obligatorio (MAC - Mandatory Access Control)
+
+El MAC utiliza etiquetas de seguridad para controlar el acceso. Solo una autoridad central puede asignar o modificar los permisos. El control de acceso obligatorio utiliza etiquetas de seguridad
+para determinar qué usuarios están autorizados a acceder a un recurso concreto. Este tipo de control de acceso es complejo de configurar y más caro de mantener, por lo que suele reservarse
+para sistemas de alta seguridad.
+
+Se usa en entornos de alta seguridad (ej. militares o gubernamentales).
+Los usuarios no pueden cambiar los permisos.
+Si el nivel de seguridad del usuario es inferior al del recurso, el acceso se deniega.
+
+Ejemplo: Un usuario con autorización "Secreto" no puede acceder a documentos "Alto Secreto".
+
+2. Control de Acceso Discrecional (DAC - Discretionary Access Control)
+
+En el DAC, el propietario del recurso decide quién puede acceder a él.
+
+Es flexible y fácil de administrar.
+El propietario puede conceder o revocar permisos.
+
+Ejemplo: Compartes una carpeta en la red corporativa y decides añadir qué usuarios pueden verla o modificarla.
+
+3. Control de Acceso Basado en Roles (RBAC - Role-Based Access Control)
+
+El RBAC asigna permisos según el rol o función del usuario dentro de la organización. Además, podríamos poner estos dos grupos en un grupo de nivel superior llamado empleados que tiene acceso 
+a otros recursos a los que todos los empleados podrían necesitar acceder.
+
+El control de acceso basado en roles puede utilizarse para imponer privilegios mínimos a un sujeto en función de todos los grupos asociados, y los usuarios pueden ser miembros de uno o más
+grupos en función de esos roles.
+
+Facilita la administración de permisos.
+Ideal para empresas con muchos empleados o alta rotación (ya que los permisos se basan en la función laboral y no en el nombre de usuario de una persona).
+
+Ejemplo: Todos los empleados del departamento de Contabilidad tienen acceso al sistema financiero, mientras que Recursos Humanos accede a sistemas diferentes.
+
+4. Control de Acceso Basado en Reglas (Rule-Based Access Control)
+
+El acceso se concede o deniega según reglas definidas por el administrador.
+
+Las reglas suelen aplicarse a todos los usuarios.
+Es común en firewalls, routers y listas de control de acceso (ACL).
+
+Ejemplo: Un firewall bloquea todo el tráfico hacia un servidor excepto el puerto 443 (HTTPS).
+
+5. Control de Acceso Basado en Atributos (ABAC - Attribute-Based Access Control)
+
+El ABAC toma decisiones basándose en diferentes atributos o se basa en un conjunto de características de un objeto para tomar una decisión de control de acceso:
+
+Del usuario: nombre, la función y la organización del usuario. DNI o nivel de habilitación de seguridad. Cargo, departamento, nivel de autorización.
+Del recurso: propietario(nombre del archivo), fecha de creación del archivo, sensibilidad de la información/datos.
+Del entorno: ubicación, hora, nivel de riesgo/el nivel de amenaza de la organización actual.
+
+Ejemplo: Un empleado solo puede acceder a documentos confidenciales si está conectado desde la oficina y durante el horario laboral.
+
+Restricciones Horarias
+
+Permiten limitar el acceso según la hora o el día.
+
+Ejemplo: Un empleado solo puede iniciar sesión entre las 08:00 y las 18:00. Si intenta acceder a las 02:00 AM, el sistema bloqueará el acceso.
+
+Principio de Mínimo Privilegio (Least Privilege)
+
+Es un concepto de ciberseguridad que establece que al usuario se le conceden los niveles mínimos de acceso necesarios para completar sus funciones laborales, y nada más.
+
+Beneficios
+Reduce el riesgo de accesos no autorizados.
+Limita el impacto si una cuenta es comprometida.
+Disminuye errores accidentales.
+
+Ejemplo: Un usuario que solo necesita consultar una base de datos no debe tener permisos para modificar o eliminar registros.
+
+Permission Creep (Acumulación de Permisos)
+
+Ocurre cuando un empleado cambia de puesto dentro de la empresa y conserva permisos antiguos, acumulando más accesos de los que realmente necesita.
+
+Ejemplo: Un empleado pasa de Soporte a Desarrollo. Si mantiene los permisos de ambos departamentos, tendrá acceso innecesario a múltiples sistemas, es decir que si no eliminamos 
+sus antiguos permisos, ahora tendrá permisos tanto para el departamento de asistencia al estudiante como para el de desarrollo empresarial. aumentando el riesgo de seguridad.
+
+#### Resúmen Breve
+
+Así que recuerda, cuando se trata de control de acceso, tienes cinco tipos diferentes que puedes implementar, control de acceso obligatorio, control de acceso discrecional, control
+de acceso basado en roles, control de acceso basado en reglas y control de acceso basado en atributos.
+
+Con el control de acceso obligatorio, o MAC, se concede o deniega el acceso al usuario en función de las políticas dictadas por la autoridad central. Con el control de acceso discrecional, o DAC, el propietario
+de la información o el recurso determina quién puede acceder a él. Con el control de acceso basado en roles, o RBAC, los permisos de acceso se basan en los roles dentro de la organización dada.
+Con el control de acceso basado en reglas, también abreviado como RBAC, el acceso de los usuarios se concede o deniega en función de un conjunto de reglas definidas por un administrador del sistema.
+Con el control de acceso basado en atributos, o ABAC, el acceso del usuario se concede o deniega en función de los atributos asociados a un usuario, una acción o un recurso.
+
+Además, los controles de acceso pueden limitar el acceso de los usuarios a los recursos en función de la hora del día en que se realice la solicitud. Por último, trataremos el principio del mínimo
+privilegio, que es un concepto de ciberseguridad que establece que a un usuario se le conceden los niveles mínimos de acceso necesarios para completar sus funciones laborales o su rol de trabajo, y nada más.
+
+Configurando un control de acceso adecuado en su red, puede asegurarse de que la red y los sistemas de su empresa están bien protegidos contra accesos no autorizados.
