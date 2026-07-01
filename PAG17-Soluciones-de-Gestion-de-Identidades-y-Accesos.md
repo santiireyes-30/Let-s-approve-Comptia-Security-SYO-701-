@@ -184,6 +184,10 @@ Autenticación multifactor (MFA)
   - Utiliza dos o más factores distintos.
   - 2FA es un tipo de MFA.
 
+Otro a tener en cuenta es Autenticación Local: método de autenticación en el que las credenciales del usuario se verifican contra una base de datos almacenada en el mismo dispositivo o sistema donde se inicia sesión.
+
+Ejemplo: Iniciar sesión en un computador con una cuenta local de Windows utilizando un nombre de usuario y una contraseña que están almacenados en ese mismo equipo.
+
 Para aumentar nuestra seguridad, podemos optar por utilizar la autenticación multifactor, pero esto introducirá pasos adicionales que el usuario debe dar al iniciar sesión en el sistema,
 y aumenta nuestro coste global para implementar una solución de autenticación. Afortunadamente, ahora existe una alternativa válida al uso de contraseñas para la autenticación,
 y esto nos lleva al mundo de las passkeys.
@@ -723,6 +727,13 @@ Del recurso: propietario(nombre del archivo), fecha de creación del archivo, se
 Del entorno: ubicación, hora, nivel de riesgo/el nivel de amenaza de la organización actual.
 
 Ejemplo: Un empleado solo puede acceder a documentos confidenciales si está conectado desde la oficina y durante el horario laboral.
+
+Truco para el examen
+
+DAC → 👤 El propietario decide.
+RBAC (Roles) → 👥 El acceso depende del cargo o rol.
+Rule-Based → 📋 El acceso depende de reglas (horario, IP, firewall).
+MAC → 🔒 La autoridad central decide y el usuario no puede modificar sus permisos
 
 Restricciones Horarias
 
