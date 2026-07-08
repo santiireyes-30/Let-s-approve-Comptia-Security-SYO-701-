@@ -483,3 +483,403 @@ las configuraciones erróneas, la filtración de datos y las actualizaciones mal
 
 Desde la aplicación periódica de parches hasta el cifrado y la gestión de la configuración, podemos mejorar considerablemente la seguridad de nuestros dispositivos y nuestros datos aplicando
 algunas medidas comunes de defensa en profundidad.
+
+
+## Vulnerabilidades y ataques de Inyección SQL y XML
+
+¿Qué es un ataque de inyección?
+
+Un ataque de inyección ocurre cuando un atacante introduce código malicioso en un sistema para que este lo interprete como parte de una consulta o comando legítimo.
+
+Su objetivo es manipular el funcionamiento de la aplicación, acceder a información o ejecutar acciones no autorizadas.
+
+SQL (Structured Query Language)
+
+SQL es el lenguaje utilizado para comunicarse con las bases de datos.
+
+Las operaciones principales son:
+
+SELECT: leer datos.
+INSERT: insertar datos.
+UPDATE: modificar datos.
+DELETE: eliminar datos.
+
+¿Qué es una Inyección SQL (SQL Injection)?
+
+Es un ataque donde el atacante introduce código SQL malicioso en un campo de entrada (login, formularios, URL, cookies, encabezados HTTP, etc.) para manipular la consulta que realiza la aplicación sobre la base de datos.
+
+Ejemplo normal
+
+Un usuario inicia sesión con:
+
+Usuario: Jason
+Contraseña: Pass123
+
+La aplicación consulta:
+
+SELECT * FROM Users
+WHERE user='Jason'
+AND password='Pass123';
+
+Si coinciden los datos, permite el acceso.
+
+Ejemplo de SQL Injection
+
+El atacante escribe:
+
+Usuario: Jason
+Contraseña: ' OR 1=1 --
+
+La consulta queda:
+
+SELECT * FROM Users
+WHERE user='Jason'
+AND password=''
+OR 1=1;
+
+Como 1=1 siempre es verdadero, la condición completa resulta verdadera y el atacante obtiene acceso sin conocer la contraseña.
+
+En un examen
+
+Si ves algo como:
+
+' OR 1=1
+' OR 7=7
+' OR 15=15
+
+Piensa inmediatamente en:
+
+SQL Injection
+
+¿Dónde puede inyectarse el código?
+
+Un atacante puede introducir SQL mediante:
+
+Formularios web.
+Parámetros en la URL.
+Cookies.
+Cabeceras HTTP.
+Campos de entrada.
+
+¿Cómo prevenir una SQL Injection?
+
+La defensa más importante es:
+
+Validación y sanitización de entradas (Input Validation)
+
+Consiste en revisar y limpiar todos los datos enviados por el usuario antes de enviarlos a la base de datos.
+
+También es recomendable:
+
+Utilizar consultas parametrizadas (Prepared Statements).
+Implementar un Web Application Firewall (WAF), entre el servidor web y el cliente
+Restringir privilegios de la base de datos.
+Restringir el uso de apostrófos y de (N°=N°)
+
+Para el examen: Si preguntan cómo prevenir SQL Injection, la respuesta principal es Validación/Sanitización de entradas.
+
+¿Qué es XML?
+
+XML (Extensible Markup Language) es un formato utilizado para intercambiar datos entre aplicaciones.
+
+Ejemplo:
+
+<$xml version="1.0" encoding="UTF-8"?> (Versión+TipoDeCodificación)
+<Question>
+   <ID>001</ID>
+   <Title>¿Qué es XML?</Title>
+</Question>
+
+Se utiliza para:
+
+Autenticación.
+Autorización.
+Intercambio de información.
+Servicios web.
+
+¿Qué es una Inyección XML?
+
+Consiste en introducir datos XML maliciosos para manipular el procesamiento que realiza una aplicación.
+
+Puede provocar:
+
+Acceso no autorizado.
+Lectura de archivos.
+Robo de datos.
+Denegación de servicio.
+
+¿Cómo proteger XML?
+
+Siempre debe utilizarse:
+
+TLS para cifrar los datos en tránsito.
+Validación de entrada.
+Sanitización de datos.
+
+Ataques XML importantes
+
+1. XML Bomb (Billion Laughs)
+
+Es un ataque de Denegación de Servicio (DoS).
+
+El atacante crea entidades XML que se expanden miles o millones de veces hasta consumir toda la memoria del servidor.
+
+Resultado:
+
+Alto consumo de RAM.
+Caída del servidor.
+Denegación del servicio.
+
+2. XXE (XML External Entity)
+
+El atacante utiliza entidades XML externas para que el servidor lea archivos locales.
+
+Ejemplo:
+
+<!ENTITY xxe SYSTEM "file:///etc/shadow">
+
+En Linux intenta leer:
+
+/etc/shadow
+
+Archivo que contiene los hashes de las contraseñas del sistema.
+
+Consecuencias:
+
+Robo de archivos.
+Exposición de credenciales.
+Acceso a información sensible.
+
+Mitigación:
+
+Utilizar Validación de entrada adecuada.
+Sanatización de entradas
+
+#### Definiciones Breve
+
+- Inyección: envío de código malicioso para alterar el comportamiento de una aplicación.
+- SQL Injection: inserta código SQL para manipular una base de datos.
+- XML Injection: inserta código XML para explotar aplicaciones que procesan XML.
+- ' OR 1=1 es el ejemplo clásico de SQL Injection.
+- XML Bomb: provoca una denegación de servicio consumiendo memoria.
+- XXE: permite leer archivos del sistema o acceder a recursos internos.
+
+La mejor defensa para SQL y XML Injection es la validación y sanitización de entradas, complementada con el uso de TLS (en XML) y un WAF cuando sea posible.
+
+#### Resúmen Breve
+
+Así que recuerde, una inyección se produce cuando un atacante envía datos maliciosos a un sistema, y luego va a ser procesado como parte de
+una consulta de comandante que puede conducir a consecuencias no deseadas.
+
+Una inyección SQL es una técnica de ataque en la que se inserta código SQL malicioso en campos de entrada para manipular o explotar una aplicación basada en bases de datos.
+Si ves algo como apóstrofe uno es igual a uno, esto va a ser una inyección SQL. Por otro lado, las inyecciones XML son una técnica de ataque en la que se inserta código XML malicioso en campos
+de entrada para manipular o explotar una aplicación o servicio basado en XML.
+
+Si ves algún código que parece estar escrito en formato XML en un fragmento de registro en el examen, puedes suponer con seguridad que se trata de una inyección XML que está siendo intentada por un atacante.
+
+## Cross-Site Scripting (XSS) y Cross-Site Request Forgery (CSRF/XSRF)
+
+1. Cross-Site Scripting (XSS)
+
+¿Qué es?
+Es un ataque en el que un atacante inyecta código JavaScript malicioso en un sitio web vulnerable. Cuando otro usuario visita ese sitio, el navegador ejecuta ese código como si fuera confiable.
+
+La víctima ejecuta el código.
+
+¿Cómo funciona?
+
+El atacante encuentra un formulario vulnerable (comentarios, búsqueda, chat, etc.).
+Inserta código JavaScript malicioso.
+El sitio web lo almacena o lo devuelve al usuario.
+El navegador de la víctima ejecuta el script.
+
+Objetivos del atacante:
+
+Robar cookies de sesión.
+Robar credenciales.
+Instalar malware.
+Redirigir al usuario a otro sitio.
+Modificar la página (defacement).
+Registrar lo que escribe el usuario (keylogging).
+
+Tipos de XSS
+
+1. Reflected XSS (No persistente)
+
+El código viaja en una URL.
+
+Ejemplo:
+
+https://sitio.com/search?q=<script>alert('XSS')</script>
+
+Solo funciona cuando la víctima hace clic en el enlace.
+
+2. Stored XSS (Persistente)
+
+El código queda guardado en la base de datos.
+
+Ejemplo:
+
+Un atacante comenta:
+
+<script>...</script>
+
+Cada usuario que vea ese comentario ejecutará el script.
+
+Es el tipo más peligroso.
+
+3. DOM-Based XSS
+
+El ataque ocurre completamente en el navegador.
+
+Ejemplo:
+
+document.cookie
+document.write()
+document.location
+
+La palabra document. suele indicar un ataque basado en el DOM.
+
+¿Cómo reconocer XSS?
+
+Busca cosas como:
+
+<script>
+alert(
+document.cookie
+document.location
+document.write(
+
+Si ves JavaScript dentro de una URL o formulario, probablemente sea XSS.
+
+¿Cómo prevenir XSS?
+
+Validación de entrada.
+Sanitización de datos.
+Escapar caracteres especiales.
+Content Security Policy (CSP).
+Cookies HttpOnly.
+Frameworks modernos que escapan HTML automáticamente.
+
+2. Gestión de sesiones
+
+Cuando inicias sesión, el servidor necesita recordar quién eres.
+
+Para ello utiliza:
+
+Cookies
+Tokens de sesión
+Bases de datos de sesiones
+Cookies
+
+Son pequeños archivos que identifican al usuario.
+
+Hay dos tipos:
+
+Cookies de sesión
+
+Desaparecen al cerrar el navegador.
+
+Ejemplo:
+
+Banco
+Correo
+Campus virtual
+Cookies persistentes
+
+Permanecen días o meses.
+
+Ejemplo:
+
+"Recordarme"
+
+3. Session Hijacking (Secuestro de sesión)
+
+El atacante roba la cookie o el token de sesión.
+
+Entonces puede hacerse pasar por la víctima sin conocer la contraseña.
+
+Ejemplo:
+
+Usuario inicia sesión
+
+↓
+
+El atacante roba la cookie
+
+↓
+
+La usa en su navegador
+
+↓
+
+Ya está autenticado
+Session Prediction
+
+Si los tokens son fáciles de adivinar:
+
+Sesion001
+Sesion002
+Sesion003
+
+Un atacante puede predecirlos.
+
+Por eso deben ser totalmente aleatorios.
+
+4. Cross-Site Request Forgery (CSRF o XSRF)
+
+¿Qué es?
+
+Es un ataque donde el atacante aprovecha que el usuario ya inició sesión en un sitio para obligarlo a realizar acciones sin darse cuenta.
+
+La víctima ejecuta una acción sin saberlo.
+
+¿Cómo funciona?
+
+Supongamos:
+
+Estás conectado a tu banco.
+Sin cerrar sesión, visitas una página maliciosa.
+
+Esa página envía una petición como:
+
+Cambiar contraseña
+
+o
+
+Transferir dinero
+
+o
+
+Cambiar email
+
+El navegador envía automáticamente la cookie del banco.
+
+El banco cree que la solicitud es legítima.
+
+Ejemplo de CSRF
+
+Estás conectado al banco.
+
+Luego visitas:
+
+sitio-malicioso.com
+
+Ese sitio envía:
+
+POST
+
+Cambiar email
+
+Nuevo email:
+hacker@gmail.com
+
+Como tu navegador ya tiene la cookie del banco, el banco acepta la solicitud creyendo que fuiste tú.
+
+¿Cómo prevenir CSRF?
+
+Tokens CSRF únicos en cada formulario.
+Pedir la contraseña actual para cambios importantes.
+Autenticación de dos factores (2FA).
+Cookies con atributo SameSite.
+Tokens de sesión aleatorios.
