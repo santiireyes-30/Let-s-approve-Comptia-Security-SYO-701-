@@ -686,10 +686,20 @@ Si ves algún código que parece estar escrito en formato XML en un fragmento de
 Es un ataque en el que un atacante inyecta código JavaScript malicioso en un sitio web vulnerable o de otra manera de decirlo, es un potente exploit que se basa en que su sitio web no realiza
 una "validación adecuada de las entradas". Cuando otro usuario visita ese sitio, el navegador ejecuta ese código como si fuera confiable.
 
-¿Cómo funciona?
+Procesos
 
 1. Identificación de una vulnerabilidad de validación de entrada
-2. 
+2. El atacante crea una URL para realizar la inyección de código contra ese sitio web de confianza. Al mismo tiempo, el atacante necesita conseguir que
+alguien haga clic en esa URL maliciosamente codificada.
+3. El sitio de confianza devolverá una página que contiene el código malicioso inyectado, así como el código normal del sitio.
+Esto ocurre una vez que el usuario hace clic en la URL codificada y el sitio de confianza ejecuta el código inyectado.
+4. El código malicioso se ejecuta en el navegador del cliente, finalizando así el ataque de secuencias de comandos entre sitios.
+
+Cuando esto ocurre, el código ejecutará el nivel de permiso del sitio de confianza porque el sistema cree que el sitio de confianza envió ese código, lo que técnicamente hizo porque
+se inyectó en la respuesta procedente de ese servidor de confianza al navegador del usuario final. Esta es la razón por la que lo llamamos un ataque de scripting entre sitios porque 
+el código malicioso va a ser inyectado y servido por el sitio de confianza a sus usuarios.
+
+¿Cómo funciona?
 
 El atacante encuentra un formulario vulnerable (comentarios, búsqueda, chat, etc.).
 Inserta código JavaScript malicioso.
