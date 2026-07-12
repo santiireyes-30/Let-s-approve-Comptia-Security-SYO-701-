@@ -682,11 +682,14 @@ Si ves algún código que parece estar escrito en formato XML en un fragmento de
 1. Cross-Site Scripting (XSS)
 
 ¿Qué es?
-Es un ataque en el que un atacante inyecta código JavaScript malicioso en un sitio web vulnerable. Cuando otro usuario visita ese sitio, el navegador ejecuta ese código como si fuera confiable.
 
-La víctima ejecuta el código.
+Es un ataque en el que un atacante inyecta código JavaScript malicioso en un sitio web vulnerable o de otra manera de decirlo, es un potente exploit que se basa en que su sitio web no realiza
+una "validación adecuada de las entradas". Cuando otro usuario visita ese sitio, el navegador ejecuta ese código como si fuera confiable.
 
 ¿Cómo funciona?
+
+1. Identificación de una vulnerabilidad de validación de entrada
+2. 
 
 El atacante encuentra un formulario vulnerable (comentarios, búsqueda, chat, etc.).
 Inserta código JavaScript malicioso.
@@ -712,7 +715,29 @@ Ejemplo:
 
 https://sitio.com/search?q=<script>alert('XSS')</script>
 
-Solo funciona cuando la víctima hace clic en el enlace.
+- "Solo funciona cuando la víctima hace clic en el enlace".
+-  El atacante no modifica realmente la URL de tu servidor, sino que crea una URL especialmente construida que incluye una carga (payload) maliciosa en alguno de los parámetros. Luego intenta que la víctima haga clic en ella.
+
+Ejemplo conceptual
+
+Supongamos que tienes un buscador:
+
+- https://mitienda.com/buscar?q=laptop
+
+El parámetro "q" contiene lo que el usuario busca.
+
+Si la aplicación es vulnerable y no valida ni escapa correctamente ese valor, un atacante puede construir una URL como:
+
+https://mitienda.com/buscar?q=[código malicioso/payload]
+
+Cuando el servidor devuelve la página incluyendo ese contenido sin filtrarlo, el navegador de la víctima puede interpretarlo como código en lugar de texto.
+
+Lenguaje: 
+
+HTML → sirve para insertar elementos en la página.
+JavaScript → realiza la acción maliciosa (leer información de la página, modificarla, enviar datos al atacante, etc.).
+
+- No suele usarse SQL aquí, porque SQL Injection es un ataque diferente dirigido a bases de datos.
 
 2. Stored XSS (Persistente)
 
@@ -744,11 +769,11 @@ La palabra document. suele indicar un ataque basado en el DOM.
 
 Busca cosas como:
 
-<script>
-alert(
+script
+alert
 document.cookie
 document.location
-document.write(
+document.write
 
 Si ves JavaScript dentro de una URL o formulario, probablemente sea XSS.
 
