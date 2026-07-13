@@ -992,7 +992,7 @@ Así, aunque el navegador envíe la solicitud automáticamente, el atacante no c
 
 Los identificadores de sesión deben ser largos e impredecibles para evitar que puedan adivinarse.
 
-#### Consejos
+#### Consejos de la Sección
 
 Ahora para el examen, recuerde, que si alguien está tratando de conseguir una víctima para llevar a cabo involuntariamente una acción en un sitio web, esto normalmente va a ser una forma
 de falsificación de petición cross-site. Esto suele ocurrir intentando que la víctima realice algún tipo de actualización desconocida en su dirección de correo electrónico predeterminada
@@ -1008,3 +1008,306 @@ Truco para recordar
 
 XSS = Ejecutar código.
 CSRF = Ejecutar acciones usando una sesión ya iniciada.
+
+## Desbordamiento de Búfer (Overflow Buffer)
+
+¿Qué es un buffer?
+
+Un buffer es un espacio de memoria temporal que un programa utiliza para almacenar datos mientras los procesa.
+
+Ejemplo:
+
+Un vaso de agua arriba de una mesa con capacidad para 16 onzas (representa el buffer).
+Si viertes 20 onzas, el agua se derrama/rebalsa y la mesa se va a mojar.
+En informática ocurre lo mismo: si un programa recibe más datos de los que su buffer puede almacenar, los datos "se derraman" sobre otras zonas de memoria.
+
+¿Qué es un Buffer Overflow?
+
+Es una vulnerabilidad que ocurre cuando un programa escribe más datos de los que el buffer fue diseñado para almacenar, sobrescribiendo memoria adyacente.
+
+El problema no es únicamente que falle el programa.
+El verdadero peligro es que un atacante pueda sobrescribir información crítica y ejecutar código malicioso.
+
+Ejemplo sencillo
+
+Supongamos que una aplicación reserva memoria para guardar un número telefónico.
+
+Buffer:
+
+Capacidad: 8 caracteres
+
+[ ][ ][ ][ ][ ][ ][ ][ ]
+
+Número normal: 5551234
+
+Todo entra correctamente.
+Ahora guardamos: 4105551234 (10 dígitos)
+
+El resultado:
+Buffer A: 41055512
+
+Buffer B: 34
+
+Los últimos caracteres invaden otro espacio de memoria, eso es un desbordamiento.
+
+¿Por qué es peligroso?
+
+Porque después del buffer existen otras zonas importantes de memoria.
+
+Por ejemplo:
+
+Variables
+Direcciones de retorno
+Punteros
+Funciones
+
+Si el atacante controla qué datos se escriben, puede modificar esas zonas.
+
+La pila (Stack)
+
+La pila es una región de memoria donde un programa guarda información temporal cuando ejecuta funciones.
+
+A continuación mostraremos una estructura e imagen para visualizarlo y que quede una idea mejor
+
+Bottom of Memory
+      │
+      │
+Buffer 2
+Local Variable 2
+---------------------
+New Code (/bin/sh)
+---------------------
+New Pointer to exec code
+---------------------
+Function Call Arguments
+      │
+Top of Memory
+
+Lo primero que confunde es esto:
+
+Bottom of Memory está arriba
+
+Top of Memory está abajo
+
+Parece al revés.
+
+Pero es simplemente la forma tradicional de dibujar la memoria.
+
+En muchas arquitecturas:
+
+las direcciones pequeñas están arriba
+las direcciones grandes abajo
+
+y "la pila crece hacia abajo".
+
+Por eso aparece la flecha:
+
+Fill Direction
+↓
+
+Es decir:
+
+cada dato nuevo que se guarda ocupa memoria hacia abajo.
+
+2. ¿Qué significa "Primero en entrar, último en salir"?
+
+La pila funciona como una pila de platos.
+
+Pones un plato
+Pones otro
+Pones otro
+
+Para sacar uno:
+
+sale el último
+
+Nunca sale el primero.
+
+Eso se llama
+
+LIFO
+
+Last In First Out.
+
+3. Ahora imaginemos un programa normal. Supongamos que Word ejecuta una función.
+
+En ella guarda:
+
+variables locales
+parámetros
+direcciones de retorno de funciones
+
+Ejemplo muy simplificado:
+
+--------------------
+Dirección de retorno
+--------------------
+Variables
+--------------------
+Buffer
+--------------------
+
+4. Ahora llega el atacante
+
+Si el buffer se llena demasiado, tenia disponibilidad de 100 caracteres y termina poniendo 500 caracteres...
+
+AAAAAAAAAAAAAAAAAAAA...
+
+los caracteres comienzan a sobrescribir la dirección de retorno.
+
+¿Qué hace el atacante?
+
+En lugar de escribir texto cualquiera, introduce:
+
+NOP
+NOP
+NOP
+NOP
+NOP
+Código malicioso
+Nueva dirección de retorno
+
+Cuando el programa termina una función debe volver mediante esa dirección.
+
+Pero ahora esa dirección apunta al código del atacante.
+
+Resultado:
+
+Programa →
+           dirección modificada →
+                                malware
+Smashing the Stack
+
+Cuando un atacante sobrescribe la dirección de retorno del Stack para ejecutar su propio código.
+
+Es el ataque clásico de Buffer Overflow.
+
+NOP Sled
+
+Antes del código malicioso se colocan muchas instrucciones NOP.
+
+NOP significa:
+
+No Operation
+
+La CPU simplemente pasa a la siguiente instrucción.
+
+Visualmente:
+
+NOP
+NOP
+NOP
+NOP
+NOP
+Código malicioso
+
+Si el programa cae en cualquiera de los NOP:
+
+↓
+
+NOP
+↓
+
+NOP
+↓
+
+NOP
+↓
+
+Código malicioso
+
+terminará ejecutando el malware.
+
+Por eso se llama NOP Sled ("trineo NOP"), porque el flujo "se desliza" hasta el payload.
+
+¿Qué busca el atacante?
+
+Principalmente:
+
+ejecutar malware
+abrir una shell (/bin/sh en Linux)
+ejecutar comandos remotos
+escalar privilegios
+tomar control del sistema
+
+Mitigación: ASLR
+
+ASLR (Address Space Layout Randomization)
+
+Aleatoriza las direcciones de memoria donde se cargan:
+
+DLL
+Stack
+Heap
+librerías
+programas
+
+Antes:
+
+Microsoft Word
+
+Siempre en:
+
+0x12345678
+
+El atacante sabía exactamente dónde atacar.
+
+Ahora con mitigación ASLR, las direcciones cambian constantemente:
+
+Hoy:
+0x5FAE1234
+
+Mañana:
+0x98BC7821
+
+Luego:
+0x2AAE9944
+
+Esto dificulta muchísimo que el atacante adivine dónde está su código o la dirección de retorno.
+
+¿ASLR elimina el problema?
+
+No completamente.
+
+Existen técnicas para evadirlo, como:
+
+Ataques de canal lateral (Side Channel)
+Return Oriented Programming (ROP)
+Fugas de memoria (Memory Leaks)
+
+Pero ASLR aumenta mucho la dificultad del ataque.
+
+Señales para el examen
+
+Si ves palabras como:
+
+Buffer Overflow
+Stack Overflow
+Stack Smashing
+NOP Sled
+Dirección de retorno
+Return Address
+ASLR
+
+➡️ Están hablando de un ataque de desbordamiento de búfer.
+
+#### Resúmen de Conceptos Vistos en la Sección
+
+| Concepto            | Descripción                                                                                                                                                                                         |
+| ------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Buffer**          | Espacio temporal de memoria para almacenar datos.                                                                                                                                                   |
+| **Buffer Overflow** | Se escriben más datos de los que el buffer soporta.                                                                                                                                                 |
+| **Stack**           | Zona de memoria donde se guardan variables y direcciones de retorno.                                                                                                                                |
+| **Stack Smashing**  | Sobrescribir la dirección de retorno para ejecutar código malicioso.                                                                                                                                |
+| **NOP Sled**        | Cadena de instrucciones NOP que guía la ejecución hasta el malware.                                                                                                                                 |
+| **Objetivo**        | Ejecutar código arbitrario (RCE), abrir una shell o tomar control del sistema.                                                                                                                      |
+| **Mitigación**      | ASLR (aleatoriza las direcciones de memoria) y prácticas seguras de programación (validación de límites, uso de lenguajes con protección de memoria, compilación con Stack Canaries, DEP/NX, etc.). |
+
+Ahora bien, se trata de un concepto muy técnico y no es necesario comprenderlo en profundidad para este examen de certificación en concreto.
+
+Si más adelante sigues adelante con algunas certificaciones de pruebas de penetración, como el examen CompTIA PenTest+, entonces vas a volver y mirar los desbordamientos
+de búfer en una profundidad mucho más técnica. Pero para este examen, sólo tienes que recordar que un desbordamiento de búfer se va a utilizar para poner más datos en la memoria de lo que está
+diseñado para contener para que el atacante pueda tratar de conseguir que su código malicioso se ejecute.
+
+Esto se hace en un intento de desbordar el búfer de ese programa no malicioso para que el atacante pueda introducir su programa malicioso en la memoria y permitir que
+se ejecute en su lugar. Así que tenlo en cuenta para el examen.
