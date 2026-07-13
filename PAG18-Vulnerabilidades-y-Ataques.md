@@ -699,6 +699,8 @@ Cuando esto ocurre, el código ejecutará el nivel de permiso del sitio de confi
 se inyectó en la respuesta procedente de ese servidor de confianza al navegador del usuario final. Esta es la razón por la que lo llamamos un ataque de scripting entre sitios porque 
 el código malicioso va a ser inyectado y servido por el sitio de confianza a sus usuarios.
 
+Ahora bien, esto no es culpa del navegador, sino que se debe a que están diseñados para ejecutar scripts que reciben de sitios de confianza. Así es como está diseñado Internet.
+
 ¿Cómo funciona?
 
 El atacante encuentra un formulario vulnerable (comentarios, búsqueda, chat, etc.).
@@ -765,6 +767,9 @@ Es el tipo más peligroso.
 
 3. DOM-Based XSS
 
+Modelo de objetos de documentos va a explotar el navegador web del cliente utilizando scripts del lado del cliente para modificar el contenido y el
+diseño de la página web.
+
 El ataque ocurre completamente en el navegador.
 
 Ejemplo:
@@ -796,6 +801,14 @@ Content Security Policy (CSP).
 Cookies HttpOnly.
 Frameworks modernos que escapan HTML automáticamente.
 
+### Consejos para el Exámen
+
+Ahora, para el examen, déjame darte un par de consejos rápidos. En primer lugar, cada vez que usted está buscando en un fragmento de registro o URLs capturadas que tienen la secuencia de comandos
+o cualquier tipo de JavaScript dentro de ellos, lo más probable es que va a ser un ataque de secuencias de comandos entre sitios que va a ser la respuesta correcta a esa pregunta.
+
+Y segundo, si ves algo con document dot algo en él, como document dot cookie o document dot right, esto debería decirte que es un ataque basado en DOM, cross-site scripting porque está afectando 
+al modelo de objetos de documento de tu navegador. Si tienes en cuenta estos dos consejos, te irá genial en el examen.
+
 2. Gestión de sesiones
 
 Cuando inicias sesión, el servidor necesita recordar quién eres.
@@ -809,26 +822,27 @@ Cookies
 
 Son pequeños archivos que identifican al usuario.
 
-Hay dos tipos:
+Cookie: Una cookie es esencialmente un archivo de texto que se utiliza para almacenar información sobre un usuario cuando visita el sitio web. Esa cookie se creará cuando el servidor envíe por
+primera vez la cabecera de respuesta HTTP con esa cookie al cliente. cualquier encabezado de solicitud posterior que envíe el cliente al servidor debe incluir esa cookie con la información más actualizada.
 
-Cookies de sesión
+Hay dos tipos: Persistentes y No Persistentes
 
-Desaparecen al cerrar el navegador.
+Las cookies pueden ser persistentes o no persistentes. Ahora bien, una cookie no persistente también se conoce como cookie de sesión.
 
-Ejemplo:
+Las cookies de sesión residen en la memoria y se utilizan durante un periodo de tiempo muy corto. Sin embargo, otras cookies son más persistentes y se almacenan en la caché del
+navegador hasta que el usuario las borra o caducan.
 
-Banco
-Correo
-Campus virtual
-Cookies persistentes
+Por ejemplo, si mi sitio web utiliza cookies para rastrear sus movimientos y están configuradas para caducar a los siete días, se considerarían cookies persistentes.
+Si has terminado tu trabajo hoy, pero vuelves dentro de tres días, la cookie recuerda dónde estabas y te devuelve ese progreso.
 
-Permanecen días o meses.
+Por otro lado, si te vas durante dos semanas, cuando vuelvas, el sistema podría pensar que eres un usuario nuevo porque tus cookies ya han caducado después de estar fuera siete días.
 
-Ejemplo:
-
-"Recordarme"
+Cuando se trata de cookies, éstas deben estar encriptadas y protegidas, ya que también pueden contener información confidencial.
 
 3. Session Hijacking (Secuestro de sesión)
+
+Tipo de ataque de suplantación de identidad en el que el atacante desconecta un host y luego lo sustituye por su propia máquina suplantando la IP del host original o utilizando algún
+otro mecanismo de toma de control.
 
 El atacante roba la cookie o el token de sesión.
 
@@ -861,60 +875,136 @@ Un atacante puede predecirlos.
 
 Por eso deben ser totalmente aleatorios.
 
-4. Cross-Site Request Forgery (CSRF o XSRF)
+Los ataques de predicción de sesión son simplemente un tipo de ataque de suplantación de identidad en el que el atacante intenta predecir el testigo de sesión para secuestrar su sesión.
+Para evitar los ataques de predicción de sesión, los testigos de sesión deben generarse mediante un algoritmo no predecible y deben ser realmente aleatorios.
+
+4. Falsificación de Petición Entre Sitios/Cross-Site Request Forgery (CSRF o XSRF)
 
 ¿Qué es?
 
-Es un ataque donde el atacante aprovecha que el usuario ya inició sesión en un sitio para obligarlo a realizar acciones sin darse cuenta.
+Es un ataque donde el atacante aprovecha que el usuario ya inició sesión en un sitio para obligarlo a realizar acciones sin darse cuenta. En otros términos es un script malicioso que va a ser alojado
+en el sitio de un atacante que puede ser utilizado para explotar una sesión iniciada en otro sitio dentro del mismo navegador web. Para que esto funcione, el atacante necesita convencer a la víctima
+para que inicie una sesión con el sitio web objetivo. Una vez que esto ocurre, el atacante puede pasar una petición HTTP al navegador de la víctima y simularla como una acción en el sitio objetivo.
 
 La víctima ejecuta una acción sin saberlo.
 
 ¿Cómo funciona?
 
-Supongamos:
+Para que el ataque tenga éxito deben cumplirse estas condiciones:
 
-Estás conectado a tu banco.
-Sin cerrar sesión, visitas una página maliciosa.
+✅ La víctima ya inició sesión (por ejemplo, en su banco).
+✅ El sitio usa cookies de sesión para autenticar al usuario.
+✅ El atacante logra que la víctima visite una página maliciosa.
+✅ El sitio web no tiene protección contra CSRF.
 
-Esa página envía una petición como:
+Ejemplo bancario
 
-Cambiar contraseña
+Imagina que tienes dos pestañas abiertas:
 
-o
+Pestaña 1
 
-Transferir dinero
+Banco.com
 
-o
+Ya iniciaste sesión.
 
-Cambiar email
+El navegador guarda una cookie como:
 
-El navegador envía automáticamente la cookie del banco.
+SESSION_ID=ABCD1234
 
-El banco cree que la solicitud es legítima.
+Pestaña 2
 
-Ejemplo de CSRF
+Entras en:
 
-Estás conectado al banco.
+pagina-maliciosa.com
 
-Luego visitas:
+Sin que lo notes, esa página contiene un formulario HTML oculto o un script que envía una solicitud al banco para cambiar tu correo o contraseña.
 
-sitio-malicioso.com
+El navegador, al enviar la petición al banco, adjunta automáticamente la cookie de sesión, porque tú ya estabas autenticado.
 
-Ese sitio envía:
+El banco interpreta que la solicitud proviene de ti.
 
-POST
+Lo peligroso
 
-Cambiar email
+A diferencia del XSS:
 
-Nuevo email:
-hacker@gmail.com
+No siempre necesitas hacer clic en un botón.
+Basta con visitar una página maliciosa.
 
-Como tu navegador ya tiene la cookie del banco, el banco acepta la solicitud creyendo que fuiste tú.
+El navegador puede enviar la solicitud automáticamente usando elementos HTML ocultos, por ejemplo:
 
-¿Cómo prevenir CSRF?
+Formularios (<form>)
+Imágenes (<img>)
+Iframes (<iframe>)
+Scripts (<script>)
+Objetivos comunes
 
-Tokens CSRF únicos en cada formulario.
-Pedir la contraseña actual para cambios importantes.
-Autenticación de dos factores (2FA).
-Cookies con atributo SameSite.
-Tokens de sesión aleatorios.
+Un atacante puede intentar:
+
+Cambiar tu contraseña.
+Cambiar tu correo electrónico.
+Cambiar datos personales.
+Realizar una transferencia bancaria.
+Agregar un nuevo beneficiario.
+Comprar un producto.
+
+Todo utilizando tu propia sesión.
+
+¿Qué NO hace el atacante?
+
+No necesita:
+
+Conocer tu contraseña.
+Hackear el servidor.
+Romper el cifrado.
+
+Solo aprovecha que ya estás autenticado.
+
+Cómo prevenir CSRF
+
+Los desarrolladores pueden implementar varias medidas:
+
+1. Token CSRF (la protección más importante)
+
+Cada formulario incluye un token único y aleatorio.
+
+Cuando el formulario llega al servidor:
+
+Si el token es válido → se procesa.
+Si no existe o es incorrecto → se rechaza.
+
+2. Autenticación de dos factores (2FA)
+
+Para acciones importantes:
+
+Cambiar contraseña.
+Transferir dinero.
+Cambiar correo.
+
+Se solicita un código adicional.
+
+3. Solicitar la contraseña actual
+
+Antes de cambiar una contraseña, el sistema pide la contraseña vigente.
+
+Así, aunque el navegador envíe la solicitud automáticamente, el atacante no conoce ese dato.
+
+4. Tokens de sesión aleatorios
+
+Los identificadores de sesión deben ser largos e impredecibles para evitar que puedan adivinarse.
+
+#### Consejos
+
+Ahora para el examen, recuerde, que si alguien está tratando de conseguir una víctima para llevar a cabo involuntariamente una acción en un sitio web, esto normalmente va a ser una forma
+de falsificación de petición cross-site. Esto suele ocurrir intentando que la víctima realice algún tipo de actualización desconocida en su dirección de correo electrónico predeterminada
+o cambiando la contraseña de ese usuario, así que tenlo en cuenta para el examen. Si ves que:
+
+- El usuario ya inició sesión.
+- El atacante quiere que el usuario realice una acción sin darse cuenta.
+- Se habla de cookies, sesiones o cambiar contraseña/correo.
+
+➡️ La respuesta probablemente sea CSRF (Cross-Site Request Forgery).
+
+Truco para recordar
+
+XSS = Ejecutar código.
+CSRF = Ejecutar acciones usando una sesión ya iniciada.
