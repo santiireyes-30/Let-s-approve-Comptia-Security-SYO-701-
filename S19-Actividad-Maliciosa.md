@@ -29,7 +29,7 @@ El objetivo es **analizar indicadores de actividad maliciosa (Indicators of Mali
 - **Ataques de repetición (Replay Attacks):**
   - Intercepción y retransmisión de comunicaciones válidas para realizar acciones fraudulentas.
 
-- **Secuestro de sesión (Session Hijacking):**
+- **Secuestro de sesión/Secuestro lateral de sesión, Secuestro de Cookies o Secuestro de Clave de sesión (Session Hijacking):**
   - Robo de sesiones activas para obtener acceso no autorizado.
 
 - **Inyección de código malicioso:**
