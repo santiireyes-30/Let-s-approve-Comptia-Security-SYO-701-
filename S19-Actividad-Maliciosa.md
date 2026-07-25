@@ -1,4 +1,4 @@
-## Actividad Maliciosa
+# Actividad Maliciosa
 
 En esta sección se estudian las **actividades maliciosas** y los principales **ciberataques** que afectan a personas, empresas y gobiernos. Debido a que las amenazas evolucionan constantemente y son cada vez más sofisticadas, comprender cómo funcionan es fundamental para prevenirlas y mitigarlas.
 
