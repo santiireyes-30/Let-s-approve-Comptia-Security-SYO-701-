@@ -52,7 +52,8 @@ En la sección reforzaremos los conceptos y comprobar la comprensión de los dis
 
 # Ataques de Denegación de Servicio (DoS y DDoS)
 
-Un **ataque de Denegación de Servicio (DoS)** es una categoría de ataques cuyo objetivo es **hacer que un servidor, computadora o dispositivo de red deje de estar disponible** para los usuarios legítimos. Generalmente, esto se logra consumiendo todos los recursos del sistema.
+Un **ataque de Denegación de Servicio (DoS)** es una categoría de ataques cuyo objetivo es **hacer que un servidor, computadora o dispositivo de red deje de estar disponible** para los usuarios legítimos, pero
+también puede extenderse a dispositivos de red como conmutadores y enrutadores. Generalmente, esto se logra consumiendo todos los recursos del sistema.
 
 ## Tipos de ataques DoS
 
@@ -62,19 +63,42 @@ Consiste en enviar una gran cantidad de solicitudes a un servidor hasta que no p
 
 #### • Ping Flood (ICMP Flood)
 
-- Envía una gran cantidad de paquetes **ICMP Echo Request (ping)**.
-- Puede mitigarse bloqueando o limitando las respuestas ICMP mediante el firewall.
+Ahora, un ping es técnicamente un paquete de solicitud de eco ICMP pero les gusta llamarlo ping en el exámen.
+
+- Envía una gran cantidad de paquetes **ICMP Echo Request (ping)**, ping es el comando y ICMP su protocolo
+- Puede mitigarse bloqueando o limitando las respuestas/peticiones ICMP mediante el firewall.
+- El resultado de la mitigación es que el atacante simplemente recibe un mensaje de tiempo de espera de la solicitud y el servidor permanece en línea y se detiene la denegación de servicio.
 
 #### • SYN Flood
 
-- El atacante envía múltiples paquetes **SYN** para iniciar conexiones TCP, pero nunca completa el **Three-Way Handshake**.
-- El servidor mantiene recursos reservados para conexiones incompletas hasta agotarlos.
+- El atacante envía múltiples paquetes **SYN** para iniciar conexiones TCP(múltiples sesiones TCP), pero nunca completa el **Three-Way Handshake**(apretón de manos a tres bandas).
+- El servidor mantiene recursos reservados para conexiones incompletas hasta agotarlos. 
 
 **Mitigación:**
 
 - SYN Flood Protection en routers o firewalls.
 - IPS (Intrusion Prevention System).
 - Reducir el tiempo de espera (timeout) de conexiones semiabiertas.
+
+Esquema/Recorrido:
+
+Antes de mostrar el esquema debemos tener en cuenta que el atacante no se conecta directamente al servidor (a menos que esté en la misma red, lo cual casi nunca ocurre).
+
+El recorrido es:
+
+Atacante
+   ↓
+Switch
+   ↓
+Router
+   ↓
+Internet
+   ↓
+Router del servidor
+   ↓
+Switch
+   ↓
+Servidor
 
 ---
 
@@ -184,3 +208,6 @@ Estos servicios ofrecen:
 - **Fork Bomb:** crea procesos infinitos hasta consumir CPU y memoria.
 - **DNS Amplification:** amplifica el ataque utilizando respuestas DNS mucho mayores que las consultas.
 - **Mitigaciones:** Firewall, IPS, SYN Flood Protection, Blackholing/Sinkholing, infraestructura elástica y servicios especializados como Cloudflare o Akamai.
+
+#### Otro conceoto es:
+IP Spoofing: IP falsas (utilizada para inundar el servidor), en si no es tan relevante como los conceptos de exámen visto anteriormente, pero es para tenerlo en cuenta
