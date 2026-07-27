@@ -46,8 +46,6 @@ El objetivo es **analizar indicadores de actividad maliciosa (Indicators of Mali
   - Mensajes indicando que el sistema fue comprometido.
   - Archivos de registro (logs) faltantes.
 
-### Conclusión
-
 En la sección reforzaremos los conceptos y comprobar la comprensión de los distintos tipos de actividad maliciosa, sus mecanismos de ataque y los principales indicadores de compromiso.
 
 # Ataques de Denegación de Servicio (DoS y DDoS)
