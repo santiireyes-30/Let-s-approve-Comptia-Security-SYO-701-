@@ -65,20 +65,88 @@ Consiste en enviar una gran cantidad de solicitudes a un servidor hasta que no p
 
 Ahora, un ping es técnicamente un paquete de solicitud de eco ICMP pero les gusta llamarlo ping en el exámen.
 
-- Envía una gran cantidad de paquetes **ICMP Echo Request (ping)**, ping es el comando y ICMP su protocolo
+- Envía una gran cantidad de paquetes **ICMP Echo Request (ping)**, ping tambien es un comando y ICMP sería su protocolo
 - Puede mitigarse bloqueando o limitando las respuestas/peticiones ICMP mediante el firewall.
 - El resultado de la mitigación es que el atacante simplemente recibe un mensaje de tiempo de espera de la solicitud y el servidor permanece en línea y se detiene la denegación de servicio.
 
 #### • SYN Flood
 
 - El atacante envía múltiples paquetes **SYN** para iniciar conexiones TCP(múltiples sesiones TCP), pero nunca completa el **Three-Way Handshake**(apretón de manos a tres bandas).
+
+Vamos a ver con ejemplo mas claro para que tengamos una idea de como funciona su conexión
+
+Qué significa esto del: Three-Way Handshake (apretón de manos a tres bandas)
+
+Es el proceso que usa TCP para crear una conexión.
+
+Funciona así:
+
+#### Paso 1 — SYN
+
+El cliente dice:
+
+  - "Hola servidor, quiero conectarme."
+
+Cliente -------- SYN --------> Servidor
+
+#### Paso 2 — SYN-ACK
+
+El servidor responde:
+
+  - "Perfecto, yo también estoy listo."
+
+Cliente <----- SYN-ACK ------- Servidor
+
+#### Paso 3 — ACK
+
+El cliente confirma:
+
+  - "Genial, ahora sí podemos comunicarnos."
+
+Cliente -------- ACK --------> Servidor
+
+A partir de ese momento la conexión queda establecida.
+
+#### ¿Qué hace el atacante en un SYN Flood?
+
+Hace solamente esto:
+
+Cliente -------- SYN --------> Servidor
+
+Cliente <----- SYN-ACK ------- Servidor
+
+- Nunca envía el ACK (El ACK es simplemente el tercer mensaje que debería enviar el cliente para terminar de crear la conexión).
+
+Entonces el servidor piensa:
+
+"Bueno... voy a esperar un poco más."
+
+Y reserva memoria para esa conexión.
+
+El atacante vuelve a hacer lo mismo miles de veces:
+
+SYN
+SYN
+SYN
+SYN
+SYN
+SYN
+SYN
+SYN
+...
+
+El servidor sigue reservando memoria para cada conexión pendiente hasta que se queda sin recursos y deja de atender a usuarios legítimos.
+
+
 - El servidor mantiene recursos reservados para conexiones incompletas hasta agotarlos. 
 
 **Mitigación:**
 
 - SYN Flood Protection en routers o firewalls.
 - IPS (Intrusion Prevention System).
-- Reducir el tiempo de espera (timeout) de conexiones semiabiertas.
+- Reducir el tiempo de espera (timeout) de conexiones semiabiertas. su servidor puede configurarse para que las peticiones medio abiertas se agoten después de un periodo de tiempo, digamos 10, 15 o 30 segundos, y
+  esto liberará esos recursos y evitará que se produzca la denegación de servicio.
+- Protectores contra inundaciones en la red (Flood Guars).
 
 Esquema/Recorrido:
 
@@ -98,19 +166,32 @@ Router del servidor
    ↓
 Switch
    ↓
-Servidor
+Servidor (victima)
 
 ---
 
 ### • Permanent Denial of Service (PDoS)
 
-- Explota vulnerabilidades para **corromper o sobrescribir el firmware** de un dispositivo.
-- El equipo puede quedar inutilizable hasta reinstalar completamente el firmware.
-- Un simple reinicio no soluciona el problema.
+- Ataque que explota vulnerabilidades para **corromper o sobrescribir el firmware** de un dispositivo. Es decir que se trata de un ataque que aprovecha un fallo de seguridad para
+romper de forma permanente un dispositivo de red mediante la reinicialización de su firmware. Esto puede provocar que un dispositivo no pueda reiniciarse porque su sistema operativo se sobrescribe.
+
+También se denomina ataque permanente de denegación de servicio porque un reinicio rápido no volverá a poner en línea el sistema. En su lugar, hay que desconectar el dispositivo, hacer una recarga completa del firmware
+y volver a conectarlo.
 
 ---
 
-### • Fork Bomb
+### • Fork Bomb (Bomba de Horquilla)
+
+Con una bomba de bifurcación, El atacante crea un gran número de procesos para utilizar la potencia de procesamiento disponible de un ordenador. Este ataque recibe su nombre
+porque un proceso se llama bifurcación, y puede bifurcarse(se múltiplica) en dos procesos y luego en cuatro procesos y así sucesivamente hasta que consuma todos los recursos.
+
+Ahora, algunas personas piensan en esto como un gusano debido a la naturaleza auto-replicante, pero no son un gusano porque no infectan programas y no utilizan
+la red para propagarse.
+
+En cambio, las bombas de bifurcación sólo se propagan dentro de la memoria caché del procesador en un único ordenador con el que se está atacando, y provoca un ataque de denegación de
+servicio y una condición de denegación de servicio, razón por la que se considera que no es un gusano.
+
+Descripciones:
 
 - Crea procesos que se duplican continuamente hasta consumir toda la CPU y la memoria.
 - Solo afecta al equipo donde se ejecuta.
