@@ -199,28 +199,36 @@ Descripciones:
 
 # Ataque Distribuido de Denegación de Servicio (DDoS)
 
-Un **DDoS (Distributed Denial of Service)** funciona igual que un DoS, pero utiliza **cientos o miles de equipos comprometidos (bots o zombis)** para atacar simultáneamente a una misma víctima.
+Un **DDoS (Distributed Denial of Service)** funciona igual que un DoS, pero utiliza **cientos o miles de equipos comprometidos (bots o zombis)** para atacar simultáneamente a un único servidor
 
 ## Características
 
 - Utiliza una **botnet**.
-- Los dispositivos infectados normalmente desconocen que participan en el ataque.
+- Los dispositivos infectados normalmente desconocen que participan en el ataque, cuando reciben esa orden de atacar, todas ellas envían
+simultáneamente todas sus cargas útiles contra una única víctima.
 - Es mucho más difícil de detener que un DoS tradicional.
 
 ---
 
-## DNS Amplification Attack
-
-Es un tipo especial de **DDoS**.
+## DNS Amplification Attack (Tipo especial de **DDoS**)
 
 ### Funcionamiento
 
 1. El atacante falsifica (**IP Spoofing**) la dirección IP de la víctima.
 2. Envía pequeñas consultas DNS a múltiples servidores DNS abiertos.
 3. Los servidores responden con respuestas mucho más grandes.
-4. Todas esas respuestas llegan a la víctima, saturando su ancho de banda.
+4. Todas esas respuestas llegan a la víctima o a su servidor, saturando su ancho de banda (cantidad máxima de datos que una red puede transmitir por segundo).
 
 > Una consulta DNS pequeña genera una respuesta mucho mayor (**amplificación**), aumentando enormemente el volumen del ataque.
+
+El servidor DNS cree que la petición proviene realmente de la víctima y le envía la respuesta.
+
+El problema es que:
+
+La petición ocupa muy pocos datos.
+La respuesta DNS suele ser mucho más grande.
+
+Por eso, una pequeña petición genera una respuesta mucho mayor, amplificando el tráfico enviado a la víctima.
 
 ---
 
@@ -239,7 +247,7 @@ En **marzo de 2018**, GitHub sufrió uno de los mayores ataques DDoS registrados
 
 - Identifica las IP atacantes.
 - Redirige su tráfico hacia una interfaz nula ("agujero negro").
-- Es una solución temporal porque el atacante puede cambiar de IP.
+- Es una solución temporal. Porque desgraciadamente, los atacantes pueden trasladarse a una nueva IP y reiniciar el ataque de nuevo, por lo que ésta es sólo una solución temporal.
 
 ---
 
@@ -251,13 +259,17 @@ En **marzo de 2018**, GitHub sufrió uno de los mayores ataques DDoS registrados
 
 ---
 
-## • Infraestructura en la nube elástica
+## • Infraestructura en la nube elástica (Más Eficaz)
 
 - Escala automáticamente los recursos cuando aumenta el tráfico.
 - Permite soportar grandes volúmenes de solicitudes.
-- Su desventaja es el incremento del costo durante el ataque.
+- Su desventaja es el incremento del costo durante el ataque. Esta estrategia es que la mayoría de los proveedores de servicios te van a cobrar en función
+de la capacidad y los recursos que hayas utilizado, y no estás obteniendo un retorno de esta inversión porque este tráfico fue todo desperdiciado.
 
 ---
+
+"Así que hay algunos proveedores de nube especializados que han aceptado este reto. Empresas como CloudFlare y Akamai están diseñadas para
+ayudarle a capear estos ataques DDoS".
 
 ## • Servicios Anti-DDoS
 
@@ -268,11 +280,16 @@ Ejemplos:
 
 Estos servicios ofrecen:
 
-- Filtrado del tráfico malicioso.
+- Filtrado del tráfico malicioso a aplicaciones web y distribución de contenidos en nombre de su organización.
 - CDN (Content Delivery Network).
 - Protección contra ataques de gran volumen.
 - Alta disponibilidad.
 - Defensa en múltiples capas del modelo OSI.
+
+Estos proveedores de servicios se centran en asegurar que usted tiene redes altamente robustas y altamente disponibles que
+pueden asegurar que pueden escribir estos ataques DDoS y estos ataques de gran ancho de banda.
+
+Esto también le dará defensas adicionales en capas a través de su modelo OSI. Ayudará a proporcionarle protecciones adicionales.
 
 ---
 
