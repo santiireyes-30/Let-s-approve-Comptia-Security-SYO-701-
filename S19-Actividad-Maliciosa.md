@@ -417,26 +417,11 @@ Así que recuerde, los ataques DNS aprovechan las vulnerabilidades del Sistema d
 
 El envenenamiento de la caché DNS consiste en corromper la caché de un resolutor DNS.
 
-Los ataques de amplificación de DNS utilizan el proceso de resolución
+Los ataques de amplificación de DNS utilizan el proceso de resolución de DNS para inundar un objetivo con tráfico y crear una situación de denegación de servicio.
 
-de DNS para inundar un objetivo con tráfico y crear una situación
+La tunelización DNS puede utilizarse para eludir las reglas del cortafuegos y llevar a cabo la exfiltración de datos.
 
-de denegación de servicio.
-
-La tunelización DNS puede utilizarse para eludir las reglas del cortafuegos
-
-y llevar a cabo la exfiltración de datos.
-
-El secuestro de dominios implica cambios no autorizados
-
-en el registro de un dominio.
-
-Y el ataque de transferencia de zona DNS tiene como objetivo obtener una
-
+El secuestro de dominios implica cambios no autorizados en el registro de un dominio. Y el ataque de transferencia de zona DNS tiene como objetivo obtener una
 copia de los datos de la zona DNS de un dominio.
 
-Comprendiendo cómo actúan estos ataques se
-
-pueden establecer fácilmente mecanismos
-
-para evitar que se produzcan.
+Comprendiendo cómo actúan estos ataques se pueden establecer fácilmente mecanismos para evitar que se produzcan.
