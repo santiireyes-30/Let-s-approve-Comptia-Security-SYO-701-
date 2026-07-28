@@ -259,7 +259,7 @@ En **marzo de 2018**, GitHub sufrió uno de los mayores ataques DDoS registrados
 
 ---
 
-## • Infraestructura en la nube elástica (Más Eficaz)
+## • Infraestructura en la nube elástica (Eficaz pero más caro)
 
 - Escala automáticamente los recursos cuando aumenta el tráfico.
 - Permite soportar grandes volúmenes de solicitudes.
@@ -271,7 +271,7 @@ de la capacidad y los recursos que hayas utilizado, y no estás obteniendo un re
 "Así que hay algunos proveedores de nube especializados que han aceptado este reto. Empresas como CloudFlare y Akamai están diseñadas para
 ayudarle a capear estos ataques DDoS".
 
-## • Servicios Anti-DDoS
+## • Servicios Anti-DDoS (Eficaz)
 
 Ejemplos:
 
@@ -307,3 +307,136 @@ Esto también le dará defensas adicionales en capas a través de su modelo OSI.
 
 #### Otro conceoto es:
 IP Spoofing: IP falsas (utilizada para inundar el servidor), en si no es tan relevante como los conceptos de exámen visto anteriormente, pero es para tenerlo en cuenta
+
+# Ataques al Sistema de Nombres de Dominio (DNS)
+
+## ¿Qué es el DNS?
+
+El **Sistema de Nombres de Dominio (DNS)** traduce los **nombres de dominio** (ej. google.com) en **direcciones IP**, permitiendo que los dispositivos encuentren el servidor correcto. Debido a que es un servicio esencial de Internet, es un objetivo frecuente de los ciberataques.
+
+---
+
+# Tipos de ataques DNS
+
+## 1. Envenenamiento de caché DNS (DNS Cache Poisoning / DNS Spoofing)
+
+Consiste en **modificar la caché de un servidor DNS** con información falsa para que redirija a los usuarios hacia una **dirección IP controlada por un atacante**. Por ejemplo, un atacante podría envenenar la caché DNS de un sitio web popular de banca en línea y luego
+hacer que los usuarios del banco sean redirigidos a un sitio web falso donde sus credenciales de acceso 
+podrían ser robadas por los atacantes.
+
+### Objetivo
+- Redirigir a los usuarios a sitios web falsos.
+- Robar credenciales o distribuir malware.
+
+### Mitigación
+- Implementar **DNSSEC** para verificar la autenticidad e integridad de los registros DNS, o las extensiones de seguridad del Sistema de Nombres de Dominio para añadir firmas
+digitales a los datos DNS de su organización
+- Proteger los servidores DNS con **firewalls** y configuraciones seguras.
+
+---
+
+## 2. Ataque de amplificación DNS (DNS Amplification)
+
+Es un tipo de **ataque DDoS** donde el atacante envía **consultas DNS pequeñas** utilizando la **dirección IP falsificada de la víctima**.
+
+El servidor DNS responde con mensajes mucho más grandes hacia la víctima, saturando su ancho de banda y provocando una denegación de servicio.
+
+### Mitigación
+- Limitar el tamaño de las respuestas DNS.
+- Aplicar **Rate Limiting** (limitación de tasa) al tráfico DNS.
+
+---
+
+## 3. Tunelización DNS (DNS Tunneling)
+
+Consiste en utilizar el **protocolo DNS (puerto 53)** para transportar tráfico que normalmente no sería DNS (como HTTP o SSH).
+
+Aunque es una técnica legítima, los atacantes la utilizan para:
+
+- Evadir las reglas del firewall con fin de establecer canales de **Comando y Control (C2)**. o tambien filtrar datos de una organización.
+
+### Mitigación
+
+- Monitorear y analizar los **logs/registros DNS**.
+- Detectar consultas DNS anómalas o patrones inusuales.
+
+---
+
+## 4. Secuestro de dominios (Domain Hijacking)
+
+También conocido como **robo de dominios**.
+
+Consiste en modificar el registro de un dominio sin autorización, permitiendo que el atacante tome el control del sitio web o redirija a los usuarios hacia una página maliciosa.
+
+### Mitigación
+
+- Proteger la cuenta del registrador del dominio.
+- Mantener actualizada la información de la cuenta.
+- Utilizar **Domain Registry Lock** para impedir modificaciones no autorizadas.
+
+---
+
+## 5. Ataque de transferencia de zona DNS (DNS Zone Transfer Attack)
+
+El atacante intenta obtener una **copia completa de la zona DNS**, que contiene todos los registros del dominio.
+
+Este tipo de ataque puede exponer información sensible sobre la infraestructura de red del dominio y podría utilizarse como **"Reconocimiento"** para preparar futuros ataques contra la organización.
+
+### Mitigación
+- Permitir transferencias de zona únicamente entre servidores autorizados.
+- Restringir y autenticar las solicitudes de transferencia.
+
+---
+
+# Resumen
+
+| Ataque | Objetivo | Mitigación |
+|---------|----------|------------|
+| **Envenenamiento de caché DNS** | Redirigir usuarios a sitios falsos | DNSSEC, firewalls y servidores DNS seguros |
+| **Amplificación DNS** | Saturar a la víctima mediante respuestas DNS (DDoS) | Limitar respuestas y aplicar Rate Limiting |
+| **Tunelización DNS** | Evadir el firewall y exfiltrar datos | Monitorear y analizar los logs DNS |
+| **Secuestro de dominios** | Tomar el control de un dominio | Proteger el registrador y usar Domain Registry Lock |
+| **Transferencia de zona DNS** | Obtener información de la infraestructura DNS | Restringir y autenticar las transferencias de zona |
+
+---
+
+# Idea clave
+
+Los ataques DNS buscan **interrumpir servicios, redirigir tráfico o robar información** explotando vulnerabilidades del Sistema de Nombres de Dominio.
+
+Las principales medidas de defensa incluyen:
+
+- Implementar **DNSSEC**.
+- Proteger los servidores DNS con **firewalls**.
+- Monitorear continuamente los **logs DNS**.
+- Limitar el tráfico de respuestas DNS.
+- Restringir las transferencias de zona.
+- Proteger las cuentas de registro de dominios.
+
+Así que recuerde, los ataques DNS aprovechan las vulnerabilidades del Sistema de Nombres de Dominio para interrumpir el servicio, robar información o redirigir el tráfico de un sitio web.
+
+El envenenamiento de la caché DNS consiste en corromper la caché de un resolutor DNS.
+
+Los ataques de amplificación de DNS utilizan el proceso de resolución
+
+de DNS para inundar un objetivo con tráfico y crear una situación
+
+de denegación de servicio.
+
+La tunelización DNS puede utilizarse para eludir las reglas del cortafuegos
+
+y llevar a cabo la exfiltración de datos.
+
+El secuestro de dominios implica cambios no autorizados
+
+en el registro de un dominio.
+
+Y el ataque de transferencia de zona DNS tiene como objetivo obtener una
+
+copia de los datos de la zona DNS de un dominio.
+
+Comprendiendo cómo actúan estos ataques se
+
+pueden establecer fácilmente mecanismos
+
+para evitar que se produzcan.
