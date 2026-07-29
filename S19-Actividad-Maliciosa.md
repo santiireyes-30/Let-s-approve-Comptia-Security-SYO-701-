@@ -1104,3 +1104,227 @@ Instalación de Rootkit
 Kernel Mode      User Mode
 (Ring 0)         (Ring 3)
 ```
+
+# Ataques de Repetición (Replay Attack)
+
+## ¿Qué es un Replay Attack?
+
+Un **Replay Attack (Ataque de Repetición)** es un ataque de red en el que un atacante **captura una transmisión de datos válida** y posteriormente la **reenvía (reproduce)** para intentar obtener acceso no autorizado.
+
+El atacante **no necesita modificar la información**, simplemente reutiliza una comunicación legítima.
+
+> Su objetivo es hacer que el sistema crea que la petición original se está realizando nuevamente por el usuario legítimo.
+
+---
+
+# ¿Cómo funciona?
+
+El ataque sigue estos pasos:
+
+1. El usuario se autentica en un sistema.
+2. El atacante captura esa comunicación.
+3. Guarda los datos interceptados.
+4. Más tarde vuelve a enviarlos al servidor.
+5. Si el servidor no verifica correctamente la sesión, acepta la petición como válida.
+
+---
+
+# Ejemplo
+
+Supongamos que inicias sesión en tu banco.
+
+```text
+Usuario
+    │
+    │ Usuario + Contraseña
+    ▼
+Servidor del Banco
+```
+
+Un atacante captura esa comunicación.
+
+Más tarde envía exactamente los mismos datos:
+
+```text
+Atacante
+    │
+    │ Usuario + Contraseña capturados
+    ▼
+Servidor del Banco
+```
+
+Si el servidor acepta nuevamente esa información, el atacante podrá iniciar sesión como si fuera el usuario legítimo.
+
+---
+
+# Otro ejemplo
+
+Inicias sesión en una tienda online.
+
+El atacante captura:
+
+- Usuario.
+- Contraseña.
+- Token de autenticación.
+
+Más tarde reutiliza esa información para:
+
+- Realizar compras.
+- Cambiar la contraseña.
+- Bloquear el acceso al propietario.
+- Robar la cuenta.
+
+---
+
+# Replay Attack vs Session Hijacking
+
+| Replay Attack | Session Hijacking |
+|---------------|-------------------|
+| Captura una comunicación válida y la reutiliza más tarde. | Toma control de una sesión activa en tiempo real. |
+| Normalmente no modifica los datos. | Puede modificar la información enviada y recibida. |
+| Reproduce una transmisión anterior. | Interfiere durante la sesión activa. |
+
+**Diferencia clave:**
+
+- **Replay Attack:** reutiliza una comunicación capturada.
+- **Session Hijacking:** secuestra una sesión que aún está activa.
+
+---
+
+# ¿Cómo prevenir un Replay Attack?
+
+## 1. Session Tokens (Tokens de Sesión)
+
+Cada vez que un usuario inicia sesión, el servidor genera un **Session Token** único.
+
+Ejemplo:
+
+```text
+Token:
+A81F-92DB-7D21-BC55
+```
+
+Ese token identifica únicamente esa sesión.
+
+Si un atacante intenta reutilizar un token expirado o inválido, el servidor lo rechazará.
+
+---
+
+## 2. Autenticación Multifactor (MFA)
+
+Aunque el atacante capture:
+
+- Usuario.
+- Contraseña.
+
+Todavía necesitará el segundo factor.
+
+Por ejemplo:
+
+- Código de Google Authenticator.
+- Microsoft Authenticator.
+- SMS.
+- Llave física (FIDO2/U2F).
+- Huella digital.
+
+Como los códigos OTP cambian cada **30 o 60 segundos**, reutilizarlos resulta extremadamente difícil.
+
+---
+
+## 3. Protocolos seguros
+
+Utilizar protocolos modernos dificulta la captura y reutilización de las comunicaciones.
+
+Ejemplo:
+
+- WPA3 (Wi-Fi Protected Access 3).
+
+Esto protege mejor las redes inalámbricas frente a ataques de repetición.
+
+---
+
+# ¿Por qué funcionan estos ataques?
+
+Porque algunos sistemas:
+
+- No verifican que la petición sea única.
+- No invalidan correctamente los tokens.
+- No utilizan números aleatorios (*Nonce*).
+- No verifican marcas de tiempo (*Timestamps*).
+
+Entonces el servidor interpreta la petición repetida como si fuera completamente nueva.
+
+---
+
+# Conceptos importantes
+
+## Session Token
+
+Es un identificador único generado para cada sesión autenticada.
+
+Sirve para identificar al usuario mientras permanece conectado.
+
+---
+
+## Nonce
+
+Es un valor aleatorio que solo puede utilizarse **una única vez**.
+
+Su función es impedir que una petición pueda reutilizarse.
+
+Si un atacante vuelve a enviar la misma petición, el servidor detectará que el **Nonce** ya fue usado y la rechazará.
+
+---
+
+## Timestamp
+
+Es una marca de tiempo incluida en la comunicación.
+
+Si el mensaje llega demasiado tarde, el servidor lo considera inválido.
+
+Esto evita que una comunicación antigua pueda reproducirse horas o días después.
+
+---
+
+# Resumen rápido
+
+- **Replay Attack:** reutiliza una comunicación válida capturada anteriormente.
+- El atacante **no necesita modificar** los datos.
+- Su objetivo es autenticarse o ejecutar acciones como si fuera el usuario legítimo.
+- **Session Hijacking** secuestra una sesión activa; **Replay Attack** reproduce una comunicación pasada.
+- Las mejores defensas son:
+  - Session Tokens.
+  - Nonces.
+  - Timestamps.
+  - Autenticación Multifactor (MFA).
+  - Protocolos seguros como WPA3.
+
+---
+
+# Esquema para memorizar
+
+```text
+Usuario inicia sesión
+          │
+          ▼
+Servidor genera Session Token
+          │
+          ▼
+Atacante captura la comunicación
+          │
+          ▼
+Guarda los datos
+          │
+          ▼
+Los vuelve a enviar más tarde
+          │
+          ▼
+¿El servidor valida Token + Nonce + Timestamp?
+          │
+      ┌───┴───┐
+      ▼       ▼
+     Sí       No
+     │         │
+ Rechaza    Replay Attack
+ petición    exitoso
+```
