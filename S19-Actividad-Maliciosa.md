@@ -756,3 +756,351 @@ Carga un archivo que ya existe en el servidor.
 - **LFI:** carga un archivo local que ya existe en el servidor.
 - **`%2e%2e%2f`:** versión codificada de `../`.
 - **`%00`:** carácter nulo usado antiguamente para evadir algunos mecanismos de seguridad.
+
+# Ejecución de Código, Escalada de Privilegios y Rootkits
+
+## Ejecución Arbitraria de Código (Arbitrary Code Execution - ACE)
+
+Es una vulnerabilidad que permite a un atacante **ejecutar código propio** dentro de un sistema aprovechando una falla de seguridad.
+
+En otras palabras:
+
+> El atacante puede ejecutar cualquier programa o comando que desee en la máquina víctima.
+
+### Ejemplo
+
+Una aplicación tiene una vulnerabilidad.
+
+El atacante aprovecha esa vulnerabilidad para ejecutar:
+
+- Malware.
+- Un ransomware.
+- Un keylogger.
+- Un script de PowerShell.
+- Cualquier otro programa.
+
+Todo esto ocurre **sin autorización del propietario del sistema**.
+
+---
+
+## Ejecución Remota de Código (Remote Code Execution - RCE)
+
+Es un **tipo de Ejecución Arbitraria de Código**, pero con una diferencia importante:
+
+> El atacante ejecuta su código **desde otro equipo**, normalmente a través de Internet.
+
+### Diferencia entre ACE y RCE
+
+| Arbitrary Code Execution (ACE) | Remote Code Execution (RCE) |
+|-------------------------------|-----------------------------|
+| El atacante consigue ejecutar código. | El atacante ejecuta código de forma remota (Internet o red). |
+| Puede requerir acceso local. | No necesita acceso físico al equipo. |
+| Es un concepto general. | Es un caso específico de ACE. |
+
+### Ejemplo
+
+Un servidor web tiene una vulnerabilidad.
+
+El atacante, desde otro país, envía una petición especialmente diseñada.
+
+El servidor ejecuta:
+
+```text
+malware.exe
+```
+
+o
+
+```text
+powershell.exe
+```
+
+sin que el administrador lo autorice.
+
+Eso es **Remote Code Execution (RCE)**.
+
+---
+
+## Escalada de Privilegios (Privilege Escalation)
+
+Ocurre cuando un atacante consigue **más permisos de los que debería tener**.
+
+Generalmente el objetivo es obtener:
+
+- Permisos de administrador.
+- Permisos de root (Linux).
+- Permisos de SYSTEM (Windows).
+- Idealmente, permisos de Administrador de Dominio.
+
+Mientras más privilegios tenga, mayor control tendrá sobre el sistema.
+
+---
+
+## Tipos de Escalada de Privilegios
+
+### 1. Escalada Vertical
+
+El atacante pasa de un nivel de permisos bajo a uno superior.
+
+Ejemplo:
+
+```text
+Usuario normal
+        │
+        ▼
+Administrador
+        │
+        ▼
+SYSTEM / Root
+```
+
+### Ejemplo real
+
+1. Un usuario abre un correo de spear phishing.
+2. Se ejecuta un exploit.
+3. El atacante obtiene permisos de Administrador.
+
+Ahora puede:
+
+- Instalar programas.
+- Crear usuarios.
+- Desactivar el antivirus.
+- Modificar archivos del sistema.
+
+---
+
+### 2. Escalada Horizontal
+
+El atacante **no obtiene más privilegios**, sino que accede a los recursos de otro usuario del mismo nivel.
+
+Ejemplo:
+
+```text
+Usuario Juan
+        │
+        ▼
+Archivos de Juan
+
+Usuario Pedro
+        │
+        ▼
+Archivos de Pedro
+```
+
+Pedro no es administrador.
+
+Pero logra acceder a los archivos privados de Juan.
+
+Ambos siguen siendo usuarios normales.
+
+No aumentó el nivel de privilegios.
+
+Simplemente obtuvo acceso a recursos que no le pertenecían.
+
+---
+
+### ¿Por qué son importantes los privilegios?
+
+Cada aplicación se ejecuta utilizando los permisos del usuario que la abrió.
+
+Por ejemplo:
+
+| Programa | Permisos que utiliza |
+|-----------|----------------------|
+| Chrome abierto por un usuario normal | Permisos del usuario normal. |
+| CMD abierto como Administrador | Permisos de Administrador. |
+| Un servicio del sistema | Permisos de SYSTEM. |
+
+Si un atacante consigue ejecutar código dentro de una aplicación:
+
+> Su código heredará los mismos permisos que tenía esa aplicación.
+
+Ejemplo:
+
+Si un servicio de Windows se ejecuta como:
+
+```text
+SYSTEM
+```
+
+y el atacante consigue inyectar código en ese servicio,
+
+su malware también se ejecutará como:
+
+```text
+SYSTEM
+```
+
+Por eso las vulnerabilidades de RCE suelen ser tan peligrosas.
+
+---
+
+## Rootkits
+
+Un **Rootkit** es un tipo de malware diseñado para:
+
+- Ocultarse del usuario.
+- Ocultarse del antivirus.
+- Mantener persistencia.
+- Obtener control del sistema.
+
+Generalmente modifica archivos del sistema operativo, muchas veces a nivel del **Kernel**.
+
+Su objetivo es permanecer oculto durante el mayor tiempo posible.
+
+---
+
+### ¿Qué puede hacer un Rootkit?
+
+- Ocultar procesos.
+- Ocultar archivos.
+- Ocultar malware.
+- Instalar otros programas maliciosos.
+- Mantener acceso después de reiniciar el equipo.
+- Crear persistencia.
+
+Por eso son tan difíciles de detectar.
+
+---
+
+### Los anillos de privilegio (Protection Rings)
+
+El procesador organiza los privilegios mediante anillos.
+
+```text
+Ring 0
+│
+├── Kernel
+│
+Ring 1
+│
+├── Drivers
+│
+Ring 2
+│
+├── Servicios del sistema
+│
+Ring 3
+│
+└── Aplicaciones del usuario
+```
+
+Mientras más cerca del **Ring 0**, mayores privilegios existen.
+
+---
+
+### Ring 0 (Kernel)
+
+Es el núcleo del sistema operativo.
+
+Tiene acceso completo al hardware y a la memoria.
+
+Ejemplos:
+
+- Kernel de Windows.
+- Kernel de Linux.
+
+Si un malware llega aquí, tendrá control prácticamente total del equipo.
+
+---
+
+### Ring 3 (User Mode)
+
+Es donde funcionan las aplicaciones normales.
+
+Ejemplos:
+
+- Chrome.
+- Word.
+- Discord.
+- Spotify.
+
+Estas aplicaciones tienen muchas menos capacidades que el Kernel.
+
+---
+
+## Tipos de Rootkits
+
+### 1. Kernel Mode Rootkit
+
+Se instala en el **Kernel (Ring 0)**.
+
+Características:
+
+- Máximos privilegios.
+- Muy difícil de detectar.
+- Puede modificar el funcionamiento del sistema operativo.
+- Tiene control prácticamente total del equipo.
+
+Es el tipo más peligroso.
+
+---
+
+### 2. User Mode Rootkit
+
+Se instala en aplicaciones o utiliza funciones del sistema operativo.
+
+Normalmente mantiene la persistencia mediante:
+
+- Registro de Windows.
+- Programador de tareas.
+- Servicios.
+- Inicio automático.
+
+Tiene menos privilegios que un Kernel Rootkit.
+
+---
+
+### Diferencias
+
+| Kernel Mode Rootkit | User Mode Rootkit |
+|---------------------|-------------------|
+| Funciona en Ring 0. | Funciona en Ring 3. |
+| Tiene acceso total al sistema. | Tiene privilegios limitados. |
+| Mucho más difícil de detectar. | Más fácil de detectar. |
+| Es el más peligroso. | Menos peligroso. |
+
+---
+
+### Resumen rápido
+
+- **Arbitrary Code Execution (ACE):** permite ejecutar código arbitrario en un sistema.
+- **Remote Code Execution (RCE):** permite ejecutar código arbitrario de forma remota.
+- **Escalada Vertical:** aumenta el nivel de privilegios (Usuario → Administrador → Root/SYSTEM).
+- **Escalada Horizontal:** accede a recursos de otro usuario del mismo nivel.
+- **Rootkit:** malware diseñado para ocultarse y mantener persistencia.
+- **Kernel Mode Rootkit:** funciona en **Ring 0**, tiene el máximo nivel de privilegios y es el más peligroso.
+- **User Mode Rootkit:** funciona en modo usuario y suele mantener persistencia mediante funciones del sistema operativo.
+
+---
+
+### Esquema para memorizar
+
+```text
+Vulnerabilidad
+       │
+       ▼
+Arbitrary Code Execution (ACE)
+       │
+       ▼
+Remote Code Execution (RCE)
+       │
+       ▼
+Ejecución del malware
+       │
+       ▼
+Escalada de Privilegios
+       │
+       ├──────────────┐
+       ▼              ▼
+Vertical         Horizontal
+(Usuario → Admin) (Usuario → Otro Usuario)
+       │
+       ▼
+Instalación de Rootkit
+       │
+       ├──────────────┐
+       ▼              ▼
+Kernel Mode      User Mode
+(Ring 0)         (Ring 3)
+```
