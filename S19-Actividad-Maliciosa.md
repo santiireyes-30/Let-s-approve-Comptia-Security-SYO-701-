@@ -1328,3 +1328,328 @@ Los vuelve a enviar más tarde
  Rechaza    Replay Attack
  petición    exitoso
 ```
+# Secuestro de Sesión (Session Hijacking)
+
+## ¿Qué es la Gestión de Sesiones?
+
+La **Gestión de Sesiones (Session Management)** es el mecanismo que utilizan las aplicaciones web para identificar a un usuario durante toda su interacción con el sitio.
+
+Permite que el servidor recuerde información como:
+
+- El usuario que inició sesión.
+- Las páginas que visitó.
+- Su carrito de compras.
+- Su progreso en un curso.
+- Sus permisos.
+- Sus preferencias.
+
+Sin la gestión de sesiones, el servidor trataría cada petición como si proviniera de un usuario completamente nuevo.
+
+---
+
+# ¿Por qué es necesaria?
+
+El protocolo **HTTP es Stateless (sin estado)**.
+
+Esto significa que:
+
+> El servidor **no recuerda automáticamente** quién eres entre una petición y otra.
+
+Por ello, las aplicaciones utilizan:
+
+- Session Tokens.
+- Cookies.
+- Bases de datos.
+
+para mantener la sesión del usuario.
+
+---
+
+# Cookies
+
+Una **Cookie** es un pequeño archivo de texto que un servidor almacena en el navegador del usuario para guardar información sobre su sesión.
+
+Funcionamiento:
+
+```text
+Usuario
+     │
+     │ Solicitud HTTP
+     ▼
+Servidor
+     │
+     │ Respuesta HTTP + Cookie
+     ▼
+Navegador
+```
+
+En las siguientes peticiones:
+
+```text
+Navegador
+     │
+     │ Cookie + Solicitud HTTP
+     ▼
+Servidor
+```
+
+Gracias a esa cookie, el servidor reconoce al usuario.
+
+---
+
+# Tipos de Cookies
+
+## 1. Session Cookies (Cookies de Sesión)
+
+Características:
+
+- Se almacenan únicamente en memoria (RAM).
+- Se eliminan al cerrar el navegador.
+- No permanecen en el disco.
+
+Son las más utilizadas para mantener una sesión autenticada.
+
+---
+
+## 2. Persistent Cookies (Cookies Persistentes)
+
+Características:
+
+- Se almacenan en el navegador.
+- Permanecen incluso después de cerrar el navegador.
+- Tienen una fecha de expiración.
+
+Ejemplo:
+
+```text
+Duración:
+7 días
+```
+
+Si el usuario vuelve antes de ese tiempo, el servidor aún podrá reconocerlo.
+
+---
+
+# Seguridad de las Cookies
+
+Las cookies pueden contener información sensible, por lo que deben protegerse.
+
+Buenas prácticas:
+
+- Cifrarlas cuando contienen datos importantes.
+- Transmitirlas mediante HTTPS.
+- Asignarles un tiempo de expiración.
+- Eliminarlas cuando finaliza la sesión.
+
+---
+
+# Secuestro de Sesión (Session Hijacking)
+
+El **Session Hijacking** es un ataque en el que un atacante consigue tomar el control de la sesión de un usuario autenticado.
+
+En lugar de conocer la contraseña, el atacante roba o utiliza el identificador de sesión (Session Token o Cookie).
+
+Así, el servidor cree que el atacante es el usuario legítimo.
+
+---
+
+## ¿Cómo funciona?
+
+```text
+Usuario inicia sesión
+          │
+          ▼
+Servidor genera Session Token
+          │
+          ▼
+El navegador almacena la Cookie
+          │
+          ▼
+Atacante roba la Cookie
+          │
+          ▼
+La envía al servidor
+          │
+          ▼
+El servidor cree que es el usuario legítimo
+```
+
+---
+
+# Formas de realizar un Session Hijacking
+
+## 1. Robo de Cookies
+
+Es la técnica más común.
+
+El atacante obtiene la cookie de sesión mediante:
+
+- Malware.
+- Cross-Site Scripting (XSS).
+- Redes inseguras.
+- Otros ataques.
+
+Luego la reutiliza para acceder a la cuenta.
+
+---
+
+## 2. Modificación de Cookies
+
+El atacante altera el contenido de una cookie para intentar obtener más privilegios o acceder a funciones restringidas.
+
+---
+
+## 3. Predicción de Session Tokens (Session Prediction)
+
+Algunos servidores generan Session Tokens de forma predecible.
+
+Ejemplo (inseguro):
+
+```text
+1001
+1002
+1003
+1004
+```
+
+Un atacante podría adivinar:
+
+```text
+1005
+```
+
+y secuestrar la sesión de otro usuario.
+
+Por eso los Session Tokens deben generarse utilizando números aleatorios criptográficamente seguros.
+
+---
+
+## ¿Qué es un Session Token?
+
+Es un identificador único que representa una sesión autenticada.
+
+Ejemplo:
+
+```text
+AB81-93FD-8C22-FF91
+```
+
+Mientras ese token sea válido, el servidor reconocerá al usuario.
+
+---
+
+## Cookie Poisoning (Envenenamiento de Cookies)
+
+El **Cookie Poisoning** consiste en modificar el contenido de una cookie después de que el servidor la haya enviado al navegador.
+
+El objetivo es explotar vulnerabilidades de la aplicación web.
+
+Ejemplo:
+
+Cookie original:
+
+```text
+Rol=Usuario
+```
+
+El atacante intenta modificarla por:
+
+```text
+Rol=Administrador
+```
+
+Si el servidor no valida correctamente la cookie, podría otorgar privilegios que el usuario no debería tener.
+
+---
+
+## ¿Cómo prevenir el Cookie Poisoning?
+
+- Validar siempre las cookies recibidas.
+- Cifrar la información almacenada.
+- Firmar digitalmente las cookies.
+- Eliminar las cookies al cerrar la sesión.
+- No almacenar información sensible en texto plano.
+
+---
+
+## Buenas prácticas para proteger las sesiones
+
+- Utilizar HTTPS.
+- Cifrar las cookies sensibles.
+- Generar Session Tokens aleatorios.
+- Invalidar el Session Token al cerrar sesión.
+- Establecer tiempos de expiración cortos.
+- Validar todas las cookies recibidas.
+- Regenerar el Session Token después del inicio de sesión.
+- Utilizar autenticación multifactor (MFA).
+
+---
+
+## Session Hijacking vs Replay Attack
+
+| Session Hijacking | Replay Attack |
+|-------------------|---------------|
+| Roba o secuestra una sesión activa. | Reproduce una comunicación capturada anteriormente. |
+| Utiliza principalmente Session Tokens o Cookies robadas. | Reutiliza datos válidos interceptados. |
+| La sesión suele seguir activa. | La comunicación puede reproducirse mucho después. |
+| El objetivo es controlar la sesión del usuario. | El objetivo es repetir una petición válida. |
+
+---
+
+### Resumen rápido
+
+- **Session Management:** permite identificar a un usuario durante toda su sesión.
+- **HTTP es Stateless**, por eso se utilizan Cookies y Session Tokens.
+- **Session Cookie:** desaparece al cerrar el navegador.
+- **Persistent Cookie:** permanece hasta su fecha de expiración.
+- **Session Hijacking:** consiste en robar una sesión autenticada utilizando su Session Token o Cookie.
+- **Session Prediction:** intenta adivinar el Session Token.
+- **Cookie Poisoning:** modifica una cookie para explotar vulnerabilidades.
+- Las mejores defensas son:
+  - HTTPS.
+  - Cookies cifradas y firmadas.
+  - Session Tokens aleatorios.
+  - Expiración de sesiones.
+  - MFA.
+
+---
+
+## Esquema para memorizar
+
+```text
+HTTP (Stateless)
+        │
+        ▼
+Gestión de Sesiones
+        │
+        ▼
+Session Token + Cookie
+        │
+        ▼
+Usuario autenticado
+        │
+        ▼
+─────────────── Ataques ───────────────
+
+Session Hijacking
+│
+├── Robo de Cookies
+├── Modificación de Cookies
+└── Predicción de Session Tokens
+
+Cookie Poisoning
+│
+└── Modificación del contenido de la Cookie
+
+─────────────── Defensa ───────────────
+
+HTTPS
+│
+Cookies cifradas
+│
+Session Tokens aleatorios
+│
+Expiración de sesiones
+│
+MFA
+```
