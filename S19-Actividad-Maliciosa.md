@@ -2086,6 +2086,11 @@ Es muy parecido a una **SQL Injection**, pero en lugar de atacar una base de dat
 
 ## Ejemplo
 
+si el código backend para el servidor utiliza el siguiente código,
+
+  - string ldapSearch = "(cn = $searchName")";
+  - System. fuera. println(ldapSearch);
+
 Supongamos que el servidor genera esta consulta:
 
 ```text
@@ -2136,7 +2141,7 @@ El problema aparece cuando la aplicación toma directamente la entrada del usuar
 
 ---
 
-## Ejemplo
+### Ejemplo
 
 La aplicación permite comprobar si un servidor responde mediante `ping`.
 
@@ -2201,9 +2206,9 @@ Con ello busca abrir una **Shell remota** y tomar control del servidor.
 
 ---
 
-# 3. Process Injection
+## 3. Process Injection
 
-## ¿Qué es?
+### ¿Qué es?
 
 La **Process Injection** consiste en inyectar código dentro de un proceso legítimo que ya se encuentra ejecutándose.
 
@@ -2211,7 +2216,7 @@ El objetivo es que el malware se ejecute **como si fuera parte del proceso legí
 
 ---
 
-## ¿Por qué se utiliza?
+### ¿Por qué se utiliza?
 
 Porque muchos antivirus confían en procesos conocidos.
 
@@ -2235,7 +2240,7 @@ Si el malware se ejecuta dentro de uno de ellos, resulta mucho más difícil det
 
 ---
 
-# Técnicas comunes de Process Injection
+## Técnicas comunes de Process Injection
 
 Algunas técnicas utilizadas son:
 
@@ -2249,17 +2254,17 @@ No es necesario memorizar su funcionamiento en detalle para este tema, pero sí 
 
 ---
 
-# ¿Cómo prevenir Process Injection?
+## ¿Cómo prevenir Process Injection?
 
-- Utilizar soluciones EDR o Antivirus modernos.
-- Supervisar comportamientos anómalos de procesos.
-- Utilizar módulos de seguridad a nivel Kernel.
-- Aplicar el principio de mínimo privilegio.
-- Mantener el sistema operativo actualizado.
+Para mitigar las inyecciones de procesos, debe utilizar:
+
+- Soluciones de seguridad para puntos finales que estén configuradas para bloquear secuencias comunes de comportamiento de ataque.
+- Puede utilizar un módulo del núcleo de seguridad
+- Puede utilizar la práctica del mínimo privilegio.
 
 ---
 
-# Comparación
+## Comparación
 
 | LDAP Injection | Command Injection | Process Injection |
 |----------------|-------------------|-------------------|
