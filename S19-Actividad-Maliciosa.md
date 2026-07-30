@@ -1371,6 +1371,8 @@ para mantener la sesión del usuario.
 
 Una **Cookie** es un pequeño archivo de texto que un servidor almacena en el navegador del usuario para guardar información sobre su sesión.
 
+Ejemplo de un curso: nos almacena los procesos que hemos hecho durante el curso, la base de datos nos guarda las secciones, cuestionarios que se van realizando para que la próxima vez que te conectes no se pierdan tus resultados.
+
 Funcionamiento:
 
 ```text
