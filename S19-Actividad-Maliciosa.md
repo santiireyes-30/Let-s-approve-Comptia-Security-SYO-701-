@@ -1330,6 +1330,8 @@ Los vuelve a enviar más tarde
 ```
 # Secuestro de Sesión (Session Hijacking)
 
+#### - "Antes de entrar a ver lo que es secuestro de sesión, primero vemos cosas más basicas como la Gestión de Sesiones para tener una idea más clara luego cuando veamos Secuestro de Sesión".
+
 ## ¿Qué es la Gestión de Sesiones?
 
 La **Gestión de Sesiones (Session Management)** es el mecanismo que utilizan las aplicaciones web para identificar a un usuario durante toda su interacción con el sitio.
