@@ -1399,6 +1399,28 @@ Servidor
 
 Gracias a esa cookie, el servidor reconoce al usuario.
 
+Ahora vamos a dar una analogía del peligro de una cookie si es robada
+
+Imagina un guardarropa en un teatro.
+
+Cuando dejas tu abrigo, te dan un ticket:
+
+Ticket #4582
+
+Ese ticket no dice:
+
+Tu nombre.
+Tu dirección.
+Qué abrigo tienes.
+
+Solo dice:
+
+4582
+
+Pero quien tenga ese ticket puede retirar el abrigo.
+
+La cookie de sesión funciona de manera muy parecida: normalmente solo contiene un identificador, pero ese identificador le permite al servidor encontrar toda la información del usuario. Por eso robar una cookie de sesión puede ser tan grave, incluso si la cookie no contiene datos personales visibles.
+
 ---
 
 ## Tipos de Cookies
@@ -1449,7 +1471,8 @@ Buenas prácticas:
 
 ## Secuestro de Sesión (Session Hijacking)
 
-El **Session Hijacking** es un ataque en el que un atacante consigue tomar el control de la sesión de un usuario autenticado.
+El **Session Hijacking** se trata de un tipo de ataque de suplantación de identidad en el que el atacante desconecta un host y luego lo sustituye por su propia máquina, suplantando
+la dirección IP del host original o utilizando algún otro mecanismo. tambien en el que un atacante consigue tomar el control de la sesión de un usuario autenticado.
 
 En lugar de conocer la contraseña, el atacante roba o utiliza el identificador de sesión (Session Token o Cookie).
 
@@ -1562,7 +1585,7 @@ El atacante intenta modificarla por:
 Rol=Administrador
 ```
 
-Seguramente te preguntaras si El objetivo es atacar al servidor o al usuario?, Principalmente al servidor o a la aplicación web, de ya que el usuario puede verse afectado, pero el verdadero objetivo suele ser explotar la lógica de la aplicación.
+Seguramente te preguntaras si el objetivo es atacar al servidor o al usuario?, Principalmente al servidor o a la aplicación web, de ya que el usuario puede verse afectado, pero el verdadero objetivo suele ser explotar la lógica de la aplicación.
 
 Proceso: Normalmente el atacante modifica la cookie almacenada en el navegador del usuario y luego la envía al servidor, el servidor recibe esa cookie manipulada y, si no la valida correctamente, puede aceptar información falsa o podría otorgar privilegios que el usuario no debería tener.
 
