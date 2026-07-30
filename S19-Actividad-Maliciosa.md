@@ -1334,7 +1334,7 @@ Los vuelve a enviar más tarde
 
 ## ¿Qué es la Gestión de Sesiones?
 
-La **Gestión de Sesiones (Session Management)** es el mecanismo que utilizan las aplicaciones web para identificar a un usuario durante toda su interacción con el sitio.
+La **Gestión de Sesiones (Session Management)** es el mecanismo que utilizan las aplicaciones web para identificar de forma unica a un usuario durante toda su interacción con el sitio.
 
 Permite que el servidor recuerde información como:
 
@@ -1349,7 +1349,7 @@ Sin la gestión de sesiones, el servidor trataría cada petición como si provin
 
 ---
 
-# ¿Por qué es necesaria?
+## ¿Por qué es necesaria?
 
 El protocolo **HTTP es Stateless (sin estado)**.
 
@@ -1367,7 +1367,7 @@ para mantener la sesión del usuario.
 
 ---
 
-# Cookies
+## Cookies
 
 Una **Cookie** es un pequeño archivo de texto que un servidor almacena en el navegador del usuario para guardar información sobre su sesión.
 
@@ -1399,9 +1399,9 @@ Gracias a esa cookie, el servidor reconoce al usuario.
 
 ---
 
-# Tipos de Cookies
+## Tipos de Cookies
 
-## 1. Session Cookies (Cookies de Sesión)
+### 1. Session Cookies (Cookies de Sesión)
 
 Características:
 
@@ -1413,7 +1413,7 @@ Son las más utilizadas para mantener una sesión autenticada.
 
 ---
 
-## 2. Persistent Cookies (Cookies Persistentes)
+### 2. Persistent Cookies (Cookies Persistentes)
 
 Características:
 
@@ -1432,7 +1432,7 @@ Si el usuario vuelve antes de ese tiempo, el servidor aún podrá reconocerlo.
 
 ---
 
-# Seguridad de las Cookies
+## Seguridad de las Cookies
 
 Las cookies pueden contener información sensible, por lo que deben protegerse.
 
@@ -1445,7 +1445,7 @@ Buenas prácticas:
 
 ---
 
-# Secuestro de Sesión (Session Hijacking)
+## Secuestro de Sesión (Session Hijacking)
 
 El **Session Hijacking** es un ataque en el que un atacante consigue tomar el control de la sesión de un usuario autenticado.
 
@@ -1455,7 +1455,7 @@ Así, el servidor cree que el atacante es el usuario legítimo.
 
 ---
 
-## ¿Cómo funciona?
+### ¿Cómo funciona?
 
 ```text
 Usuario inicia sesión
@@ -1478,9 +1478,9 @@ El servidor cree que es el usuario legítimo
 
 ---
 
-# Formas de realizar un Session Hijacking
+## Formas de realizar un Session Hijacking
 
-## 1. Robo de Cookies
+### 1. Robo de Cookies
 
 Es la técnica más común.
 
@@ -1495,13 +1495,13 @@ Luego la reutiliza para acceder a la cuenta.
 
 ---
 
-## 2. Modificación de Cookies
+### 2. Modificación de Cookies
 
 El atacante altera el contenido de una cookie para intentar obtener más privilegios o acceder a funciones restringidas.
 
 ---
 
-## 3. Predicción de Session Tokens (Session Prediction)
+### 3. Predicción de Session Tokens (Session Prediction)
 
 Algunos servidores generan Session Tokens de forma predecible.
 
