@@ -1743,3 +1743,561 @@ Expiración de sesiones
 │
 MFA
 ```
+# Ataques On-Path (Man-in-the-Middle - MitM)
+
+## ¿Qué es un ataque On-Path?
+
+Un **On-Path Attack** (antes conocido como **Man-in-the-Middle - MitM**) es un ataque en el que el atacante consigue colocarse **entre dos dispositivos que se están comunicando**.
+
+Desde esa posición puede:
+
+- Interceptar la comunicación.
+- Leer los datos.
+- Modificar los datos.
+- Reenviar los datos al destino.
+
+El cliente y el servidor creen que están hablando directamente entre sí, cuando en realidad toda la comunicación pasa por el atacante.
+
+---
+
+## ¿Cómo funciona?
+
+```text
+Comunicación normal
+
+Cliente
+    │
+    ▼
+Servidor
+```
+
+Con un ataque On-Path:
+
+```text
+Cliente
+    │
+    ▼
+Atacante
+    │
+    ▼
+Servidor
+```
+
+Todo el tráfico pasa primero por el atacante.
+
+---
+
+## ¿Qué puede hacer el atacante?
+
+Desde esa posición puede:
+
+- Capturar usuarios y contraseñas.
+- Robar cookies de sesión.
+- Leer información confidencial.
+- Capturar tokens.
+- Modificar mensajes.
+- Cambiar archivos descargados.
+- Redirigir al usuario a sitios falsos.
+
+---
+
+## ¿Cómo consigue ponerse "en el medio"?
+
+Algunas técnicas comunes son:
+
+- **ARP Spoofing / ARP Poisoning** (red local).
+- **DNS Spoofing / DNS Poisoning**.
+- **Punto de acceso Wi-Fi falso (Evil Twin)**.
+- **Switch falso o dispositivo de red malicioso**.
+
+Una vez que logra estar entre el cliente y el servidor, comienza a interceptar el tráfico.
+
+---
+
+## Replay vs Relay
+
+Una vez interceptada la comunicación, el atacante puede utilizar dos técnicas principales.
+
+### 1. Replay (Repetición)
+
+Consiste en:
+
+1. Capturar una comunicación válida.
+2. Guardarla.
+3. Reenviarla inmediatamente o más tarde.
+
+Ejemplo:
+
+```text
+Cliente
+     │ Login
+     ▼
+Servidor
+
+        (El atacante captura el login)
+
+Más tarde...
+
+Atacante
+     │ Reenvía exactamente el mismo mensaje
+     ▼
+Servidor
+```
+
+Si el servidor no detecta que la comunicación ya fue utilizada, podría aceptarla.
+
+---
+
+## 2. Relay (Retransmisión)
+
+Aquí el atacante **permanece en medio de la comunicación**.
+
+No espera para reutilizar los datos.
+
+Simplemente recibe cada mensaje y lo reenvía inmediatamente.
+
+```text
+Cliente
+     │
+     ▼
+Atacante
+     │
+     ▼
+Servidor
+```
+
+Durante ese proceso puede:
+
+- Leer los datos.
+- Modificarlos.
+- Reenviarlos.
+
+El atacante actúa como un **Proxy** entre ambas partes.
+
+---
+
+## Replay vs Relay
+
+| Replay | Relay |
+|---------|--------|
+| Captura una comunicación y la reutiliza después. | Intercepta y retransmite la comunicación en tiempo real. |
+| Puede haber un retraso entre captura y uso. | Ocurre mientras la comunicación está activa. |
+| Normalmente no modifica los datos. | Puede modificar los datos antes de reenviarlos. |
+
+---
+
+## ¿Qué dificulta estos ataques?
+
+El principal obstáculo es el **cifrado**.
+
+Si la comunicación utiliza protocolos modernos como:
+
+- TLS 1.2
+- TLS 1.3
+
+el atacante podrá capturar los paquetes, pero no podrá leer fácilmente su contenido.
+
+---
+
+## SSL Stripping
+
+El **SSL Stripping** es un ataque cuyo objetivo es eliminar el uso de HTTPS.
+
+En lugar de:
+
+```text
+Cliente
+        │ HTTPS
+        ▼
+Servidor
+```
+
+el atacante intenta degradar la conexión a:
+
+```text
+Cliente
+        │ HTTP
+        ▼
+Atacante
+        │ HTTPS
+        ▼
+Servidor
+```
+
+El cliente cree que está usando una conexión normal, mientras que el atacante puede leer toda la información enviada mediante HTTP.
+
+---
+
+## Downgrade Attack
+
+Un **Downgrade Attack** intenta que el cliente y el servidor utilicen una versión **menos segura** de un protocolo.
+
+Ejemplo:
+
+El cliente quiere negociar:
+
+```text
+TLS 1.3
+```
+
+El atacante fuerza la negociación para utilizar:
+
+```text
+TLS 1.0
+```
+
+o antiguamente:
+
+```text
+SSL 2.0
+```
+
+Al utilizar un protocolo más débil, el atacante tiene más posibilidades de romper el cifrado o explotar vulnerabilidades conocidas.
+
+> **Importante:** Hoy en día **SSL 2.0 y SSL 3.0 están obsoletos e inseguros**, y la mayoría de los sistemas modernos ya no los aceptan. El concepto de *Downgrade Attack* sigue siendo válido porque puede aplicarse a otros protocolos y mecanismos de seguridad.
+
+---
+
+## ¿Dónde pueden ocurrir los Downgrade Attacks?
+
+No solo en HTTPS.
+
+También pueden afectar:
+
+- Wi-Fi.
+- VPN.
+- TLS.
+- SSH.
+- Otros protocolos que negocian niveles de seguridad.
+
+Siempre que un atacante consiga que ambas partes utilicen una opción compatible pero menos segura, estará realizando un **Downgrade Attack**.
+
+---
+
+# ¿Cómo prevenir los ataques On-Path?
+
+- Utilizar HTTPS con TLS 1.2 o TLS 1.3.
+- Verificar certificados digitales.
+- Utilizar HSTS (HTTP Strict Transport Security).
+- Utilizar WPA3 en redes Wi-Fi.
+- Evitar redes Wi-Fi públicas no confiables.
+- Utilizar VPN cuando sea necesario.
+- Implementar autenticación multifactor (MFA).
+
+---
+
+# Resumen rápido
+
+- **On-Path Attack (MitM):** el atacante se coloca entre el cliente y el servidor.
+- Puede leer, modificar o retransmitir la comunicación.
+- **Replay:** captura una comunicación válida y la reutiliza más tarde.
+- **Relay:** retransmite la comunicación en tiempo real, pudiendo modificarla.
+- **SSL Stripping:** degrada una conexión HTTPS a HTTP para eliminar el cifrado.
+- **Downgrade Attack:** fuerza el uso de una versión menos segura de un protocolo.
+- El uso de **TLS moderno**, certificados válidos y HSTS ayuda a prevenir estos ataques.
+
+---
+
+# Esquema para memorizar
+
+```text
+Cliente
+      │
+      ▼
+Atacante (On-Path)
+      │
+      ▼
+Servidor
+
+El atacante puede:
+
+├── Leer datos
+├── Modificar datos
+├── Robar Cookies
+├── Robar credenciales
+├── Replay
+└── Relay
+
+───────────────
+
+Replay
+│
+└── Captura → Guarda → Reenvía después
+
+Relay
+│
+└── Intercepta → Modifica (opcional) → Reenvía inmediatamente
+
+───────────────
+
+Si existe cifrado fuerte (TLS)
+
+│
+└── Más difícil de leer la comunicación
+
+───────────────
+
+Ataques relacionados
+
+SSL Stripping
+│
+└── HTTPS → HTTP
+
+Downgrade Attack
+│
+└── TLS moderno → Versión menos segura
+```
+# Ataques de Inyección: LDAP, Command Injection y Process Injection
+
+En esta sección se estudian tres tipos comunes de ataques de inyección:
+
+- LDAP Injection
+- Command Injection
+- Process Injection
+
+---
+
+## 1. LDAP Injection
+
+### ¿Qué es LDAP?
+
+**LDAP (Lightweight Directory Access Protocol)** es un protocolo utilizado para acceder y administrar un servicio de directorios.
+
+Se utiliza frecuentemente para almacenar información como:
+
+- Usuarios.
+- Contraseñas (o referencias a ellas).
+- Grupos.
+- Equipos.
+- Aplicaciones.
+- Permisos.
+
+Es muy común en entornos empresariales como **:contentReference[oaicite:0]{index=0}**.
+
+---
+
+## ¿Qué es una LDAP Injection?
+
+Es un ataque donde el atacante introduce una consulta LDAP maliciosa para modificar la búsqueda que realiza la aplicación.
+
+Es muy parecido a una **SQL Injection**, pero en lugar de atacar una base de datos SQL, ataca un servidor LDAP.
+
+---
+
+## Ejemplo
+
+Supongamos que el servidor genera esta consulta:
+
+```text
+(cn=Juan)
+```
+
+Donde:
+
+- `cn` = Common Name (Nombre común).
+- `Juan` = usuario buscado.
+
+Si la aplicación no valida correctamente la entrada y el atacante escribe:
+
+```text
+*
+```
+
+La consulta se convierte en:
+
+```text
+(cn=*)
+```
+
+El `*` es un comodín (*wildcard*) que significa:
+
+> "Muéstrame todos los usuarios."
+
+Si el servidor acepta esa consulta, devolverá toda la lista de usuarios.
+
+---
+
+## ¿Cómo prevenir LDAP Injection?
+
+- Validar todas las entradas del usuario.
+- Sanitizar caracteres especiales.
+- Utilizar consultas parametrizadas cuando sea posible.
+- Aplicar el principio de mínimo privilegio.
+
+---
+
+## 2. Command Injection
+
+### ¿Qué es?
+
+Ocurre cuando un atacante consigue ejecutar **comandos del sistema operativo** aprovechando una aplicación web vulnerable.
+
+El problema aparece cuando la aplicación toma directamente la entrada del usuario y la ejecuta en la consola (Shell).
+
+---
+
+## Ejemplo
+
+La aplicación permite comprobar si un servidor responde mediante `ping`.
+
+El usuario introduce:
+
+```text
+google.com
+```
+
+El servidor ejecuta:
+
+```bash
+ping google.com
+```
+
+Todo funciona correctamente.
+
+---
+
+## Ataque
+
+El atacante introduce:
+
+```text
+google.com && hostname
+```
+
+El servidor ejecuta:
+
+```bash
+ping google.com && hostname
+```
+
+Ahora ejecuta **dos comandos**:
+
+1. `ping google.com`
+2. `hostname`
+
+El atacante obtiene el nombre del servidor.
+
+---
+
+## Ataque más grave
+
+Podría intentar ejecutar:
+
+```text
+google.com && /bin/sh ...
+```
+
+Con ello busca abrir una **Shell remota** y tomar control del servidor.
+
+---
+
+## ¿Cómo prevenir Command Injection?
+
+- Validar todas las entradas.
+- Permitir únicamente caracteres esperados.
+- Utilizar listas blancas (Whitelist).
+- No construir comandos concatenando texto enviado por el usuario.
+- Ejecutar aplicaciones con el mínimo privilegio posible.
+
+---
+
+# 3. Process Injection
+
+## ¿Qué es?
+
+La **Process Injection** consiste en inyectar código dentro de un proceso legítimo que ya se encuentra ejecutándose.
+
+El objetivo es que el malware se ejecute **como si fuera parte del proceso legítimo**.
+
+---
+
+## ¿Por qué se utiliza?
+
+Porque muchos antivirus confían en procesos conocidos.
+
+Ejemplos:
+
+- explorer.exe
+- svchost.exe
+- chrome.exe
+
+Si el malware se ejecuta dentro de uno de ellos, resulta mucho más difícil detectarlo.
+
+---
+
+## ¿Qué consigue el atacante?
+
+- Ejecutar malware oculto.
+- Acceder a la memoria de otro proceso.
+- Utilizar sus permisos.
+- Acceder a recursos del sistema.
+- Evadir soluciones de seguridad (EDR/Antivirus).
+
+---
+
+# Técnicas comunes de Process Injection
+
+Algunas técnicas utilizadas son:
+
+- DLL Injection.
+- Process Hollowing.
+- Process Doppelgänging.
+- Asynchronous Procedure Calls (APC Injection).
+- Portable Executable (PE Injection).
+
+No es necesario memorizar su funcionamiento en detalle para este tema, pero sí conocer sus nombres.
+
+---
+
+# ¿Cómo prevenir Process Injection?
+
+- Utilizar soluciones EDR o Antivirus modernos.
+- Supervisar comportamientos anómalos de procesos.
+- Utilizar módulos de seguridad a nivel Kernel.
+- Aplicar el principio de mínimo privilegio.
+- Mantener el sistema operativo actualizado.
+
+---
+
+# Comparación
+
+| LDAP Injection | Command Injection | Process Injection |
+|----------------|-------------------|-------------------|
+| Ataca consultas LDAP. | Ejecuta comandos del sistema operativo. | Inyecta código en un proceso legítimo. |
+| Similar a SQL Injection. | Ataca el Shell del sistema. | Ataca procesos ya existentes. |
+| Busca acceder a usuarios o directorios. | Busca controlar el servidor. | Busca ocultar malware y evadir detección. |
+
+---
+
+# Resumen rápido
+
+- **LDAP Injection:** modifica consultas LDAP para obtener o manipular información del directorio.
+- **Command Injection:** ejecuta comandos del sistema operativo mediante una aplicación web vulnerable.
+- **Process Injection:** introduce código malicioso dentro de un proceso legítimo para ocultarse y aprovechar sus permisos.
+- La mejor defensa contra LDAP y Command Injection es **validar y sanitizar la entrada del usuario**.
+- La mejor defensa contra Process Injection es utilizar **EDR**, aplicar el **principio de mínimo privilegio** y supervisar procesos sospechosos.
+
+---
+
+# Esquema para memorizar
+
+```text
+Ataques de Inyección
+
+│
+├── LDAP Injection
+│      │
+│      ├── Modifica consultas LDAP
+│      └── Busca usuarios, grupos o información del directorio
+│
+├── Command Injection
+│      │
+│      ├── Ejecuta comandos del sistema operativo
+│      └── Puede obtener una Shell remota
+│
+└── Process Injection
+       │
+       ├── Inyecta código en procesos legítimos
+       ├── Evade antivirus y EDR
+       └── Aprovecha los permisos del proceso
+```
