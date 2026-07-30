@@ -1487,7 +1487,7 @@ Es la técnica más común.
 El atacante obtiene la cookie de sesión mediante:
 
 - Malware.
-- Cross-Site Scripting (XSS).
+- Cross-Site Scripting (XSS)/permite inyectar codigo javascript malicioso (se ejecuta en el navegador de otros usuarios)
 - Redes inseguras.
 - Otros ataques.
 
@@ -1560,17 +1560,80 @@ El atacante intenta modificarla por:
 Rol=Administrador
 ```
 
-Si el servidor no valida correctamente la cookie, podría otorgar privilegios que el usuario no debería tener.
+Seguramente te preguntaras si El objetivo es atacar al servidor o al usuario?, Principalmente al servidor o a la aplicación web, de ya que el usuario puede verse afectado, pero el verdadero objetivo suele ser explotar la lógica de la aplicación.
+
+Proceso: Normalmente el atacante modifica la cookie almacenada en el navegador del usuario y luego la envía al servidor, el servidor recibe esa cookie manipulada y, si no la valida correctamente, puede aceptar información falsa o podría otorgar privilegios que el usuario no debería tener.
 
 ---
 
 ## ¿Cómo prevenir el Cookie Poisoning?
 
-- Validar siempre las cookies recibidas.
-- Cifrar la información almacenada.
-- Firmar digitalmente las cookies.
-- Eliminar las cookies al cerrar la sesión.
-- No almacenar información sensible en texto plano.
+#### - Validar siempre las cookies recibidas.
+
+Nunca confiar en lo que envía el navegador.
+
+Ejemplo:
+
+El navegador envía:
+
+rol=admin
+
+El servidor debe comprobar en su base de datos si ese usuario realmente es administrador.
+
+No debe creer el valor solo porque viene en la cookie.
+
+#### - Cifrar la información almacenada.
+
+En lugar de guardar:
+
+rol=admin
+
+guardar un valor cifrado, por ejemplo:
+
+A83D91F2...
+
+Así el usuario no puede leerlo ni modificarlo fácilmente.
+
+Importante: en la práctica, además de cifrar, es más importante firmar la cookie para detectar cualquier modificación.
+
+#### - Firmar digitalmente las cookies.
+
+Es una de las mejores defensas.
+
+El servidor añade una firma criptográfica a la cookie.
+
+Ejemplo:
+
+usuario=Santiago
+firma=9A7F2B...
+
+Si el atacante cambia:
+
+usuario=Administrador
+
+la firma deja de coincidir y el servidor rechaza la cookie.
+
+Así detecta cualquier manipulación.
+
+#### - Eliminar las cookies al cerrar la sesión.
+
+Cuando el usuario cierra sesión, el servidor invalida el Session Token y el navegador elimina la cookie.
+
+Así, aunque alguien consiga esa cookie después, ya no servirá.
+
+#### - No almacenar información sensible en texto plano.
+
+Evitar guardar datos como:
+
+rol=admin
+saldo=100000
+esPremium=true
+
+Lo recomendable es guardar únicamente un identificador de sesión, por ejemplo:
+
+session_id=7F92AB...
+
+Luego el servidor consulta en su base de datos toda la información real del usuario.
 
 ---
 
