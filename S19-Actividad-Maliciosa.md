@@ -2363,6 +2363,8 @@ Si una sesión está en Argentina y otra en Europa al mismo tiempo, es un fuerte
 
 Se producen múltiples intentos de acceder o descargar contenido que las políticas de seguridad han bloqueado.
 
+En otras palabras... Podría indicar que un usuario está intentando acceder a contenidos maliciosos o que un atacante está intentando descargar datos confidenciales.
+
 ### ¿Qué puede indicar?
 
 - Descarga de malware.
