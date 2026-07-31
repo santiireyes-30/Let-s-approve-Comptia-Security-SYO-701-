@@ -2306,3 +2306,292 @@ Ataques de Inyección
        ├── Evade antivirus y EDR
        └── Aprovecha los permisos del proceso
 ```
+
+# Indicadores de Compromiso (IoC - Indicators of Compromise)
+
+Los **Indicadores de Compromiso (IoC)** son evidencias o rastros digitales que sugieren que un sistema o una red **podrían haber sido comprometidos** por un atacante.
+
+> **Importante:** Un IoC **no confirma** un ataque por sí solo. Es una señal que debe investigarse para determinar si se trata de un compromiso real o de un falso positivo.
+
+---
+
+## 1. Bloqueo de cuentas (Account Lockout)
+
+Ocurre cuando una cuenta es bloqueada tras varios intentos fallidos de inicio de sesión.
+
+### ¿Qué puede indicar?
+
+- Ataque de fuerza bruta.
+- Ataque de diccionario.
+- Credential Stuffing.
+- Un usuario que olvidó su contraseña (falso positivo).
+
+### Mitigación
+
+- Configurar políticas de bloqueo de cuentas.
+- Aplicar retrasos entre intentos de inicio de sesión.
+- Implementar MFA.
+
+---
+
+## 2. Sesiones Concurrentes (Concurrent Session Usage)
+
+Se detectan **varias sesiones activas** utilizando la misma cuenta al mismo tiempo.
+
+### ¿Qué puede indicar?
+
+- Robo de credenciales.
+- Secuestro de sesión.
+- Compartición de cuentas.
+- Un usuario usando varios dispositivos (falso positivo).
+
+### Ejemplo
+
+```text
+Usuario
+
+PC Oficina  ─────────► Sesión activa
+
+Laptop Casa ─────────► Sesión activa
+```
+
+Si una sesión está en Argentina y otra en Europa al mismo tiempo, es un fuerte indicio de compromiso.
+
+---
+
+## 3. Contenido Bloqueado (Blocked Content)
+
+Se producen múltiples intentos de acceder o descargar contenido que las políticas de seguridad han bloqueado.
+
+### ¿Qué puede indicar?
+
+- Descarga de malware.
+- Robo de información.
+- Intento de acceder a archivos restringidos.
+
+---
+
+## 4. Viaje Imposible (Impossible Travel)
+
+Se detectan inicios de sesión desde ubicaciones geográficas incompatibles con el tiempo transcurrido entre ambos accesos.
+
+### Ejemplo
+
+```text
+09:00 → Nueva York
+
+10:00 → Londres
+```
+
+Es físicamente imposible viajar entre ambas ciudades en una hora.
+
+### ¿Qué puede indicar?
+
+- Robo de credenciales.
+- Cuenta comprometida.
+- Uso de VPN (falso positivo).
+
+---
+
+## 5. Consumo Anómalo de Recursos
+
+Se observa un aumento inusual en el uso de:
+
+- CPU.
+- Memoria RAM.
+- GPU.
+- Ancho de banda.
+- Disco.
+
+### ¿Qué puede indicar?
+
+- Malware.
+- Cryptomining.
+- DDoS.
+- Procesos maliciosos.
+
+### Ejemplo
+
+```text
+CPU normal: 20%
+
+CPU actual: 95%
+```
+
+Esto puede indicar que el servidor está siendo utilizado para ejecutar procesos maliciosos.
+
+---
+
+## 6. Recursos Inaccesibles
+
+Archivos, bases de datos o servicios dejan de estar disponibles.
+
+### ¿Qué puede indicar?
+
+- Ransomware.
+- Corrupción de datos.
+- Eliminación de archivos.
+- Ataque al servidor.
+
+### Ejemplo
+
+El usuario intenta abrir un documento y aparece una nota de rescate.
+
+---
+
+## 7. Registros Fuera de Horario (Out-of-Cycle Logging)
+
+Se detectan actividades en horarios poco habituales.
+
+### Ejemplo
+
+```text
+03:00 AM
+
+Inicio de sesión exitoso.
+```
+
+Cuando nadie debería estar trabajando.
+
+### ¿Qué puede indicar?
+
+- Acceso no autorizado.
+- Automatización maliciosa.
+- Actividad del atacante.
+
+---
+
+## 8. Registros Perdidos (Missing Logs)
+
+Se observan huecos o desaparición de registros.
+
+### ¿Qué puede indicar?
+
+- Manipulación de logs.
+- Intento de borrar evidencias.
+- Actividad del atacante.
+
+### Ejemplo
+
+```text
+01:15
+
+...
+
+(No existen registros)
+
+...
+
+05:40
+```
+
+El atacante pudo eliminar esos registros para ocultar sus acciones.
+
+---
+
+## 9. Publicación indicando que la organización fue hackeada
+
+Los atacantes anuncian públicamente el compromiso.
+
+Puede aparecer en:
+
+- Redes sociales.
+- Foros de hackers.
+- Sitios web.
+- Defacement de la página web.
+
+### ¿Qué puede indicar?
+
+- Ataque exitoso.
+- Hacktivismo.
+- Daño reputacional.
+- Extorsión.
+
+---
+
+## ¿Por qué son importantes los IoC?
+
+Los IoC permiten:
+
+- Detectar ataques rápidamente.
+- Investigar incidentes.
+- Contener amenazas.
+- Reducir el impacto del ataque.
+
+---
+
+## IoC ≠ Confirmación de ataque
+
+Un IoC **no significa automáticamente que exista un compromiso**.
+
+Siempre debe analizarse el contexto.
+
+Ejemplos de falsos positivos:
+
+- Un usuario olvidó su contraseña → Bloqueo de cuenta.
+- Un empleado usa una VPN → Viaje imposible.
+- Un administrador trabaja de madrugada → Registro fuera de horario.
+- Un servidor realiza una actualización → Alto consumo de CPU.
+
+Por ello, los analistas SOC revisan los eventos y registros para confirmar si realmente ocurrió un incidente.
+
+---
+
+## Resumen rápido
+
+- **IoC:** evidencia o indicio de una posible intrusión.
+- **Bloqueo de cuentas:** posibles ataques de fuerza bruta.
+- **Sesiones concurrentes:** posible robo de credenciales.
+- **Contenido bloqueado:** intento de acceder a recursos restringidos.
+- **Viaje imposible:** accesos desde ubicaciones incompatibles.
+- **Consumo anómalo de recursos:** posible malware, DDoS o cryptomining.
+- **Recursos inaccesibles:** posible ransomware.
+- **Registros fuera de horario:** actividad sospechosa.
+- **Registros perdidos:** intento de ocultar evidencias.
+- **Publicaciones de hackeo:** evidencia pública del compromiso.
+- Un **IoC requiere investigación** antes de concluir que ocurrió un ataque.
+
+---
+
+## Esquema para memorizar
+
+```text
+Indicadores de Compromiso (IoC)
+
+│
+├── Bloqueo de cuentas
+│      └── Fuerza bruta
+│
+├── Sesiones concurrentes
+│      └── Robo de credenciales
+│
+├── Contenido bloqueado
+│      └── Descarga o acceso malicioso
+│
+├── Viaje imposible
+│      └── Inicio de sesión desde ubicaciones incompatibles
+│
+├── Alto consumo de recursos
+│      ├── Malware
+│      ├── DDoS
+│      └── Cryptomining
+│
+├── Recursos inaccesibles
+│      └── Ransomware
+│
+├── Registros fuera de horario
+│      └── Actividad sospechosa
+│
+├── Registros perdidos
+│      └── Eliminación de evidencias
+│
+└── Publicación del hackeo
+       └── Confirmación pública del compromiso
+
+↓
+
+Todo IoC debe investigarse para determinar si es:
+
+✓ Compromiso real
+✗ Falso positivo
+```
