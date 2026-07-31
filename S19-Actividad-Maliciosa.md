@@ -2549,7 +2549,7 @@ Por ello, los analistas SOC revisan los eventos y registros para confirmar si re
 - **Registros fuera de horario:** actividad sospechosa.
 - **Registros perdidos:** intento de ocultar evidencias.
 - **Publicaciones de hackeo:** evidencia pública del compromiso.
-- Un **IoC requiere investigación** antes de concluir que ocurrió un ataque.
+- Un **IoC requiere investigación** antes de concluir que ocurrió un ataque, ya sea en red o sistema.
 
 ---
 
