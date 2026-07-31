@@ -2422,6 +2422,11 @@ CPU actual: 95%
 
 Esto puede indicar que el servidor está siendo utilizado para ejecutar procesos maliciosos.
 
+### Otro Ejemplo
+
+Otro ejemplo sería si estás navegando por la web en tu estación de trabajo y el uso de la GPU es del 90%, esto es una buena indicación de que el sistema puede ser un zombi y ha sido registrado como un agente de minería de criptomonedas 
+o la realización de algún otro tipo de tarea de recursos computacionales pesados para un actor de amenaza, los cuales se han convertido en ataques muy populares en los últimos años.
+
 ---
 
 ## 6. Recursos Inaccesibles
