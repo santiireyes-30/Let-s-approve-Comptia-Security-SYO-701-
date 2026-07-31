@@ -378,7 +378,7 @@ Consiste en modificar el registro de un dominio sin autorización, permitiendo q
 
 ## 5. Ataque de transferencia de zona DNS (DNS Zone Transfer Attack)
 
-El atacante intenta obtener una **copia completa de la zona DNS**, que contiene todos los registros del dominio.
+El atacante intenta obtener una **copia completa de la zona DNS**, que contiene todos los registros del dominio. Es decir que el atacante intenta obtener una copia de todos los datos de la zona DNS haciéndose pasar por un sistema autorizado.
 
 Este tipo de ataque puede exponer información sensible sobre la infraestructura de red del dominio y podría utilizarse como **"Reconocimiento"** para preparar futuros ataques contra la organización.
 
@@ -388,7 +388,7 @@ Este tipo de ataque puede exponer información sensible sobre la infraestructura
 
 ---
 
-# Resumen
+## Resumen
 
 | Ataque | Objetivo | Mitigación |
 |---------|----------|------------|
@@ -396,7 +396,7 @@ Este tipo de ataque puede exponer información sensible sobre la infraestructura
 | **Amplificación DNS** | Saturar a la víctima mediante respuestas DNS (DDoS) | Limitar respuestas y aplicar Rate Limiting |
 | **Tunelización DNS** | Evadir el firewall y exfiltrar datos | Monitorear y analizar los logs DNS |
 | **Secuestro de dominios** | Tomar el control de un dominio | Proteger el registrador y usar Domain Registry Lock |
-| **Transferencia de zona DNS** | Obtener información de la infraestructura DNS | Restringir y autenticar las transferencias de zona |
+| **Transferencia de zona DNS** | Obtener información o copia de todos los datos de la infraestructura DNS, haciendose pasar por un sistema autorizado | Restringir y autenticar las transferencias de zona |
 
 ---
 
