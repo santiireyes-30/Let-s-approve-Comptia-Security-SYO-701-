@@ -1019,3 +1019,623 @@ Políticas de TI
 └── Gestión de Cambios
        └── Cambios controlados y aprobados
 ```
+
+# Normas
+
+Las **normas** son **reglas obligatorias y específicas** que indican **cómo aplicar las políticas** de seguridad de una organización. Su objetivo es garantizar una implementación uniforme de las medidas de seguridad.
+
+### 1. Normas sobre contraseñas
+Definen los requisitos que deben cumplir las contraseñas para proteger las cuentas.
+
+- Longitud mínima (normalmente 8-12 caracteres o más).
+- Uso de mayúsculas, minúsculas, números y caracteres especiales.
+- Cambio periódico de contraseñas (por ejemplo, cada 60-90 días).
+- Prohibición de reutilizar contraseñas antiguas.
+- Uso de **hashing** y **salting** para almacenar las contraseñas de forma segura.
+
+> **Objetivo:** dificultar ataques como fuerza bruta o robo de contraseñas.
+
+---
+
+### 2. Normas de control de acceso
+Definen **quién puede acceder a qué recursos** dentro de la organización.
+
+#### Modelos de control de acceso
+
+- **DAC (Discretionary Access Control):**
+  - El propietario del recurso decide quién puede acceder.
+
+- **MAC (Mandatory Access Control):**
+  - El acceso depende de etiquetas o niveles de clasificación.
+  - Muy utilizado en entornos militares o gubernamentales.
+
+- **RBAC (Role-Based Access Control):**
+  - Los permisos se asignan según el rol del usuario.
+  - Ejemplo: Analista SOC, Administrador, Recursos Humanos.
+
+#### Principios importantes
+
+- **Mínimo privilegio (Least Privilege):**
+  - Cada usuario solo recibe los permisos estrictamente necesarios para realizar su trabajo.
+
+- **Separación de funciones (Separation of Duties):**
+  - Se evita que una sola persona tenga control total sobre un proceso crítico.
+
+> **Objetivo:** reducir el riesgo de accesos no autorizados y amenazas internas.
+
+---
+
+### 3. Normas de seguridad física
+Protegen físicamente los activos y la infraestructura de la organización.
+
+Incluyen:
+
+- Seguridad perimetral:
+  - Vallas.
+  - Puertas de seguridad.
+  - Guardias.
+
+- Vigilancia:
+  - Cámaras CCTV.
+
+- Control de acceso:
+  - Tarjetas de acceso.
+  - Lectores biométricos.
+
+- Controles ambientales:
+  - Sistemas contra incendios.
+  - Aire acondicionado para servidores.
+  - Sistemas de energía redundante (UPS, generadores).
+
+- Áreas seguras:
+  - Salas de servidores.
+  - Centros de datos con controles de acceso adicionales.
+
+> **Objetivo:** evitar robos, sabotajes y daños físicos a los sistemas.
+
+---
+
+### 4. Normas de cifrado
+Definen qué algoritmos de cifrado deben utilizarse para proteger la información.
+
+Ejemplos:
+
+- **AES (Advanced Encryption Standard):**
+  - Se utiliza principalmente para cifrar **datos en reposo**.
+  - Es rápido y muy seguro.
+
+- **RSA:**
+  - Utiliza criptografía de clave pública.
+  - Se emplea principalmente para comunicaciones seguras e intercambio de claves.
+
+> **Objetivo:** que los datos sean ilegibles aunque sean robados o interceptados.
+
+---
+
+## Resumen 
+
+- **Normas:** reglas obligatorias que implementan las políticas.
+- **Contraseñas:** requisitos de complejidad, cambio periódico, hash y salting.
+- **Control de acceso:** DAC, MAC, RBAC, mínimo privilegio y separación de funciones.
+- **Seguridad física:** protege edificios, equipos y centros de datos.
+- **Cifrado:** protege la información mediante algoritmos como **AES** y **RSA**.
+
+# Procedimientos
+
+Los **procedimientos** son **instrucciones paso a paso** que indican **cómo realizar una tarea** de forma consistente, eficiente y cumpliendo las políticas y normas de la organización.
+
+#### Ejemplos de procedimientos
+- **Evacuación de emergencia:** indica qué hacer ante un incendio o desastre (rutas de evacuación, puntos de reunión, responsabilidades).
+- **Copia de seguridad (Backup):** establece cuándo y cómo realizar respaldos de los datos (copias incrementales, completas y pruebas de restauración).
+
+---
+
+## 1. Procedimiento de Gestión del Cambio (Change Management)
+
+Es un proceso para implementar cambios en la organización de forma controlada, minimizando riesgos e interrupciones.
+
+### Etapas
+
+1. **Identificar la necesidad del cambio.**
+2. **Evaluar el impacto** que tendrá el cambio.
+3. **Planificar** cómo se implementará (personas, recursos y tiempos).
+4. **Implementar** el cambio, normalmente por etapas.
+5. **Revisar los resultados** y documentar las lecciones aprendidas.
+
+#### Buenas prácticas
+
+- Probar primero los cambios importantes.
+- Tener un **plan de reversión (rollback)** por si algo falla.
+- Realizar cambios durante una **ventana de mantenimiento** para afectar lo menos posible a los usuarios.
+- Documentar todo el proceso.
+
+> **Objetivo:** aplicar cambios de forma segura y con el menor impacto posible.
+
+---
+
+## 2. Procedimientos de Incorporación y Desincorporación
+
+### Incorporación (Onboarding)
+
+Proceso para integrar a un nuevo empleado.
+
+Incluye:
+
+- Inducción u orientación.
+- Capacitación.
+- Entrega de equipos.
+- Creación de cuentas y permisos.
+- Integración con el equipo.
+
+> **Objetivo:** que el empleado sea productivo lo antes posible.
+
+---
+
+### Desincorporación (Offboarding)
+
+Proceso cuando un empleado abandona la empresa.
+
+Incluye:
+
+- Recuperar equipos de la empresa.
+- Desactivar cuentas y accesos.
+- Revocar permisos.
+- Realizar entrevista de salida.
+
+> **Objetivo:** evitar accesos no autorizados y asegurar una transición ordenada.
+
+---
+
+### 3. Playbooks (Libros de Jugadas)
+
+Un **playbook** es una **guía paso a paso** que indica cómo responder ante una situación o incidente específico.
+
+Incluye:
+
+- Acciones que deben realizarse.
+- Recursos necesarios.
+- Orden de ejecución.
+- Resultado esperado.
+
+Se utilizan especialmente en:
+
+- Respuesta a incidentes de ciberseguridad.
+- Operaciones de TI.
+- Atención al cliente.
+- Automatización mediante SOAR.
+
+> **Objetivo:** responder de forma rápida, consistente y eficiente.
+
+---
+
+## Resumen
+
+- **Procedimientos:** instrucciones paso a paso para realizar tareas.
+- **Gestión del cambio:** planificar, probar, implementar, revisar y documentar cambios.
+- **Onboarding:** integrar nuevos empleados.
+- **Offboarding:** retirar accesos y recursos cuando un empleado se va.
+- **Playbook:** guía detallada para responder a un proceso o incidente específico.
+
+# Consideraciones de Gobernanza
+
+Las **consideraciones de gobernanza** son los aspectos que una organización debe tener en cuenta para operar de forma **segura, legal y conforme a las regulaciones**. Incluyen aspectos **regulatorios, legales, industriales y geográficos**.
+
+---
+
+## 1. Consideraciones regulatorias
+
+Son las **leyes y regulaciones** que una organización está obligada a cumplir.
+
+Pueden abarcar temas como:
+
+- Protección de datos.
+- Privacidad.
+- Legislación laboral.
+- Normas ambientales.
+
+#### Ejemplo
+
+- **GDPR (Reglamento General de Protección de Datos - Unión Europea).**
+
+Obliga a las organizaciones a proteger los datos personales de los ciudadanos de la UE.
+
+#### Consecuencias del incumplimiento
+
+- Multas.
+- Sanciones.
+- Daño reputacional.
+
+#### Cómo cumplir
+
+- Auditorías periódicas.
+- Capacitación de empleados.
+- Programas de cumplimiento (Compliance).
+
+---
+
+## 2. Consideraciones legales
+
+Se refieren al cumplimiento de todas las **leyes aplicables** a la organización.
+
+Incluyen:
+
+- Derecho contractual.
+- Propiedad intelectual.
+- Derecho laboral.
+- Derecho societario.
+
+#### Ejemplos
+
+- Cumplir las leyes sobre:
+  - Salario mínimo.
+  - Horas extras.
+  - Seguridad laboral.
+  - No discriminación.
+  - Beneficios para empleados.
+
+#### Riesgos legales
+
+- Demandas por incumplimiento de contratos.
+- Demandas de clientes.
+- Demandas de empleados.
+- Problemas por productos defectuosos.
+
+> **Objetivo:** evitar conflictos legales y proteger la reputación de la empresa.
+
+---
+
+## 3. Consideraciones industriales
+
+Son las **mejores prácticas y estándares del sector**, aunque muchas veces **no sean obligatorios por ley**.
+
+#### Ejemplo
+
+En desarrollo de software:
+
+- Scrum.
+- Kanban.
+- Metodologías Agile.
+
+Aunque ninguna ley obliga a utilizarlas, se consideran un estándar de la industria.
+
+#### Importancia
+
+No seguir estas prácticas puede provocar:
+
+- Menor competitividad.
+- Menor productividad.
+- Procesos menos eficientes.
+
+> **Objetivo:** mantenerse competitivo siguiendo los estándares de la industria.
+
+---
+
+## 4. Consideraciones geográficas
+
+Las organizaciones deben cumplir normas según el lugar donde operan.
+
+### Locales
+
+Normativas de una ciudad o municipio.
+
+**Ejemplo:**
+
+- Leyes de zonificación.
+- Restricciones para abrir determinados negocios.
+
+---
+
+### Regionales
+
+Normativas de un estado o provincia.
+
+**Ejemplo:**
+
+- **CCPA (California Consumer Privacy Act).**
+- Regula el tratamiento de datos personales de los residentes de California.
+
+---
+
+### Nacionales
+
+Leyes que aplican a todo un país.
+
+**Ejemplo:**
+
+- **ADA (Americans with Disabilities Act).**
+- Exige accesibilidad para personas con discapacidad.
+
+---
+
+### Globales
+
+Normativas que afectan a empresas de cualquier país.
+
+**Ejemplo:**
+
+- **GDPR.**
+
+Aunque la empresa esté fuera de Europa, debe cumplirlo si trata datos de ciudadanos europeos.
+
+---
+
+### Conflicto de leyes
+
+Una empresa que opera en varios países puede enfrentarse a leyes diferentes o incluso contradictorias.
+
+Ejemplo:
+
+- Un país exige conservar datos durante varios años.
+- Otro exige eliminarlos rápidamente.
+
+La organización debe adaptar su gobernanza para cumplir todas las normativas aplicables.
+
+---
+
+## Resumen 
+
+- **Regulatorias:** leyes y regulaciones obligatorias (ej.: GDPR).
+- **Legales:** cumplimiento de contratos, leyes laborales, propiedad intelectual, etc.
+- **Industriales:** mejores prácticas y estándares del sector (ej.: Agile, Scrum, Kanban).
+- **Geográficas:**
+  - **Locales:** ciudad o municipio.
+  - **Regionales:** estado o provincia.
+  - **Nacionales:** todo un país.
+  - **Globales:** afectan a empresas de cualquier país (ej.: GDPR).
+- **Conflicto de leyes:** una empresa internacional puede tener que cumplir normativas diferentes según cada país.
+
+# Cumplimiento (Compliance)
+
+El **cumplimiento (Compliance)** consiste en garantizar que una organización **cumpla las leyes, regulaciones, normas, contratos y políticas internas** aplicables a su actividad.
+
+Su objetivo es reducir riesgos legales, proteger la reputación de la empresa y demostrar que opera correctamente.
+
+---
+
+## 1. Informes de cumplimiento (Compliance Reporting)
+
+Consisten en recopilar y presentar evidencia de que la organización cumple con los requisitos establecidos.
+
+### Informes internos
+
+Demuestran que la empresa cumple sus **propias políticas y procedimientos**.
+
+Generalmente son realizados por:
+
+- Auditoría interna.
+- Departamento de Compliance.
+
+#### Ejemplo
+
+Un banco genera un informe donde demuestra que todas las transacciones superiores a cierto monto fueron revisadas y aprobadas.
+
+---
+
+### Informes externos
+
+Demuestran el cumplimiento ante terceros.
+
+Destinatarios:
+
+- Organismos reguladores.
+- Auditores externos.
+- Clientes.
+
+### Ejemplo
+
+Una empresa farmacéutica presenta informes a la **FDA** demostrando que cumple las Buenas Prácticas de Fabricación (GMP).
+
+---
+
+## 2. Supervisión del cumplimiento (Compliance Monitoring)
+
+Consiste en revisar continuamente que la organización siga cumpliendo las leyes, regulaciones y políticas.
+
+Incluye varios elementos.
+
+---
+
+### Diligencia debida (Due Diligence)
+
+Es la **investigación y evaluación previa** para identificar riesgos de cumplimiento.
+
+#### Ejemplo
+
+Antes de abrir una sucursal en otro país, la empresa estudia sus leyes y regulaciones.
+
+---
+
+## Cuidado debido (Due Care)
+
+Son las **acciones tomadas para reducir o controlar** los riesgos detectados durante la diligencia debida.
+
+#### Ejemplo
+
+- Capacitar empleados.
+- Contratar asesores legales.
+- Implementar nuevos controles.
+
+> **Fácil de recordar:**
+>
+> - **Due Diligence = Investigar los riesgos.**
+> - **Due Care = Actuar para reducir esos riesgos.**
+
+---
+
+## Atestación (Attestation)
+
+Es una **declaración formal** donde una persona confirma que cumplió los requisitos establecidos.
+
+#### Ejemplo
+
+Un desarrollador firma que siguió todas las políticas de seguridad durante el desarrollo de una aplicación.
+
+---
+
+## Reconocimiento (Acknowledgment)
+
+Consiste en que una persona **reconoce y acepta** conocer las políticas y normas.
+
+#### Ejemplo
+
+Un empleado firma que leyó y acepta la política de seguridad de la empresa.
+
+---
+
+## Supervisión interna
+
+La propia organización verifica que cumple sus políticas internas.
+
+#### Ejemplo
+
+Auditorías internas.
+
+---
+
+## Supervisión externa
+
+Una entidad independiente verifica el cumplimiento.
+
+#### Ejemplo
+
+Una auditoría para obtener o mantener la certificación **ISO 9001**.
+
+---
+
+## 3. Automatización del cumplimiento
+
+La automatización permite controlar el cumplimiento de forma continua mediante herramientas de software.
+
+Beneficios:
+
+- Automatiza la recopilación de datos.
+- Reduce errores humanos.
+- Detecta incumplimientos en tiempo real.
+- Genera informes automáticamente.
+
+#### Ejemplos
+
+- Un hospital detecta accesos no autorizados a historiales médicos.
+- Un banco detecta automáticamente operaciones sospechosas de lavado de dinero.
+
+---
+
+## Resumen
+
+- **Cumplimiento (Compliance):** cumplir leyes, regulaciones y políticas.
+- **Informes internos:** demuestran cumplimiento dentro de la organización.
+- **Informes externos:** demuestran cumplimiento ante reguladores, auditores o clientes.
+- **Due Diligence:** investigar riesgos.
+- **Due Care:** aplicar medidas para reducir esos riesgos.
+- **Atestación:** declarar formalmente que se cumplió una norma.
+- **Reconocimiento:** aceptar y reconocer una política.
+- **Supervisión interna:** realizada por la propia empresa.
+- **Supervisión externa:** realizada por terceros.
+- **Automatización:** facilita el monitoreo, genera alertas e informes automáticamente.
+
+# Consecuencias del Incumplimiento (Non-Compliance)
+
+El **incumplimiento (Non-Compliance)** ocurre cuando una organización **no cumple** con las leyes, regulaciones, normas, contratos o políticas aplicables.
+
+Esto puede generar consecuencias legales, económicas y operativas.
+
+---
+
+## 1. Multas (Fines)
+
+Son **sanciones económicas** impuestas por organismos reguladores debido al incumplimiento.
+
+#### Ejemplo
+
+- El **GDPR** permite multas de hasta **20 millones de euros** o el **4% de la facturación anual global**, lo que sea mayor.
+
+#### Consecuencias
+
+- Grandes pérdidas económicas.
+- Impacto financiero para la organización.
+
+---
+
+## 2. Sanciones (Sanctions)
+
+Son medidas impuestas por las autoridades para obligar a cumplir la normativa.
+
+Pueden incluir:
+
+- Restricciones operativas.
+- Suspensión de actividades.
+- Prohibición de realizar ciertas operaciones.
+- Confiscación de ingresos obtenidos ilegalmente.
+
+> **No siempre implican dinero; también pueden limitar el funcionamiento de la empresa.**
+
+---
+
+## 3. Daño a la reputación (Reputational Damage)
+
+Ocurre cuando el incumplimiento afecta la imagen y la confianza en la organización.
+
+#### Consecuencias
+
+- Pérdida de clientes.
+- Pérdida de confianza.
+- Mala publicidad.
+- Caída del valor de las acciones.
+
+#### Ejemplo
+
+Una empresa sufre una filtración de datos y pierde credibilidad ante clientes e inversionistas.
+
+---
+
+## 4. Pérdida de licencias (Loss of License)
+
+En algunos sectores, el incumplimiento puede provocar la **revocación de licencias o certificaciones**, impidiendo que la empresa continúe operando.
+
+#### Ejemplo
+
+Una empresa financiera pierde su licencia por no cumplir con los requisitos de ciberseguridad.
+
+#### Consecuencia
+
+- La empresa puede verse obligada a detener sus operaciones.
+
+---
+
+## 5. Impactos contractuales (Contractual Impacts)
+
+El incumplimiento puede provocar el **incumplimiento de contratos** firmados con clientes o proveedores.
+
+#### Consecuencias
+
+- Demandas.
+- Indemnizaciones.
+- Multas contractuales.
+- Cancelación o rescisión de contratos.
+
+#### Ejemplo
+
+Una empresa no protege adecuadamente los datos de sus clientes y estos cancelan el contrato y presentan una demanda.
+
+---
+
+## Cómo evitar el incumplimiento
+
+- Cumplir todas las leyes y regulaciones aplicables.
+- Implementar controles de seguridad adecuados.
+- Mantener programas de Compliance actualizados.
+- Realizar auditorías periódicas.
+- Capacitar a los empleados.
+- Revisar y actualizar continuamente las políticas y procedimientos.
+
+---
+
+## Resumen 
+
+- **Incumplimiento:** no respetar leyes, regulaciones, normas o contratos.
+- **Multas:** sanciones económicas.
+- **Sanciones:** restricciones o prohibiciones impuestas por las autoridades.
+- **Daño reputacional:** pérdida de confianza, clientes e imagen.
+- **Pérdida de licencia:** la empresa puede dejar de operar legalmente.
+- **Impactos contractuales:** demandas, indemnizaciones y cancelación de contratos.
+- **Prevención:** cumplir la normativa, aplicar controles de seguridad y mantener un programa de Compliance actualizado.
