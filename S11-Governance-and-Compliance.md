@@ -194,7 +194,7 @@ La gobernanza debe revisarse continuamente para adaptarse a cambios tecnológico
 
 ---
 
-# Supervisión del Cumplimiento
+## Supervisión del Cumplimiento
 
 El cumplimiento incluye actividades como:
 
@@ -212,7 +212,7 @@ También se estudiarán conceptos como:
 
 ---
 
-# Consecuencias del Incumplimiento
+## Consecuencias del Incumplimiento
 
 No cumplir con las normas puede provocar:
 
