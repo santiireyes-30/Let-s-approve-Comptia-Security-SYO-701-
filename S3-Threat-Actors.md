@@ -1,6 +1,6 @@
 # Dominio 2: Amenazas, Vulnerabilidades y Mitigaciones
 
-# Actores de Amenazas y Motivaciones Comúnes
+## Actores de Amenazas y Motivaciones Comúnes
 
 Un actor de amenaza es cualquier persona o entidad que realiza ataques contra sistemas o datos. Puede ir desde un hacker inexperto hasta grupos criminales organizados o incluso Estados-nación.
 
