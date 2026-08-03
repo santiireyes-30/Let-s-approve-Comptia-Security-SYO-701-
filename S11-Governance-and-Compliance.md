@@ -790,3 +790,232 @@ Estructuras de Gobierno
        ├── Mayor agilidad
        └── Más autonomía
 ```
+
+# Políticas (Policies)
+
+Las **políticas** son documentos de alto nivel que establecen las reglas, objetivos y compromisos de una organización respecto al uso de la tecnología y la seguridad.
+
+Su propósito es:
+
+- Guiar la toma de decisiones.
+- Mantener un comportamiento consistente.
+- Reducir riesgos.
+- Cumplir con leyes y regulaciones.
+
+---
+
+## Principales políticas de TI
+
+### 1. Política de Uso Aceptable (AUP - Acceptable Use Policy)
+
+Define **qué está permitido y qué está prohibido** al utilizar los recursos informáticos de la organización.
+
+#### Objetivo
+
+Proteger a la empresa frente a riesgos legales y de seguridad.
+
+#### Ejemplos
+
+Puede prohibir:
+
+- Visitar sitios web maliciosos.
+- Descargar software no autorizado.
+- Usar equipos de la empresa para fines personales.
+- Instalar programas sin autorización.
+
+---
+
+### 2. Política de Seguridad de la Información (Information Security Policy)
+
+Es la política principal de seguridad de una organización.
+
+Describe cómo deben protegerse los activos de información.
+
+#### Incluye
+
+- Clasificación de datos.
+- Control de acceso.
+- Cifrado.
+- Seguridad física.
+- Protección de la información.
+
+#### Objetivo
+
+Garantizar la triada **CIA**:
+
+- **Confidencialidad.**
+- **Integridad.**
+- **Disponibilidad.**
+
+#### Ejemplo
+
+Los datos sensibles deben estar cifrados tanto:
+
+- En tránsito.
+- En reposo.
+
+Y solo el personal autorizado puede acceder a ellos.
+
+---
+
+### 3. Política de Continuidad del Negocio (Business Continuity Policy)
+
+Describe cómo la organización seguirá funcionando durante y después de una interrupción.
+
+#### Objetivo
+
+Mantener operativas las funciones críticas del negocio.
+
+#### Puede contemplar
+
+- Cortes de energía.
+- Desastres naturales.
+- Fallos de hardware.
+- Ataques informáticos.
+
+---
+
+### 4. Política de Recuperación ante Desastres (Disaster Recovery Policy)
+
+Se centra específicamente en recuperar los sistemas de TI y los datos tras un desastre.
+
+#### Incluye
+
+- Copias de seguridad.
+- Restauración de datos.
+- Recuperación de servidores.
+- Sitios alternativos de operación.
+
+#### Ejemplo
+
+Realizar copias de seguridad periódicas y probar que puedan restaurarse correctamente.
+
+> **Diferencia clave:**
+>
+> - **Continuidad del Negocio (BC):** mantener el negocio funcionando.
+> - **Recuperación ante Desastres (DR):** restaurar la infraestructura y los datos.
+
+---
+
+### 5. Política de Respuesta a Incidentes (Incident Response Policy)
+
+Define cómo actuar ante un incidente de seguridad.
+
+#### Incluye
+
+- Detección.
+- Reporte.
+- Análisis.
+- Contención.
+- Erradicación.
+- Recuperación.
+- Lecciones aprendidas.
+
+#### Objetivo
+
+Reducir el impacto del incidente y recuperar la operación lo antes posible.
+
+---
+
+### 6. Política del Ciclo de Vida de Desarrollo de Software (SDLC)
+
+Establece cómo debe desarrollarse el software dentro de la organización.
+
+#### Etapas
+
+- Recolección de requisitos.
+- Diseño.
+- Desarrollo.
+- Pruebas.
+- Implementación.
+- Mantenimiento.
+
+#### También puede exigir
+
+- Codificación segura.
+- Revisión de código.
+- Pruebas de seguridad.
+- Control de calidad.
+
+#### Objetivo
+
+Desarrollar software seguro y de alta calidad.
+
+---
+
+### 7. Política de Gestión de Cambios (Change Management Policy)
+
+Regula cómo deben realizarse los cambios en los sistemas de TI.
+
+#### Objetivo
+
+Aplicar cambios de forma controlada para evitar errores o interrupciones.
+
+#### Incluye
+
+- Solicitud del cambio.
+- Evaluación.
+- Pruebas.
+- Implementación.
+- Revisión posterior.
+
+#### Ejemplo
+
+Antes de actualizar un servidor en producción, el cambio debe aprobarse, probarse y documentarse.
+
+---
+
+## Diferencia entre las políticas
+
+| Política | Objetivo |
+|----------|----------|
+| **AUP** | Define el uso permitido de los recursos informáticos. |
+| **Seguridad de la Información** | Protege la información y los activos de TI. |
+| **Continuidad del Negocio** | Mantener operativa la organización durante una interrupción. |
+| **Recuperación ante Desastres** | Restaurar sistemas y datos después de un desastre. |
+| **Respuesta a Incidentes** | Gestionar incidentes de seguridad. |
+| **SDLC** | Desarrollar software seguro y de calidad. |
+| **Gestión de Cambios** | Controlar los cambios realizados en los sistemas. |
+
+---
+
+## Resumen
+
+- Las **políticas** establecen las reglas generales de la organización.
+- **AUP:** define qué pueden y no pueden hacer los usuarios.
+- **Seguridad de la Información:** protege la información mediante controles de seguridad.
+- **Continuidad del Negocio:** mantiene las operaciones durante una interrupción.
+- **Recuperación ante Desastres:** restaura sistemas y datos tras un desastre.
+- **Respuesta a Incidentes:** indica cómo responder a incidentes de seguridad.
+- **SDLC:** guía el desarrollo seguro del software.
+- **Gestión de Cambios:** controla que los cambios se realicen de forma segura y organizada.
+
+---
+
+## Esquema
+
+```text
+Políticas de TI
+
+│
+├── AUP
+│      └── Uso permitido de los recursos
+│
+├── Seguridad de la Información
+│      └── Protección de datos y activos
+│
+├── Continuidad del Negocio
+│      └── Mantener la operación
+│
+├── Recuperación ante Desastres
+│      └── Restaurar sistemas y datos
+│
+├── Respuesta a Incidentes
+│      └── Detectar y responder ataques
+│
+├── SDLC
+│      └── Desarrollo seguro de software
+│
+└── Gestión de Cambios
+       └── Cambios controlados y aprobados
+```
