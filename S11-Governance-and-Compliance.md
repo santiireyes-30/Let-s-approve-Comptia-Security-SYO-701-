@@ -285,3 +285,283 @@ Evita:
 ├── Problemas legales
 └── Incumplimientos contractuales
 ```
+
+# Gobernanza (Governance)
+
+La **gobernanza** es el primer componente de **GRC (Governance, Risk & Compliance)**.
+
+Se encarga de establecer el marco estratégico que guía la gestión de TI para que esté alineada con:
+
+- Los objetivos del negocio.
+- Las leyes y regulaciones.
+- La gestión de riesgos.
+- El uso eficiente de los recursos.
+
+En otras palabras, **la gobernanza define cómo debe administrarse la organización desde el punto de vista de TI y ciberseguridad**.
+
+---
+
+## ¿Qué incluye la Gobernanza?
+
+La gobernanza establece:
+
+- Directrices.
+- Políticas.
+- Normas.
+- Procedimientos.
+- Responsabilidades.
+- Buenas prácticas.
+
+Todo ello con el objetivo de proteger la organización y alcanzar sus objetivos.
+
+---
+
+## Objetivos principales
+
+### 1. Alinear TI con el negocio
+
+Garantiza que las decisiones tecnológicas apoyen los objetivos de la empresa.
+
+**Ejemplo:**
+
+Si la empresa quiere migrar a la nube, la estrategia de TI y ciberseguridad debe adaptarse a ese objetivo.
+
+---
+
+### 2. Gestionar riesgos
+
+Permite:
+
+- Identificar riesgos.
+- Evaluarlos.
+- Reducirlos.
+- Gestionarlos adecuadamente.
+
+---
+
+### 3. Gestionar recursos
+
+Busca utilizar de manera eficiente:
+
+- Personal.
+- Infraestructura.
+- Presupuesto.
+- Tecnología.
+
+---
+
+### 4. Medir el rendimiento
+
+Permite evaluar si los procesos y controles de TI están funcionando correctamente mediante métricas e indicadores.
+
+---
+
+## Cómo influye la Gobernanza?
+
+La gobernanza es la base sobre la que se crean los documentos internos de seguridad.
+
+### 1. Directrices (Guidelines)
+
+Son recomendaciones o buenas prácticas.
+
+- No suelen ser obligatorias.
+- Sirven como orientación.
+
+**Ejemplo:**
+
+Se recomienda utilizar autenticación multifactor.
+
+---
+
+### 2. Políticas (Policies)
+
+Son reglas de alto nivel que expresan los objetivos y compromisos de la organización.
+
+**Ejemplos:**
+
+- Política de Seguridad de la Información.
+- Política de Uso Aceptable.
+- Política de Protección de Datos.
+
+---
+
+### 3. Normas (Standards)
+
+Son reglas específicas y generalmente obligatorias que indican cómo cumplir una política.
+
+**Ejemplos:**
+
+- Longitud mínima de 12 caracteres para contraseñas.
+- Uso obligatorio de AES-256 para cifrado.
+
+---
+
+### 4. Procedimientos (Procedures)
+
+Son instrucciones paso a paso para realizar una tarea de forma consistente.
+
+**Ejemplos:**
+
+- Procedimiento de alta de empleados.
+- Procedimiento de respuesta a incidentes.
+- Procedimiento de restauración de copias de seguridad.
+
+---
+
+## La Gobernanza debe evolucionar
+
+La gobernanza **no es estática**.
+
+Debe revisarse constantemente cuando cambian:
+
+### Tecnología
+
+Ejemplos:
+
+- Migración a la nube.
+- Nuevas herramientas.
+- Inteligencia Artificial.
+- Nuevos sistemas operativos.
+
+---
+
+### Regulaciones
+
+Ejemplos:
+
+- Nuevas leyes de privacidad.
+- Nuevas normas del sector.
+- Cambios en requisitos legales.
+
+---
+
+### Cultura de trabajo
+
+Ejemplos:
+
+- Trabajo remoto.
+- Trabajo híbrido.
+- BYOD (Bring Your Own Device).
+
+---
+
+### Supervisión (Monitoring)
+
+Consiste en revisar periódicamente si el marco de gobernanza sigue siendo efectivo.
+
+Su objetivo es detectar:
+
+- Debilidades.
+- Riesgos nuevos.
+- Cambios tecnológicos.
+- Cambios regulatorios.
+
+---
+
+### Revisión (Review)
+
+Cuando durante la supervisión se detecta un cambio o problema, la organización actualiza su marco de gobernanza.
+
+Puede implicar cambios en:
+
+- Políticas.
+- Normas.
+- Procedimientos.
+- Infraestructura.
+- Controles de seguridad.
+
+---
+
+## Ejemplo práctico (TechFirm)
+
+La empresa **TechFirm** adapta su gobernanza a distintos cambios:
+
+### 2015 — Migración a la nube
+
+Se actualizan:
+
+- Políticas.
+- Procedimientos.
+- Controles para el uso seguro de servicios cloud.
+
+---
+
+### 2018 — Nueva ley de protección de datos
+
+Se actualizan:
+
+- Políticas de privacidad.
+- Normas de seguridad.
+- Controles para proteger datos de clientes.
+
+---
+
+### Trabajo remoto
+
+Se implementan:
+
+- Nuevas políticas de teletrabajo.
+- Procedimientos de acceso remoto seguro.
+- Nuevos sistemas para empleados remotos.
+
+---
+
+## Idea clave
+
+Cada vez que cambia:
+
+- La tecnología.
+- Las regulaciones.
+- La forma de trabajar.
+
+**La gobernanza debe revisarse y actualizarse.**
+
+---
+
+## Resumen rápido
+
+- La **Gobernanza** es el componente de **GRC** que define cómo se administra la seguridad y TI.
+- Alinea la tecnología con los objetivos del negocio.
+- Gestiona riesgos y recursos.
+- Define **directrices, políticas, normas y procedimientos**.
+- Debe adaptarse continuamente a cambios tecnológicos, regulatorios y culturales.
+- La supervisión identifica mejoras; la revisión actualiza el marco de gobernanza.
+
+---
+
+## Esquema para memorizar
+
+```text
+Gobernanza (Governance)
+
+│
+├── Objetivos
+│     ├── Alinear TI con el negocio
+│     ├── Gestionar riesgos
+│     ├── Gestionar recursos
+│     └── Medir rendimiento
+│
+├── Define
+│     ├── Directrices
+│     ├── Políticas
+│     ├── Normas
+│     └── Procedimientos
+│
+├── Supervisión (Monitoring)
+│     └── Detecta cambios y debilidades
+│
+└── Revisión (Review)
+      └── Actualiza el marco de gobernanza
+
+↓
+
+Si cambia:
+
+• Tecnología
+• Regulaciones
+• Cultura de trabajo
+
+↓
+
+La gobernanza debe adaptarse.
+```
