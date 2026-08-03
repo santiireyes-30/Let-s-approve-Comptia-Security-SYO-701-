@@ -565,3 +565,228 @@ Si cambia:
 
 La gobernanza debe adaptarse.
 ```
+
+# Estructuras de Gobierno (Governance Structures)
+
+Las **estructuras de gobierno** son los mecanismos que permiten dirigir, supervisar y controlar una organización para alcanzar sus objetivos de forma eficiente.
+
+Los principales componentes son:
+
+- Consejo de Administración (Board).
+- Comités.
+- Entidades gubernamentales.
+- Estructuras centralizadas.
+- Estructuras descentralizadas.
+
+---
+
+## 1. Consejo de Administración (Board of Directors)
+
+Es un grupo de personas elegido por los accionistas para supervisar la gestión de la organización.
+
+### Funciones
+
+- Definir la dirección estratégica.
+- Aprobar políticas.
+- Tomar decisiones importantes.
+- Supervisar a la alta dirección.
+- Asegurar que la organización cumpla sus objetivos.
+
+### Ejemplo
+
+Una empresa tecnológica puede tener un consejo formado por expertos en:
+
+- Tecnología.
+- Finanzas.
+- Ciberseguridad.
+- Negocios.
+
+Ellos deciden el rumbo general de la empresa.
+
+---
+
+## 2. Comités (Committees)
+
+Los **comités** son subgrupos del Consejo de Administración que se especializan en un área concreta.
+
+Su objetivo es analizar temas específicos con mayor profundidad.
+
+### Ejemplos
+
+## Comité de Auditoría
+
+Se encarga de:
+
+- Supervisar auditorías.
+- Revisar informes financieros.
+- Controlar riesgos financieros.
+
+---
+
+## Comité de Gobernanza
+
+Se encarga de:
+
+- Verificar que el consejo funcione correctamente.
+- Revisar políticas de gobernanza.
+- Asegurar el cumplimiento de buenas prácticas.
+
+---
+
+## Comité de Ciberseguridad
+
+Se enfoca en:
+
+- Riesgos cibernéticos.
+- Estrategias de seguridad.
+- Gestión de incidentes.
+- Protección de activos digitales.
+
+---
+
+## 3. Entidades Gubernamentales
+
+Son organismos públicos que crean y hacen cumplir leyes y regulaciones.
+
+Las organizaciones deben cumplir estas normas para operar legalmente.
+
+### Funciones
+
+- Crear regulaciones.
+- Supervisar el cumplimiento.
+- Imponer sanciones cuando corresponda.
+
+### Ejemplos
+
+- Organismos de protección de datos.
+- Entidades reguladoras financieras.
+- Autoridades nacionales de ciberseguridad.
+- Agencias de protección del consumidor.
+
+---
+
+## 4. Estructura Centralizada
+
+En una estructura **centralizada**, la mayoría de las decisiones se toman en los niveles más altos de la organización.
+
+```text
+Director General
+        │
+────────┼────────
+        │
+ Gerencias
+        │
+ Departamentos
+```
+
+### Ventajas
+
+- Decisiones uniformes.
+- Políticas consistentes.
+- Mayor control.
+- Autoridad claramente definida.
+
+### Desventajas
+
+- Menor flexibilidad.
+- Respuesta más lenta.
+- Mayor burocracia.
+
+### Ejemplo
+
+Una multinacional donde todas las políticas de seguridad son definidas por la sede central.
+
+---
+
+## 5. Estructura Descentralizada
+
+En una estructura **descentralizada**, la toma de decisiones se distribuye entre diferentes áreas o departamentos.
+
+```text
+Director General
+
+   │        │        │
+
+Ventas   TI   Finanzas
+
+Cada área toma decisiones propias.
+```
+
+### Ventajas
+
+- Mayor rapidez para decidir.
+- Más flexibilidad.
+- Favorece la innovación.
+- Mejor adaptación a necesidades locales.
+
+### Desventajas
+
+- Posibles diferencias entre departamentos.
+- Menor uniformidad.
+- Mayor dificultad para mantener políticas consistentes.
+
+### Ejemplo
+
+Una startup donde cada equipo tiene autonomía para decidir cómo trabajar.
+
+---
+
+# ¿Cuál estructura es mejor?
+
+No existe una estructura universalmente mejor.
+
+Depende de:
+
+- Tamaño de la organización.
+- Objetivos del negocio.
+- Cultura organizacional.
+- Nivel de control necesario.
+
+Generalmente:
+
+- **Empresas grandes:** suelen preferir estructuras **centralizadas**.
+- **Startups y empresas pequeñas:** suelen optar por estructuras **descentralizadas** por su agilidad.
+
+---
+
+## Resumen rápido
+
+- **Consejo de Administración:** define la estrategia y toma decisiones importantes.
+- **Comités:** grupos especializados que apoyan al consejo en áreas específicas.
+- **Entidades gubernamentales:** crean y hacen cumplir leyes y regulaciones.
+- **Estructura centralizada:** las decisiones se concentran en la alta dirección.
+- **Estructura descentralizada:** las decisiones se distribuyen entre distintas áreas de la organización.
+
+---
+
+## Esquema
+
+```text
+Estructuras de Gobierno
+
+│
+├── Consejo de Administración
+│      ├── Dirección estratégica
+│      ├── Políticas
+│      └── Decisiones importantes
+│
+├── Comités
+│      ├── Auditoría
+│      ├── Gobernanza
+│      └── Ciberseguridad
+│
+├── Entidades Gubernamentales
+│      ├── Leyes
+│      ├── Regulaciones
+│      └── Supervisión
+│
+├── Centralizada
+│      ├── Decisiones en la alta dirección
+│      ├── Mayor control
+│      └── Menor flexibilidad
+│
+└── Descentralizada
+       ├── Decisiones distribuidas
+       ├── Mayor agilidad
+       └── Más autonomía
+```
