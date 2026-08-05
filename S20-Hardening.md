@@ -74,3 +74,91 @@ Puede aplicarse a:
 - Administrar configuraciones mediante Group Policy o SELinux.
 - Cifrar los datos.
 - Implementar una Secure Baseline.
+
+# Cambio de Configuraciones por Defecto (Default Configurations)
+
+Cuando se instala un nuevo **hardware o software**, este viene con configuraciones predeterminadas (de fábrica). Estas configuraciones están pensadas para facilitar la instalación, **no para maximizar la seguridad**.
+
+> **Problema:** Los atacantes conocen estas configuraciones por defecto y pueden aprovecharlas para comprometer el sistema.
+
+---
+
+## 1. Cambiar las contraseñas predeterminadas
+
+Las **credenciales predeterminadas** son el usuario y contraseña configurados por el fabricante para el acceso inicial.
+
+### Ejemplos comunes
+- `admin / admin`
+- `admin / password`
+- `admin / (contraseña vacía)`
+
+Como estas credenciales aparecen en los manuales o en Internet, **deben cambiarse inmediatamente**.
+
+### Buenas prácticas
+- Cambiar la contraseña al instalar el dispositivo.
+- Utilizar una contraseña:
+  - Larga.
+  - Compleja.
+  - Única.
+- Habilitar **MFA (Autenticación Multifactor)** si está disponible.
+- Rotar la contraseña aproximadamente cada **90 días**.
+- Utilizar un **gestor de contraseñas** para almacenarlas de forma segura.
+
+---
+
+## 2. Desactivar puertos y protocolos innecesarios
+
+Muchos dispositivos tienen servicios habilitados que realmente no se utilizan.
+
+Cada **puerto abierto** representa una posible puerta de entrada para un atacante.
+
+### Buenas prácticas
+- Identificar qué puertos y protocolos son necesarios.
+- Deshabilitar los que no se utilizan.
+- Reducir la **superficie de ataque**.
+
+### Siempre que sea posible, utilizar versiones seguras
+
+| Inseguro | Seguro |
+|----------|---------|
+| HTTP (80) | HTTPS (443) |
+| SMTP (25) | SMTPS (465 o 587) |
+
+---
+
+## 3. Cerrar puertos abiertos innecesarios
+
+Muchos fabricantes dejan varios puertos abiertos para ofrecer mayor compatibilidad.
+
+### Ejemplo
+
+| Puerto | Servicio | Acción recomendada |
+|---------|----------|--------------------|
+| 22 | SSH | Mantener si se utiliza. |
+| 23 | Telnet | **Cerrar** (no cifra la información). |
+| 80 | HTTP | Cerrar si solo se usa HTTPS. |
+| 443 | HTTPS | Mantener para comunicaciones seguras. |
+
+### ¿Por qué cerrar Telnet?
+
+Porque **Telnet transmite usuarios y contraseñas sin cifrar**, mientras que **SSH cifra toda la comunicación**.
+
+---
+
+### Objetivo
+
+Reducir la **superficie de ataque**, eliminando configuraciones inseguras que vienen de fábrica.
+
+---
+
+## Resumen para el examen
+
+- Las configuraciones por defecto **priorizan la facilidad de uso, no la seguridad**.
+- Cambiar inmediatamente las credenciales predeterminadas.
+- Utilizar contraseñas largas, únicas y MFA.
+- Desactivar puertos y protocolos innecesarios.
+- Preferir protocolos cifrados:
+  - HTTP → HTTPS.
+  - SMTP → SMTPS.
+- Cerrar puertos abiertos que no se utilicen (ej. Telnet - puerto 23).
+- **Menos servicios activos = menor superficie de ataque = mayor seguridad.**
