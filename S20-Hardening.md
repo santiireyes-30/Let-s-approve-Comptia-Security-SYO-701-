@@ -2,7 +2,7 @@
 
 El **hardening** es el proceso de **hacer un sistema, aplicación o red más seguros**, reduciendo su superficie de ataque y eliminando vulnerabilidades innecesarias.
 
-# INTRODUCCIÓN
+## Introducción
 
 ## Medidas principales de hardening
 
