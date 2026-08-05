@@ -2,6 +2,8 @@
 
 El **hardening** es el proceso de **hacer un sistema, aplicación o red más seguros**, reduciendo su superficie de ataque y eliminando vulnerabilidades innecesarias.
 
+# INTRODUCCIÓN
+
 ## Medidas principales de hardening
 
 ### Configuraciones por defecto
@@ -29,17 +31,23 @@ El **hardening** es el proceso de **hacer un sistema, aplicación o red más seg
 Proceso de:
 1. Identificar parches.
 2. Probarlos.
-3. Implementarlos.
+3. Implementar/Despegar.
 4. Supervisarlos.
 
 ### Políticas de Grupo (Group Policy - Windows)
-- Permiten administrar de forma centralizada la configuración y seguridad de usuarios y equipos.
+- Las políticas de grupo son un conjunto de reglas y configuraciones en entornos Windows que permiten a los administradores gestionar y controlar de forma centralizada la configuración de usuarios
+y equipos, garantizando el cumplimiento y la seguridad de sus normas operativas.
 
 ### SELinux (Security-Enhanced Linux)
 - Implementa **Control de Acceso Obligatorio (MAC)**.
 - Limita las acciones de procesos y usuarios, incluso si una aplicación es comprometida.
 
-### Cifrado de datos
+Pero básicamente es un marco de seguridad para sistemas operativos basados en Linux que implementa controles de acceso obligatorios para confinar y limitar las acciones de procesos y usuarios con el fin de mejorar
+la seguridad general del sistema.
+
+### Niveles de cifrado de datos
+El cifrado de datos es el proceso de convertir datos en un código secreto para impedir el acceso no autorizado.
+
 Protege la información convirtiéndola en un formato ilegible.
 
 Puede aplicarse a:
@@ -52,11 +60,11 @@ Puede aplicarse a:
 
 ### Línea Base Segura (Secure Baseline)
 - Configuración estándar y segura de un sistema.
-- Sirve como punto de partida para desplegar equipos con una configuración consistente y segura.
+- Sirve como punto de partida para desplegar equipos con una configuración consistente y segura, es decir, minimiza riesgos y vulnerabilidades
 
 ---
 
-## Resumen
+## Resumen de Introducción
 
 - **Hardening = reducir la superficie de ataque.**
 - Cambiar configuraciones por defecto.
