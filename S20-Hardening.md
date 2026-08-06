@@ -217,6 +217,17 @@ Generalmente incluye:
 
 Esto garantiza que todos los equipos comiencen con la misma configuración segura.
 
+#### Ejemplo
+
+permítanme darles un ejemplo de esto. Supongamos que tú y yo queremos ir a una discoteca de moda este viernes por la noche. Nos presentamos en la puerta y nos recibió el portero.
+Ahora el portero nos mira y pregunta: "¿Si estamos en la lista? Así que le doy mi nombre y le digo: "Hola, soy Jason Dion", y él mira la lista y se da cuenta de que no estoy en su
+lista porque no estoy tan de moda.
+
+Esto significa que no me dejará entrar en ese club. A lo mejor eres más guay que yo y tu nombre estaba en la lista, y si es así, te van a dejar entrar en el club.
+
+Ahora bien, si cada uno de nosotros fuera considerado como una aplicación en un ordenador, este ejemplo de discoteca le muestra de qué estamos hablando
+cuando hablamos de un concepto conocido como allowlisting.
+
 ---
 
 ## Restricción mediante Allowlisting y Blocklisting
