@@ -320,7 +320,7 @@ Esto permite aplicar las mismas reglas a miles de equipos sin configurarlos uno 
 
 # Servicios innecesarios
 
-Los **servicios** son aplicaciones que se ejecutan en **segundo plano** en el sistema operativo para realizar funciones específicas (ej. impresión, actualizaciones, red).
+Los **servicios** son un tipo de aplicacion que se ejecuta en segundo plano en el sistema operativo y realiza diversas funciones, como la cola de impresión. Los servicios que no sean necesarios deben desactivarse en el sistema operativo.
 
 ## ¿Por qué deshabilitar servicios?
 
