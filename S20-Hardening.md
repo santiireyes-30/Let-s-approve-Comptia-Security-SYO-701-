@@ -151,7 +151,7 @@ Reducir la **superficie de ataque**, eliminando configuraciones inseguras que vi
 
 ---
 
-## Resumen para el examen
+## Resumen 
 
 - Las configuraciones por defecto **priorizan la facilidad de uso, no la seguridad**.
 - Cambiar inmediatamente las credenciales predeterminadas.
@@ -162,3 +162,147 @@ Reducir la **superficie de ataque**, eliminando configuraciones inseguras que vi
   - SMTP → SMTPS.
 - Cerrar puertos abiertos que no se utilicen (ej. Telnet - puerto 23).
 - **Menos servicios activos = menor superficie de ataque = mayor seguridad.**
+
+# Restricción de Aplicaciones (Application Restriction)
+
+La **restricción de aplicaciones** consiste en controlar qué programas pueden ejecutarse en un sistema para reducir el riesgo de malware, software no autorizado y vulnerabilidades.
+
+Su objetivo es aplicar el principio de **funcionalidad mínima**, donde un equipo solo dispone de las aplicaciones y servicios estrictamente necesarios.
+
+---
+
+## Funcionalidad mínima (Minimum Functionality)
+
+Consiste en configurar un equipo para que solo tenga:
+
+- Las aplicaciones necesarias.
+- Los servicios necesarios.
+- Los puertos necesarios.
+- Los protocolos necesarios.
+
+**Beneficios**
+- Reduce la superficie de ataque.
+- Disminuye las vulnerabilidades.
+- Facilita la administración y aplicación de parches.
+
+---
+
+## Eliminar aplicaciones innecesarias
+
+Cada programa instalado:
+
+- Consume espacio en disco.
+- Debe actualizarse.
+- Debe parchearse.
+- Puede contener vulnerabilidades.
+
+Por ello, es recomendable:
+
+- Desinstalar software que ya no se utilice.
+- Eliminar versiones antiguas después de actualizar un programa.
+- Mantener únicamente el software necesario.
+
+---
+
+## Línea Base Segura (Secure Baseline)
+
+En redes empresariales se utiliza una **Secure Baseline**, que es una imagen estándar para todos los equipos.
+
+Generalmente incluye:
+
+- Sistema operativo.
+- Aplicaciones necesarias.
+- Configuración de seguridad.
+- Políticas de la organización.
+
+Esto garantiza que todos los equipos comiencen con la misma configuración segura.
+
+---
+
+## Restricción mediante Allowlisting y Blocklisting
+
+Existen dos formas principales de controlar qué aplicaciones pueden ejecutarse.
+
+### Allowlisting (Lista de Permitidos)
+
+Solo pueden ejecutarse las aplicaciones que aparecen en la lista autorizada.
+
+Todo lo demás queda bloqueado.
+
+#### Funcionamiento
+
+```text
+¿La aplicación está en la lista?
+
+Sí → Se ejecuta.
+No → Se bloquea.
+```
+
+#### Ventajas
+
+- Máxima seguridad.
+- Bloquea malware desconocido.
+- Evita instalaciones no autorizadas.
+
+#### Desventajas
+
+- Mayor administración.
+- Debe actualizarse cuando cambian las aplicaciones.
+
+---
+
+## Blocklisting (Lista de Bloqueados)
+
+Solo se bloquean las aplicaciones incluidas en la lista.
+
+Todo lo demás puede ejecutarse.
+
+### Funcionamiento
+
+```text
+¿La aplicación está en la lista negra?
+
+Sí → Se bloquea.
+No → Se ejecuta.
+```
+
+### Ventajas
+
+- Fácil de implementar.
+- Menor mantenimiento.
+
+### Desventajas
+
+- Menos seguro.
+- El malware nuevo podrá ejecutarse hasta que sea agregado a la lista.
+
+---
+
+## Comparación
+
+| Allowlisting | Blocklisting |
+|--------------|--------------|
+| Todo bloqueado por defecto. | Todo permitido por defecto. |
+| Solo se ejecuta lo autorizado. | Solo se bloquea lo conocido. |
+| Más seguro. | Menos seguro. |
+| Mayor administración. | Menor administración. |
+
+---
+
+## Administración en empresas
+
+En entornos Windows con **Active Directory**, estas listas pueden administrarse de forma centralizada mediante **Group Policy (GPO)**.
+
+Esto permite aplicar las mismas reglas a miles de equipos sin configurarlos uno por uno.
+
+---
+
+## Resumen para el examen
+
+- **Restricción de aplicaciones:** controla qué programas pueden ejecutarse.
+- **Funcionalidad mínima:** instalar únicamente lo necesario.
+- Desinstalar aplicaciones y versiones antiguas para reducir vulnerabilidades.
+- Utilizar una **Secure Baseline** para estandarizar la configuración de todos los equipos.
+- **Allowlisting:** solo se ejecuta lo autorizado (**más seguro**).
+- **Blocklisting:** solo se bloquea lo conocido (**menos seguro**).
+- En Windows, estas políticas pueden administrarse mediante **Active Directory + Group Policy**.
