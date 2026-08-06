@@ -219,7 +219,7 @@ Esto garantiza que todos los equipos comiencen con la misma configuración segur
 
 #### Ejemplo
 
-permítanme darles un ejemplo de esto. Supongamos que tú y yo queremos ir a una discoteca de moda este viernes por la noche. Nos presentamos en la puerta y nos recibió el portero.
+Supongamos que tú y yo queremos ir a una discoteca de moda este viernes por la noche. Nos presentamos en la puerta y nos recibió el portero.
 Ahora el portero nos mira y pregunta: "¿Si estamos en la lista? Así que le doy mi nombre y le digo: "Hola, soy Jason Dion", y él mira la lista y se da cuenta de que no estoy en su
 lista porque no estoy tan de moda.
 
