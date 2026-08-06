@@ -308,7 +308,7 @@ Esto permite aplicar las mismas reglas a miles de equipos sin configurarlos uno 
 
 ---
 
-## Resumen para el examen
+## Resumen breve
 
 - **Restricción de aplicaciones:** controla qué programas pueden ejecutarse.
 - **Funcionalidad mínima:** instalar únicamente lo necesario.
@@ -317,3 +317,114 @@ Esto permite aplicar las mismas reglas a miles de equipos sin configurarlos uno 
 - **Allowlisting:** solo se ejecuta lo autorizado (**más seguro**).
 - **Blocklisting:** solo se bloquea lo conocido (**menos seguro**).
 - En Windows, estas políticas pueden administrarse mediante **Active Directory + Group Policy**.
+
+# Servicios innecesarios
+
+Los **servicios** son aplicaciones que se ejecutan en **segundo plano** en el sistema operativo para realizar funciones específicas (ej. impresión, actualizaciones, red).
+
+## ¿Por qué deshabilitar servicios?
+
+- Reducen la **superficie de ataque**.
+- Consumen recursos innecesarios.
+- Pueden introducir vulnerabilidades.
+- Algunos malware se ejecutan como servicios.
+
+> **Principio:** mantener únicamente los servicios necesarios (**mínima funcionalidad**).
+
+## En Windows
+
+Los servicios pueden administrarse desde:
+
+- `services.msc`
+- Símbolo del sistema (CMD)
+
+Cada servicio muestra:
+
+- Nombre.
+- Descripción.
+- Estado (ejecutándose o detenido).
+- Tipo de inicio:
+  - Automático.
+  - Manual.
+  - Deshabilitado.
+
+### Ejemplo
+
+El servicio **Windows Update (wuauserv)** puede deshabilitarse en organizaciones que utilizan un sistema centralizado de **gestión de parches**, evitando que cada equipo descargue actualizaciones directamente desde Microsoft.
+
+Pasos:
+
+1. Detener el servicio.
+2. Cambiar el tipo de inicio a **Deshabilitado**.
+3. Aplicar los cambios.
+
+> Esto evita que el servicio vuelva a iniciarse al reiniciar el equipo.
+
+### Comandos útiles
+
+Detener un servicio:
+
+```cmd
+sc stop <nombre_del_servicio>
+```
+
+Ejemplo:
+
+```cmd
+sc stop wuauserv
+```
+
+O utilizando:
+
+```cmd
+net stop <nombre_del_servicio>
+```
+
+Ejemplo:
+
+```cmd
+net stop wuauserv
+```
+
+## En macOS
+
+Los procesos pueden administrarse mediante:
+
+- **Activity Monitor (Monitor de Actividad)**
+
+Permite:
+
+- Ver procesos en ejecución.
+- Ver uso de memoria.
+- Consultar archivos y puertos utilizados.
+- Finalizar o forzar la salida de un proceso.
+
+## En Linux y macOS (Terminal)
+
+Ver procesos activos:
+
+```bash
+top
+```
+
+Finalizar un proceso:
+
+```bash
+kill <PID>
+```
+
+Ejemplo:
+
+```bash
+kill 2513
+```
+
+Donde **PID (Process ID)** es el identificador único del proceso.
+
+## Idea clave
+
+- Mantener **solo los servicios necesarios**.
+- Deshabilitar servicios innecesarios para reducir riesgos.
+- Si un malware se ejecuta como servicio, primero puede **detenerse** y **deshabilitarse** antes de eliminarlo.
+- En Windows se utilizan herramientas como **services.msc**, `sc stop` o `net stop`.
+- En Linux/macOS se utilizan comandos como `top` y `kill`.
