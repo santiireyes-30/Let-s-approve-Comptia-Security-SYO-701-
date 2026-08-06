@@ -428,3 +428,95 @@ Donde **PID (Process ID)** es el identificador único del proceso.
 - Si un malware se ejecuta como servicio, primero puede **detenerse** y **deshabilitarse** antes de eliminarlo.
 - En Windows se utilizan herramientas como **services.msc**, `sc stop` o `net stop`.
 - En Linux/macOS se utilizan comandos como `top` y `kill`.
+
+# Sistemas Operativos de Confianza (Trusted Operating Systems - TOS)
+
+Un **Sistema Operativo de Confianza (TOS)** es un sistema operativo diseñado para ofrecer un **entorno altamente seguro**, aplicando estrictas políticas de seguridad, generalmente mediante **Control de Acceso Obligatorio (MAC)**.
+
+Se utilizan en entornos donde la **confidencialidad, integridad y disponibilidad** de los datos son críticas, como sistemas militares, aeronáuticos, médicos e industriales.
+
+## Características principales
+
+- Implementan **Control de Acceso Obligatorio (MAC)**.
+- Aplican políticas de seguridad definidas por el administrador.
+- Incluyen auditoría de seguridad.
+- Pueden utilizar **Control de Acceso Basado en Roles (RBAC)**.
+- Reducen la superficie de ataque mediante una **Base Informática de Confianza (TCB)** mínima.
+
+## Control de Acceso Obligatorio (MAC)
+
+En un sistema **MAC**, el sistema operativo decide quién puede acceder a cada recurso según políticas establecidas por los administradores.
+
+A diferencia del **DAC (Control de Acceso Discrecional)**, el propietario de un archivo **no puede modificar los permisos** para otorgar más acceso.
+
+> **Objetivo:** impedir accesos no autorizados incluso por parte del propietario de los datos.
+
+## Common Criteria y niveles EAL
+
+Los **Common Criteria** evalúan la seguridad de un sistema operativo mediante los **Evaluation Assurance Levels (EAL)**.
+
+- **EAL1:** nivel más bajo de garantía.
+- **EAL4 / EAL4+:** diseño, pruebas y revisión metódica (nivel utilizado por la mayoría de sistemas comerciales).
+- **EAL6:** muy alta garantía para sistemas críticos.
+- **EAL7:** máximo nivel de garantía.
+
+### Ejemplos
+
+- **Integrity-178B**
+  - Utilizado en aeronaves militares y comerciales.
+  - Clasificación **EAL6**.
+  - Empleado en aviones como F-16, F-22, F-35, B-2 y Airbus A380.
+
+- **SELinux (Security-Enhanced Linux)**
+  - Implementa **MAC** sobre distribuciones Linux.
+  - Clasificación aproximada **EAL4+**.
+  - Restringe aplicaciones y usuarios al **mínimo privilegio**.
+  - Puede aislar procesos potencialmente peligrosos.
+
+- **Trusted Solaris**
+  - Implementa MAC.
+  - Incluye auditoría detallada y compartimentación de procesos y datos.
+
+## Microkernel y TCB
+
+Muchos sistemas operativos de confianza utilizan una arquitectura de **microkernel**.
+
+Su objetivo es reducir la **Trusted Computing Base (TCB)**, es decir, los componentes críticos para la seguridad.
+
+**Ventajas:**
+
+- Reduce la superficie de ataque.
+- Disminuye la probabilidad de vulnerabilidades.
+- Facilita la verificación de la seguridad.
+
+## Sistemas móviles
+
+Los dispositivos móviles también incorporan características de sistemas operativos de confianza.
+
+Ejemplo:
+
+- **Android**
+  - Sandboxing de aplicaciones.
+  - Uso de **AppArmor**.
+  - Aplicación de políticas **MAC** para aislar aplicaciones.
+
+## Ventajas
+
+- Mayor protección de datos.
+- Estrictos controles de acceso.
+- Menor superficie de ataque.
+- Mayor resistencia frente a ataques.
+
+## Desventajas
+
+- Diseño e implementación costosos.
+- Mayor complejidad de administración.
+- Puede afectar la usabilidad y el rendimiento.
+- Normalmente solo se utiliza cuando la seguridad es crítica.
+
+## Idea clave
+
+- Un **Trusted Operating System (TOS)** aplica controles de seguridad estrictos mediante **MAC**.
+- Los **Common Criteria** clasifican su nivel de seguridad mediante los **EAL (1-7)**.
+- La mayoría de **Windows, macOS y Linux** cuentan con certificaciones **EAL4/EAL4+**.
+- Los niveles **EAL6 y EAL7** suelen reservarse para sistemas especializados (militares, aeronáuticos, médicos o industriales).
