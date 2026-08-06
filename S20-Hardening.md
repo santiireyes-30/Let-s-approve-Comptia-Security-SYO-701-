@@ -451,9 +451,17 @@ A diferencia del **DAC (Control de Acceso Discrecional)**, el propietario de un 
 
 > **Objetivo:** impedir accesos no autorizados incluso por parte del propietario de los datos.
 
+| **DAC (Discretionary Access Control)** | **MAC (Mandatory Access Control)** |
+|----------------------------------------|------------------------------------|
+| **El propietario del recurso decide quién accede.** | **El sistema operativo decide quién accede.** |
+| El propietario **puede cambiar los permisos**. | El propietario **NO puede cambiar los permisos**. |
+| Más flexible. | Más seguro y estricto. |
+| Se basa en la decisión del propietario del recurso. | Se basa en políticas definidas por el administrador del sistema. |
+| Ejemplo: Windows, Linux y macOS (por defecto). | Ejemplo: SELinux, Trusted Solaris, sistemas militares. |
+
 ## Common Criteria y niveles EAL
 
-Los **Common Criteria** evalúan la seguridad de un sistema operativo mediante los **Evaluation Assurance Levels (EAL)**.
+Los **Common Criteria** se utilizan para evalúar la seguridad y la eficacia de un sistema operativo y de los controles de seguridad mediante los **Evaluation Assurance Levels (EAL)**.
 
 - **EAL1:** nivel más bajo de garantía.
 - **EAL4 / EAL4+:** diseño, pruebas y revisión metódica (nivel utilizado por la mayoría de sistemas comerciales).
