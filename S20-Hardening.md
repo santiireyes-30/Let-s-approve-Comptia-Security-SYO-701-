@@ -151,7 +151,7 @@ Reducir la **superficie de ataque**, eliminando configuraciones inseguras que vi
 
 ---
 
-## Resumen 
+## Resumen Breve
 
 - Las configuraciones por defecto **priorizan la facilidad de uso, no la seguridad**.
 - Cambiar inmediatamente las credenciales predeterminadas.
