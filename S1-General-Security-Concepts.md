@@ -47,11 +47,11 @@ Ahora, antes de que podamos profundizar en cualquier discusión técnica sobre I
 contraseñas o la seguridad de los sistemas de su empresa mediante la configuración
 de sus firewalls, tenemos que cubrir primero algunos conceptos básicos que usted simplemente debe entender.
 
-# Dos Términos a tener en cuenta y su diferencia:
+## Dos Términos a tener en cuenta y su diferencia:
 
 Seguridad en la Información y Seguridad en Sistemas de Información
 
-Seguridad en la Información: 
+### Seguridad en la Información: 
 
 Es el acto de proteger los datos y la información del acceso no autorizado, la modificación
 e interrupción ilícitas, la divulgación o corrupción y la destrucción.
@@ -59,7 +59,7 @@ e interrupción ilícitas, la divulgación o corrupción y la destrucción.
 En pocas palabras, cuando hablamos de seguridad de la información, nos referimos a los datos que guardan los sistemas,
 no a los sistemas en sí.
 
-Seguridad en Sistemas de Información: 
+### Seguridad en Sistemas de Información: 
 
 Es el acto de proteger los sistemas que contienen y procesan nuestros datos críticos. Puede ser un ordenador, un servidor, 
 un dispositivo de red o incluso tu smartphone.
@@ -67,7 +67,7 @@ un dispositivo de red o incluso tu smartphone.
 - Recuerde que si alguien habla de proteger los datos en sí, está hablando de seguridad de la información, pero si se refiere
 a los dispositivos que contienen los datos, entonces hablamos de seguridad del sistema de información.
 
-# Conceptos Generales de Seguridad
+## Conceptos Generales de Seguridad
 
 El Objetivo nº 1.1 establece que debes ser capaz de comparar y contrastar varios tipos de controles de seguridad.
 El Objetivo 1.2 establece que debes ser capaz de resumir conceptos fundamentales de seguridad.
