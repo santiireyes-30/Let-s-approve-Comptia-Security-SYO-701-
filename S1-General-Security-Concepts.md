@@ -131,11 +131,11 @@ Implica:
 
 - No confiar solo por estar dentro de la red, Incluso si estás en la red corporativa, debes validar identidad constantemente.
 
-# Amenazas, Vulnerabilidades y Gestión del Riesgo
+## Amenazas, Vulnerabilidades y Gestión del Riesgo
 
 Como profesionales de ciberseguridad, nuestro trabajo es impedir que las amenazas exploten las vulnerabilidades de los sistemas.
 
-##  Amenaza
+###  Amenaza
 
 Es cualquier cosa que pueda causar daño, pérdida o perjuicio a los sistemas.
 Provienen de fuentes externas como:
@@ -146,7 +146,7 @@ Provienen de fuentes externas como:
 
 No podemos controlar totalmente las amenazas, pero sí podemos minimizar su impacto.
 
-## Vulnerabilidad
+### Vulnerabilidad
 
 Es una debilidad en el diseño o implementación de un sistema.
 Proviene de factores internos como:
@@ -163,7 +163,7 @@ Las vulnerabilidades sí están bajo nuestro control y pueden gestionarse median
 - Evitación
 - Aceptación del riesgo
 
-## Riesgo
+### Riesgo
 
 El riesgo existe cuando una amenaza puede explotar una vulnerabilidad.
 
