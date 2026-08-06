@@ -87,7 +87,7 @@ y son los tres pilares de la seguridad.
 
   IMPORTANTE!!: MÁS ALLA DE LA TRIADA C.I.A HOY ES C.I.A.N.A (Confidencialidad, Integridad, Disponibilidad, No-Repudio y Autenticación...
   
-# Concepto de no-repudio
+## Concepto de no-repudio
 
 No repudio significa garantizar que una acción o acontecimiento específico ha tenido lugar y no puede ser negado por las partes implicadas.
 Por ejemplo, si te envío un correo electrónico y lo firmo digitalmente, eso va a garantizar que no puedo negar que te envié ese
@@ -95,7 +95,7 @@ mensaje en concreto porque mi firma digital está adjunta a él.
 
 Ahora pasamos a este ámbito de las A.A.A de la seguridad, que llamamos autenticación, autorización y contabilidad.
 
-# Concepto de Autenticación
+## Concepto de Autenticación
 
 - La autenticación es el proceso de verificación de la identidad de un usuario o sistema. Por ejemplo, cuando intenta acceder a su correo electrónico,
 su nombre de usuario y contraseña se cotejan con una versión almacenada para confirmar su identidad.
@@ -112,7 +112,7 @@ de los sistemas de información y sus datos. Estos controles de seguridad pueden
 y físicos, pero también podemos hablar de los distintos tipos de controles de seguridad que tenemos, como controles preventivos, disuasorios, detectivos, 
 correctivos, compensatorios y directivos.
 
-# Zero Trust (Confianza cero)
+## Zero Trust (Confianza cero)
 
 a confianza cero es un modelo de seguridad más reciente que se basa en el principio de que no se debe confiar por defecto en nadie, ya sea
 dentro o fuera de la organización, y se va a exigir verificación a todo aquel que intente acceder a los recursos del sistema.
@@ -135,7 +135,7 @@ Implica:
 
 Como profesionales de ciberseguridad, nuestro trabajo es impedir que las amenazas exploten las vulnerabilidades de los sistemas.
 
-🔹  Amenaza
+##  Amenaza
 
 Es cualquier cosa que pueda causar daño, pérdida o perjuicio a los sistemas.
 Provienen de fuentes externas como:
@@ -146,7 +146,7 @@ Provienen de fuentes externas como:
 
 No podemos controlar totalmente las amenazas, pero sí podemos minimizar su impacto.
 
-🔹  Vulnerabilidad
+## Vulnerabilidad
 
 Es una debilidad en el diseño o implementación de un sistema.
 Proviene de factores internos como:
@@ -163,7 +163,7 @@ Las vulnerabilidades sí están bajo nuestro control y pueden gestionarse median
 - Evitación
 - Aceptación del riesgo
 
-🔹 Riesgo
+## Riesgo
 
 El riesgo existe cuando una amenaza puede explotar una vulnerabilidad.
 
