@@ -171,9 +171,9 @@ Su objetivo es aplicar el principio de **funcionalidad mínima**, donde un equip
 
 ---
 
-## Funcionalidad mínima (Minimum Functionality)
+## Funcionalidad mínima (Least Functionality)
 
-Consiste en configurar un equipo para que solo tenga:
+Es el proceso de configurar una estación de trabajo o un servidor para que sólo proporcione las aplicaciones y servicios esenciales que va a necesitar ese usuario. Consiste en configurar un equipo para que solo tenga:
 
 - Las aplicaciones necesarias.
 - Los servicios necesarios.
