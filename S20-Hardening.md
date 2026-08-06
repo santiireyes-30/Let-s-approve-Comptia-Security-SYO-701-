@@ -416,7 +416,7 @@ kill <PID>
 Ejemplo:
 
 ```bash
-kill 2513
+kill 2513 (numero ID del proceso que queremos matar)
 ```
 
 Donde **PID (Process ID)** es el identificador único del proceso.
