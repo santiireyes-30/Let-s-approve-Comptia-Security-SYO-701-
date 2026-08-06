@@ -95,7 +95,7 @@ mensaje en concreto porque mi firma digital está adjunta a él.
 
 Ahora pasamos a este ámbito de las A.A.A de la seguridad, que llamamos autenticación, autorización y contabilidad.
 
-## Concepto de Autenticación
+## Concepto de Autenticación, Autorizacion y Contabilidad
 
 - La autenticación es el proceso de verificación de la identidad de un usuario o sistema. Por ejemplo, cuando intenta acceder a su correo electrónico,
 su nombre de usuario y contraseña se cotejan con una versión almacenada para confirmar su identidad.
@@ -105,7 +105,7 @@ su nombre de usuario y contraseña se cotejan con una versión almacenada para c
 - La contabilidad es el acto de rastrear las actividades de los usuarios y la utilización de los recursos y, por lo general, lo hacemos con fines
 de auditoría o facturación. Así que cuando inicias sesión en tu ordenador, en realidad estamos registrando lo que haces.
 
-# Controles de Seguridad
+## Controles de Seguridad
 
 los controles de seguridad son medidas o mecanismos que se establecen para mitigar los riesgos y proteger la confidencialidad, integridad y disponibilidad
 de los sistemas de información y sus datos. Estos controles de seguridad pueden agruparse en categorías, como controles técnicos, de gestión, operativos
