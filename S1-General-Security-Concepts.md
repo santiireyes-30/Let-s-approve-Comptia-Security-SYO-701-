@@ -47,7 +47,7 @@ Ahora, antes de que podamos profundizar en cualquier discusión técnica sobre I
 contraseñas o la seguridad de los sistemas de su empresa mediante la configuración
 de sus firewalls, tenemos que cubrir primero algunos conceptos básicos que usted simplemente debe entender.
 
-## Dos Términos a tener en cuenta y su diferencia:
+## Dos términos a tener en cuenta y su diferencia:
 
 Seguridad en la Información y Seguridad en Sistemas de Información
 
