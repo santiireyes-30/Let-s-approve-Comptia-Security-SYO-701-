@@ -476,12 +476,19 @@ Los **Common Criteria** se utilizan para evalúar la seguridad y la eficacia de 
   - Empleado en aviones como F-16, F-22, F-35, B-2 y Airbus A380.
 
 - **SELinux (Security-Enhanced Linux)**
+
+Ahora, SELinux se utiliza como una implementación de MAC en el núcleo de Linux para garantizar que las aplicaciones y los usuarios sólo tengan el acceso mínimo necesario a sus recursos. SELinux utiliza políticas para hacer cumplir las propiedades de seguridad
+y puede confinar procesos potencialmente dañinos para limitar el impacto de las vulnerabilidades. Veamos algunas caracteristicas:
+
   - Implementa **MAC** sobre distribuciones Linux.
   - Clasificación aproximada **EAL4+**.
   - Restringe aplicaciones y usuarios al **mínimo privilegio**.
   - Puede aislar procesos potencialmente peligrosos.
 
 - **Trusted Solaris**
+
+está diseñado para proporcionar operaciones seguras a varios niveles a la vez que implementa MAC. Carcateristicas:
+
   - Implementa MAC.
   - Incluye auditoría detallada y compartimentación de procesos y datos.
 
