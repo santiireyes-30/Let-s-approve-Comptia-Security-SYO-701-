@@ -602,16 +602,18 @@ Su objetivo es:
 
 ### 1. Planificación
 - Crear políticas y procedimientos.
-- Identificar y realizar seguimiento de los parches disponibles.
+- Identificar y realizar seguimiento de los parches y actualizaciones disponibles.
 - Comprobar su compatibilidad.
-- Determinar cómo se probarán y desplegarán.
-- Utilizar herramientas de gestión de parches.
+- Determinar cómo se probarán y desplegarán antes de instalarlos.
+- Utilizar herramientas de gestión de parches que puede decirle realmente si los parches se han desplegado, instalado y verificado funcionalmente en un determinado servidor o cliente.
 
 ### 2. Pruebas
-Antes de desplegar un parche en toda la organización:
+Antes de automatizar su despliegue un parche en toda la red/organización que se recibira del fabricante, se debera:
 - Probarlo en un **laboratorio** o entorno de prueba.
 - Verificar que no genere nuevos problemas.
-- Tener en cuenta que cada organización puede tener configuraciones diferentes.
+- Tener en cuenta que cada organización puede tener configuraciones diferentes y eso puede realmente romper algunos de los parches de seguridad cuando se intenta instalarlos.
+Así pues, aunque los fabricantes intentan garantizar que los parches no van a causar daños a nuestros sistemas, esto simplemente no se puede garantizar
+porque cada red tiene sus propias configuraciones individuales.
 
 **Idea clave:** un parche que funciona correctamente en un sistema puede causar problemas en otro.
 
@@ -621,21 +623,29 @@ Después de probar el parche:
 - En redes pequeñas → puede hacerse manualmente.
 - En redes grandes → utilizar herramientas de gestión y automatización.
 
-#### Patch Rings
-Los parches pueden desplegarse progresivamente:
+#### Patch Rings (Anillos de Parches)
+Los Patch Rings son grupos de dispositivos a los que se les despliega un parche de forma progresiva.
+Los parches suelen desplegarse progresivamente:
 
-**Ring 1 → Ring 2 → Ring 3 → Ring 4**
+**Ring 1(pocos equipos) → Ring 2(más equipos) → Ring 3(muchos equipos) → Ring 4(todos los equipos)**
 
 Se empieza con pocos equipos y, si no aparecen problemas, se aumenta progresivamente la cantidad.
 
-Esto limita el impacto si el parche provoca algún fallo.
+Esto limita el impacto antes de actualizar todos los equipos. si el parche provoca algún fallo, sirven para detectar problemas temprano.
 
 ### 4. Auditoría
 Después del despliegue:
-- Comprobar que el parche se instaló correctamente.
+- Comprobar que el parche se instaló correctamente, utilizando una herramienta como Microsoft Endpoint Configuration Manager o una herramienta de gestión de parches de terceros,
+podremos llevar a cabo el escaneado y la verificación de sus estaciones de trabajo y servidores por usted, y esto ayudará a garantizar que los parches se han instalado correctamente.
 - Detectar errores o problemas inesperados.
 - Escanear los sistemas para verificar su estado.
 - Registrar los resultados.
+
+Ahora, además de llevar a cabo la gestión de parches en nuestras estaciones de trabajo y servidores, también es importante que realicemos la gestión del firmware de todos nuestros dispositivos de red.
+
+Al fin y al cabo, todos nuestros dispositivos de red, como conmutadores y enrutadores, ejecutan una forma de software conocida como firmware en esos dispositivos para poder proporcionarles el sistema operativo.
+
+Si sus dispositivos de red no contienen las versiones de firmware más recientes y actualizadas, podría tener vulnerabilidades de seguridad y fallos de software que podrían ser aprovechados por un atacante.
 
 ## Gestión del firmware
 
@@ -662,6 +672,12 @@ La automatización permite gestionar grandes cantidades de dispositivos de forma
 
 ## Resumen
 
-**Gestión de parches = Planificar → Probar → Aplicar → Auditar**
+**Gestión de parches de software = Planificar → Probar → Aplicar → Auditar**
 
 Su finalidad es mantener **servidores, estaciones de trabajo, dispositivos móviles y dispositivos de red** actualizados y protegidos frente a vulnerabilidades conocidas.
+
+Así que recuerde, La gestión de parches es fundamental para proporcionar seguridad, aumentar el tiempo de actividad, garantizar el cumplimiento de la normativa y mejorar las prestaciones
+de los dispositivos de red, servidores y clientes.
+
+Sin embargo, para llevar a cabo la gestión de parches a gran escala, es necesario utilizar una herramienta, automatización u orquestación para garantizar que todos los dispositivos de red, servidores,
+portátiles y dispositivos móviles estén actualizados y parcheados contra cualquier vulnerabilidad conocida(CVE).
