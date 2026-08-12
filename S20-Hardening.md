@@ -478,7 +478,7 @@ Los **Common Criteria** se utilizan para evalúar la seguridad y la eficacia de 
 - **SELinux (Security-Enhanced Linux)**
 
 Ahora, SELinux se utiliza como una implementación de MAC en el núcleo de Linux para garantizar que las aplicaciones y los usuarios sólo tengan el acceso mínimo necesario a sus recursos. SELinux utiliza políticas para hacer cumplir las propiedades de seguridad
-y puede confinar procesos potencialmente dañinos para limitar el impacto de las vulnerabilidades. Veamos algunas caracteristicas:
+y puede confinar("Confinar = aislar o limitar algo para que no pueda afectar al resto del sistema"), procesos potencialmente dañinos para limitar el impacto de las vulnerabilidades. Veamos algunas caracteristicas:
 
   - Implementa **MAC** sobre distribuciones Linux.
   - Clasificación aproximada **EAL4+**.
@@ -487,14 +487,16 @@ y puede confinar procesos potencialmente dañinos para limitar el impacto de las
 
 - **Trusted Solaris**
 
-está diseñado para proporcionar operaciones seguras a varios niveles a la vez que implementa MAC. Carcateristicas:
+es otro ejemplo de distribución configurada para utilizar MAC. está diseñado para proporcionar operaciones seguras a varios niveles a la vez que implementa MAC. Carcateristicas:
 
   - Implementa MAC.
-  - Incluye auditoría detallada y compartimentación de procesos y datos.
+  - Incluye auditoría detallada de los eventos de nuestros sistemas y compartimentación para iaslar nuestros procesos y datos.
+
+Ahora, dentro de un sistema operativo de confianza, a menudo usaremos microkernels que van a minimizar la base informática de confianza de ese sistema.
 
 ## Microkernel y TCB
 
-Muchos sistemas operativos de confianza utilizan una arquitectura de **microkernel**.
+Como mencionamos anteriormente muchos sistemas operativos de confianza utilizan una arquitectura de **microkernel**.
 
 Su objetivo es reducir la **Trusted Computing Base (TCB)**, es decir, los componentes críticos para la seguridad.
 
@@ -506,14 +508,9 @@ Su objetivo es reducir la **Trusted Computing Base (TCB)**, es decir, los compon
 
 ## Sistemas móviles
 
-Los dispositivos móviles también incorporan características de sistemas operativos de confianza.
-
-Ejemplo:
-
-- **Android**
-  - Sandboxing de aplicaciones.
-  - Uso de **AppArmor**.
-  - Aplicación de políticas **MAC** para aislar aplicaciones.
+Los dispositivos móviles también incorporan características de sistemas operativos de confianza como **Android de Google** han incorporado elementos del modelo de computación de confianza
+a través del uso de diversos mecanismos de seguridad, como el **sandboxing de aplicaciones**, que restringe el acceso a los recursos del sistema y aísla las aplicaciones entre sí, mediante la aplicación
+de herramientas de arquitectura de seguridad de confianza, como **AppArmor**, para imponer controles de acceso obligatorios en los dispositivos móviles.
 
 ## Ventajas
 
@@ -533,5 +530,138 @@ Ejemplo:
 
 - Un **Trusted Operating System (TOS)** aplica controles de seguridad estrictos mediante **MAC**.
 - Los **Common Criteria** clasifican su nivel de seguridad mediante los **EAL (1-7)**.
-- La mayoría de **Windows, macOS y Linux** cuentan con certificaciones **EAL4/EAL4+**.
+- La mayoría de **Windows, macOS y Linux** cuentan con certificaciones **EAL4/EAL4+**  EAL4 significa que el sistema operativo ha sido metódicamente diseñado, probado y revisado, y realmente nos proporciona un nivel de garantía de seguridad realmente bueno y decente, pero no es ni de lejos tan alto como EAL6 o EAL7..
 - Los niveles **EAL6 y EAL7** suelen reservarse para sistemas especializados (militares, aeronáuticos, médicos o industriales).
+
+Así que recuerde, los sistemas operativos de confianza desempeñan un papel vital a la hora de proporcionar un entorno informático seguro en un contexto en el que la integridad y la confidencialidad de los datos son cruciales.
+
+Mediante la aplicación de estrictas normas de control de acceso, la realización de rigurosas evaluaciones de seguridad y la reducción al mínimo de la base informática de confianza, estos sistemas pretenden mitigar y minimizar los
+posibles riesgos para la seguridad.
+
+Con el tiempo, a medida que la seguridad y la garantía de los datos vayan adquiriendo un papel cada vez más importante en nuestras redes organizativas, es posible que su organización utilice cada vez más sistemas operativos de confianza.
+
+# Actualizaciones y parches
+
+## ¿Qué es un parche?
+Un **parche (patch)** es una modificación de software que corrige errores o, especialmente, **vulnerabilidades de seguridad**.
+
+La **gestión de parches** es el proceso de identificar, probar, desplegar y supervisar parches para mantener seguros los sistemas.
+
+## Tipos principales
+
+- **Hotfix:** parche urgente que corrige una vulnerabilidad crítica y debe aplicarse rápidamente después de probarlo.
+- **Actualización:** agrega nuevas funciones o mejoras; no necesariamente corrige problemas de seguridad.
+- **Service Pack:** conjunto de muchos parches y actualizaciones agrupados en un único instalador.
+
+## Gestión de parches
+
+Un programa eficaz debe tener este método rutinario:
+
+1. Tener una persona/equipo responsable de seguir todos boletines y versiones de parches de seguridad suministrados por los proveedores.
+2. Detectar qué sistemas/aplicaciones necesitan parches y Automatizar el parcheado cuando sea posible.
+3. Incluir recursos **cloud**, además de sistemas locales.
+4. Clasificar los parches como **urgentes, importantes o no críticos**.
+5. Probar los parches importantes en un **entorno de laboratorio** antes de producción.
+6. Mantener registros de los parches aplicados.
+7. Debe disponer de un mecanismo para evaluar, probar y desplegar actualizaciones de **firmware**.
+8. Tener un proceso de emergencia para aplicar rápidamente parches críticos si han sido aprobados por un consejo asesor de cambios de emergencia.
+9. Agrupar y desplegar periódicamente los parches no críticos.
+
+## ⚠️ Idea importante
+
+Cuando se publica un parche, los atacantes pueden analizarlo para descubrir **qué vulnerabilidad corrige** y crear un exploit.
+
+Por eso, **retrasar demasiado un parche puede dejar el sistema vulnerable**.
+
+> **Hardening → mantener el software actualizado y parcheado para reducir vulnerabilidades y la superficie de ataque.**
+
+Así pues, recuerde que las actualizaciones y los parches son cruciales para la seguridad de sus dispositivos, y que debe contar con un programa de gestión de parches para asegurarse de que puede minimizar el riesgo de ataques.
+
+Cuando se trata de actualizaciones y parches, recuerde que hay tres tipos principales que debemos tener en cuenta.
+
+Se trata de hotfixes, actualizaciones y service packs.
+
+Un hotfix es un parche de seguridad que resuelve un problema de seguridad y debe aplicarse inmediatamente después de ser probado en su entorno de laboratorio para asegurarse de que la vulnerabilidad no puede ser explotada por los atacantes.
+
+Una actualización, por otro lado, va a proporcionar a su sistema una funcionalidad adicional, pero normalmente no le proporciona ningún parche para los problemas relacionados con la seguridad.
+
+Un paquete de servicio va a ser una colección de cientos o miles de revisiones y actualizaciones en un archivo de instalación para que cuando instales un nuevo sistema operativo, puedas instalar todos los parches de seguridad utilizando un archivo de instalación
+en lugar de tener que salir y recoger cien o mil revisiones y actualizaciones de seguridad diferentes para poder implementarlas en tu sistema.
+
+# Gestión de parches
+
+La **gestión de parches** consiste en **planificar, probar, aplicar y auditar** parches de software.
+
+Su objetivo es:
+-  Aumentar la **seguridad** corrigiendo vulnerabilidades conocidas (CVE).
+-  Aumentar el **tiempo de actividad** y evitar fallos.
+-  Ayudar al **cumplimiento** de normativas.
+-  Mejorar funciones y rendimiento.
+
+## 4 pasos principales
+
+### 1. Planificación
+- Crear políticas y procedimientos.
+- Identificar y realizar seguimiento de los parches disponibles.
+- Comprobar su compatibilidad.
+- Determinar cómo se probarán y desplegarán.
+- Utilizar herramientas de gestión de parches.
+
+### 2. Pruebas
+Antes de desplegar un parche en toda la organización:
+- Probarlo en un **laboratorio** o entorno de prueba.
+- Verificar que no genere nuevos problemas.
+- Tener en cuenta que cada organización puede tener configuraciones diferentes.
+
+**Idea clave:** un parche que funciona correctamente en un sistema puede causar problemas en otro.
+
+### 3. Aplicación
+Después de probar el parche:
+- Desplegarlo en los sistemas que lo necesiten.
+- En redes pequeñas → puede hacerse manualmente.
+- En redes grandes → utilizar herramientas de gestión y automatización.
+
+#### Patch Rings
+Los parches pueden desplegarse progresivamente:
+
+**Ring 1 → Ring 2 → Ring 3 → Ring 4**
+
+Se empieza con pocos equipos y, si no aparecen problemas, se aumenta progresivamente la cantidad.
+
+Esto limita el impacto si el parche provoca algún fallo.
+
+### 4. Auditoría
+Después del despliegue:
+- Comprobar que el parche se instaló correctamente.
+- Detectar errores o problemas inesperados.
+- Escanear los sistemas para verificar su estado.
+- Registrar los resultados.
+
+## Gestión del firmware
+
+La gestión de parches también incluye el **firmware de dispositivos de red** como:
+
+- Routers
+- Switches
+- Otros dispositivos de red
+
+El firmware puede contener vulnerabilidades, por lo que también debe mantenerse actualizado.
+
+> **Firmware desactualizado = posibles vulnerabilidades explotables.**
+
+## Herramientas y automatización
+
+En organizaciones grandes se utilizan herramientas para automatizar la gestión de parches, por ejemplo:
+
+- **Microsoft Endpoint Configuration Manager**
+- Herramientas de terceros
+- **MDM** para dispositivos móviles
+- Gestores de paquetes en Linux
+
+La automatización permite gestionar grandes cantidades de dispositivos de forma eficiente.
+
+## Resumen
+
+**Gestión de parches = Planificar → Probar → Aplicar → Auditar**
+
+Su finalidad es mantener **servidores, estaciones de trabajo, dispositivos móviles y dispositivos de red** actualizados y protegidos frente a vulnerabilidades conocidas.
