@@ -782,3 +782,63 @@ También podemos crear excepciones para permitir determinados archivos o aplicac
 **AppLocker → controla qué aplicaciones pueden ejecutarse.**
 
 Todo esto puede utilizarse para crear una **Secure Baseline** y aplicar **hardening** de forma uniforme en los equipos Windows.
+
+# SELinux (Security-Enhanced Linux)
+
+**SELinux** es una capa adicional de seguridad para Linux que implementa **MAC (Mandatory Access Control)** para controlar de forma estricta qué usuarios y procesos pueden acceder a archivos, directorios, puertos y otros recursos por que ahora, 
+una de las mejores maneras de detener una violación de datos es restringir la capacidad de conceder o denegar el acceso de alguien a un objeto de recurso dado dentro de su sistema de archivo.
+
+## DAC vs MAC
+
+- **DAC (Discretionary Access Control/Control de Acceso Discrecional):** el propietario del recurso puede modificar sus permisos mediante comandos como `chmod` y `chown`. Es decir que el propietario del recurso decide sus permisos.
+
+Ejemplo en Linux:
+
+Santiago crea archivo.txt
+        ↓
+Santiago = propietario
+        ↓
+Santiago puede decidir:
+- quién puede leerlo
+- quién puede modificarlo
+- quién puede ejecutarlo
+
+- **MAC(Mandatory Access Control/Modelo de control de acceso):** los permisos son definidos por políticas del sistema y **ni siquiera el propietario puede modificarlos libremente**. El sistema operativo hace cumplir estas políticas.
+
+Santiago crea archivo.txt
+        ↓
+SELinux establece una política
+        ↓
+La política determina qué usuario/proceso puede acceder
+        ↓
+Santiago NO puede cambiar esa política simplemente porque sea propietario
+
+Por eso se llama **Mandatory** (obligatorio): el sistema hace cumplir las reglas.
+
+## SELinux
+
+SELinux utiliza **etiquetas de seguridad** para controlar el acceso. Sus 3 contextos principales son:
+
+- **Usuario:** determina qué usuarios pueden acceder.
+- **Rol:** determina qué roles pueden acceder.
+- **Tipo:** clasifica los recursos según sus características de seguridad y permite un control más preciso.
+- **Nivel (opcional):** indica la sensibilidad de un recurso y permite restricciones adicionales.
+
+### Modos de SELinux
+
+- **Disabled:** SELinux está apagado → no se aplica MAC y se utiliza DAC.
+- **Enforcing:** SELinux está activo y **aplica las políticas**, bloqueando acciones no permitidas.
+- **Permissive:** SELinux está activo, pero **no bloquea** las acciones; registra las violaciones para analizarlas.
+
+### Políticas
+
+- **Targeted:** aplica SELinux principalmente a procesos específicos que necesitan mayor protección. Es la política predeterminada en Red Hat/CentOS.
+- **Strict:** aplica MAC a prácticamente **todo el sistema**, proporcionando mayor seguridad pero siendo más difícil de configurar y mantener.
+
+### Auditoría
+
+SELinux registra las **violaciones de seguridad** en logs. Esto permite detectar intentos de acceso no autorizado o acciones que contradicen las políticas.
+
+Al principio pueden aparecer **falsos positivos** mientras las políticas se ajustan.
+
+> **Idea clave:** SELinux limita lo que un usuario o proceso puede hacer, incluso si normalmente tendría permisos mediante DAC.
