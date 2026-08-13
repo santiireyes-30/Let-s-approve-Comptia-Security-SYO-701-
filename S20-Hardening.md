@@ -681,3 +681,104 @@ de los dispositivos de red, servidores y clientes.
 
 Sin embargo, para llevar a cabo la gestión de parches a gran escala, es necesario utilizar una herramienta, automatización u orquestación para garantizar que todos los dispositivos de red, servidores,
 portátiles y dispositivos móviles estén actualizados y parcheados contra cualquier vulnerabilidad conocida(CVE).
+
+# Políticas de Grupo (Group Policy)
+
+Una **política de grupo (Group Policy)** es un conjunto de reglas que permite administrar y aplicar configuraciones de seguridad a **usuarios y equipos Windows**.
+
+## ¿Para qué sirven?
+
+Permiten aplicar de forma centralizada:
+
+-  Políticas de contraseñas.
+-  Bloqueo de cuentas.
+-  Restricciones de aplicaciones.
+-  Configuraciones de seguridad.
+-  Permisos y configuraciones de usuarios.
+-  Configuraciones de equipos.
+
+En Windows se puede acceder al editor local mediante:
+
+`gpedit.msc`
+
+En un entorno empresarial con **Active Directory**, las políticas pueden administrarse y distribuirse a muchos equipos mediante **GPO (Group Policy Objects)**.
+
+## GPO (Group Policy Object)
+
+Una **GPO** es un conjunto de configuraciones que se puede aplicar a usuarios o equipos.
+
+Esto permite crear una **línea de base segura (secure baseline)** y aplicarla de forma uniforme a los sistemas de la organización.
+
+---
+
+## Baselining
+
+El **baselining** consiste en establecer qué comportamiento es **normal** en un sistema o red.
+
+Después podemos comparar la actividad actual con esa línea de base para detectar **desviaciones o algo anormal**.
+
+Ejemplo:
+
+- Actividad normal un sábado → baja.
+- Un sábado aparece un pico enorme de tráfico → ⚠️ investigar.
+
+Una desviación puede ser:
+
+> - ✅ Esperada/aceptable.
+> - 🚨 Anormal y requiere investigación.
+
+→ suponemos que es anormal y podemos investigar o directamente se investiga y se descubre que un atacante está extrayendo datos de la empresa, es un ejemplo para que lo tengamos en cuenta.
+
+El baselining puede ayudar a detectar incidentes como **filtraciones de datos**. Ahora, cada desviación debe analizarse y clasificarse como aceptable y esperada o como un problema
+que hay que investigar más a fondo.
+
+Muchas filtraciones de datos se han descubierto al investigar una utilización de la red superior a la esperada, durante periodos que deberían haber sido relativamente bajos.
+
+Al examinarlos, la gente ha descubierto cosas, como que se han producido filtraciones de datos u otros problemas en su red.
+
+---
+
+## Politica de Control de Aplicaciones
+
+### >  AppLocker
+
+**AppLocker** permite controlar qué aplicaciones pueden ejecutarse en Windows.
+
+Permite crear:
+
+- **Allowlisting** → solo se ejecutan las aplicaciones permitidas.
+- **Blocklisting** → se bloquean únicamente las aplicaciones incluidas en la lista.
+
+#### Tipos de reglas
+
+Las reglas pueden basarse en:
+
+- **Publisher** → fabricante/editor.
+- **Path** → ubicación del archivo.
+- **Hash** → identificador/hash específico del archivo.
+
+### Ejemplo
+
+Podemos crear una regla:
+
+`Deny → Todos los usuarios → Path → %WINDIR%\Temp\*`
+
+Esto significa:
+
+> 🚫 Bloquear la ejecución de cualquier archivo ubicado dentro de la carpeta `Temp`.
+
+También podemos crear excepciones para permitir determinados archivos o aplicaciones.
+
+---
+
+## Idea clave
+
+**Group Policy → permite administrar configuraciones de seguridad de forma centralizada.**
+
+**GPO → conjunto de reglas/configuraciones que se aplican a usuarios o equipos.**
+
+**Baselining → establece qué es normal para detectar anomalías.**
+
+**AppLocker → controla qué aplicaciones pueden ejecutarse.**
+
+Todo esto puede utilizarse para crear una **Secure Baseline** y aplicar **hardening** de forma uniforme en los equipos Windows.
