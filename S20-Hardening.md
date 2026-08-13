@@ -567,7 +567,7 @@ Un programa eficaz debe tener este método rutinario:
 8. Tener un proceso de emergencia para aplicar rápidamente parches críticos si han sido aprobados por un consejo asesor de cambios de emergencia.
 9. Agrupar y desplegar periódicamente los parches no críticos.
 
-## ⚠️ Idea importante
+##  Idea importante
 
 Cuando se publica un parche, los atacantes pueden analizarlo para descubrir **qué vulnerabilidad corrige** y crear un exploit.
 
@@ -785,8 +785,9 @@ Todo esto puede utilizarse para crear una **Secure Baseline** y aplicar **harden
 
 # SELinux (Security-Enhanced Linux)
 
-**SELinux** es una capa adicional de seguridad para Linux que implementa **MAC (Mandatory Access Control)** para controlar de forma estricta qué usuarios y procesos pueden acceder a archivos, directorios, puertos y otros recursos por que ahora, 
-una de las mejores maneras de detener una violación de datos es restringir la capacidad de conceder o denegar el acceso de alguien a un objeto de recurso dado dentro de su sistema de archivo.
+**SELinux** es una capa adicional de seguridad para Linux que implementa **MAC (Mandatory Access Control)** para controlar de forma estricta qué usuarios y procesos pueden acceder a archivos, directorios, puertos y otros recursos
+
+Ahora, una de las mejores maneras de detener una violación de datos es restringir la capacidad de conceder o denegar el acceso de alguien a un objeto de recurso dado dentro de su sistema de archivo.
 
 ## DAC vs MAC
 
@@ -803,7 +804,8 @@ Santiago puede decidir:
 - quién puede modificarlo
 - quién puede ejecutarlo
 
-- **MAC(Mandatory Access Control/Modelo de control de acceso):** los permisos son definidos por políticas del sistema y **ni siquiera el propietario puede modificarlos libremente**. El sistema operativo hace cumplir estas políticas.
+- **MAC(Mandatory Access Control/Control de Acceso Obligatorio):** es un mecanismo de control de acceso reforzado por el sistema que se basa en la autorización del sujeto y las etiquetas del objeto. los permisos son definidos por políticas del sistema y
+**ni siquiera el propietario puede modificarlos libremente**. El sistema operativo hace cumplir estas políticas.
 
 Santiago crea archivo.txt
         ↓
@@ -815,25 +817,36 @@ Santiago NO puede cambiar esa política simplemente porque sea propietario
 
 Por eso se llama **Mandatory** (obligatorio): el sistema hace cumplir las reglas.
 
+#### Permisos Basados en Contextos
+
+Ahora, los permisos basados en el contexto se refieren a esquemas de permisos que están definidos por varias propiedades para un archivo o proceso dado, y utiliza esas propiedades juntas,
+en lugar de aisladas para determinar si se debe conceder o denegar el acceso a un usuario dado.
+
+Ahora, en Linux, hay dos esquemas principales de permisos basados en el contexto que están disponibles, a saber, SELinux y AppArmor. Y ambos esquemas de permisos basados en el contexto
+aprovechan MAC para hacer su trabajo. En pocas palabras se tienen en cuenta varias características para decidir si se permite o deniega el acceso.
+
 ## SELinux
 
-SELinux utiliza **etiquetas de seguridad** para controlar el acceso. Sus 3 contextos principales son:
+SELinux utiliza **etiquetas de seguridad** para controlar el acceso y que se puede hacer cada proceso con cada recurso. Sus 3 contextos principales son:
 
-- **Usuario:** determina qué usuarios pueden acceder.
-- **Rol:** determina qué roles pueden acceder.
-- **Tipo:** clasifica los recursos según sus características de seguridad y permite un control más preciso.
+- **Usuario:** determina qué usuarios pueden acceder(all users, unprivileged user, system administrators y root user).
+- **Rol:** determina qué roles pueden acceder(esos roles son típicamente usados para permitir o denegar el acceso al dominio dado o a los recursos y procesos dados. Para controlar esto, hay un rol llamado "object_r", y esto se aplica a tus archivos y directorios.
+- **Tipo:** parte de etiqueta de MAC, clasifica los recursos según sus características de seguridad y permite un control más preciso, tambien es una forma de agrupar objetos que tienen requisitos o características de seguridad similares.
 - **Nivel (opcional):** indica la sensibilidad de un recurso y permite restricciones adicionales.
 
 ### Modos de SELinux
 
-- **Disabled:** SELinux está apagado → no se aplica MAC y se utiliza DAC.
-- **Enforcing:** SELinux está activo y **aplica las políticas**, bloqueando acciones no permitidas.
-- **Permissive:** SELinux está activo, pero **no bloquea** las acciones; registra las violaciones para analizarlas.
+- **Disabled(Desactivado):** SELinux está apagado → no se aplica MAC y se utiliza DAC.
+- **Enforcing(Forsozo):** SELinux está activo y **aplica las políticas**, bloqueando acciones no permitidas.
+- **Permissive(Permisivo):** SELinux está activo, pero **no bloquea** las acciones; registra las violaciones para analizarlas.
+
+Ahora, SELinux puede implementar dos tipos diferentes de políticas.
 
 ### Políticas
 
-- **Targeted:** aplica SELinux principalmente a procesos específicos que necesitan mayor protección. Es la política predeterminada en Red Hat/CentOS.
-- **Strict:** aplica MAC a prácticamente **todo el sistema**, proporcionando mayor seguridad pero siendo más difícil de configurar y mantener.
+- **Targeted(Selectivas/Dirigida):** aplica SELinux principalmente a procesos específicos que necesitan mayor protección. Es la política predeterminada en Red Hat/CentOS.
+- **Strict(Estrictas):** aplica MAC a prácticamente **todo el sistema**, proporcionando mayor seguridad pero siendo más difícil de configurar y mantener. Esto sólo se aplica a ciertas cosas en su sistema operativo para las
+que realmente desea niveles más altos de protección. Si sigues adelante y usas la política estricta, va a imponer MAC en todo en tu sistema.
 
 ### Auditoría
 
@@ -842,3 +855,26 @@ SELinux registra las **violaciones de seguridad** en logs. Esto permite detectar
 Al principio pueden aparecer **falsos positivos** mientras las políticas se ajustan.
 
 > **Idea clave:** SELinux limita lo que un usuario o proceso puede hacer, incluso si normalmente tendría permisos mediante DAC.
+
+Recuerda, SELinux es tan fuerte como los perfiles restrictivos que estás creando. Así que si creas buenos perfiles restrictivos y endureces tus aplicaciones, esto puede prevenir muchos ataques maliciosos contra las redes de tu empresa.
+
+Esquema Para pensarlo de la manera adecuada:
+
+SELinux
+   ↓
+Políticas/perfiles de seguridad
+   ↓
+Definen qué puede hacer cada proceso
+   ↓
+PERMITIR / DENEGAR
+
+Por ejemplo, una aplicación web puede tener una política que diga:
+
+Servidor web
+   ↓
+Puede leer → /var/www/
+Puede acceder → puerto 80
+NO puede acceder → /home/usuarios/
+NO puede modificar → archivos críticos
+
+Si un atacante consigue comprometer el servidor web, SELinux puede impedir que ese proceso haga cosas que la política no permite.
