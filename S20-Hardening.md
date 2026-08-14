@@ -878,3 +878,163 @@ NO puede acceder → /home/usuarios/
 NO puede modificar → archivos críticos
 
 Si un atacante consigue comprometer el servidor web, SELinux puede impedir que ese proceso haga cosas que la política no permite.
+
+# Niveles de cifrado de datos
+
+El **cifrado** convierte los datos en un formato ilegible para impedir el acceso no autorizado y proteger su **confidencialidad**.
+
+El cifrado puede aplicarse a diferentes niveles:
+
+### 1. Cifrado de disco completo (Full Disk Encryption)
+Cifra **todo el disco**.
+
+- Windows → **BitLocker**
+- macOS → **FileVault**
+
+Protege los datos incluso si alguien extrae el disco y lo conecta a otro equipo.
+
+### 2. Cifrado de partición
+Cifra **una partición específica** del disco.
+
+Ejemplo: cifrar únicamente la partición donde se almacenan documentos confidenciales.
+
+Ahora, puede que te preguntes por qué no encriptar toda la unidad en lugar de encriptar sólo una partición. Y la razón es que el cifrado añade una sobrecarga adicional
+al proceso de lectura o escritura de datos en un dispositivo de almacenamiento, porque ahora tenemos que descifrar los datos que se leen o cifrar los datos que se escriben.
+
+Así que muchas veces optaremos por encriptar sólo las partes que contienen datos sensibles, porque esto acelerará nuestro sistema en general.
+
+### 3. Cifrado de volumen
+Crea un **contenedor cifrado** dentro del almacenamiento que puede contener varios archivos y carpetas.
+
+Ejemplo: **VeraCrypt**.
+
+D:\ 🔐 Volumen cifrado
+    ├── documentos
+    ├── fotos
+    └── archivos
+
+### 4. Cifrado a nivel de archivo
+Cifra **archivos individuales**.
+
+Ejemplo: **GPG**.
+
+Es útil para cifrar archivos específicos antes de enviarlos por correo u otro medio.
+
+### 5. Cifrado de base de datos
+Cifra **toda una base de datos**.
+
+Ejemplo: **Transparent Data Encryption (TDE)** en SQL Server.
+
+El sistema de base de datos se encarga automáticamente del cifrado y descifrado.
+
+Se refiere a que la propia base de datos puede estar distribuida físicamente en varios lugares y el cifrado protege esos datos en todos esos lugares.
+
+Ejemplo:
+
+             BASE DE DATOS
+                  ↓
+        ┌─────────┼─────────┐
+        ↓         ↓         ↓
+     Disco 1   Disco 2   Disco 3
+        🔐        🔐        🔐
+
+O incluso:
+
+         Nube
+          ↓
+   ┌──────┼──────┐
+   ↓      ↓      ↓
+ Servidor Servidor Servidor
+   🔐       🔐       🔐
+
+La idea es que el cifrado de base de datos puede proteger los datos aunque estén almacenados en múltiples dispositivos/servidores o en la nube.
+
+### 6. Cifrado a nivel de registro
+Cifra **datos específicos dentro de una base de datos**, como determinadas filas o columnas.
+
+Ejemplo:
+
+```text
+Base de datos de clientes
+        ↓
+Solo cifrar:
+- Tarjeta de crédito
+- DNI
+- Datos sensibles
+
+```
+
+Recuerda cada uno de ellos proporciona un nivel diferente de granularidad de la seguridad, por lo que es importante entender las diferencias
+para asegurarse de que puede seleccionar el "equilibrio" adecuado entre **seguridad y rendimiento** del sistema cuando determine qué tipo de cifrado desea utilizar en su organización.
+
+Nuestro objetivo es garantizar que sus datos permanezcan seguros e inaccesibles para entidades no autorizadas, independientemente de dónde vayan a almacenarse.
+
+# Líneas de Base Seguras (Secure Baseline)
+
+Una **línea de base segura (Secure Baseline)** es un conjunto estándar de **configuraciones y controles de seguridad** que se aplican a sistemas, redes o aplicaciones para garantizar un nivel mínimo de seguridad.
+
+## 1. Establecer la línea de base
+
+Primero se analiza el sistema para identificar:
+
+- Qué datos maneja.
+- Cómo fluyen esos datos.
+- Vulnerabilidades y amenazas.
+- Requisitos de seguridad y cumplimiento.
+- Mejores prácticas y estándares como **NIST** o **ISO 27001**.
+
+**Ejemplo:** se toma una laptop nueva, se instala el sistema operativo, actualizaciones, firewall, antivirus/EDR, aplicaciones necesarias y políticas de seguridad. Después se comprueba que no tenga vulnerabilidades conocidas.
+
+Así, ahora podemos instalar todas las aplicaciones que necesitan nuestros empleados, incluidas cosas como un paquete ofimático, un agente de respuesta de detección de puntos finales, un navegador web y otras herramientas
+por el estilo, en función de sus funciones laborales específicas.
+
+Una vez instaladas y configuradas todas estas herramientas, analizaremos de nuevo el sistema en busca de vulnerabilidades conocidas y también las corregiremos.
+
+Una vez que está correctamente configurada, se crea una **imagen** de esa laptop para utilizarla como plantilla segura en futuras laptops iguales.
+
+## 2. Desplegar la línea de base
+
+La configuración segura se aplica al resto de los dispositivos.
+
+Puede incluir:
+
+- 🔥 Firewall configurado.
+- 🔐 Establecimiento de permisos de usuarios.
+- 🔒 Aplicación de protocolos de encriptación(Cifrado).
+- 🛡️ Garantía de que las soluciones antivirus y antimalware están correctamente instaladas y actualizadas(Antivirus/EDR).
+- 📋 Políticas de seguridad.
+- 🔄 Actualizaciones y parches.
+
+Se pueden utilizar **scripts y herramientas automatizadas** para aplicarla de forma uniforme.
+
+En Windows empresarial, por ejemplo, se pueden utilizar **GPO (Group Policy Objects)** para aplicar políticas de contraseñas, auditoría, permisos, etc.
+
+En AWS, se puede utilizar **AWS Config** para comprobar y aplicar determinadas configuraciones.
+
+## 3. Mantener la línea de base
+
+esta línea de base se perfeccionará y protegerá continuamente para que se mantenga al día con los últimos parches de seguridad, hotfixes, actualizaciones y service packs, a medida
+que el entorno de amenazas siga evolucionando. No basta con crearla una vez. Hay que mantenerla continuamente:
+
+**Baseline → Monitorear → Detectar desviaciones → Corregir → Actualizar**
+
+Por ejemplo, si la baseline establece:
+
+```text
+Firewall: ACTIVADO
+Antivirus/EDR: ACTIVADO
+USB: BLOQUEADO
+Windows Update: ACTUALIZADO
+```
+
+También debemos mantener nuestras lineas seguras en todos nuestros activos. Ahora bien, esto se hace bloqueando nuestros sistemas para que nuestros usuarios no puedan instalar software adicional
+ni modificar nuestras configuraciones existentes.
+
+Ahora, para ayudar a mantener su línea de base segura, también debe llevar a cabo la formación y sensibilización con todos sus empleados para asegurarse de que entienden la importancia de adherirse a las
+configuraciones de línea de base segura. Los empleados deben ser conscientes de los riesgos potenciales de desviarse de la línea de base, y se les debe animar a informar de cualquier actividad sospechosa
+que puedan notar cuando estén utilizando sus sistemas.
+
+Así que recuerde, el establecimiento, despliegue y mantenimiento de una línea de base segura es una práctica crítica dentro de la industria de la ciberseguridad que protege las redes de su organización.
+
+Las líneas de base seguras ayudan a garantizar que los activos digitales de una organización estén configurados de forma coherente para resistir los ataques y mitigar las vulnerabilidades y los errores de configuración conocidos.
+Al supervisar y actualizar continuamente nuestras líneas de base seguras, nuestras organizaciones pueden mejorar su postura de seguridad y proteger sus valiosos datos y recursos de posibles violaciones de datos.
