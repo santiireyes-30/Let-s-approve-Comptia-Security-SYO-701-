@@ -145,6 +145,8 @@ La ubicación del WAP afecta:
 
 ### Riesgo de una mala ubicación
 
+Hay que tener en cuenta estas 3 cosas a la hora de colocar: el alcance, la cobertura y la intensidad de la señal de la red inalámbrica
+
 Si un WAP está cerca de una pared exterior o ventana, la señal puede llegar al exterior.
 
 **Ejemplo:** un atacante podría estacionar un vehículo en el aparcamiento y conectarse a la red desde fuera del edificio si la señal inalámbrica llega hasta allí.
@@ -174,7 +176,7 @@ Cuando se utilizan varios WAP, es necesario planificar correctamente los canales
 
 ### Interferencia cocanal
 
-Ocurre cuando dos WAP tienen áreas de cobertura solapadas y utilizan el **mismo canal**.
+Ocurre cuando dos WAP tienen áreas de cobertura solapadas y utilizan el **mismo canal y misma zona o bandas de frecuencias para crear sus áreas de coberturas**.
 
 Esto puede provocar:
 
@@ -192,6 +194,10 @@ Esto puede causar:
 - Errores de transmisión.
 - Pérdida de ancho de banda.
 - Menor rendimiento.
+
+En términos sencillos, significa que el Wi-Fi de tus vecinos está chocando con el tuyo porque están usando canales de transmisión que se "pisan" entre sí.
+Para entenderlo mejor, imagina que las frecuencias de Wi-Fi son como carriles en una autopista:
+Un WAP (punto de acceso inalámbrico o router) transmite su señal por un carril específico. Si dos routers cercanos eligen carriles que están demasiado pegados, los autos (los datos) se rozan y chocan entre sí.
 
 ### Canales 1, 6 y 11
 
@@ -304,5 +310,236 @@ Si la señal se filtra fuera del edificio:
 ## Idea principal
 
 **Una red inalámbrica segura no depende únicamente del cifrado o la autenticación. También es importante controlar físicamente dónde llega la señal.**
+
+# Configuración de Seguridad Inalámbrica
+
+La seguridad inalámbrica busca proteger los **datos transmitidos**, controlar quién puede acceder a la red y evitar accesos no autorizados.
+
+## 1. Protocolos de cifrado inalámbrico
+
+El cifrado proporciona **confidencialidad**, haciendo que los datos interceptados sean ilegibles.
+
+### WEP
+
+**WEP (Wired Equivalent Privacy)** es un protocolo antiguo y **obsoleto**.
+
+- Utiliza claves estáticas.
+- Utiliza **RC4**.
+- Tiene un vector de inicialización (IV) débil de **24 bits**.
+- Puede ser vulnerado fácilmente mediante ataques criptográficos.
+
+> ❌ **WEP no debe utilizarse.**
+
+### WPA
+
+**WPA (Wi-Fi Protected Access)** fue creado como reemplazo de WEP.
+
+- Introdujo **TKIP**.
+- Generaba claves dinámicas para los paquetes.
+- Mejoró la seguridad respecto a WEP.
+- Sin embargo, heredó vulnerabilidades y TKIP también resultó inseguro.
+
+> ❌ **WPA tampoco se considera seguro actualmente.**
+
+### WPA2
+
+**WPA2** reemplazó WPA y proporcionó una seguridad mucho mayor.
+
+- Sustituyó TKIP por **AES**.
+- Utiliza **CCMP** para proteger los datos.
+- Incluye mecanismos de integridad como **MIC**.
+- Aun así, presentó vulnerabilidades como **KRACK**.
+
+> ⚠️ WPA2 es mucho más seguro que WEP/WPA, pero **WPA3 es la opción moderna preferida** cuando está disponible.
+
+### WPA3
+
+**WPA3 (Wi-Fi Protected Access 3)** es la versión más moderna y segura de WPA.
+
+Principales mejoras:
+
+- **SAE (Simultaneous Authentication of Equals)**
+- **Enhanced Open / OWE**
+- Protocolos criptográficos actualizados.
+- **Protected Management Frames (PMF)**.
+
+---
+
+## 2. Características de WPA3
+
+### SAE
+
+**SAE (Simultaneous Authentication of Equals)** reemplaza el antiguo método de clave precompartida utilizado en WPA2.
+
+Utiliza un mecanismo basado en **Diffie-Hellman**.
+
+Su principal ventaja es proporcionar mayor protección contra **ataques de diccionario offline**.
+
+> Si un atacante captura el intercambio de autenticación, no puede utilizarlo de la misma forma que en WPA2 para probar contraseñas offline.
+
+### Enhanced Open / OWE
+
+**OWE (Opportunistic Wireless Encryption)** permite cifrar las comunicaciones incluso en redes Wi-Fi abiertas.
+
+En una red Wi-Fi abierta tradicional:
+
+**Dispositivo → datos sin cifrar → WAP**
+
+Con OWE:
+
+**Dispositivo → datos cifrados → WAP**
+
+Esto mejora la privacidad frente a ataques de **escucha pasiva (sniffing)**.
+
+> ⚠️ OWE cifra la comunicación, pero **no proporciona autenticación mediante contraseña**.
+
+### AES-GCMP
+
+WPA3 utiliza protocolos criptográficos modernos basados en **AES-GCMP**.
+
+Puede utilizar:
+
+- **AES-128** para determinados escenarios.
+- **AES-192** en escenarios empresariales.
+
+### Protected Management Frames
+
+Los **Protected Management Frames (PMF)** protegen las tramas de gestión inalámbrica.
+
+Ayudan a evitar que un atacante:
+
+- Intercepte.
+- Falsifique.
+- Manipule.
+- Utilice tramas de gestión para interrumpir las conexiones.
+
+Esto ayuda a proteger contra determinados ataques de **denegación de servicio (DoS)** y otros ataques sobre la gestión de la red inalámbrica.
+
+---
+
+# 3. AAA
+
+**AAA** significa:
+
+- **Authentication:** ¿Quién eres?
+- **Authorization:** ¿Qué puedes hacer?
+- **Accounting:** ¿Qué hiciste?
+
+Permite gestionar de forma centralizada el acceso de los usuarios a los recursos de la red.
+
+---
+
+## 4. RADIUS
+
+**RADIUS (Remote Authentication Dial-In User Service)** proporciona servicios **AAA** mediante un modelo cliente-servidor.
+
+Permite:
+
+- Centralizar la autenticación.
+- Verificar la identidad de los usuarios.
+- Aplicar políticas de acceso.
+- Registrar la actividad de los usuarios.
+
+Es muy utilizado en **redes empresariales** y puede integrarse con infraestructuras Wi-Fi.
+
+---
+
+## 5. TACACS+
+
+**TACACS+** también proporciona servicios AAA.
+
+Una diferencia importante respecto a RADIUS es que separa:
+
+**Authentication → Authorization → Accounting**
+
+Esto permite un control más granular.
+
+Además:
+
+- Utiliza **TCP**.
+- Protege mediante cifrado el proceso de autenticación.
+- Es especialmente utilizado para controlar el acceso administrativo a dispositivos de red.
+
+---
+
+# 6. EAP
+
+**EAP (Extensible Authentication Protocol)** es un **framework de autenticación**, no un método de autenticación único.
+
+Permite utilizar diferentes métodos de autenticación, como:
+
+- Certificados.
+- Smart cards.
+- Tokens.
+- Credenciales.
+
+Se utiliza especialmente en:
+
+- Redes inalámbricas.
+- Conexiones punto a punto.
+
+---
+
+## 7. PEAP
+
+**PEAP (Protected Extensible Authentication Protocol)** encapsula EAP dentro de un **túnel TLS**.
+
+Esto permite proteger las credenciales durante la autenticación.
+
+**Idea clave:**
+
+> PEAP = EAP protegido mediante un túnel TLS.
+
+---
+
+## 8. EAP-TTLS
+
+**EAP-TTLS (EAP Tunneled Transport Layer Security)** también utiliza un túnel TLS para proteger la autenticación.
+
+Una característica importante es que normalmente requiere un **certificado en el lado del servidor**, mientras que el cliente puede autenticarse mediante otro método dentro del túnel.
+
+---
+
+## 9. EAP-FAST
+
+**EAP-FAST (Flexible Authentication via Secure Tunneling)** fue desarrollado por Cisco.
+
+Permite:
+
+- Crear un túnel TLS seguro.
+- Proteger las credenciales.
+- Facilitar la reautenticación de usuarios.
+- Mejorar la movilidad dentro de la red.
+
+Fue desarrollado como alternativa a **LEAP**, que presentaba vulnerabilidades.
+
+---
+
+# Comparación rápida
+
+| Tecnología | Característica principal | Estado |
+|---|---|---|
+| **WEP** | RC4 + clave estática | ❌ Obsoleto |
+| **WPA** | TKIP | ❌ Inseguro |
+| **WPA2** | AES + CCMP | ⚠️ Mejor, pero reemplazado por WPA3 cuando es posible |
+| **WPA3** | SAE + AES-GCMP + PMF | ✅ Recomendado |
+| **RADIUS** | AAA centralizado | ✅ Muy utilizado |
+| **TACACS+** | AAA separado y control granular | ✅ Muy utilizado |
+| **EAP** | Framework de autenticación | ✅ |
+| **PEAP** | EAP dentro de túnel TLS | ✅ |
+| **EAP-TTLS** | Autenticación mediante túnel TLS | ✅ |
+| **EAP-FAST** | Túnel TLS + credenciales protegidas | ✅ |
+
+## 🧠 Para recordar
+
+**WEP → WPA → WPA2 → WPA3**
+
+La evolución fue aumentando la seguridad:
+
+**WEP ❌ → WPA ❌ → WPA2 ⚠️ → WPA3 ✅**
+
+Y para autenticación empresarial:
+
+**AAA → RADIUS / TACACS+ → EAP**
 
 **Site Survey → Instalación de WAP → Heat Map → Ajustes de cobertura y potencia**
