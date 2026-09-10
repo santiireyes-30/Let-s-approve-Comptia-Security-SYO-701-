@@ -317,7 +317,9 @@ La seguridad inalámbrica busca proteger los **datos transmitidos**, controlar q
 
 ## 1. Protocolos de cifrado inalámbrico
 
-El cifrado proporciona **confidencialidad**, haciendo que los datos interceptados sean ilegibles.
+El cifrado proporciona **confidencialidad**, haciendo que los datos interceptados sean ilegibles. Así que tenemos que ver la importancia de utilizar la configuración de seguridad
+inalámbrica correcta, incluyendo el uso de WPA3 u otras formas de cifrado inalámbrico, AAA y RADIUS para crear capas adicionales de autenticación en una red, y el uso del Protocolo
+de Autenticación Extensible conocido como EAP.
 
 ### WEP
 
@@ -347,7 +349,7 @@ El cifrado proporciona **confidencialidad**, haciendo que los datos interceptado
 
 - Sustituyó TKIP por **AES**.
 - Utiliza **CCMP** para proteger los datos.
-- Incluye mecanismos de integridad como **MIC**.
+- Incluye mecanismos de integridad como **MIC/Código de integridad de mensajes**.
 - Aun así, presentó vulnerabilidades como **KRACK**.
 
 > ⚠️ WPA2 es mucho más seguro que WEP/WPA, pero **WPA3 es la opción moderna preferida** cuando está disponible.
@@ -358,10 +360,15 @@ El cifrado proporciona **confidencialidad**, haciendo que los datos interceptado
 
 Principales mejoras:
 
-- **SAE (Simultaneous Authentication of Equals)**
-- **Enhanced Open / OWE**
-- Protocolos criptográficos actualizados.
-- **Protected Management Frames (PMF)**.
+- **SAE (Simultaneous Authentication of Equals)**: inmunes a los ataques de fuerza bruta y de diccionario, incluso si usas una contraseña débil.
+- **Enhanced Open / OWE**: Enhanced Open mejora la privacidad y la seguridad del usuario, ya que lo protege de los ataques pasivos de escucha que son habituales
+en los escenarios Wi-Fi públicos. Aunque no ofrece una seguridad completa como WPA3, Enhanced Open ayuda a garantizar que la conexión entre clientes y puntos de acceso esté cifrada.
+Enhanced Open también proporciona una conexión más segura que las redes abiertas tradicionales, por lo que es una función valiosa para los proveedores de redes que ofrecen servicios Wi-Fi públicos a
+sus usuarios finales.
+- Protocolos criptográficos actualizados(AES): GCMP o protocolo Galois Counter Mode. Este protocolo no sólo admite el algoritmo AES de 128 bits para sus redes personales, sino que
+también admite un AES de 192 bits para el uso de redes empresariales o personales con el protocolo WPA3.
+- **Protected Management Frames (PMF/Protección de tramas de gestión)**: Es necesario utilizar estos marcos de protección de gestión para salvaguardar su red contra ataques de recuperación de claves. Garantiza la integridad
+del tráfico de tutoría de la red al impedir las escuchas, la falsificación o el templado con este tipo de tramas, que son fundamentales para la gestión y el mantenimiento general de las comunicaciones inalámbricas.
 
 ---
 
@@ -458,13 +465,13 @@ Además:
 
 - Utiliza **TCP**.
 - Protege mediante cifrado el proceso de autenticación.
-- Es especialmente utilizado para controlar el acceso administrativo a dispositivos de red.
+- Es especialmente utilizado para **controlar el acceso administrativo a dispositivos de red**.
 
 ---
 
 # 6. EAP
 
-**EAP (Extensible Authentication Protocol)** es un **framework de autenticación**, no un método de autenticación único.
+**EAP (Extensible Authentication Protocol/Protocolo de Autenticación Extensible)** es un **framework de autenticación**, no un método de autenticación único.
 
 Permite utilizar diferentes métodos de autenticación, como:
 
@@ -484,7 +491,7 @@ Se utiliza especialmente en:
 
 **PEAP (Protected Extensible Authentication Protocol)** encapsula EAP dentro de un **túnel TLS**.
 
-Esto permite proteger las credenciales durante la autenticación.
+Es un método para transportar datos de autenticación de forma segura a través de 802. 11 redes Wi-Fi(802.11 = estándar que permite la comunicación inalámbrica (Wi-Fi)). Esto permite proteger las credenciales durante la autenticación. 
 
 **Idea clave:**
 
@@ -498,7 +505,16 @@ Esto permite proteger las credenciales durante la autenticación.
 
 Una característica importante es que normalmente requiere un **certificado en el lado del servidor**, mientras que el cliente puede autenticarse mediante otro método dentro del túnel.
 
+Cliente ───── 🔒 Túnel TLS 🔒 ───── Servidor
+                                  📜 Certificado
 ---
+
+#### Diferencia entre EAP-TTLS & PEAP 
+
+La principal diferencia entre PEAP y EAP-TTLS es que EAP-TTLS requiere un certificado sólo en el lado del servicio, mientras que PEAP requiere una autenticación de certificado de doble cara tanto en el lado del servidor como
+en el lado del cliente de la conexión.
+
+Con EAP-TTLS, el protocolo encapsulará un segundo protocolo para la autenticación que se transporta dentro del túnel de cifrado TLS.
 
 ## 9. EAP-FAST
 
@@ -515,7 +531,23 @@ Fue desarrollado como alternativa a **LEAP**, que presentaba vulnerabilidades.
 
 ---
 
-# Comparación rápida
+### Resúmen Breve: 
+
+Así que recuerde, a medida que las redes inalámbricas continúan expandiendo su popularidad, es importante que aprendamos las mejores formas de asegurar esas redes, incluyendo el uso de WPA3 u otras formas de encriptación
+inalámbrica, **AAA y RADIUS para crear capas adicionales de autenticación en la red**, y el uso del Protocolo de Autenticación Extensible conocido como EAP.
+
+WPA3 es la versión más reciente y segura del protocolo Wi-Fi Protected Access o WPA, y se utiliza para ofrecernos las protecciones más sólidas, incluso cuando los usuarios eligen contraseñas que no alcanzan las recomendaciones típicas
+de complejidad.
+
+RADIUS es un **protocolo de red** que proporciona una gestión centralizada de autenticación, autorización y contabilidad para los usuarios que se conectan y utilizan un servicio de red.
+Mientras que TACACS+ es un protocolo independiente que permite un control más granular(control más específico y detallado), de la autenticación, autorización y contabilidad que ofrece cierta seguridad avanzada al cifrar todo el proceso de autenticación.
+
+EAP o Protocolo de Autenticación Extensible es un marco de autenticación universal utilizado para admitir diversos métodos de autenticación, como tarjetas token, tarjetas inteligentes, certificados y otros, y redes inalámbricas y conexiones punto a punto.
+
+Al adoptar estos protocolos y metodologías avanzados, podemos dotar a nuestras redes inalámbricas de una infraestructura más segura, diseñada para resistir a los modernos actores de amenazas, garantizando la protección tanto de la autenticidad del usuario como de la integridad
+de los datos en nuestras redes inalámbricas.
+
+## Comparación rápida
 
 | Tecnología | Característica principal | Estado |
 |---|---|---|
