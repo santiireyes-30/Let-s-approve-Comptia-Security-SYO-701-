@@ -575,3 +575,320 @@ Y para autenticación empresarial:
 **AAA → RADIUS / TACACS+ → EAP**
 
 **Site Survey → Instalación de WAP → Heat Map → Ajustes de cobertura y potencia**
+
+# Seguridad de Aplicaciones
+
+La **seguridad de aplicaciones** busca desarrollar software seguro desde su diseño, aplicando medidas para **prevenir, detectar y corregir vulnerabilidades**.
+
+Las 6 áreas principales son:
+
+---
+
+## 1. Validación de entradas
+
+Consiste en comprobar que los datos introducidos por un usuario o sistema sean **válidos, seguros y tengan el formato esperado** antes de procesarlos.
+
+Ayuda a prevenir ataques como:
+
+- **SQL Injection**
+- **Cross-Site Scripting (XSS)**
+- **Buffer Overflow**
+- Otros ataques de inyección
+
+No se trata sólo de prevenir ataques maliciosos, sino también de garantizar que nuestros sistemas se comporten de forma predecible y puedan gestionar los errores con elegancia.
+
+Por ejemplo, si una función espera un valor numérico pero en su lugar recibe una cadena, podría provocar errores o un comportamiento impredecible. Una validación de entrada adecuada detecta 
+estos problemas antes de que la aplicación intente realizar una operación con un tipo de datos incorrecto.
+
+ ### Front-end vs Back-end
+
+Sin embargo, la validación de entradas no sólo consiste en establecer límites, sino que también es una importante medida de seguridad para garantizar que los datos se validan en una fase temprana del proceso.
+A esto lo llamamos validación front-end, en la que cualquier formulario web creado en una aplicación se asegurará de que los datos coinciden con el formato correcto antes de aceptarlos.
+
+A la inversa, también aplicaremos la validación back-end para garantizar que nuestros servidores comprueban los datos antes de permitir que una aplicación los utilice.
+
+- **Front-end:** valida los datos antes de enviarlos al servidor.
+- **Back-end:** vuelve a validar los datos en el servidor.
+
+> ⚠️ La validación del front-end puede ser evadida por un atacante, por lo que la validación del **back-end es fundamental**.
+
+---
+
+## 2. Cookies seguras
+
+Las **cookies** son pequeños fragmentos de datos que el navegador web almacena en el ordenador del usuario mientras navega por un sitio web. 
+Almacenan información entre el navegador y el servidor, por ejemplo información relacionada con una sesión.
+
+Si no están protegidas pueden utilizarse para realizar **Session Hijacking** o robar información.
+
+### Atributos importantes
+
+- **Secure:** la cookie sólo se transmite mediante **HTTPS**.
+- **HttpOnly:** impide que scripts del lado del cliente accedan directamente a la cookie.
+- **SameSite:** controla cuándo se envía la cookie en solicitudes entre sitios y ayuda a reducir ataques como **CSRF**.
+
+> 🔑 Una buena práctica es generar una nueva cookie de sesión después de una autenticación.
+
+---
+
+## 3. Análisis estático de código — SAST
+
+**SAST (Static Application Security Testing)** analiza el **código fuente sin ejecutar la aplicación**.
+
+Busca vulnerabilidades como:
+
+- SQL Injection
+- XSS
+- Buffer Overflow
+- Problemas de validación de entradas
+
+### Revisión manual
+
+También se puede revisar el código manualmente.
+
+Es recomendable que lo revise **otro programador diferente al autor**, ya que puede detectar errores o suposiciones incorrectas que el desarrollador original no identificó.
+
+> **SAST = analizar el código antes de ejecutarlo.**
+
+---
+
+## 4. Análisis dinámico de código — DAST
+
+**DAST (Dynamic Application Security Testing)** analiza una aplicación **mientras está ejecutándose**.
+
+Puede detectar problemas que no siempre son visibles mediante SAST, como:
+
+- Errores en tiempo de ejecución.
+- Fugas de memoria(reserva memoria y luego no la libera correctamente, haciendo que la memoria disponible se vaya agotando.
+Ejemplo: una aplicación abre archivos continuamente pero nunca libera la memoria que utilizó → con el tiempo puede volverse lenta o bloquearse).
+- Vulnerabilidades que aparecen al interactuar con la aplicación.
+
+### Fuzzing
+
+Consiste en introducir grandes cantidades de datos **aleatorios, inesperados o malformados** para intentar provocar:
+
+- Fallos.
+- Crashes.
+- Excepciones.
+- Fugas de memoria.
+
+### Stress Testing
+
+Somete al sistema a **cargas extremas** para comprobar:
+
+- Estabilidad.
+- Rendimiento.
+- Puntos débiles.
+- Capacidad de recuperación ante fallos.
+
+> **DAST = analizar la aplicación mientras está funcionando.**
+
+---
+
+## 5. Firma de código
+
+La **firma de código** permite verificar:
+
+- **Autenticidad:** quién publicó el software.
+- **Integridad:** si el código fue modificado después de ser firmado.
+
+### Funcionamiento simplificado
+
+1. El desarrollador genera un **hash** del archivo.
+2. Firma ese hash con su **clave privada**.
+3. El usuario recibe el software y su firma/certificado.
+4. Se utiliza la **clave pública** para verificar la firma.
+
+> ⚠️ Una firma válida **NO significa que el software sea completamente seguro o que no tenga vulnerabilidades**. Significa que podemos verificar su autenticidad e integridad desde que fue firmado.
+
+---
+
+## 6. Sandboxing
+
+El **sandboxing** ejecuta programas o código en un **entorno aislado**.
+
+Limita:
+
+- Recursos a los que puede acceder.
+- Cambios que puede realizar.
+- Interacción con el sistema principal.
+
+Esto permite ejecutar código potencialmente peligroso reduciendo el riesgo de que afecte al sistema anfitrión.
+
+**Ejemplo:**
+
+Un navegador puede ejecutar el código de una página web dentro de un entorno aislado para limitar el impacto de código malicioso.
+
+---
+
+## Resúmen breve
+
+Así que recuerde, en el mundo de la seguridad de las aplicaciones, tenemos que considerar seis áreas clave, validación de entrada, cookies seguras, análisis de código estático, análisis de código dinámico,
+firma de código y sandboxing.
+
+La validación de entradas está diseñada para actuar como un guardián vigilante que garantiza que nuestras aplicaciones sólo procesan datos bien definidos y no contaminados para contrarrestar diversas formas de ataques.
+
+Las cookies seguras ayudan a evitar vulnerabilidades como el secuestro de sesiones mediante la transmisión segura y el uso de la configuración de atributos adecuada en las cookies.
+
+El análisis estático del código implica la detección proactiva de vulnerabilidades mediante la revisión del código fuente.
+
+El análisis dinámico del código se utiliza para descubrir cualquier problema en tiempo de ejecución.
+
+La firma de código proporciona un medio para verificar la autenticidad del software, y el sandboxing se utiliza para aislar cualquier código no fiable con el fin de mitigar su capacidad de causar daños potenciales.
+
+Estas medidas de seguridad polifacéticas, cuando se integran en las prácticas de desarrollo de software, ayudan a crear una sólida estrategia de defensa contra el mundo en constante evolución de las amenazas a la ciberseguridad.
+
+## Comparación rápida
+
+| Técnica | ¿Qué hace? |
+|---|---|
+| **Validación de entradas** | Comprueba que los datos sean válidos y seguros |
+| **Cookies seguras** | Protege información de sesión |
+| **SAST** | Analiza el código sin ejecutarlo |
+| **DAST** | Analiza la aplicación mientras se ejecuta |
+| **Fuzzing** | Introduce datos aleatorios/malformados |
+| **Stress Testing** | Prueba el sistema bajo cargas extremas |
+| **Firma de código** | Verifica autenticidad e integridad |
+| **Sandboxing** | Aísla código o aplicaciones potencialmente peligrosas |
+
+##  Para recordar
+
+**SAST = Static → código sin ejecutar**
+
+**DAST = Dynamic → aplicación ejecutándose**
+
+**Firma de código = ¿Quién lo firmó y fue modificado?**
+
+**Sandbox = Aislar para limitar el daño**
+
+**Validación de entrada = No confiar en los datos recibidos**
+
+# Control de Acceso a la Red (NAC)
+
+**NAC (Network Access Control)** controla qué dispositivos (ya sea conocidos o desconocidos, es decir dentro de la red interna o de otro lugar utilizando VPN), pueden acceder a una red según su **estado de seguridad** y determinadas reglas.
+
+---
+
+## ¿Cómo funciona el escaneo?
+
+1. Un dispositivo intenta conectarse a la red.
+2. NAC lo coloca temporalmente en una **zona de espera**.
+3. Comprueba/Verifica su seguridad, por ejemplo:
+   - Autenticación utilizando EAP.
+   - Antivirus actualizado.
+   - Parches de seguridad.
+   - Configuraciones de seguridad.
+4. Si cumple los requisitos → **accede a la red**.
+5. Si no cumple → **cuarentena**, donde puede recibir actualizaciones y parches, pero no comunicarse libremente con la red.
+
+---
+
+**Las soluciones NAC pueden funcionar con Agentes persistentes o no persistentes.**
+
+## Agentes NAC
+
+### Agente persistente
+- Software instalado permanentemente en el dispositivo.
+- Adecuado para **equipos corporativos** controlados por la organización.
+
+### Agente no persistente
+- El agente se descarga temporalmente para realizar la inspección.
+- Luego se elimina.
+- Útil para **BYOD** (dispositivos personales), como en universidades.
+
+---
+
+## 802.1X
+
+**IEEE 802.1X** es un estándar utilizado para implementar **control de acceso a la red basado en puertos**.
+
+Es muy utilizado junto con soluciones NAC modernas.
+
+---
+
+## Factores para permitir o denegar acceso
+
+NAC no sólo comprueba el estado de seguridad. También puede utilizar:
+
+- **Tiempo:** permitir acceso sólo en determinados horarios.
+- **Ubicación:** comprobar desde dónde se conecta el dispositivo.
+- **Rol:** determinar si el dispositivo/usuario tiene permiso para realizar determinada acción.
+- **Reglas:** combinar múltiples condiciones mediante lógica (`AND`, `OR`, etc.).
+
+### NAC adaptativo
+Reevalúa los permisos de un dispositivo según **lo que intenta hacer y su rol**.
+
+---
+
+## Resúmen breve
+
+Así que recuerde, el control de acceso a la red o NAC se utiliza para proteger su red de dispositivos conocidos y desconocidos mediante el escaneo de cualquier dispositivo para determinar
+su estado actual de seguridad antes de que se les permita el acceso a su red. Como puede ver, NAC es muy útil como parte de nuestra estrategia de defensa en profundidad y ayuda a imponer
+una arquitectura de confianza cero dentro de nuestras redes.
+
+## Para recordar
+
+**NAC = inspeccionar → permitir o poner en cuarentena.**
+
+Su objetivo es evitar que un dispositivo **inseguro o no autorizado** entre libremente en la red.
+
+También ayuda a implementar una estrategia de **defensa en profundidad** y una arquitectura de **Zero Trust**.
+
+# Filtrado Web y DNS
+
+El **filtrado web y DNS** permite controlar el acceso de los usuarios a Internet para **bloquear sitios maliciosos, inapropiados o que distraigan**, aplicando las políticas de la organización.
+
+---
+
+## 1. Filtrado Web
+
+Controla directamente el **contenido o los sitios web** a los que puede acceder un usuario.
+
+### Principales métodos
+
+- **Basado en agentes:** instala un software en cada dispositivo que aplica las políticas, incluso fuera de la red corporativa.
+- **Proxy centralizado/Servidor proxy:** el usuario solicita acceder a una web → el **proxy analiza la solicitud** → permite o bloquea el acceso.
+- **Escaneo de URL:** comprueba la URL contra bases de datos de sitios maliciosos conocidos.
+- **Categorización de contenido:** clasifica sitios (redes sociales, apuestas, adultos, etc.) y permite bloquear categorías completas.
+- **Reglas de bloqueo:** bloquea específicamente dominios, IPs o sitios determinados. Por ejemplo, un administrador de sistemas podría haber notado que había una cantidad significativa
+de transferencia de datos desde su base web a un servidor de archivos desconocido en Internet. Esto podría ser un indicador de que alguien está exfiltrando tus datos sensibles y
+enviándolos a un servidor remoto. Así que en este caso, el administrador del sistema podría querer añadir la dirección IP de su servidor de archivos remoto, para evitar cualquier
+otra comunicación entre su red y la del posible atacante
+- **Reputación:** bloquea sitios según una **puntuación de reputación** proporcionada por servicios externos. Si la base de datos revela que el sitio web tiene una puntuación de reputación baja,
+debido a incidentes anteriores de intentos de suplantación de identidad y alojamiento de programas maliciosos, la solución de filtrado web bloqueará el acceso.
+
+---
+
+## 2. Filtrado DNS
+
+Es una técnica utilizada para bloquear el acceso a determinados sitios web impidiendo la traducción de nombres de dominio específicos en sus correspondientes direcciones IP. Es decir,
+Bloquea sitios **durante la resolución DNS**.
+
+### Funcionamiento
+
+1. El usuario solicita acceder a `ejemplo.com`.
+2. El dispositivo consulta al **servidor DNS** para obtener su IP.
+3. El DNS comprueba si el dominio está bloqueado.
+4. Si está bloqueado → **no proporciona la dirección IP**.
+5. Si está permitido → devuelve la IP y el usuario puede acceder al sitio.
+
+> 🔑 **Filtrado Web:** controla el acceso/contenido web.  
+> **Filtrado DNS:** bloquea la resolución de determinados dominios.
+
+---
+
+## Resúmen breve
+
+Así que recuerda, el filtrado web y el filtrado DNS son dos herramientas importantes para garantizar un uso seguro y productivo de Internet. Al utilizar el filtrado web
+y el filtrado DNS, su organización puede evitar que sus empleados accedan a sitios web maliciosos o que distraigan su atención, al tiempo que aplica las políticas de uso de
+Internet de su organización.
+
+El filtrado web puede estar basado en agentes o no, y puede implicar el escaneado de URL, la categorización de contenidos, reglas de bloqueo y filtrado basado en la reputación.
+En lo que respecta al filtrado DNS, éste ayuda a evitar la traducción de nombres de dominio específicos a sus correspondientes direcciones IP, ya que DNS nos traduce la IP y a el atacante le va a resultar más
+complejo el ataque, si se trata de un ataque DNS.
+
+## Para recordar
+
+**Web Filtering → "¿A qué sitios/contenidos puede acceder?"**
+
+**DNS Filtering → "¿Este dominio puede resolverse a una IP?"**
