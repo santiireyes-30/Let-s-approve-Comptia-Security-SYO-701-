@@ -1053,11 +1053,18 @@ en gran medida en la supervisión de la integridad de los archivos.
 ### Proceso de EDR
 
 1. **Recopilación de datos:** procesos del sistema, uso de la memoria, cambios de registro, patrones de tráfico de red, etc.
-2. **Consolidación:** los datos se centralizan para analizarlos.
-3. **Detección de Amenzas:** busca amenazas mediante firmas y comportamiento anómalo.
-4. **Alerta y respuesta a Amenazas:** genera alertas o realiza acciones automáticas, como **aislar un equipo de la red**.
-5. **Investigación de Amenzas:** proporciona información, eventos y datos forenses para determinar qué ocurrió.
-6. **Remediación/Corrección:** elimina archivos maliciosos, revierte cambios y restaura el sistema.
+
+2. **Consolidación:** Definición breve: los datos se centralizan para analizarlos. Definición más completa: Una vez recopilados los datos, se envían a una solución de seguridad centralizada o a una base de datos para su análisis.
+Esta base de datos podría estar ubicada en las instalaciones o en la nube, dependiendo de la solución específica de detección y respuesta de endpoints que utilice su organización.
+
+3. **Detección de Amenzas:** busca amenazas mediante firmas, comportamiento anómalo o patrones conocidos.
+
+4. **Alerta y respuesta a Amenazas:** genera alertas o realiza acciones automáticas, como **aislar un equipo de la red** para evitar que la amenaza se propague aún más por la red de la organización.
+
+5. **Investigación de Amenzas:** proporciona información, eventos y datos forenses para determinar qué ocurrió, también proporcionan a sus equipos de seguridad las herramientas necesarias para investigar las amenazas.
+Estas herramientas pueden incluir líneas temporales detalladas de la actividad
+
+6. **Remediación/Corrección:** elimina archivos maliciosos, revierte cambios realizados y restaura los sistemas efectivos a su estado normal utilizando una línea de base segura.
 
 > **EDR = monitorear → detectar → investigar → responder.**
 
@@ -1088,9 +1095,13 @@ de jugadas utilizando la automatización y la orquestación para mitigar la amen
 
 ---
 
-## FIM
+## FIM/Supervisión de la Integridad de los Archivos
 
-**FIM (File Integrity Monitoring)** controla si los **archivos críticos fueron modificados**.
+**FIM (File Integrity Monitoring)** controla si los **archivos críticos fueron modificados**. 
+
+Se utiliza para validar la integridad de los archivos de los sistemas operativos y del software de aplicación mediante un método de verificación
+entre el estado actual del archivo y una línea de base buena y conocida. Esta comparación puede ayudar a identificar cambios en archivos críticos, incluidos archivos binarios, archivos de aplicaciones del sistema, así como archivos de configuración y parámetros.
+Normalmente, un monitor de integridad de archivos utiliza una pequeña pieza de software conocida como agente para supervisar continuamente los archivos críticos del sistema en busca de cambios.
 
 Funcionamiento:
 - Se calcula el **hash** de un archivo conocido como seguro.
@@ -1104,7 +1115,8 @@ Funcionamiento:
 
 ## XDR
 
-**XDR (Extended Detection and Response)** amplía EDR y **correlaciona información de múltiples capas de seguridad**.
+**XDR (Extended Detection and Response)** amplía EDR y **correlaciona información de múltiples capas de seguridad**. Es decir, La detección y respuesta ampliadas o XDR es una estrategia
+de seguridad que integra múltiples tecnologías de protección en una única plataforma para mejorar la precisión de la detección y simplificar el proceso de respuesta ante incidentes.
 
 Puede integrar datos de:
 - Endpoints.
