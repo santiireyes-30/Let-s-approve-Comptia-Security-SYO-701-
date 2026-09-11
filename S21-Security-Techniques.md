@@ -892,3 +892,127 @@ complejo el ataque, si se trata de un ataque DNS.
 **Web Filtering → "¿A qué sitios/contenidos puede acceder?"**
 
 **DNS Filtering → "¿Este dominio puede resolverse a una IP?"**
+
+# Seguridad del Correo Electrónico
+
+La **seguridad del correo electrónico** utiliza diferentes mecanismos para proteger los mensajes, las cuentas y la infraestructura contra **phishing, spoofing, spam, malware y otros ataques**.
+
+Concepto de Spoofing: técnica en la que un atacante suplanta la identidad de una entidad legítima
+
+---
+
+## 1. DKIM
+
+**DKIM (DomainKeys Identified Mail)** agrega una **firma digital** a las cabeceras del correo.
+
+Permite al receptor comprobar:
+- Que el correo fue enviado por el **dominio que dice ser**.
+- Que el mensaje **no fue modificado durante el tránsito**.
+
+La clave pública puede validarse con una clave criptográfica(la firma), y se encuentra/publica en los **registros DNS** del dominio.
+
+Por ejemplo, si alguien en diontraining.com envía un correo electrónico, el servidor receptor puede comprobar la firma DKIM con diontraining. com.
+
+Si la firma digital coincide, esto confirma que el correo electrónico procede realmente de diontraining. com y que no ha sido modificado
+durante el tránsito desde nuestro servicio a su servidor de correo electrónico. DKIM puede proporcionarnos numerosas ventajas, como la autenticación 
+del correo electrónico, la protección contra la suplantación de identidad, la mejora de la capacidad de entrega y la mejora de la reputación.
+
+> **DKIM = firma digital → autenticidad + integridad.**
+
+---
+
+## 2. SPF (Marco de Políticas de Remitente)
+
+**SPF (Sender Policy Framework)**, es un método de autenticación de correo electrónico diseñado para evitar la falsificación de direcciones de remitente durante la entrega de correo electrónico. 
+Verifica si el **servidor/IP que envía el correo está autorizado** para enviar mensajes en nombre de ese dominio.
+
+La lista de IP autorizadas se publica en los **registros DNS**.
+
+Si la IP no está autorizada, el correo puede ser marcado como spam o rechazado.
+
+> **SPF = ¿Esta IP está autorizada para enviar correos de este dominio?**
+
+Ventajes de aplicar SPF: 
+- La prevención de la suplantación de identidad.
+- La mejora de la entregabilidad del correo electrónico.
+- La mejora de la reputación del dominio.
+
+Por ejemplo, si alguien en diontraining. com envía un correo electrónico, el servidor de correo electrónico receptor comprobará primero si la dirección IP del remitente figura en el registro
+SPF de diontraining. com antes de aceptarla.
+
+Si la dirección IP no figura como autorizada en el marco de políticas del remitente, el correo electrónico se marcará como spam o será rechazado por el servidor de correo electrónico.
+
+Si querés consultar públicamente los registros DNS de cualquier dominio, podés usar:
+
+MXToolbox → busca registros A, MX, TXT, CNAME, SPF, etc.
+Google Admin Toolbox Dig → muestra directamente las respuestas DNS.
+Cloudflare DNS Lookup → consulta distintos tipos de registros DNS.
+
+Por ejemplo, para ver el SPF de un dominio, buscás sus registros TXT.
+
+---
+
+## 3. DMARC
+
+**DMARC** utiliza **SPF, DKIM o ambos** para ayudar a prevenir la suplantación de dominios.
+
+El propietario del dominio establece qué hacer cuando un correo **falla las comprobaciones**, por ejemplo:
+- Permitir.
+- Marcar como spam.
+- Rechazar.
+
+> **DMARC = política sobre qué hacer cuando SPF/DKIM fallan.**
+
+---
+
+## 4. Pasarela de correo electrónico
+
+Una **pasarela de correo** es el punto de **entrada y salida** entre Internet y la red de una organización.
+
+Puede encargarse de:
+- Enrutar correos.
+- Detectar **spam, phishing y malware**.
+- Aplicar políticas.
+- Cifrar/descifrar mensajes.
+
+Puede ser:
+- **Local (on-premises):** infraestructura propia.
+- **Cloud:** proporcionada por un proveedor externo.
+- **Híbrida:** combinación de ambas.
+
+---
+
+## 5. Filtrado de Spam
+
+Detecta y bloquea **correos no deseados o sospechosos**.
+
+Puede analizar:
+- Contenido del mensaje.
+- Reputación del remitente.
+- Patrones de spam.
+- Listas de bloqueo.
+- Reglas de filtrado.
+
+---
+
+## 🧠 Comparación rápida
+
+| Técnica | ¿Qué comprueba/hace? |
+|---|---|
+| **DKIM** | Firma digital → autenticidad e integridad |
+| **SPF** | IP del remitente → ¿está autorizada? |
+| **DMARC** | Define qué hacer si SPF/DKIM fallan |
+| **Gateway** | Punto de entrada/salida y seguridad del correo |
+| **Spam Filter** | Detecta y bloquea correos no deseados |
+
+### 🔑 Para recordar
+
+**DKIM → Firma**
+
+**SPF → IP autorizada**
+
+**DMARC → Política**
+
+**Gateway → Entrada/salida**
+
+**Spam Filter → Detectar/bloquear spam**
