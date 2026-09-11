@@ -1118,6 +1118,11 @@ Funcionamiento:
 **XDR (Extended Detection and Response)** amplía EDR y **correlaciona información de múltiples capas de seguridad**. Es decir, La detección y respuesta ampliadas o XDR es una estrategia
 de seguridad que integra múltiples tecnologías de protección en una única plataforma para mejorar la precisión de la detección y simplificar el proceso de respuesta ante incidentes.
 
+Como mencionamos antes se utilizan para recopilar y correlacionar automáticamente datos a través de múltiples capas de seguridad, incluyendo su correo electrónico, punto final, servidor, cargas de trabajo en la nube y redes,
+de modo que cualquier amenaza pueda detectarse más rápidamente, y los analistas de seguridad puedan minimizar el tiempo necesario para responder a cualquier problema.
+
+Al utilizar una solución de detección y respuesta ampliada, ya no necesita tener soluciones separadas para la seguridad de su red, la seguridad de su correo electrónico y la seguridad de sus puntos finales.
+
 Puede integrar datos de:
 - Endpoints.
 - Red.
@@ -1131,6 +1136,25 @@ Esto permite detectar amenazas que afectan a **varios componentes al mismo tiemp
 
 ---
 
+**¿Cuál es la diferencia entre una solución de detección y respuesta de endpoints y una solución de detección y respuesta ampliada?** Bueno, la detección y respuesta de puntos finales se centra realmente en sus puntos finales, cosas como ordenadores, portátiles y dispositivos móviles.
+
+Las soluciones de detección y respuesta para puntos finales pueden recopilar datos de estos puntos finales, analizarlos en busca de indicios de amenazas y responder a las amenazas detectadas. 
+
+Por otro lado, la detección y respuesta ampliadas son una solución más completa que va mucho más allá de los puntos finales. La detección y respuesta ampliadas recopilan y correlacionan automáticamente los datos en varias capas de seguridad, incluidos los puntos finales, la red, la nube 
+y el correo electrónico, para detectar y responder a cualquier amenaza identificada.
+
+## Resúmen breve
+
+Así pues, recuerde que la detección y respuesta de puntos finales es una herramienta de seguridad que supervisa los eventos de los puntos finales y de la red en busca de señales de amenazas que puedan enviar una alerta a un equipo de seguridad o tomar
+medidas predefinidas para mitigar la amenaza en cuestión.
+
+La detección y respuesta ampliadas, por su parte, es una estrategia de seguridad que integra múltiples tecnologías de protección en una única plataforma.
+
+La supervisión de la integridad de los archivos(ya que un atacante puede introducir algún tipo de codigo malicioso en tu archivo), suele incluirse como parte de la solución EDR o XDR, ya que la supervisión de la integridad de los archivos se utiliza para validar la integridad de los archivos 
+del sistema operativo y del software de aplicación.
+
+Al comprender y aplicar estas herramientas, las organizaciones pueden mejorar significativamente su postura de seguridad y su resistencia frente a diversas ciberamenazas y tecnologías.
+
 ## EDR vs XDR vs FIM
 
 | Tecnología | Enfoque principal |
@@ -1139,7 +1163,7 @@ Esto permite detectar amenazas que afectan a **varios componentes al mismo tiemp
 | **FIM** | Detectar cambios en archivos |
 | **XDR** | Correlacionar amenazas entre múltiples capas |
 
-### 🧠 Para recordar
+### Para recordar
 
 **EDR → Endpoint**
 
