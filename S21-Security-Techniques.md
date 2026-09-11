@@ -954,30 +954,39 @@ Por ejemplo, para ver el SPF de un dominio, buscás sus registros TXT.
 
 ## 3. DMARC
 
-**DMARC** utiliza **SPF, DKIM o ambos** para ayudar a prevenir la suplantación de dominios.
+**DMARC**, sistema de validación que utiliza **SPF, DKIM o ambos** para ayudar a prevenir la suplantación de dominios.
 
 El propietario del dominio establece qué hacer cuando un correo **falla las comprobaciones**, por ejemplo:
 - Permitir.
 - Marcar como spam.
 - Rechazar.
 
+El propósito principal de implementar DMARC es proteger un dominio de ser utilizado en ataques comprometidos de correo electrónico de negocios, correos electrónicos
+de phishing, estafas de correo electrónico y otras actividades de amenazas de ciberseguridad.
+
 > **DMARC = política sobre qué hacer cuando SPF/DKIM fallan.**
 
 ---
 
-## 4. Pasarela de correo electrónico
+## 4. Pasarela de correo electrónico (Email Gateway)
 
-Una **pasarela de correo** es el punto de **entrada y salida** entre Internet y la red de una organización.
+Una **pasarela de correo** es el punto de **entrada y salida** entre Internet y la red de una organización. Las pasarelas de correo electrónico suelen
+basarse en el protocolo simple de transferencia de correo o SMTP para enviar y recibir correos electrónicos. 
 
-Puede encargarse de:
+**Proceso**: Cuando se envía un correo electrónico, primeropasa por la pasarela de correo electrónico del remitente antes de enviarse por Internet. Una vez que el correo electrónico 
+llega al dominio del destinatario, pasa por la pasarela de correo electrónico del destinatario antes de llegar a la bandeja de entrada del destinatario. Las pasarelas de correo electrónico se implantan 
+para facilitar el enrutamiento, la seguridad, la aplicación de políticas y el cifrado y descifrado de los mensajes.
+
+La pasarela puede analizar el correo antes de dejarlo pasar, tambien puede encargarse de:
 - Enrutar correos.
 - Detectar **spam, phishing y malware**.
 - Aplicar políticas.
 - Cifrar/descifrar mensajes.
 
-Puede ser:
-- **Local (on-premises):** infraestructura propia.
-- **Cloud:** proporcionada por un proveedor externo.
+Puede ser entre internet y red local:
+- **Local (On-Primese Email Gateway):** infraestructura/Servidor fisico propio, el servidor es mío → tengo más control → yo lo mantengo..
+- **Cloud:** proporcionada por un proveedor externo. Nos ofrecernos la mayor escalabilidad y facilidad de mantenimiento, pero su funcionamiento puede resultar más caro que el de una solución
+in situ y, a la hora de determinar sus configuraciones exactas, estará limitado a las medidas de seguridad del proveedor de servicios en la nube.
 - **Híbrida:** combinación de ambas.
 
 ---
@@ -987,15 +996,32 @@ Puede ser:
 Detecta y bloquea **correos no deseados o sospechosos**.
 
 Puede analizar:
-- Contenido del mensaje.
-- Reputación del remitente.
-- Patrones de spam.
-- Listas de bloqueo.
-- Reglas de filtrado.
+- Análisis del Contenido.
+- Filtrado bayesiano: analiza las palabras y patrones del correo y calcula qué tan probable es que sea spam según experiencias anteriores.
+- Lista de sumideros basada en DNS (DNS Sinkhole): hace que un dominio malicioso apunte a una dirección controlada en lugar de llevar al usuario al servidor malicioso. Así se puede bloquear o analizar la conexión.
+- Reglas generales de filtrado: reglas definidas para permitir, bloquear o marcar correos según criterios como remitente, dominio, palabras, archivos adjuntos, etc.
+
+Ejemplo para las 4 definiciones: Si un correo electrónico contiene palabras comúnmente asociadas con mensajes de spam como lotería, gratis, premio, u otros lenguajes de spam comúnmente utilizados, entonces
+el filtro de spam de su red de empresa podría marcarlo como potencialmente spam y moverlo a la carpeta de spam.
 
 ---
 
-## 🧠 Comparación rápida
+## Resúmen breve: 
+
+Así pues, recuerde que la seguridad del correo electrónico puede mejorarse utilizando diversas técnicas, como las configuraciones de DKIM, SPF, DMARC, protocolos de pasarela de correo electrónico y mecanismos de filtrado de spam.
+
+DKIM se utiliza para añadir una firma digital a la cabecera del correo electrónico que puede utilizarse para validar al destinatario y garantizar que el correo electrónico no se ha modificado durante el tránsito.
+
+SPF evita la falsificación de la dirección del remitente comprobando si la dirección IP del remitente está autorizada en los registros DNS del dominio.
+
+DMARC es un protocolo que utiliza SPF y DKIM para determinar la autenticidad del mensaje de correo electrónico, permitiendo que el propietario de un dominio especifique cómo gestionar los correos electrónicos que no superen esa comprobación de
+seguridad concreta.
+
+Las pasarelas de correo electrónico sirven de punto de entrada y salida para todos los correos electrónicos de la empresa. Estas pasarelas de correo electrónico se implementan para ayudar con el enrutamiento del correo electrónico,
+la seguridad del correo electrónico, la aplicación de políticas y el cifrado y descifrado de correos electrónicos. Y por último, también tenemos el filtrado de spam, que es una técnica para detectar y bloquear correos electrónicos no deseados
+en función de varios criterios, como el contenido, la reputación del remitente y las preferencias del usuario.
+
+## Comparación rápida
 
 | Técnica | ¿Qué comprueba/hace? |
 |---|---|
