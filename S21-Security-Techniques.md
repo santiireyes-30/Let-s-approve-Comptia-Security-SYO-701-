@@ -1042,3 +1042,95 @@ en función de varios criterios, como el contenido, la reputación del remitente
 **Gateway → Entrada/salida**
 
 **Spam Filter → Detectar/bloquear spam**
+
+# Detección y Respuesta de Endpoints
+
+## EDR
+
+**EDR (Endpoint Detection and Response)** supervisa continuamente los **endpoints** (PC, notebooks, móviles, etc.) para detectar amenazas y responder ante ellas. Se basa
+en gran medida en la supervisión de la integridad de los archivos.
+
+### Proceso de EDR
+
+1. **Recopilación de datos:** procesos del sistema, uso de la memoria, cambios de registro, patrones de tráfico de red, etc.
+2. **Consolidación:** los datos se centralizan para analizarlos.
+3. **Detección de Amenzas:** busca amenazas mediante firmas y comportamiento anómalo.
+4. **Alerta y respuesta a Amenazas:** genera alertas o realiza acciones automáticas, como **aislar un equipo de la red**.
+5. **Investigación de Amenzas:** proporciona información, eventos y datos forenses para determinar qué ocurrió.
+6. **Remediación/Corrección:** elimina archivos maliciosos, revierte cambios y restaura el sistema.
+
+> **EDR = monitorear → detectar → investigar → responder.**
+
+Ya que mencionamos en el paso 4 aislar un equipo vamos a ver como es y su diferencia con poner en cuarentena un equipo...
+
+- **Aislar un equipo:** cortar o limitar su comunicación con la red para evitar que la amenaza se propague. El equipo sigue encendido y funcionando.
+- **Poner un equipo en cuarentena:** colocarlo en una red/zona restringida, donde tiene acceso muy limitado y normalmente sólo puede comunicarse con servicios necesarios para su reparación, actualización o análisis.
+
+Ejemplo. Un EDR detecta malware en una PC:
+
+Sin protección:
+  - PC infectada → Red corporativa → otros equipos
+
+Aislada:
+  - PC infectada ✖── Red corporativa
+  → Se corta su comunicación con otros equipos.
+
+En cuarentena:
+  - PC infectada → [RED DE CUARENTENA] → sólo servicios autorizados.
+
+El objetivo principal de la solución de detección y respuesta de puntos finales es proporcionar datos de incidentes a nuestros analistas de ciberseguridad para ayudar a mejorar la supervisión de la seguridad, la
+respuesta a incidentes y las investigaciones forenses que llevan a cabo en la red de su empresa.
+
+Por ejemplo, una solución de detección y respuesta para puntos finales podría supervisar una red en busca de indicios de malware u otras ciberamenazas.
+
+Si se detecta una amenaza, la solución de detección y respuesta de endpoints puede alertar al equipo de seguridad o emprender acciones predefinidas a partir de un libro
+de jugadas utilizando la automatización y la orquestación para mitigar la amenaza identificada.
+
+---
+
+## FIM
+
+**FIM (File Integrity Monitoring)** controla si los **archivos críticos fueron modificados**.
+
+Funcionamiento:
+- Se calcula el **hash** de un archivo conocido como seguro.
+- Se guarda como referencia (**baseline**).
+- Si el archivo cambia, su hash cambia.
+- FIM genera una alerta para investigar el cambio.
+
+> **FIM = detectar modificaciones no autorizadas en archivos.**
+
+---
+
+## XDR
+
+**XDR (Extended Detection and Response)** amplía EDR y **correlaciona información de múltiples capas de seguridad**.
+
+Puede integrar datos de:
+- Endpoints.
+- Red.
+- Correo electrónico.
+- Servidores.
+- Cloud.
+
+Esto permite detectar amenazas que afectan a **varios componentes al mismo tiempo** y responder más rápidamente.
+
+> **XDR = EDR + red + correo + cloud + otras fuentes.**
+
+---
+
+## EDR vs XDR vs FIM
+
+| Tecnología | Enfoque principal |
+|---|---|
+| **EDR** | Detectar y responder a amenazas en endpoints |
+| **FIM** | Detectar cambios en archivos |
+| **XDR** | Correlacionar amenazas entre múltiples capas |
+
+### 🧠 Para recordar
+
+**EDR → Endpoint**
+
+**FIM → Archivos**
+
+**XDR → Varias capas de seguridad**
