@@ -1170,3 +1170,144 @@ Al comprender y aplicar estas herramientas, las organizaciones pueden mejorar si
 **FIM → Archivos**
 
 **XDR → Varias capas de seguridad**
+
+# Análisis del Comportamiento del Usuario (UBA / UEBA)
+
+El **UBA (User Behavior Analytics)** analiza el comportamiento de los usuarios para detectar **anomalías** que puedan indicar una amenaza de seguridad.
+
+Utiliza:
+- **Big Data**
+- **Machine Learning**
+- Análisis estadístico
+- Datos de múltiples fuentes
+
+---
+
+## ¿Cómo funciona UBA?
+
+1. **Recopila datos** de diferentes fuentes:
+   - Tráfico de red.
+   - Dispositivos de los usuarios.
+   - Registros de aplicaciones.
+   - Actividad de las cuentas.
+
+2. **Aprende el comportamiento normal** de cada usuario.
+
+3. Crea una **línea base (baseline)** del comportamiento habitual.
+
+4. **Supervisa continuamente** la actividad.
+
+5. Si detecta una desviación importante respecto al comportamiento normal → **genera una alerta** para que el equipo de seguridad investigue.
+
+> 🔑 UBA no necesariamente significa que una actividad sea maliciosa. Detecta que es **anómala** y la marca para investigación.
+
+---
+
+## Ejemplos de anomalías
+
+### Horario inusual
+
+Un usuario normalmente inicia sesión durante el horario laboral.
+
+De repente:
+- Inicia sesión a las 3:00 AM.
+- El sistema lo detecta como comportamiento anómalo.
+- Se genera una alerta.
+
+Esto podría ser:
+- Una actividad legítima.
+- Una cuenta comprometida.
+
+---
+
+### Acceso a información inusual
+
+Un empleado normalmente accede a archivos relacionados con su trabajo.
+
+De repente comienza a acceder a:
+- Información financiera.
+- Información de RR. HH.
+- Archivos confidenciales.
+
+→ UBA puede detectar la desviación y generar una alerta.
+
+---
+
+### Descarga masiva de información
+
+Un usuario normalmente descarga pocos archivos.
+
+De repente descarga **una gran cantidad de datos**.
+
+→ Puede indicar un intento de **exfiltración de datos**.
+
+---
+
+### Cambio de comportamiento
+
+Una cuenta normalmente sólo **lee datos**.
+
+De repente comienza a:
+- Modificar archivos.
+- Eliminar información.
+- Realizar acciones que normalmente no realiza.
+
+→ Podría indicar que las **credenciales fueron comprometidas**.
+
+---
+
+## UBA vs UEBA
+
+### UBA
+
+**User Behavior Analytics**
+
+Analiza principalmente el comportamiento de los **usuarios**.
+
+### UEBA
+
+**User and Entity Behavior Analytics**
+
+Amplía UBA para analizar también **entidades**.
+
+Ejemplos de entidades:
+- Usuarios.
+- Routers.
+- Servidores.
+- Endpoints.
+- Otros dispositivos de la red.
+
+> **UEBA = UBA + comportamiento de entidades.**
+
+---
+
+## Ventajas
+
+### Detección temprana de amenazas
+Detecta comportamientos anómalos antes de que una amenaza pueda causar un daño importante.
+
+### Detección de amenazas internas
+Ayuda a detectar empleados o cuentas que acceden a información que normalmente no deberían utilizar.
+
+### Detección de cuentas comprometidas
+Permite identificar cambios repentinos en el comportamiento de una cuenta.
+
+### Mejora de la respuesta
+Puede proporcionar información al equipo de seguridad y, en algunos casos, realizar acciones automáticas como **cerrar una sesión o bloquear una cuenta**.
+
+---
+
+## Para recordar
+
+**UBA → analiza el comportamiento de los usuarios.**
+
+**UEBA → usuarios + entidades.**
+
+**Baseline → comportamiento normal.**
+
+**Anomalía → desviación respecto al comportamiento normal.**
+
+**UBA no dice necesariamente "esto es un ataque" → dice "esto es inusual, investigarlo".**
+
+**Ejemplo clave:**  
+Usuario normalmente trabaja de día y accede a archivos comunes → de repente entra de madrugada y descarga miles de archivos → **UBA genera una alerta**.
