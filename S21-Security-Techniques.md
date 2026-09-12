@@ -1173,12 +1173,14 @@ Al comprender y aplicar estas herramientas, las organizaciones pueden mejorar si
 
 # Análisis del Comportamiento del Usuario (UBA / UEBA)
 
-El **UBA (User Behavior Analytics)** analiza el comportamiento de los usuarios para detectar **anomalías** que puedan indicar una amenaza de seguridad.
+El **UBA (User Behavior Analytics)** estan diseñado para analizar el comportamiento de los usuarios y para detectar **anomalías** que puedan indicar una amenaza de seguridad, como el tráfico
+de red, los dispositivos de los usuarios y los registros de aplicaciones.
 
 Utiliza:
+- Técnicas Análiticas Avanzadas (ej: aprendizaje automático)
 - **Big Data**
 - **Machine Learning**
-- Análisis estadístico
+- Análisis estadístico (para crear una base de referencia del comportamiento normal de los usuarios.
 - Datos de múltiples fuentes
 
 ---
@@ -1293,9 +1295,21 @@ Ayuda a detectar empleados o cuentas que acceden a información que normalmente 
 Permite identificar cambios repentinos en el comportamiento de una cuenta.
 
 ### Mejora de la respuesta
-Puede proporcionar información al equipo de seguridad y, en algunos casos, realizar acciones automáticas como **cerrar una sesión o bloquear una cuenta**.
+Puede proporcionar información al equipo de seguridad y, en algunos casos, realizar acciones automáticas como **cerrar una sesión o bloquear una cuenta**, que quizo comprometer una credencial del usuario de la empresa.
 
 ---
+
+## Resúmen breve
+
+Así que recuerde, el análisis del comportamiento del usuario es una herramienta poderosa para detectar posibles amenazas a la seguridad mediante la identificación de comportamientos anómalos
+que puedan indicar una amenaza. Es posible que oiga hablar de esta tecnología como UBA o UEBA.
+
+El análisis del comportamiento del usuario, o UBA, es una estrategia avanzada de ciberseguridad que aprovecha el poder de los big data y el aprendizaje automático para analizar los comportamientos 
+de los usuarios y detectar anomalías que puedan indicar posibles amenazas a la seguridad.
+
+Cuando lo llamamos UEBA, nos referimos al análisis del comportamiento de usuarios y **entidades**, y añadimos la supervisión de entidades a nuestro análisis del comportamiento de usuarios.
+
+Por tanto, no sólo incluimos nuestras cuentas de usuario, sino también dispositivos o entidades como routers, servidores y puntos finales de la red.
 
 ## Para recordar
 
@@ -1311,3 +1325,182 @@ Puede proporcionar información al equipo de seguridad y, en algunos casos, real
 
 **Ejemplo clave:**  
 Usuario normalmente trabaja de día y accede a archivos comunes → de repente entra de madrugada y descarga miles de archivos → **UBA genera una alerta**.
+
+# Selección de Protocolos Seguros
+
+Para mejorar la seguridad de una red debemos seleccionar correctamente:
+
+1. **Protocolos**
+2. **Puertos**
+3. **Método de transporte (TCP o UDP)**
+
+---
+
+## 1. Protocolos seguros
+
+Un **protocolo** es un conjunto de reglas que permite transmitir datos entre dispositivos.
+
+Siempre que sea posible, debemos utilizar protocolos que proporcionen **cifrado**, especialmente al transmitir información sensible o mediante redes no confiables como Internet.
+
+### Protocolos inseguros vs seguros
+
+| Inseguro | Seguro | Uso |
+|---|---|---|
+| **HTTP** | **HTTPS** | Navegación web |
+| **FTP** | **SFTP** | Transferencia de archivos |
+| **Telnet** | **SSH** | Administración remota |
+| **SMTP** | **SMTPS** | Envío de correo |
+| **POP3** | **POP3S** | Recepción de correo. POP3: permite recuperar mensajes de correo electrónico de un servidor de correo a través del puerto 110, pero si utilizas la versión encriptada de POP3S, en su lugar utilizarás el puerto 995 para recibir tus correos electrónicos. |
+| **IMAP** | **IMAPS** | Acceso a correo, y IMAPS cifrará todos sus correos electrónicos antes de que los reciba a través del puerto 993. |
+| **SNMP** | **SNMPS** | Administración de dispositivos |
+
+### Ejemplo: HTTP vs HTTPS
+
+**HTTP:** transmite datos sin cifrado → un atacante podría interceptarlos y leerlos.
+
+**HTTPS:** cifra los datos → aunque sean interceptados, no pueden leerse fácilmente sin las claves adecuadas, es decir exepto el receptor del mensaje que es el que tiene la clave de desifrado adecuada.
+
+### Ejemplo: Telnet vs SSH
+
+**Telnet:** Es el protocolo de capa de aplicación que permite a un usuario de un ordenador conectarse a otro que forme parte de la misma red.
+
+- No cifra la comunicación.
+- Usuario y contraseña viajan en texto plano.
+- Vulnerable a sniffing y ataques Man-in-the-Middle.
+
+**SSH(Secure Shell):**
+- Cifra la comunicación.
+- Permite autenticación segura.
+- Se utiliza para administración remota.
+
+> 🔑 **Regla básica: elegir protocolos cifrados en lugar de versiones heredadas/inseguras. La mayoría de las veces, el protocolo simplemente añadirá una S al final del protocolo sin cifrar para indicar que se trata
+de una versión más segura de ese protocolo..**
+
+---
+
+## 2. Selección de puertos
+
+Un **puerto** identifica un servicio o proceso específico dentro de un sistema.
+
+### Rangos de puertos
+
+| Rango | Tipo | Uso habitual |
+|---|---|---|
+| **0–1023** | Conocidos | Servicios estándar |
+| **1024–49151** | Registrados | Aplicaciones |
+| **49152–65535** | Dinámicos/privados | Conexiones del cliente |
+
+### Puertos importantes
+
+| Servicio | Puerto |
+|---|---:|
+| HTTP | **80** |
+| HTTPS | **443** |
+| SMTP | **25** |
+| SMTPS | **587** |
+| POP3 | **110** |
+| POP3S | **995** |
+| IMAP | **143** |
+| IMAPS | **993** |
+
+> ⚠️ **Los números de puerto por sí solos no proporcionan seguridad.** La seguridad depende principalmente del protocolo y su configuración.
+
+---
+
+## Principio de mínimo privilegio
+
+Se deben abrir **únicamente los puertos necesarios** para que un servicio funcione y bloquear los demás.
+
+Esto permite:
+- Reducir la **superficie de ataque**.
+- Disminuir accesos no autorizados.
+- Reducir posibles vectores de ataque.
+
+---
+
+## Puertos no estándar
+
+Un administrador puede cambiar el puerto predeterminado de un servicio.
+
+Ejemplo:
+
+**HTTP → puerto 80**
+
+Podría configurarse en:
+
+**HTTP → puerto 8888**
+
+Esto puede hacer que el servicio sea **menos predecible**, pero sólo proporciona una pequeña capa de **oscuridad**.
+
+> ❌ Cambiar el puerto **NO reemplaza** el cifrado, una autenticación fuerte, actualizaciones ni otras medidas de seguridad.
+
+---
+
+## 3. Métodos de transporte: TCP vs UDP
+
+### TCP
+
+**TCP (Transmission Control Protocol)** es orientado a conexión.
+
+Características:
+- Establece una conexión antes de transmitir.
+- Confirma la recepción de datos.
+- Retransmite paquetes perdidos.
+- Mantiene el orden de los datos.
+- Prioriza la **integridad y confiabilidad**.
+
+**Ejemplo:** navegación web y correo electrónico.
+
+> **TCP = confiabilidad e integridad.**
+
+---
+
+### UDP
+
+**UDP (User Datagram Protocol)** es sin conexión.
+
+Características:
+- No establece una conexión antes de enviar.
+- No garantiza la entrega.
+- No retransmite automáticamente paquetes perdidos.
+- Tiene menor sobrecarga.
+- Prioriza **velocidad y eficiencia**.
+
+**Ejemplos:** streaming, videojuegos y comunicaciones en tiempo real.
+
+> **UDP = velocidad, aceptando cierta pérdida de datos.**
+
+---
+
+## TCP vs UDP
+
+| Característica | TCP | UDP |
+|---|---|---|
+| Conexión | Sí | No |
+| Entrega garantizada | Sí | No |
+| Retransmisión | Sí | No |
+| Orden de paquetes | Sí | No garantiza |
+| Velocidad | Menor | Mayor |
+| Uso típico | Web, correo, archivos | Streaming, juegos, tiempo real |
+
+---
+
+##  Para recordar
+
+**Protocolo → ¿Cómo se comunican los dispositivos?**
+
+**Puerto → ¿Qué servicio/proceso estoy utilizando?**
+
+**TCP → confiabilidad e integridad.**
+
+**UDP → velocidad y eficiencia.**
+
+**HTTPS > HTTP**
+
+**SFTP > FTP**
+
+**SSH > Telnet**
+
+**Mínimo privilegio → abrir sólo los puertos necesarios.**
+
+**Cambiar el puerto ≠ seguridad real.**
