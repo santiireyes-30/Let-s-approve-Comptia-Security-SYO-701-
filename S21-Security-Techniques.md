@@ -1484,6 +1484,25 @@ Características:
 | Uso típico | Web, correo, archivos | Streaming, juegos, tiempo real |
 
 ---
+## Resúmen breve
+
+Así que recuerde que siempre debe optar por protocolos seguros que proporcionen cifrado, especialmente cuando transmita datos confidenciales o a través de una red no fiable como Internet.
+Protocolos como HTTPS, SFTP, SSH, IMAPS, POP3S, SMTPS y SNMPS se basan en el cifrado como parte de sus protocolos para garantizar que sus datos permanezcan confidenciales mientras se transfieren a través de una red determinada.
+
+Una vez seleccionado el protocolo, se puede asignar el puerto que utilizará dicho protocolo. Los puertos se clasifican en tres rangos: puertos conocidos, que van de 0 a 1023; puertos registrados, que van de 1024 a 49.151;
+y puertos dinámicos o privados, que van de 49.152 a 65.535.
+
+Su sistema también debe seguir el principio del mínimo privilegio abriendo sólo los puertos necesarios y bloqueando todos los puertos innecesarios en su red y sistemas para reducir la superficie de ataque y minimizar el
+riesgo de acceso no autorizado.
+
+Por último, debe seleccionar el método de transporte, optando por utilizar TCP o UDP. El Protocolo de Control de Transmisión o TCP es un protocolo orientado a la conexión que garantiza la entrega de datos sin errores mediante 
+la comprobación de errores y la retransmisión en caso de pérdida del paquete.
+
+El Protocolo de Datagramas de Usuario o UDP, por su parte, es un protocolo sin conexión que no garantiza la entrega de datos, sino que se limita a enviar terrenos de datos sin establecer una conexión, y UDP no proporciona ningún 
+servicio de comprobación de errores ni de recuperación.
+
+Tomando decisiones informadas sobre los protocolos, puertos y métodos de transporte utilizados, puede mejorar significativamente la seguridad, eficacia y fiabilidad de la red empresarial de su organización.
+
 
 ##  Para recordar
 
