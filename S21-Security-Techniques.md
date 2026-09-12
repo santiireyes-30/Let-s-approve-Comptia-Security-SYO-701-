@@ -989,6 +989,9 @@ Puede ser entre internet y red local:
 in situ y, a la hora de determinar sus configuraciones exactas, estará limitado a las medidas de seguridad del proveedor de servicios en la nube.
 - **Híbrida:** combinación de ambas.
 
+Definición breve de Puerta de correo eléctronico: se refiere a un servidor que gestiona el flujo de correos electrónicos entre Internet y una red local, asegurando que los mensajes salientes lleguen a sus destinos 
+y los entrantes se dirijan a las bandejas de entrada apropiadas. Es fundamental para la seguridad y eficiencia del correo electrónico.
+
 ---
 
 ## 5. Filtrado de Spam
