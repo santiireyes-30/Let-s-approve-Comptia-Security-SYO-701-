@@ -100,14 +100,30 @@ Además, si la comunicación está cifrada, puede que no sea posible ver su cont
 
 ## 3. Conceptos y herramientas principales
 
-- **SNMP:** protocolo para supervisar y gestionar dispositivos de red, como routers, switches, servidores e impresoras.
-- **Trampas SNMP (SNMP Traps):** notificaciones que un dispositivo envía cuando ocurre un evento determinado.
-- **SIEM:** centraliza y correlaciona registros de múltiples fuentes para detectar amenazas y generar alertas.
+- **SNMP(Protocolo Simple Gestión de Red):** protocolo para supervisar y gestionar dispositivos de red, como routers, switches, módems servidores e impresoras.
+
+- **Trampas SNMP (SNMP Traps):** se utiliza para configurar y recopilar datos, pero simplemente son notificaciones que un dispositivo envía cuando ocurre un evento determinado.
+
+- **SIEM:** centraliza y correlaciona registros de múltiples fuentes para detectar amenazas y generar alertas. Mediante el uso de un SIEM, vamos a ser capaces de agregar
+colectivamente todos nuestros datos de registro generados a través de toda la red de la organización, incluyendo toda su infraestructura tecnológica de sus sistemas y aplicaciones de acogida todo
+el camino a su red y antivirus, sistemas DLP, sistemas de detección de intrusiones en red, sistemas de prevención de intrusiones en red, cortafuegos y escáneres de vulnerabilidades.
+
+Es capaz de tomar todos esos datos juntos y mirar a través de ellos para averiguar lo que tiene y lo que tenemos que estar alertando sobre la base de lo que estamos viendo
+
+Estos SIEM también van a utilizar dos tipos diferentes de monitorización, uno basado en agentes y otro sin agentes, y hablaremos de ambos.
+
 - **Monitorización basada en agentes:** instala un agente en el dispositivo supervisado.
+
 - **Monitorización sin agentes:** recopila información mediante mecanismos remotos o protocolos compatibles, sin instalar un agente dedicado.
-- **SCAP:** conjunto de estándares para automatizar la gestión de vulnerabilidades y la evaluación del cumplimiento de políticas de seguridad.
-- **Flujos de tráfico de red (Network Flows):** resumen de comunicaciones identificadas mediante IP de origen y destino, puertos y protocolo. Ayudan a detectar anomalías y analizar el uso de la red.
-- **SPOG (Single Pane of Glass):** interfaz única que consolida información de diferentes herramientas y sistemas en una sola pantalla.
+
+- **SCAP (Protocolo de Automatización de Contenidos de Seguridad):** conjunto de estándares para automatizar la gestión de vulnerabilidades y la evaluación del cumplimiento de políticas de seguridad.
+
+- **Flujos de tráfico de red (Network Flows):** resumen de comunicaciones identificadas mediante IP de origen y destino, puertos y protocolo. Ayudan a detectar anomalías y analizar el uso de la red. Es decir
+permite analizar quién se comunica con quién, mediante qué puertos y protocolos.
+
+Ejemplo: una PC se comunica con un servidor por TCP, puerto 443. Si comienza a enviar grandes cantidades de datos a una IP desconocida, el análisis del flujo puede ayudar a detectar una anomalía.
+
+- **SPOG (Single Pane of Glass/Cristal único):** interfaz única que consolida información de diferentes herramientas y sistemas en una sola pantalla.
 
 ## 4. Actividades de monitorización
 
