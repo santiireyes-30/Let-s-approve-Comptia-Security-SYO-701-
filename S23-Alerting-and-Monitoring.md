@@ -136,3 +136,75 @@ Ejemplo: una PC se comunica con un servidor por TCP, puerto 443. Si comienza a e
 - Remediación y validación.
 
 **Objetivo final:** detectar incidentes a tiempo, responder eficazmente y mantener la seguridad y disponibilidad de los sistemas.
+
+# Monitorización de recursos
+
+La monitorización de recursos permite supervisar sistemas, aplicaciones e infraestructura para garantizar su rendimiento, seguridad y disponibilidad.
+
+## 1. Monitorización de sistemas (System Monitoring)
+
+Consiste en controlar los recursos de un equipo:
+- CPU: utilización del procesador.
+- Memoria RAM: consumo de memoria.
+- Disco: uso del almacenamiento.
+- Red: tráfico y rendimiento de las comunicaciones.
+
+**Línea de base (Baseline):** conjunto de métricas que representan el funcionamiento normal de un sistema, se establece un punto de referencia para comparar en determinada situación actual y se compara con la historica, para ver la actualidad del sistema.
+Básicamente, una línea de base sirve como punto de referencia o estándar con el que medir el rendimiento de nuestro sistema.
+
+Las desviaciones pueden indicar problemas de rendimiento, fallos o posibles amenazas.
+
+Ejemplo: si un servidor normalmente utiliza el 30 % de CPU y de repente alcanza el 95 % de forma constante, se debe investigar la causa.
+
+Herramienta de ejemplo: Monitor de rendimiento de Windows.
+
+## 2. Monitorización de aplicaciones (Application Monitoring)
+
+Consiste en supervisar **el rendimiento y la disponibilidad** de las aplicaciones.
+
+Se analizan:
+- Tiempos de respuesta.
+- Tasas de error.
+- Cuellos de botella.
+- Disponibilidad y experiencia del usuario.
+
+Ejemplo: una aplicación web responde lentamente debido a un error en el código o a la falta de recursos del servidor.
+
+Herramientas: New Relic y AppDynamics.
+
+## 3. Monitorización de infraestructura (Infrastructure Monitoring)
+
+Consiste en supervisar el estado y rendimiento de los componentes físicos y virtuales de una organización:
+- Servidores y redes.
+- Máquinas virtuales y contenedores.
+- Servicios en la nube.
+- Dispositivos de red y hardware.
+
+Se analiza el tráfico, el ancho de banda y el estado de los dispositivos.
+
+Ejemplo: un switch está constantemente sobrecargado, por lo que se debe investigar si necesita mayor capacidad o una corrección de su configuración.
+
+Herramientas: SolarWinds y PRTG Network Monitor.
+
+---
+
+## Objetivos de la monitorización
+
+- Detectar problemas antes de que sean graves.
+- Optimizar el rendimiento.
+- Identificar anomalías.
+- Planificar futuras necesidades de recursos.
+- Mejorar la disponibilidad y la experiencia del usuario.
+
+## Resúmen breve
+
+Así que recuerde, la supervisión de sus sistemas, aplicaciones e infraestructura es un aspecto crítico de las operaciones tecnológicas de su organización. La supervisión también puede ayudar a identificar posibles
+problemas antes de que se conviertan en problemas importantes. La supervisión nos ayudará a optimizar el rendimiento y a planificar nuestras futuras necesidades de recursos.
+
+La monitorización del sistema implica el seguimiento de los recursos de nuestro sistema, como la utilización de la CPU, el consumo de memoria, la utilización del disco y el rendimiento de la red.
+
+La supervisión de aplicaciones se va a centrar en gestionar y supervisar el rendimiento y la disponibilidad de nuestras aplicaciones de software. Y la supervisión de infraestructuras consiste
+en observar el rendimiento y la disponibilidad de la infraestructura física o virtual de una organización.
+
+Utilizando las herramientas y estrategias de supervisión adecuadas, nuestras organizaciones pueden supervisar eficazmente sus recursos, lo que a su vez va a redundar en una mejora
+del rendimiento, la fiabilidad y la satisfacción de los usuarios.
