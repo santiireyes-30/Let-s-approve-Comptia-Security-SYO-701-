@@ -85,7 +85,7 @@ y son los tres pilares de la seguridad.
   EJ: Sería su sitio web cuando aplica medidas de redundancia para garantizar que permanece en línea y activo en cualquier momento, independientemente
   del tráfico que reciba.
 
-  IMPORTANTE!!: MÁS ALLA DE LA TRIADA C.I.A HOY ES C.I.A.N.A (Confidencialidad, Integridad, Disponibilidad, No-Repudio y Autenticación...
+  A tener en cuenta C.I.A.N.A(Confidencialidad, Integridad, Disponibilidad, No-Repudio y Autenticación
   
 ## Concepto de no-repudio
 
